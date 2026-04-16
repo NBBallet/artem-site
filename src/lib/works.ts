@@ -1,3 +1,8 @@
+export interface WorkVideo {
+  id: string;
+  title: { en: string; uk: string };
+}
+
 export interface Work {
   slug: string;
   title: { en: string; uk: string };
@@ -6,6 +11,7 @@ export interface Work {
   music: string;
   description: { en: string; uk: string };
   image: string; // placeholder path
+  videos?: WorkVideo[];
 }
 
 export const works: Work[] = [
@@ -23,6 +29,22 @@ export const works: Work[] = [
       uk: "Цивілізація мурах стає дзеркалом людського суспільства — його ієрархій, страхів та вічного пошуку правди. За романом Бернара Вербера, цей балет поєднує Пори року Вівальді з рекомпозиціями Ріхтера, щоб дослідити, що відбувається, коли маленька істота наважується поставити під сумнів порядок речей.",
     },
     image: "/images/works/the-ants.jpg",
+    videos: [
+      {
+        id: "lkeQ3z5rlro",
+        title: {
+          en: "Part 1 — Awakening of Life in the Anthill. Dance of the Queen, the Secret Service, Princesses and Workers.",
+          uk: "Частина 1. Пробудження життя в мурашнику. Танок Королеви, секретної служби, принцес та звичайних робітників.",
+        },
+      },
+      {
+        id: "2YyjSLilMi4",
+        title: {
+          en: "Part 2 — Solo of the Prince, the main hero of the performance.",
+          uk: "Частина 2. Соло принца, головного героя вистави.",
+        },
+      },
+    ],
   },
   {
     slug: "mozart25",
@@ -159,8 +181,13 @@ export async function getWorks(): Promise<Work[]> {
   // Try Notion first
   const notionWorks = await getWorksFromNotion();
   if (notionWorks.length > 0) {
-    _cachedWorks = notionWorks;
-    return notionWorks;
+    // Merge static-only fields (e.g. videos) that are not stored in Notion
+    const merged = notionWorks.map((nw) => {
+      const staticWork = works.find((w) => w.slug === nw.slug);
+      return staticWork?.videos ? { ...nw, videos: staticWork.videos } : nw;
+    });
+    _cachedWorks = merged;
+    return merged;
   }
   // Fallback to static
   return works;

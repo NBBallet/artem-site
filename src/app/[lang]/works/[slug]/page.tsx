@@ -438,16 +438,40 @@ function GenericWorkPage({
         </p>
       </section>
 
-      <section className="aspect-[21/9] bg-[#111] border-b border-[#1a1a1a] flex items-center justify-center">
-        <div className="text-center">
-          <span className="text-3xl text-brand-grey/20" style={{ fontFamily: "NAMU-1400, serif" }}>
-            {work.title[locale]}
-          </span>
-          <p className="text-[11px] text-brand-dark-grey mt-4 tracking-[2px] uppercase">
-            Photo / Video coming soon
-          </p>
-        </div>
-      </section>
+      {work.videos && work.videos.length > 0 ? (
+        <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+            {locale === "uk" ? "Відео" : "Video"}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            {work.videos.map((video) => (
+              <div key={video.id}>
+                <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    title={video.title[locale]}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                </div>
+                <p className="text-sm text-brand-grey mt-3">{video.title[locale]}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section className="aspect-[21/9] bg-[#111] border-b border-[#1a1a1a] flex items-center justify-center">
+          <div className="text-center">
+            <span className="text-3xl text-brand-grey/20" style={{ fontFamily: "NAMU-1400, serif" }}>
+              {work.title[locale]}
+            </span>
+            <p className="text-[11px] text-brand-dark-grey mt-4 tracking-[2px] uppercase">
+              Photo / Video coming soon
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
         <p className="text-[17px] text-[#bbb] leading-[1.8]">
