@@ -28,7 +28,7 @@ export const works: Work[] = [
       en: "A civilization of ants becomes a mirror of human society — its hierarchies, fears, and the eternal search for truth. Based on Bernard Werber's novel, this ballet weaves Vivaldi's Four Seasons with Richter's recompositions to explore what happens when a small creature dares to question the order of things.",
       uk: "Цивілізація мурах стає дзеркалом людського суспільства — його ієрархій, страхів та вічного пошуку правди. За романом Бернара Вербера, цей балет поєднує Пори року Вівальді з рекомпозиціями Ріхтера, щоб дослідити, що відбувається, коли маленька істота наважується поставити під сумнів порядок речей.",
     },
-    image: "/images/works/the-ants.jpg",
+    image: "/images/works/the-ants/the-ants.jpg",
     videos: [
       {
         id: "lkeQ3z5rlro",
@@ -59,7 +59,7 @@ export const works: Work[] = [
       en: "An immersion into the complex, contradictory inner world of the great composer. We witness the forces that drove his artistic visions and demanded that Amadeus move ceaselessly upward along the staircase of his musical path — not counting even the Archbishop of Salzburg.",
       uk: "Занурення у складний та суперечливий внутрішній світ великого композитора. Ми бачимо на власні очі, які сили спонукали мистецькі візії та вимагали від великого Амадея рухатися безупинно вверх і вгору сходами свого музичного шляху, не рахуючись навіть з Архієпископом Зальцбурзьким.",
     },
-    image: "/images/works/mozart25.jpg",
+    image: "",
   },
   {
     slug: "anima",
@@ -89,7 +89,7 @@ export const works: Work[] = [
       en: "A ballet inspired by the life and music of Igor Markevich — the Ukrainian-born conductor and composer whose Flight of Icarus became a symbol of daring artistic ambition and the price of reaching too close to the sun.",
       uk: "Балет, натхненний життям та музикою Ігоря Маркевича — українського за походженням диригента та композитора, чий Політ Ікара став символом зухвалих мистецьких амбіцій та ціни наближення до сонця.",
     },
-    image: "/images/works/ikar.jpg",
+    image: "",
   },
   {
     slug: "roerich-ballet",
@@ -104,7 +104,7 @@ export const works: Work[] = [
       en: "A new full-length work exploring the intersection of East and West through the life, expeditions, and artistic philosophy of Nicholas Roerich — painter, philosopher, and visionary who bridged cultures through art.",
       uk: "Нова повнометражна робота, що досліджує перетин Сходу і Заходу через життя, експедиції та мистецьку філософію Миколи Реріха — художника, філософа і візіонера, який поєднував культури через мистецтво.",
     },
-    image: "/images/works/roerich.jpg",
+    image: "",
   },
   {
     slug: "antifragile",
@@ -119,7 +119,7 @@ export const works: Work[] = [
       en: "Inspired by Nassim Taleb's philosophy, this work explores systems and beings that gain from disorder — bodies that grow stronger under stress, spirits that thrive in chaos.",
       uk: "Натхненний філософією Насіма Талеба, ця робота досліджує системи та істот, що зміцнюються від хаосу — тіла, що стають сильнішими під тиском, духи, що розквітають у безладді.",
     },
-    image: "/images/works/antifragile.jpg",
+    image: "",
   },
   {
     slug: "mercy",
@@ -134,7 +134,7 @@ export const works: Work[] = [
       en: "A visceral dance film exploring compassion, vulnerability, and the thin line between mercy and surrender.",
       uk: "Танцювальний фільм, що досліджує співчуття, вразливість та тонку межу між милосердям і капітуляцією.",
     },
-    image: "/images/works/mercy.jpg",
+    image: "",
   },
   {
     slug: "voices",
@@ -149,7 +149,7 @@ export const works: Work[] = [
       en: "A performance where voice and body become one instrument — exploring the primal connection between breath, sound, and movement.",
       uk: "Вистава, де голос і тіло стають одним інструментом — досліджуючи первісний зв'язок між диханням, звуком та рухом.",
     },
-    image: "/images/works/voices.jpg",
+    image: "",
   },
   {
     slug: "humans",
@@ -164,7 +164,7 @@ export const works: Work[] = [
       en: "What makes us human? A choreographic investigation into the essence of being, stripped of social roles and cultural armor.",
       uk: "Що робить нас людьми? Хореографічне дослідження сутності буття, позбавлене соціальних ролей та культурної броні.",
     },
-    image: "/images/works/humans.jpg",
+    image: "",
   },
 ];
 

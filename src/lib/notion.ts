@@ -59,8 +59,23 @@ function getSelectProp(page: Record<string, unknown>, name: string): string {
 function getUrlProp(page: Record<string, unknown>, name: string): string {
   const prop = getProperty(page, name) as {
     url?: string | null;
+    files?: Array<{
+      type: string;
+      file?: { url: string };
+      external?: { url: string };
+      name?: string;
+    }>;
   } | null;
-  return prop?.url ?? "";
+  if (!prop) return "";
+  // url property type
+  if (prop.url) return prop.url;
+  // files property type (uploaded file or external)
+  if (prop.files && prop.files.length > 0) {
+    const f = prop.files[0];
+    if (f.file?.url) return f.file.url;
+    if (f.external?.url) return f.external.url;
+  }
+  return "";
 }
 
 export interface NotionWork extends Work {

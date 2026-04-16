@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { getWorks } from "@/lib/works";
 import Tryzub from "@/components/Tryzub";
@@ -71,27 +72,48 @@ export default async function HomePage({
               href={`/${lang}/works/${work.slug}`}
               className="group block bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-brand-red/40 transition-colors"
             >
-              <div className="aspect-[16/10] bg-[#1a1a1a] flex items-center justify-center relative overflow-hidden">
-                <span
-                  className="text-2xl text-brand-grey/30 group-hover:text-brand-red/50 transition-colors"
-                  style={{ fontFamily: "NAMU-1400, serif" }}
-                >
-                  {work.title[locale]}
-                </span>
+              {/* Card image — with photo overlay if available, plain dark bg otherwise */}
+              <div className="aspect-[16/10] relative overflow-hidden bg-[#1a1a1a]">
+                {work.image ? (
+                  <>
+                    <Image
+                      src={work.image}
+                      alt={work.title[locale]}
+                      fill
+                      className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                    />
+                    {/* gradient + title overlay on the concrete/bottom area */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 px-5 pb-4">
+                      <h3
+                        className="text-[clamp(18px,2.5vw,26px)] leading-tight text-brand-white tracking-[2px] uppercase drop-shadow-lg"
+                        style={{ fontFamily: "NAMU-1400, serif" }}
+                      >
+                        {work.title[locale]}
+                      </h3>
+                      <p className="text-[10px] text-brand-red uppercase tracking-[3px] mt-1 font-semibold">
+                        {work.year}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <span
+                    className="absolute inset-0 flex items-center justify-center text-2xl text-brand-grey/30 group-hover:text-brand-red/50 transition-colors"
+                    style={{ fontFamily: "NAMU-1400, serif" }}
+                  >
+                    {work.title[locale]}
+                  </span>
+                )}
               </div>
+
+              {/* Card footer */}
               <div className="p-5">
-                <h3
-                  className="text-lg text-brand-white mb-1"
-                  style={{ fontFamily: "NAMU-1400, serif" }}
-                >
-                  {work.title[locale]}
-                </h3>
                 <p className="text-[12px] text-brand-dark-grey uppercase tracking-[2px] mb-2">
                   {work.subtitle[locale]}
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-[12px] text-brand-grey">
-                    {work.year}
+                    {work.music}
                   </span>
                   <span className="text-[11px] text-brand-red uppercase tracking-[2px] opacity-0 group-hover:opacity-100 transition-opacity">
                     {t["works.viewProject"]} →
