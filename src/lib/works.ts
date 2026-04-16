@@ -186,7 +186,8 @@ export async function getWorks(): Promise<Work[]> {
       const staticWork = works.find((w) => w.slug === nw.slug);
       const imageOk = nw.image &&
         !nw.image.includes("photos.google.com") &&
-        !nw.image.includes("drive.google.com");
+        !nw.image.includes("drive.google.com") &&
+        !nw.image.includes("photo/AF1");
       return {
         ...nw,
         image: imageOk ? nw.image : (staticWork?.image || ""),
