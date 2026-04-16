@@ -10,8 +10,9 @@ export interface Work {
   year: string;
   music: string;
   description: { en: string; uk: string };
-  image: string; // placeholder path
+  image: string;
   videos?: WorkVideo[];
+  gallery?: string[]; // array of image URLs for horizontal slider
 }
 
 export const works: Work[] = [
@@ -33,14 +34,14 @@ export const works: Work[] = [
       {
         id: "lkeQ3z5rlro",
         title: {
-          en: "Part 1 — Awakening of Life in the Anthill. Dance of the Queen, the Secret Service, Princesses and Workers.",
+          en: "Part 1. Awakening of life in the anthill. Dance of the Queen, the secret service, princesses and ordinary workers.",
           uk: "Частина 1. Пробудження життя в мурашнику. Танок Королеви, секретної служби, принцес та звичайних робітників.",
         },
       },
       {
         id: "2YyjSLilMi4",
         title: {
-          en: "Part 2 — Solo of the Prince, the main hero of the performance.",
+          en: "Part 2. Solo of the Prince, the main hero of the performance.",
           uk: "Частина 2. Соло принца, головного героя вистави.",
         },
       },

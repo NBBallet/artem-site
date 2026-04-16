@@ -5,6 +5,7 @@ import { getDictionary, locales, type Locale } from "@/lib/i18n";
 import { works, getWorkBySlug, getWorks } from "@/lib/works";
 import { animaData } from "@/lib/anima-data";
 import Tryzub from "@/components/Tryzub";
+import PhotoSlider from "@/components/PhotoSlider";
 
 // ISR: revalidate every 30 seconds
 export const revalidate = 30;
@@ -478,6 +479,11 @@ function GenericWorkPage({
           {work.description[locale]}
         </p>
       </section>
+
+      {/* Photo slider — full width, no padding */}
+      {work.gallery && work.gallery.length > 0 && (
+        <PhotoSlider photos={work.gallery} />
+      )}
 
       <WorkNavigation slug={work.slug} locale={locale} />
     </article>

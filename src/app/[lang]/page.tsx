@@ -53,7 +53,7 @@ export default async function HomePage({
       {/* ===== WORKS ===== */}
       <section id="works" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          02 / {t["works.title"]}
+          {t["works.title"]}
         </div>
         <h2
           className="text-4xl text-brand-white mb-4"
@@ -128,7 +128,7 @@ export default async function HomePage({
       {/* ===== ABOUT ===== */}
       <section id="about" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          03 / {t["about.label"]}
+          {t["about.label"]}
         </div>
         <h2
           className="text-4xl text-brand-white mb-4"
@@ -165,7 +165,7 @@ export default async function HomePage({
       {/* ===== CONTACT ===== */}
       <section id="contact" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          04 / {t["contact.title"]}
+          {t["contact.title"]}
         </div>
         <h2
           className="text-4xl text-brand-white mb-4"
