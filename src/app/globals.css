@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "NAMU-1400";
+  src:
+    url("/fonts/NAMU-1400.woff2") format("woff2"),
+    url("/fonts/NAMU-1400.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NAMU-Pro";
+  src:
+    url("/fonts/NAMU-Pro.woff2") format("woff2"),
+    url("/fonts/NAMU-Pro.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --black: #0a0a0a;
+  --red: #c8102e;
+  --white: #f5f5f5;
+  --grey: #888888;
+  --gold: #d4af37;
+  --dark-grey: #555555;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-black: var(--black);
+  --color-brand-red: var(--red);
+  --color-brand-white: var(--white);
+  --color-brand-grey: var(--grey);
+  --color-brand-gold: var(--gold);
+  --color-brand-dark-grey: var(--dark-grey);
+  --font-namu: "NAMU-1400", serif;
+  --font-namu-pro: "NAMU-Pro", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--white);
 }
