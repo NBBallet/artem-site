@@ -82,8 +82,17 @@ export default async function HomePage({
                       fill
                       className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
                     />
-                    {/* gradient + title overlay on the concrete/bottom area */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                    {/* gradient bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                    {/* VIEW PROJECT — top right, on the wall, appears on hover */}
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                      <span className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase font-semibold text-brand-white bg-brand-red/90 backdrop-blur-sm px-3 py-1.5 rounded-sm">
+                        {t["works.viewProject"]} →
+                      </span>
+                    </div>
+
+                    {/* Title + year — bottom center */}
                     <div className="absolute bottom-0 left-0 right-0 px-5 pb-4 text-center">
                       <h3
                         className="text-[clamp(18px,2.5vw,26px)] leading-tight text-brand-white tracking-[2px] uppercase drop-shadow-lg"
@@ -114,9 +123,6 @@ export default async function HomePage({
                 <div className="flex items-center justify-between">
                   <span className="text-[12px] text-brand-grey">
                     {work.music}
-                  </span>
-                  <span className="text-[11px] text-brand-red uppercase tracking-[2px] opacity-0 group-hover:opacity-100 transition-opacity">
-                    {t["works.viewProject"]} →
                   </span>
                 </div>
               </div>

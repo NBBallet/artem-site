@@ -30,6 +30,24 @@ export const works: Work[] = [
       uk: "Цивілізація мурах стає дзеркалом людського суспільства — його ієрархій, страхів та вічного пошуку правди. За романом Бернара Вербера, цей балет поєднує Пори року Вівальді з рекомпозиціями Ріхтера, щоб дослідити, що відбувається, коли маленька істота наважується поставити під сумнів порядок речей.",
     },
     image: "/images/works/the-ants/the-ants.jpg",
+    gallery: [
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325779/47580617_302305113726727_3540207874120613888_n_kdqfmm.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325776/468926405_1566626430627916_3641130413285529658_n_tkqjiq.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325761/47363167_300974687193103_134555948084625408_n_zfhuou.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325760/48192552_304053406885231_2609068628024229888_n_swbsu2.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325749/48052964_304053393551899_7294468714886332416_n_ubqtfy.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325744/47680490_302305183726720_4796214744224628736_n_eys9ts.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325734/47189898_300974770526428_4663380047233548288_n_gyqv8c.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325717/47398138_302305103726728_4554435822358626304_n_lmcohw.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325709/47051029_298203894136849_9034833306251689984_n_gvulcj.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325705/46831299_298204020803503_5493644521730211840_n_d5x1s8.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325705/47349078_300974800526425_8306268950040150016_n_cm4xrt.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325699/46837309_298204000803505_8949358986000334848_n_z9bi7l.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325689/46916746_298204397470132_4908057509383634944_n_kbzdwj.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325688/46761026_298204097470162_200417819869839360_n_uuwffa.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776325676/46766794_298204404136798_4646738169948012544_n_zimklh.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776322337/the-ants_uhbmoc.jpg",
+    ],
     videos: [
       {
         id: "lkeQ3z5rlro",
@@ -193,6 +211,7 @@ export async function getWorks(): Promise<Work[]> {
         ...nw,
         image: imageOk ? nw.image : (staticWork?.image || ""),
         videos: staticWork?.videos ?? nw.videos,
+        gallery: staticWork?.gallery ?? nw.gallery,
       };
     });
     _cachedWorks = merged;
