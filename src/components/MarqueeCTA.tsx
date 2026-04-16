@@ -48,7 +48,7 @@ export default function MarqueeCTA({
       >
         <div
           className="whitespace-nowrap"
-          style={{ animation: "marquee 26s linear infinite" }}
+          style={{ animation: "marquee 50s linear infinite" }}
         >
           <span
             className="text-[clamp(10px,1.3vw,15px)] text-white/[0.17] tracking-[0.5em] uppercase transition-colors duration-500 group-hover:text-white/30"

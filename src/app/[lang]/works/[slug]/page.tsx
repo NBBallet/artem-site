@@ -6,7 +6,8 @@ import { works, getWorkBySlug, getWorks } from "@/lib/works";
 import { animaData } from "@/lib/anima-data";
 import Tryzub from "@/components/Tryzub";
 import PhotoSlider from "@/components/PhotoSlider";
-import MarqueeCTAServer from "@/components/MarqueeCTAServer";
+import MarqueeCTA from "@/components/MarqueeCTA";
+import { getSiteSettings } from "@/lib/settings";
 
 // ISR: revalidate every 30 seconds
 export const revalidate = 30;
@@ -400,9 +401,8 @@ function AnimaPage({ locale, t }: { locale: Locale; t: Record<string, string> })
         </div>
       </section>
 
-      {/* ===== CTA Ticker + Navigation ===== */}
-      <MarqueeCTAServer locale={locale} workTitle="ANIMA" href={`/${lang}#contact`} />
-      <WorkNavigation slug="anima" locale={locale} />
+      {/* ===== CTA + Navigation ===== */}
+      <WorkFooter slug="anima" locale={locale} />
     </article>
   );
 }
@@ -497,48 +497,78 @@ function GenericWorkPage({
         </section>
       )}
 
-      <MarqueeCTAServer locale={locale} workTitle={work.title[locale]} href={`/${locale}#contact`} />
-      <WorkNavigation slug={work.slug} locale={locale} />
+      <WorkFooter slug={work.slug} locale={locale} />
     </article>
   );
 }
 
-/* ─── Work Navigation (async — uses dynamic data) ─── */
-async function WorkNavigation({ slug, locale }: { slug: string; locale: Locale }) {
-  const allWorks = await getWorks();
+/* ─── Work Footer: CTA flowing from NEXT work's title + prev/next nav ─── */
+async function WorkFooter({ slug, locale }: { slug: string; locale: Locale }) {
+  const [allWorks, settings] = await Promise.all([getWorks(), getSiteSettings()]);
+
   const currentIndex = allWorks.findIndex((w) => w.slug === slug);
   const prevWork = currentIndex > 0 ? allWorks[currentIndex - 1] : null;
-  const nextWork = currentIndex < allWorks.length - 1 ? allWorks[currentIndex + 1] : null;
+  const nextWork =
+    currentIndex < allWorks.length - 1 ? allWorks[currentIndex + 1] : null;
+
+  // CTA flows from the NEXT work's title; if last work, loop to first
+  const ctaWork = nextWork ?? allWorks[0];
+  const ctaTitle = ctaWork?.title[locale] ?? "";
+  const ctaHref = ctaWork
+    ? `/${locale}/works/${ctaWork.slug}`
+    : `/${locale}#works`;
 
   return (
-    <section className="py-16 px-6 md:px-16 max-w-[1200px] mx-auto">
-      <div className="flex justify-between items-center">
-        {prevWork ? (
-          <Link href={`/${locale}/works/${prevWork.slug}`} className="group">
-            <span className="text-[11px] tracking-[2px] uppercase text-brand-grey group-hover:text-brand-red transition-colors">
-              ← Previous
-            </span>
-            <p className="text-lg text-brand-white mt-1" style={{ fontFamily: "NAMU-1400, serif" }}>
-              {prevWork.title[locale]}
-            </p>
-          </Link>
-        ) : (
-          <div />
-        )}
-        {nextWork ? (
-          <Link href={`/${locale}/works/${nextWork.slug}`} className="group text-right">
-            <span className="text-[11px] tracking-[2px] uppercase text-brand-grey group-hover:text-brand-red transition-colors">
-              Next →
-            </span>
-            <p className="text-lg text-brand-white mt-1" style={{ fontFamily: "NAMU-1400, serif" }}>
-              {nextWork.title[locale]}
-            </p>
-          </Link>
-        ) : (
-          <div />
-        )}
-      </div>
-    </section>
+    <>
+      <MarqueeCTA
+        locale={locale}
+        workTitle={ctaTitle}
+        href={ctaHref}
+        textEn={settings.ctaTextEn}
+        textUk={settings.ctaTextUk}
+      />
+
+      <section className="py-16 px-6 md:px-16 max-w-[1200px] mx-auto">
+        <div className="flex justify-between items-center">
+          {prevWork ? (
+            <Link
+              href={`/${locale}/works/${prevWork.slug}`}
+              className="group"
+            >
+              <span className="text-[11px] tracking-[2px] uppercase text-brand-grey group-hover:text-brand-red transition-colors">
+                ← Previous
+              </span>
+              <p
+                className="text-lg text-brand-white mt-1"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                {prevWork.title[locale]}
+              </p>
+            </Link>
+          ) : (
+            <div />
+          )}
+          {nextWork ? (
+            <Link
+              href={`/${locale}/works/${nextWork.slug}`}
+              className="group text-right"
+            >
+              <span className="text-[11px] tracking-[2px] uppercase text-brand-grey group-hover:text-brand-red transition-colors">
+                Next →
+              </span>
+              <p
+                className="text-lg text-brand-white mt-1"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                {nextWork.title[locale]}
+              </p>
+            </Link>
+          ) : (
+            <div />
+          )}
+        </div>
+      </section>
+    </>
   );
 }
 
