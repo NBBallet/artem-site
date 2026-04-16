@@ -6,6 +6,7 @@ import { works, getWorkBySlug, getWorks } from "@/lib/works";
 import { animaData } from "@/lib/anima-data";
 import Tryzub from "@/components/Tryzub";
 import PhotoSlider from "@/components/PhotoSlider";
+import MarqueeCTA from "@/components/MarqueeCTA";
 
 // ISR: revalidate every 30 seconds
 export const revalidate = 30;
@@ -272,7 +273,7 @@ function AnimaPage({ locale, t }: { locale: Locale; t: Record<string, string> })
               className="w-full h-full"
             />
           </div>
-          <p className="text-sm text-brand-grey mt-3">{d.videos.showreel.title[locale]}</p>
+          <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{d.videos.showreel.title[locale]}</p>
         </div>
 
         {/* Secondary videos */}
@@ -287,7 +288,7 @@ function AnimaPage({ locale, t }: { locale: Locale; t: Record<string, string> })
                 className="w-full h-full"
               />
             </div>
-            <p className="text-sm text-brand-grey mt-3">{d.videos.premiere.title[locale]}</p>
+            <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{d.videos.premiere.title[locale]}</p>
           </div>
           <div>
             <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
@@ -299,7 +300,7 @@ function AnimaPage({ locale, t }: { locale: Locale; t: Record<string, string> })
                 className="w-full h-full"
               />
             </div>
-            <p className="text-sm text-brand-grey mt-3">{d.videos.rehearsal.title[locale]}</p>
+            <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{d.videos.rehearsal.title[locale]}</p>
           </div>
         </div>
       </section>
@@ -399,7 +400,8 @@ function AnimaPage({ locale, t }: { locale: Locale; t: Record<string, string> })
         </div>
       </section>
 
-      {/* ===== Navigation ===== */}
+      {/* ===== CTA Ticker + Navigation ===== */}
+      <MarqueeCTA locale={locale} href={`/${lang}#contact`} />
       <WorkNavigation slug="anima" locale={locale} />
     </article>
   );
@@ -477,7 +479,7 @@ function GenericWorkPage({
                     className="w-full h-full"
                   />
                 </div>
-                <p className="text-sm text-brand-grey mt-3">{video.title[locale]}</p>
+                <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{video.title[locale]}</p>
               </div>
             ))}
           </div>
@@ -495,6 +497,7 @@ function GenericWorkPage({
         </section>
       )}
 
+      <MarqueeCTA locale={locale} href={`/${locale}#contact`} />
       <WorkNavigation slug={work.slug} locale={locale} />
     </article>
   );
