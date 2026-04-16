@@ -417,7 +417,9 @@ function GenericWorkPage({
 }) {
   return (
     <article className="pt-24">
-      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+
+      {/* ── HEADER: title + description side by side ── */}
+      <section className="relative px-6 md:px-16 py-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
         <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
         <Link
           href={`/${locale}#works`}
@@ -425,22 +427,41 @@ function GenericWorkPage({
         >
           ← {t["work.back"]}
         </Link>
-        <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
-          {work.year} · {work.music}
+
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-start">
+          {/* Left: title */}
+          <div>
+            <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
+              {work.year} · {work.music}
+            </div>
+            <h1
+              className="text-[clamp(40px,6vw,80px)] leading-[1.05] text-brand-white mb-3"
+              style={{ fontFamily: "NAMU-1400, serif" }}
+            >
+              {work.title[locale]}
+            </h1>
+            <p className="text-lg text-brand-grey">
+              {work.subtitle[locale]}
+            </p>
+          </div>
+
+          {/* Right: description */}
+          <div className="md:pt-8">
+            <p className="text-[16px] text-[#aaa] leading-[1.8]">
+              {work.description[locale]}
+            </p>
+          </div>
         </div>
-        <h1
-          className="text-[clamp(36px,6vw,72px)] leading-[1.1] text-brand-white mb-4"
-          style={{ fontFamily: "NAMU-1400, serif" }}
-        >
-          {work.title[locale]}
-        </h1>
-        <p className="text-lg text-brand-grey mb-8 max-w-[600px]">
-          {work.subtitle[locale]}
-        </p>
       </section>
 
+      {/* ── PHOTO SLIDER — full width, right after header ── */}
+      {work.gallery && work.gallery.length > 0 && (
+        <PhotoSlider photos={work.gallery} />
+      )}
+
+      {/* ── VIDEO ── */}
       {work.videos && work.videos.length > 0 ? (
-        <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
             {locale === "uk" ? "Відео" : "Video"}
           </div>
@@ -472,17 +493,6 @@ function GenericWorkPage({
             </p>
           </div>
         </section>
-      )}
-
-      <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
-        <p className="text-[17px] text-[#bbb] leading-[1.8]">
-          {work.description[locale]}
-        </p>
-      </section>
-
-      {/* Photo slider — full width, no padding */}
-      {work.gallery && work.gallery.length > 0 && (
-        <PhotoSlider photos={work.gallery} />
       )}
 
       <WorkNavigation slug={work.slug} locale={locale} />
