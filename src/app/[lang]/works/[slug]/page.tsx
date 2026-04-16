@@ -401,7 +401,7 @@ function AnimaPage({ locale, t }: { locale: Locale; t: Record<string, string> })
       </section>
 
       {/* ===== CTA Ticker + Navigation ===== */}
-      <MarqueeCTAServer locale={locale} href={`/${lang}#contact`} />
+      <MarqueeCTAServer locale={locale} workTitle="ANIMA" href={`/${lang}#contact`} />
       <WorkNavigation slug="anima" locale={locale} />
     </article>
   );
@@ -497,7 +497,7 @@ function GenericWorkPage({
         </section>
       )}
 
-      <MarqueeCTAServer locale={locale} href={`/${locale}#contact`} />
+      <MarqueeCTAServer locale={locale} workTitle={work.title[locale]} href={`/${locale}#contact`} />
       <WorkNavigation slug={work.slug} locale={locale} />
     </article>
   );

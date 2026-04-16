@@ -3,15 +3,17 @@ import MarqueeCTA from "./MarqueeCTA";
 
 interface Props {
   locale: "en" | "uk";
+  /** Work title shown as the "source" on the right side */
+  workTitle: string;
   href?: string;
 }
 
-// Async server component — fetches CTA text from Notion (or falls back to static)
-export default async function MarqueeCTAServer({ locale, href }: Props) {
+export default async function MarqueeCTAServer({ locale, workTitle, href }: Props) {
   const settings = await getSiteSettings();
   return (
     <MarqueeCTA
       locale={locale}
+      workTitle={workTitle}
       href={href}
       textEn={settings.ctaTextEn}
       textUk={settings.ctaTextUk}
