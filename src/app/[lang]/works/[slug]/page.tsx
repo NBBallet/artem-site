@@ -6,7 +6,7 @@ import { works, getWorkBySlug, getWorks } from "@/lib/works";
 import { animaData } from "@/lib/anima-data";
 import Tryzub from "@/components/Tryzub";
 import PhotoSlider from "@/components/PhotoSlider";
-import MarqueeCTA from "@/components/MarqueeCTA";
+import MarqueeCTAServer from "@/components/MarqueeCTAServer";
 
 // ISR: revalidate every 30 seconds
 export const revalidate = 30;
@@ -401,7 +401,7 @@ function AnimaPage({ locale, t }: { locale: Locale; t: Record<string, string> })
       </section>
 
       {/* ===== CTA Ticker + Navigation ===== */}
-      <MarqueeCTA locale={locale} href={`/${lang}#contact`} />
+      <MarqueeCTAServer locale={locale} href={`/${lang}#contact`} />
       <WorkNavigation slug="anima" locale={locale} />
     </article>
   );
@@ -497,7 +497,7 @@ function GenericWorkPage({
         </section>
       )}
 
-      <MarqueeCTA locale={locale} href={`/${locale}#contact`} />
+      <MarqueeCTAServer locale={locale} href={`/${locale}#contact`} />
       <WorkNavigation slug={work.slug} locale={locale} />
     </article>
   );
