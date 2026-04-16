@@ -9,8 +9,9 @@ const DEFAULT_UK =
 
 interface MarqueeCTAProps {
   locale: "en" | "uk";
-  /** Work title — the "source" letters the text flows from */
   workTitle: string;
+  /** Cover image of the next work — used as fill inside the title letters */
+  workImage?: string;
   textEn?: string;
   textUk?: string;
   href?: string;
@@ -19,31 +20,49 @@ interface MarqueeCTAProps {
 export default function MarqueeCTA({
   locale,
   workTitle,
+  workImage,
   textEn,
   textUk,
-  href = "#contact",
+  href = "#works",
 }: MarqueeCTAProps) {
   const rawText =
     locale === "uk" ? (textUk ?? DEFAULT_UK) : (textEn ?? DEFAULT_EN);
-
-  // Repeat enough times to fill any screen width
   const stream = Array(10).fill(rawText).join("   ·   ");
+
+  const hasImage = Boolean(workImage);
 
   return (
     <Link
       href={href}
       className="block relative overflow-hidden bg-[#0a0a0a] border-t border-[#161616] group no-underline"
-      style={{ height: "clamp(80px, 12vw, 140px)" }}
+      style={{ height: "clamp(90px, 14vw, 160px)" }}
     >
-      {/* ── Flowing text — scrolls left ── */}
+      {/* ── NEXT → label — top left ── */}
+      <div className="absolute top-5 left-6 md:left-12 z-20 flex items-center gap-2 group-hover:opacity-70 transition-opacity">
+        <span className="text-[10px] tracking-[4px] uppercase text-brand-grey">
+          {locale === "uk" ? "Наступна" : "Next"}
+        </span>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-brand-grey"
+        >
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </div>
+
+      {/* ── Flowing CTA text — bottom strip ── */}
       <div
-        className="absolute inset-0 flex items-center pointer-events-none"
+        className="absolute bottom-5 left-0 right-0 flex items-center overflow-hidden pointer-events-none"
         style={{
-          // fade in from left edge, fade out near the title on the right
           maskImage:
-            "linear-gradient(to right, transparent 0%, black 7%, black 62%, transparent 84%)",
+            "linear-gradient(to right, transparent 0%, black 6%, black 60%, transparent 82%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 7%, black 62%, transparent 84%)",
+            "linear-gradient(to right, transparent 0%, black 6%, black 60%, transparent 82%)",
         }}
       >
         <div
@@ -51,7 +70,7 @@ export default function MarqueeCTA({
           style={{ animation: "marquee 50s linear infinite" }}
         >
           <span
-            className="text-[clamp(10px,1.3vw,15px)] text-white/[0.17] tracking-[0.5em] uppercase transition-colors duration-500 group-hover:text-white/30"
+            className="text-[clamp(9px,1.1vw,13px)] text-white/[0.15] tracking-[0.5em] uppercase group-hover:text-white/25 transition-colors duration-500"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
             {stream}
@@ -59,20 +78,38 @@ export default function MarqueeCTA({
         </div>
       </div>
 
-      {/* ── Dark veil behind the title so text "disappears into" it ── */}
+      {/* ── Dark veil so title "owns" the right side ── */}
       <div
         className="absolute right-0 inset-y-0 z-[5] pointer-events-none"
         style={{
-          width: "38%",
-          background: "linear-gradient(to left, #0a0a0a 50%, transparent 100%)",
+          width: "40%",
+          background:
+            "linear-gradient(to left, #0a0a0a 45%, transparent 100%)",
         }}
       />
 
-      {/* ── Work title — the source of the flow ── */}
-      <div className="absolute right-6 md:right-16 inset-y-0 flex items-center z-10">
+      {/* ── Work title — image fill inside letters ── */}
+      <div className="absolute right-6 md:right-12 inset-y-0 flex items-center z-10">
         <span
-          className="text-[clamp(30px,5.5vw,72px)] leading-none text-brand-red tracking-[0.06em] uppercase select-none transition-opacity duration-500 group-hover:opacity-80"
-          style={{ fontFamily: "NAMU-1400, serif" }}
+          className="leading-none uppercase select-none tracking-[0.05em]"
+          style={{
+            fontFamily: "NAMU-1400, serif",
+            fontSize: "clamp(26px, 4.5vw, 58px)",
+            // If cover image exists — fill letters with blurred photo
+            ...(hasImage
+              ? {
+                  backgroundImage: `url(${workImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  filter: "brightness(1.6) saturate(0.75)",
+                }
+              : {
+                  color: "#c8102e",
+                }),
+          }}
         >
           {workTitle}
         </span>

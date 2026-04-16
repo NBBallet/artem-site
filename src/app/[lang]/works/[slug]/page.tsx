@@ -502,73 +502,31 @@ function GenericWorkPage({
   );
 }
 
-/* ─── Work Footer: CTA flowing from NEXT work's title + prev/next nav ─── */
+/* ─── Work Footer: CTA strip only (prev/next nav removed) ─── */
 async function WorkFooter({ slug, locale }: { slug: string; locale: Locale }) {
   const [allWorks, settings] = await Promise.all([getWorks(), getSiteSettings()]);
 
   const currentIndex = allWorks.findIndex((w) => w.slug === slug);
-  const prevWork = currentIndex > 0 ? allWorks[currentIndex - 1] : null;
   const nextWork =
     currentIndex < allWorks.length - 1 ? allWorks[currentIndex + 1] : null;
 
-  // CTA flows from the NEXT work's title; if last work, loop to first
+  // CTA source = next work; if last, loop to first
   const ctaWork = nextWork ?? allWorks[0];
   const ctaTitle = ctaWork?.title[locale] ?? "";
+  const ctaImage = ctaWork?.image ?? "";
   const ctaHref = ctaWork
     ? `/${locale}/works/${ctaWork.slug}`
     : `/${locale}#works`;
 
   return (
-    <>
-      <MarqueeCTA
-        locale={locale}
-        workTitle={ctaTitle}
-        href={ctaHref}
-        textEn={settings.ctaTextEn}
-        textUk={settings.ctaTextUk}
-      />
-
-      <section className="py-16 px-6 md:px-16 max-w-[1200px] mx-auto">
-        <div className="flex justify-between items-center">
-          {prevWork ? (
-            <Link
-              href={`/${locale}/works/${prevWork.slug}`}
-              className="group"
-            >
-              <span className="text-[11px] tracking-[2px] uppercase text-brand-grey group-hover:text-brand-red transition-colors">
-                ← Previous
-              </span>
-              <p
-                className="text-lg text-brand-white mt-1"
-                style={{ fontFamily: "NAMU-1400, serif" }}
-              >
-                {prevWork.title[locale]}
-              </p>
-            </Link>
-          ) : (
-            <div />
-          )}
-          {nextWork ? (
-            <Link
-              href={`/${locale}/works/${nextWork.slug}`}
-              className="group text-right"
-            >
-              <span className="text-[11px] tracking-[2px] uppercase text-brand-grey group-hover:text-brand-red transition-colors">
-                Next →
-              </span>
-              <p
-                className="text-lg text-brand-white mt-1"
-                style={{ fontFamily: "NAMU-1400, serif" }}
-              >
-                {nextWork.title[locale]}
-              </p>
-            </Link>
-          ) : (
-            <div />
-          )}
-        </div>
-      </section>
-    </>
+    <MarqueeCTA
+      locale={locale}
+      workTitle={ctaTitle}
+      workImage={ctaImage || undefined}
+      href={ctaHref}
+      textEn={settings.ctaTextEn}
+      textUk={settings.ctaTextUk}
+    />
   );
 }
 
