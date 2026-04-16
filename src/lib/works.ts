@@ -181,10 +181,17 @@ export async function getWorks(): Promise<Work[]> {
   // Try Notion first
   const notionWorks = await getWorksFromNotion();
   if (notionWorks.length > 0) {
-    // Merge static-only fields (e.g. videos) that are not stored in Notion
+    // Merge static-only fields (videos) and fallback image if Notion URL is invalid
     const merged = notionWorks.map((nw) => {
       const staticWork = works.find((w) => w.slug === nw.slug);
-      return staticWork?.videos ? { ...nw, videos: staticWork.videos } : nw;
+      const imageOk = nw.image &&
+        !nw.image.includes("photos.google.com") &&
+        !nw.image.includes("drive.google.com");
+      return {
+        ...nw,
+        image: imageOk ? nw.image : (staticWork?.image || ""),
+        videos: staticWork?.videos ?? nw.videos,
+      };
     });
     _cachedWorks = merged;
     return merged;
