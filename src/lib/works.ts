@@ -79,6 +79,22 @@ export const works: Work[] = [
       uk: "Занурення у складний та суперечливий внутрішній світ великого композитора. Ми бачимо на власні очі, які сили спонукали мистецькі візії та вимагали від великого Амадея рухатися безупинно вверх і вгору сходами свого музичного шляху, не рахуючись навіть з Архієпископом Зальцбурзьким.",
     },
     image: "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332563/IMG_3263_fcvu8m.jpg",
+    videos: [
+      {
+        id: "nEAiHrquJ74",
+        title: {
+          en: "Stage choreographic development of the ballet. First act. Teaser.",
+          uk: "Сценічна хореографічна розробка балету. Перший акт. Тизер.",
+        },
+      },
+      {
+        id: "H5CGX13LNlY",
+        title: {
+          en: "A more extensive, full version of the choreographic text.",
+          uk: "Більш розлога, повна версія хореографічного тексту.",
+        },
+      },
+    ],
     gallery: [
       // Alternating: odd = life / непарні = побутові, even = dance / парні = танцювальні
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332585/IMG_3274_mzoihf.jpg",   // 1 life

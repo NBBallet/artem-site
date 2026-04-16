@@ -513,7 +513,12 @@ async function WorkFooter({ slug, locale }: { slug: string; locale: Locale }) {
   // CTA source = next work; if last, loop to first
   const ctaWork = nextWork ?? allWorks[0];
   const ctaTitle = ctaWork?.title[locale] ?? "";
-  const ctaImage = ctaWork?.image ?? "";
+  // Some works have dark photos that don't suit image-fill — list them here
+  const noImageFillSlugs = ["mozart25"];
+  const ctaImage =
+    ctaWork && !noImageFillSlugs.includes(ctaWork.slug)
+      ? (ctaWork.image ?? "")
+      : "";
   const ctaHref = ctaWork
     ? `/${locale}/works/${ctaWork.slug}`
     : `/${locale}#works`;
