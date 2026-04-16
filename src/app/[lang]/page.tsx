@@ -84,7 +84,7 @@ export default async function HomePage({
                     />
                     {/* gradient + title overlay on the concrete/bottom area */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 px-5 pb-4">
+                    <div className="absolute bottom-0 left-0 right-0 px-5 pb-4 text-center">
                       <h3
                         className="text-[clamp(18px,2.5vw,26px)] leading-tight text-brand-white tracking-[2px] uppercase drop-shadow-lg"
                         style={{ fontFamily: "NAMU-1400, serif" }}
