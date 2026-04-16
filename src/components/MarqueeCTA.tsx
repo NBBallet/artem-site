@@ -80,21 +80,12 @@ export default function MarqueeCTA({
             </svg>
           </div>
 
-          {/* Work title — image fills letters, red gradient fallback ── */}
+          {/* Work title — solid brand-red, always readable ── */}
           <span
-            className="leading-none uppercase select-none tracking-[0.05em]"
+            className="leading-none uppercase select-none tracking-[0.05em] text-brand-red group-hover:opacity-80 transition-opacity"
             style={{
               fontFamily: "NAMU-1400, serif",
               fontSize: "clamp(26px, 4.5vw, 58px)",
-              backgroundImage: workImage
-                ? `url(${workImage}), linear-gradient(135deg, #c8102e 0%, #a00d24 100%)`
-                : `linear-gradient(135deg, #c8102e 0%, #a00d24 100%)`,
-              backgroundSize: "cover, 100% 100%",
-              backgroundPosition: "center, 0 0",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              filter: workImage ? "brightness(1.55) saturate(0.8)" : "none",
             }}
           >
             {workTitle}
