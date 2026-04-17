@@ -130,52 +130,6 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         </blockquote>
       </section>
 
-      {/* ===== 3. CAST ===== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          {locale === "uk" ? "Виконавці" : "Cast"}
-        </div>
-        <h2
-          className="text-3xl text-brand-white mb-12"
-          style={{ fontFamily: "NAMU-1400, serif" }}
-        >
-          {locale === "uk" ? "Виконавці" : "Cast"}
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cast.map((member, i) => (
-            <div
-              key={i}
-              className="group relative aspect-[4/3] rounded-lg overflow-hidden border border-[#222] hover:border-brand-red/40 transition-all"
-            >
-              {/* Photo background if available */}
-              {member.photo && (
-                <Image src={member.photo} alt={member.nameEn} fill className="object-cover opacity-40 group-hover:opacity-55 transition-opacity" />
-              )}
-              {/* Dark gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
-
-              {/* Role — centered (NO number span) */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
-                <p className="text-[20px] text-center text-brand-white/90 leading-snug mb-1" style={{ fontFamily: "NAMU-1400, serif" }}>
-                  {locale === "uk" ? member.roleUk : member.roleEn}
-                </p>
-              </div>
-
-              {/* Performer name at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent pt-10 pb-4 px-5">
-                <div className="text-[10px] tracking-[2px] uppercase text-brand-red/80 font-semibold mb-1">
-                  {locale === "uk" ? "Виконавець" : "Performer"}
-                </div>
-                <div className="text-[15px] text-brand-white/90" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
-                  {locale === "uk" ? member.nameUk : member.nameEn}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ===== 4. SCENES — Gallery of 7 Arcana ===== */}
       <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
