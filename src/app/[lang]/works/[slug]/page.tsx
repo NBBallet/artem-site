@@ -147,6 +147,24 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             : "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent."}
         </p>
 
+        {/* Libretto PDF download — URL editable in Notion Site Settings → key "anima_libretto_pdf" */}
+        {settings.animaLibrettoPdf && (
+          <div className="mb-16">
+            <a
+              href={settings.animaLibrettoPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-6 py-3 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase"
+              style={{ fontFamily: "NAMU-1400, serif" }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
+              </svg>
+              {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
+            </a>
+          </div>
+        )}
+
         <div className="space-y-16">
           {scenes.map((scene, idx) => (
             <div
@@ -196,9 +214,6 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       {/* ===== 5. VIDEO ===== */}
       <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          {locale === "uk" ? "Відео" : "Video"}
-        </div>
         <h2
           className="text-3xl text-brand-white mb-12"
           style={{ fontFamily: "NAMU-1400, serif" }}
@@ -289,19 +304,6 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           </div>
         </div>
 
-        {/* Masterclasses */}
-        <div>
-          <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-4">
-            {locale === "uk" ? "Майстер-класи LITSO Dance Company" : "LITSO Dance Company Masterclasses"}
-          </h3>
-          <ul className="space-y-2">
-            {d.festival.masterclasses[locale].map((mc, i) => (
-              <li key={i} className="text-[14px] text-brand-grey leading-[1.6] pl-4 border-l border-[#333]">
-                {mc}
-              </li>
-            ))}
-          </ul>
-        </div>
       </section>
 
       {/* ===== 7. ABOUT LITSO → NBB ===== */}
@@ -321,29 +323,34 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       </section>
 
       {/* ===== 8. POSTER GALLERY ===== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          {locale === "uk" ? "Афіші" : "Posters"}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
-            <ZoomableImage
-              src={work.image || "/images/works/anima/poster-v3.jpg"}
-              alt="ANIMA poster"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
-            <ZoomableImage
-              src="/images/works/anima/poster-premiere.jpg"
-              alt="ANIMA premiere poster"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
+      {/* URLs editable in Notion Site Settings → keys: anima_poster_1 … anima_poster_4 */}
+      {(() => {
+        const posters = [
+          settings.animaPoster1 || work.image || "/images/works/anima/poster-v3.jpg",
+          settings.animaPoster2 || "/images/works/anima/poster-premiere.jpg",
+          settings.animaPoster3,
+          settings.animaPoster4,
+        ].filter(Boolean) as string[];
+        return (
+          <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+            <div className="mb-8 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+              {locale === "uk" ? "Афіші" : "Posters"}
+            </div>
+            <div className={`grid gap-4 grid-cols-2 ${posters.length >= 3 ? "md:grid-cols-4" : "md:grid-cols-2"}`}>
+              {posters.map((src, i) => (
+                <div key={i} className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
+                  <ZoomableImage
+                    src={src}
+                    alt={`ANIMA poster ${i + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ===== CTA + Navigation ===== */}
       <WorkFooter slug="anima" locale={locale} />

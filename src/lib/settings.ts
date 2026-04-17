@@ -7,6 +7,13 @@ export interface SiteSettings {
   ctaTextUk: string;
   animaBlockquoteEn: string;
   animaBlockquoteUk: string;
+  /** Poster image URLs (Cloudinary). Empty string = use built-in default. */
+  animaPoster1: string;
+  animaPoster2: string;
+  animaPoster3: string;
+  animaPoster4: string;
+  /** Cloudinary PDF URL for libretto download. Empty = button hidden. */
+  animaLibrettoPdf: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -18,6 +25,11 @@ export const DEFAULT_SETTINGS: SiteSettings = {
     "The Hero harmonizes himself through the Major Arcana of Tarot. The Soul of the Hero is a separate character who appears in the penultimate scene as the result of all transformations.",
   animaBlockquoteUk:
     "Герой гармонізує себе за допомогою Старших Арканів карт Таро. Душа Героя, це окремий персонаж, що з'являється у передостанній сцені як результат усіх трансформацій.",
+  animaPoster1: "",
+  animaPoster2: "",
+  animaPoster3: "",
+  animaPoster4: "",
+  animaLibrettoPdf: "",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -48,6 +60,12 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueEn) settings.animaBlockquoteEn = valueEn;
         if (valueUk) settings.animaBlockquoteUk = valueUk;
       }
+      // Poster URLs and PDF — URL is language-agnostic, stored in Value EN
+      if (key === "anima_poster_1" && valueEn) settings.animaPoster1 = valueEn;
+      if (key === "anima_poster_2" && valueEn) settings.animaPoster2 = valueEn;
+      if (key === "anima_poster_3" && valueEn) settings.animaPoster3 = valueEn;
+      if (key === "anima_poster_4" && valueEn) settings.animaPoster4 = valueEn;
+      if (key === "anima_libretto_pdf" && valueEn) settings.animaLibrettoPdf = valueEn;
     }
 
     return settings;
