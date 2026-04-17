@@ -9,6 +9,7 @@ import Tryzub from "@/components/Tryzub";
 import PhotoSlider from "@/components/PhotoSlider";
 import MarqueeCTA from "@/components/MarqueeCTA";
 import ZoomableImage from "@/components/ZoomableImage";
+import DownloadButton from "@/components/DownloadButton";
 import { getSiteSettings } from "@/lib/settings";
 
 // ISR: revalidate every 30 seconds
@@ -162,20 +163,19 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             >
               {locale === "uk" ? "7 Арканів" : "7 Arcana"}
             </h2>
-            {/* Libretto PDF — URL editable in Notion Site Settings → key "anima_libretto_pdf" */}
+            {/* Libretto PDF — desktop only; mobile version is below the LITSO section */}
             {settings.animaLibrettoPdf && (
-              <a
+              <DownloadButton
                 href={settings.animaLibrettoPdf}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-6 py-3 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase whitespace-nowrap flex-none"
+                filename="ANIMA-libretto.pdf"
+                className="hidden md:inline-flex items-center gap-3 px-6 py-3 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase whitespace-nowrap flex-none cursor-pointer"
                 style={{ fontFamily: "NAMU-1400, serif" }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
                 </svg>
                 {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
-              </a>
+              </DownloadButton>
             )}
           </div>
           <p className="text-[15px] text-brand-grey max-w-[520px]">
@@ -371,6 +371,23 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             : (settings.animaLitsoBodyEn || d.litsoCompany.en)}
         </p>
       </section>
+
+      {/* ── Mobile libretto download — shown only on mobile, after the LITSO section ── */}
+      {settings.animaLibrettoPdf && (
+        <div className="md:hidden px-6 pb-12 max-w-[800px] mx-auto">
+          <DownloadButton
+            href={settings.animaLibrettoPdf}
+            filename="ANIMA-libretto.pdf"
+            className="w-full flex items-center justify-center gap-3 px-6 py-4 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase cursor-pointer"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
+            </svg>
+            {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
+          </DownloadButton>
+        </div>
+      )}
 
       {/* ===== 8. POSTER GALLERY ===== */}
       {/* URLs editable in Notion Site Settings → keys: anima_poster_1 … anima_poster_4 */}
