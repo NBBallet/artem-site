@@ -53,8 +53,12 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
           {/* Info */}
           <div>
+            {/* Top meta — editable via Notion: anima_credit_premiere_date + anima_credit_company */}
             <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
-              {locale === "uk" ? d.premiere.dateUk : d.premiere.date} · {d.credits.company}
+              {locale === "uk"
+                ? (settings.animaCreditPremiereDateUk || d.premiere.dateUk)
+                : (settings.animaCreditPremiereDateEn || d.premiere.date)
+              } · {settings.animaCreditCompany || d.credits.company}
             </div>
 
             <h1
@@ -70,45 +74,59 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               {work.subtitle[locale]}
             </p>
 
-            {/* Quick credits */}
+            {/* Credits — all editable in Notion Site Settings DB */}
             <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
                 {locale === "uk" ? "Ідея" : "Idea"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk" ? d.credits.idea.nameUk : d.credits.idea.name}
+                {locale === "uk"
+                  ? (settings.animaCreditIdeaUk || d.credits.idea.nameUk)
+                  : (settings.animaCreditIdeaEn || d.credits.idea.name)}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
                 {locale === "uk" ? "Хореографія" : "Choreography"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk" ? d.credits.choreography.nameUk : d.credits.choreography.name}
+                {locale === "uk"
+                  ? (settings.animaCreditChoreographyUk || d.credits.choreography.nameUk)
+                  : (settings.animaCreditChoreographyEn || d.credits.choreography.name)}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
                 {locale === "uk" ? "Музика" : "Music"}
               </dt>
-              <dd className="text-brand-grey">{d.credits.music}</dd>
+              <dd className="text-brand-grey">
+                {settings.animaCreditMusic || d.credits.music}
+              </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
                 {locale === "uk" ? "Костюми" : "Costumes"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk" ? d.credits.costumes.nameUk : d.credits.costumes.name}
+                {locale === "uk"
+                  ? (settings.animaCreditCostumesUk || d.credits.costumes.nameUk)
+                  : (settings.animaCreditCostumesEn || d.credits.costumes.name)}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
                 {locale === "uk" ? "Прем'єра" : "Premiere"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk" ? d.premiere.dateUk : d.premiere.date}
+                {locale === "uk"
+                  ? (settings.animaCreditPremiereDateUk || d.premiere.dateUk)
+                  : (settings.animaCreditPremiereDateEn || d.premiere.date)}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
                 {locale === "uk" ? "Місце" : "Venue"}
               </dt>
-              <dd className="text-brand-grey">{d.premiere.venue[locale]}</dd>
+              <dd className="text-brand-grey">
+                {locale === "uk"
+                  ? (settings.animaCreditVenueUk || d.premiere.venue.uk)
+                  : (settings.animaCreditVenueEn || d.premiere.venue.en)}
+              </dd>
             </dl>
           </div>
         </div>

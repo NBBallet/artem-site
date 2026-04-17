@@ -14,6 +14,19 @@ export interface SiteSettings {
   animaPoster4: string;
   /** Cloudinary PDF URL for libretto download. Empty = button hidden. */
   animaLibrettoPdf: string;
+  /** Credits — all editable in Notion Site Settings */
+  animaCreditIdeaEn: string;
+  animaCreditIdeaUk: string;
+  animaCreditChoreographyEn: string;
+  animaCreditChoreographyUk: string;
+  animaCreditMusic: string;
+  animaCreditCostumesEn: string;
+  animaCreditCostumesUk: string;
+  animaCreditPremiereDateEn: string;
+  animaCreditPremiereDateUk: string;
+  animaCreditVenueEn: string;
+  animaCreditVenueUk: string;
+  animaCreditCompany: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -30,6 +43,18 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   animaPoster3: "",
   animaPoster4: "",
   animaLibrettoPdf: "",
+  animaCreditIdeaEn: "",
+  animaCreditIdeaUk: "",
+  animaCreditChoreographyEn: "",
+  animaCreditChoreographyUk: "",
+  animaCreditMusic: "",
+  animaCreditCostumesEn: "",
+  animaCreditCostumesUk: "",
+  animaCreditPremiereDateEn: "",
+  animaCreditPremiereDateUk: "",
+  animaCreditVenueEn: "",
+  animaCreditVenueUk: "",
+  animaCreditCompany: "",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -66,6 +91,29 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       if (key === "anima_poster_3" && valueEn) settings.animaPoster3 = valueEn;
       if (key === "anima_poster_4" && valueEn) settings.animaPoster4 = valueEn;
       if (key === "anima_libretto_pdf" && valueEn) settings.animaLibrettoPdf = valueEn;
+      // Credits
+      if (key === "anima_credit_idea") {
+        if (valueEn) settings.animaCreditIdeaEn = valueEn;
+        if (valueUk) settings.animaCreditIdeaUk = valueUk;
+      }
+      if (key === "anima_credit_choreography") {
+        if (valueEn) settings.animaCreditChoreographyEn = valueEn;
+        if (valueUk) settings.animaCreditChoreographyUk = valueUk;
+      }
+      if (key === "anima_credit_music" && valueEn) settings.animaCreditMusic = valueEn;
+      if (key === "anima_credit_costumes") {
+        if (valueEn) settings.animaCreditCostumesEn = valueEn;
+        if (valueUk) settings.animaCreditCostumesUk = valueUk;
+      }
+      if (key === "anima_credit_premiere_date") {
+        if (valueEn) settings.animaCreditPremiereDateEn = valueEn;
+        if (valueUk) settings.animaCreditPremiereDateUk = valueUk;
+      }
+      if (key === "anima_credit_venue") {
+        if (valueEn) settings.animaCreditVenueEn = valueEn;
+        if (valueUk) settings.animaCreditVenueUk = valueUk;
+      }
+      if (key === "anima_credit_company" && valueEn) settings.animaCreditCompany = valueEn;
     }
 
     return settings;
