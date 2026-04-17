@@ -5,6 +5,8 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 export interface SiteSettings {
   ctaTextEn: string;
   ctaTextUk: string;
+  animaBlockquoteEn: string;
+  animaBlockquoteUk: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -12,6 +14,10 @@ export const DEFAULT_SETTINGS: SiteSettings = {
     "JOIN THE COMMUNITY · Become part of the Newspaper Birds artistic family · Book a performance · Collaborate with us ·",
   ctaTextUk:
     "ПРИЄДНУЙТЕСЬ · Станьте частиною артистичної родини Newspaper Birds · Замовте виставу · Співпрацюйте з нами ·",
+  animaBlockquoteEn:
+    "The Hero harmonizes himself through the Major Arcana of Tarot. The Soul of the Hero is a separate character who appears in the penultimate scene as the result of all transformations.",
+  animaBlockquoteUk:
+    "Герой гармонізує себе за допомогою Старших Арканів карт Таро. Душа Героя, це окремий персонаж, що з'являється у передостанній сцені як результат усіх трансформацій.",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -37,6 +43,10 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       if (key === "cta_text") {
         if (valueEn) settings.ctaTextEn = valueEn;
         if (valueUk) settings.ctaTextUk = valueUk;
+      }
+      if (key === "anima_blockquote") {
+        if (valueEn) settings.animaBlockquoteEn = valueEn;
+        if (valueUk) settings.animaBlockquoteUk = valueUk;
       }
     }
 

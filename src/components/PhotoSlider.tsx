@@ -37,6 +37,18 @@ export default function PhotoSlider({ photos }: { photos: string[] }) {
     return () => el.removeEventListener("wheel", handler);
   }, [lightbox]);
 
+  // Keyboard navigation (←/→ to navigate, Escape to close)
+  useEffect(() => {
+    if (lightbox === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      else if (e.key === "ArrowRight") next();
+      else if (e.key === "Escape") close();
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [lightbox, prev, next, close]);
+
   // Double-click zoom
   const handleDblClick = () => {
     if (zoom > 1) { resetZoom(); } else { setZoom(2.5); }

@@ -8,6 +8,7 @@ import { getAnimaCast, getAnimaScenes } from "@/lib/anima-notion";
 import Tryzub from "@/components/Tryzub";
 import PhotoSlider from "@/components/PhotoSlider";
 import MarqueeCTA from "@/components/MarqueeCTA";
+import ZoomableImage from "@/components/ZoomableImage";
 import { getSiteSettings } from "@/lib/settings";
 
 // ISR: revalidate every 30 seconds
@@ -23,7 +24,7 @@ export function generateStaticParams() {
 async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typeof getWorkBySlug>>; locale: Locale; t: Record<string, string> }) {
   const d = animaData;
   const lang = locale;
-  const [cast, scenes] = await Promise.all([getAnimaCast(), getAnimaScenes()]);
+  const [cast, scenes, settings] = await Promise.all([getAnimaCast(), getAnimaScenes(), getSiteSettings()]);
 
   return (
     <article className="pt-24">
@@ -39,10 +40,10 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Poster */}
+          {/* Poster — URL editable in Notion Portfolio DB → "Cover image" field */}
           <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
-            <Image
-              src="/images/works/anima/poster-v3.jpg"
+            <ZoomableImage
+              src={work.image || "/images/works/anima/poster-v3.jpg"}
               alt="ANIMA poster"
               fill
               className="object-cover"
@@ -121,11 +122,10 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         <p className="text-[17px] text-[#bbb] leading-[1.8] mb-8">
           {work.description[locale]}
         </p>
+        {/* Blockquote — editable in Notion Site Settings DB → key "anima_blockquote" */}
         <blockquote className="border-l-2 border-brand-red pl-6">
           <p className="text-[15px] text-brand-grey italic leading-[1.7]">
-            {locale === "uk"
-              ? "Герой гармонізує себе за допомогою Старших Арканів карт Таро. Його Душа — окремий персонаж, що з'являється у передостанній сцені як результат усіх трансформацій."
-              : "The Hero harmonizes himself through the Major Arcana of Tarot. His Soul is a separate character who appears in the penultimate scene as the result of all transformations."}
+            {locale === "uk" ? settings.animaBlockquoteUk : settings.animaBlockquoteEn}
           </p>
         </blockquote>
       </section>
@@ -205,7 +205,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               <div className={`relative aspect-[16/10] rounded-lg overflow-hidden bg-[#111] ${
                 (idx + 1) % 2 === 0 ? "md:order-2" : ""
               }`}>
-                <Image
+                <ZoomableImage
                   src={scene.image}
                   alt={`Scene ${idx + 1}: ${scene.arcana}`}
                   fill
@@ -325,11 +325,12 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
           {/* Festival program image */}
           <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[#111]">
-            <Image
+            <ZoomableImage
               src={d.festival.programImage}
               alt="KMATOB-FEST 2014 program"
               fill
               className="object-contain"
+              fit="contain"
             />
           </div>
         </div>
@@ -372,15 +373,15 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
-            <Image
-              src="/images/works/anima/poster-v3.jpg"
+            <ZoomableImage
+              src={work.image || "/images/works/anima/poster-v3.jpg"}
               alt="ANIMA poster"
               fill
               className="object-cover"
             />
           </div>
           <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
-            <Image
+            <ZoomableImage
               src="/images/works/anima/poster-premiere.jpg"
               alt="ANIMA premiere poster"
               fill

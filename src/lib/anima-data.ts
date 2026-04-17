@@ -24,32 +24,32 @@ export const animaData = {
     {
       role: { en: "The Hero", uk: "Герой" },
       name: { en: "Dmytro Abram", uk: "Дмитро Абрам" },
-      photo: "https://drive.google.com/file/d/0B9jWQuUDYh4jN3EtRHV3Z21VUms/view",
+      photo: "",
     },
     {
       role: { en: "The Soul / Wise Divine Particle", uk: "Душа / Мудра-божественна частинка" },
       name: { en: "Polina Kapustina", uk: "Поліна Капустіна" },
-      photo: "https://drive.google.com/file/d/0B9jWQuUDYh4jU19TLTdpWkxtVVE/view",
+      photo: "",
     },
     {
       role: { en: "Wise Divine Particle 2", uk: "Мудра-божественна частинка 2" },
       name: { en: "Artem Hordieiev", uk: "Артем Гордєєв" },
-      photo: "https://drive.google.com/file/d/0B9jWQuUDYh4jU19TLTdpWkxtVVE/view",
+      photo: "",
     },
     {
       role: { en: "Death-Transformation 1", uk: "Смерть-трансформація 1" },
       name: { en: "Yevhen Tkachenko", uk: "Євген Ткаченко" },
-      photo: "https://drive.google.com/file/d/0B9jWQuUDYh4jTmswRmVMRmJOTkE/view",
+      photo: "",
     },
     {
       role: { en: "Death-Transformation 2", uk: "Смерть-трансформація 2" },
       name: { en: "Olena Dovhikh", uk: "Олена Довгіх" },
-      photo: "https://drive.google.com/file/d/0B9jWQuUDYh4jSVdTZDhFRnl4Qjg/view",
+      photo: "",
     },
     {
       role: { en: "Passion 1", uk: "Пристрасть 1" },
       name: { en: "Mariia Korostylova", uk: "Марія Коростильова" },
-      photo: "https://drive.google.com/file/d/0B9jWQuUDYh4jRjlISEt4SU4zY3dETE55S2M4b1NEclZTMDNV/view",
+      photo: "",
     },
     {
       role: { en: "Passion 2", uk: "Пристрасть 2" },
@@ -59,7 +59,7 @@ export const animaData = {
     {
       role: { en: "Illusions of Reality", uk: "Ілюзії реальності" },
       name: { en: "Nastia Kyrychenko", uk: "Настя Кириченко" },
-      photo: "https://drive.google.com/file/d/0B9jWQuUDYh4jaURvY3hZcGh4c1k/view",
+      photo: "",
     },
     {
       role: { en: "Illusions of Reality", uk: "Ілюзії реальності" },
