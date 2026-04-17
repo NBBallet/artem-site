@@ -207,6 +207,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                   alt={`Scene ${idx + 1}: ${scene.arcana}`}
                   fill
                   className="object-cover"
+                  fit="contain"
                 />
               </div>
 
