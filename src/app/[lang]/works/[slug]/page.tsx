@@ -150,33 +150,25 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       {/* ===== 4. SCENES — Gallery of 7 Arcana ===== */}
       <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        {/* Header row: title+desc left, libretto button right */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
-          <div>
-            <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-              {locale === "uk" ? "ЛІБРЕТО · АРКАНИ" : "Libretto · Arcana"}
-            </div>
+        {/* Header: label, then h2 + button on same row, then description */}
+        <div className="mb-16">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+            {locale === "uk" ? "ЛІБРЕТО · АРКАНИ" : "Libretto · Arcana"}
+          </div>
+          <div className="flex items-center justify-between gap-6 mb-4 flex-wrap">
             <h2
-              className="text-3xl text-brand-white mb-4"
+              className="text-3xl text-brand-white"
               style={{ fontFamily: "NAMU-1400, serif" }}
             >
               {locale === "uk" ? "7 Арканів" : "7 Arcana"}
             </h2>
-            <p className="text-[15px] text-brand-grey max-w-[520px]">
-              {locale === "uk"
-                ? "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя."
-                : "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent."}
-            </p>
-          </div>
-
-          {/* Libretto PDF — URL editable in Notion Site Settings → key "anima_libretto_pdf" */}
-          {settings.animaLibrettoPdf && (
-            <div className="flex-none">
+            {/* Libretto PDF — URL editable in Notion Site Settings → key "anima_libretto_pdf" */}
+            {settings.animaLibrettoPdf && (
               <a
                 href={settings.animaLibrettoPdf}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-6 py-3 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase whitespace-nowrap"
+                className="inline-flex items-center gap-3 px-6 py-3 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase whitespace-nowrap flex-none"
                 style={{ fontFamily: "NAMU-1400, serif" }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -184,8 +176,13 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                 </svg>
                 {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
               </a>
-            </div>
-          )}
+            )}
+          </div>
+          <p className="text-[15px] text-brand-grey max-w-[520px]">
+            {locale === "uk"
+              ? "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя."
+              : "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent."}
+          </p>
         </div>
 
         <div className="space-y-16">
@@ -376,10 +373,12 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                 <div key={i} className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
                   <ZoomableImage
                     src={src}
-                    alt={`ANIMA poster ${i + 1}`}
+                    alt="ANIMA"
                     fill
                     className="object-cover"
                     fit="contain"
+                    group={posters}
+                    groupIndex={i}
                   />
                 </div>
               ))}

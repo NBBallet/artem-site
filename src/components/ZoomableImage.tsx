@@ -12,18 +12,30 @@ interface Props {
   priority?: boolean;
   /** "cover" | "contain" — how the image fits inside the lightbox */
   fit?: "cover" | "contain";
+  /**
+   * Pass ALL sibling image URLs (including this one) to enable
+   * ←/→ keyboard + button navigation between them in the lightbox.
+   * Works for any group of images — posters, scenes, etc.
+   */
+  group?: string[];
+  /** This image's position inside the `group` array */
+  groupIndex?: number;
 }
 
 /**
  * Drop-in replacement for <Image> inside a `relative overflow-hidden` container.
  * Renders the image normally + expands to a full-screen zoomable lightbox on click.
- * Supports: scroll-to-zoom (desktop), pinch-to-zoom (mobile), drag when zoomed,
- * double-click toggle, Escape to close.
+ *
+ * Single image: scroll/pinch/double-click zoom, drag, Escape to close.
+ * Group of images (pass `group` + `groupIndex`): adds ←/→ arrows + keyboard nav.
  */
 export default function ZoomableImage({
-  src, alt, fill, className, sizes, priority, fit = "cover",
+  src, alt, fill, className, sizes, priority,
+  fit = "cover",
+  group, groupIndex = 0,
 }: Props) {
   const [open, setOpen] = useState(false);
+  const [currentIdx, setCurrentIdx] = useState(groupIndex);
   const [zoom, setZoom] = useState(1);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const isDragging = useRef(false);
@@ -32,8 +44,30 @@ export default function ZoomableImage({
   const pinchZoomStart = useRef(1);
   const imgRef = useRef<HTMLDivElement>(null);
 
-  const resetZoom = () => { setZoom(1); setPos({ x: 0, y: 0 }); };
-  const close = useCallback(() => { setOpen(false); resetZoom(); }, []);
+  const isGroup = group && group.length > 1;
+  const activeSrc = isGroup ? group[currentIdx] : src;
+  const activeAlt = isGroup ? `${alt} ${currentIdx + 1} / ${group.length}` : alt;
+
+  const resetZoom = useCallback(() => { setZoom(1); setPos({ x: 0, y: 0 }); }, []);
+
+  const close = useCallback(() => { setOpen(false); resetZoom(); }, [resetZoom]);
+
+  const prev = useCallback(() => {
+    if (!isGroup) return;
+    setCurrentIdx(i => (i - 1 + group.length) % group.length);
+    resetZoom();
+  }, [isGroup, group, resetZoom]);
+
+  const next = useCallback(() => {
+    if (!isGroup) return;
+    setCurrentIdx(i => (i + 1) % group.length);
+    resetZoom();
+  }, [isGroup, group, resetZoom]);
+
+  const handleOpen = () => {
+    setCurrentIdx(groupIndex);
+    setOpen(true);
+  };
 
   // Scroll zoom
   useEffect(() => {
@@ -47,13 +81,17 @@ export default function ZoomableImage({
     return () => el.removeEventListener("wheel", handler);
   }, [open]);
 
-  // Keyboard: Escape
+  // Keyboard: Escape + ←/→ navigation
   useEffect(() => {
     if (!open) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [open, close]);
+  }, [open, close, prev, next]);
 
   const handleDblClick = () => zoom > 1 ? resetZoom() : setZoom(2.5);
 
@@ -83,7 +121,7 @@ export default function ZoomableImage({
   return (
     <>
       {/* ── Thumbnail inside parent container ── */}
-      <div className="absolute inset-0 group/zoom cursor-zoom-in" onClick={() => setOpen(true)}>
+      <div className="absolute inset-0 group/zoom cursor-zoom-in" onClick={handleOpen}>
         <Image src={src} alt={alt} fill={fill} className={className} sizes={sizes} priority={priority} />
         {/* Expand icon hint on hover */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/zoom:opacity-100 transition-opacity pointer-events-none">
@@ -98,15 +136,30 @@ export default function ZoomableImage({
       {/* ── Lightbox ── */}
       {open && (
         <div className="fixed inset-0 z-[100] bg-black/96 flex items-center justify-center" onClick={close}>
+
           {/* Top bar */}
           <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-5 py-4 z-10 pointer-events-none">
-            <span className="text-[11px] tracking-[3px] uppercase text-white/30 truncate max-w-[60%]">{alt}</span>
+            <span className="text-[11px] tracking-[3px] uppercase text-white/30 truncate max-w-[60%]">
+              {isGroup ? `${currentIdx + 1} / ${group.length}` : alt}
+            </span>
             <div className="flex items-center gap-4 pointer-events-auto">
-              <span className="text-[10px] tracking-[2px] uppercase text-white/25 hidden md:block">scroll · double-click to zoom</span>
+              <span className="text-[10px] tracking-[2px] uppercase text-white/25 hidden md:block">
+                {isGroup ? "← → to navigate · scroll to zoom" : "scroll · double-click to zoom"}
+              </span>
               <span className="text-[10px] tracking-[2px] uppercase text-white/25 md:hidden">pinch to zoom</span>
               <button className="text-white/50 hover:text-white text-2xl leading-none" onClick={close}>✕</button>
             </div>
           </div>
+
+          {/* Prev arrow (group only) */}
+          {isGroup && (
+            <button
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-white/40 hover:text-white transition-colors z-10"
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+          )}
 
           {/* Zoomable image */}
           <div
@@ -128,9 +181,19 @@ export default function ZoomableImage({
               transition: isDragging.current ? "none" : "transform 0.2s ease",
               transformOrigin: "center center",
             }}>
-              <Image src={src} alt={alt} fill className={`object-${fit} select-none`} sizes="92vw" priority draggable={false} />
+              <Image src={activeSrc} alt={activeAlt} fill className={`object-${fit} select-none`} sizes="92vw" priority draggable={false} />
             </div>
           </div>
+
+          {/* Next arrow (group only) */}
+          {isGroup && (
+            <button
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-white/40 hover:text-white transition-colors z-10"
+              onClick={(e) => { e.stopPropagation(); next(); }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          )}
 
           {zoom > 1 && (
             <button
