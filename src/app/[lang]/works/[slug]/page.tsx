@@ -152,16 +152,21 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       {/* ===== 4. SCENES — Gallery of 7 Arcana ===== */}
       <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
         {/* Header: label, then h2 + button on same row, then description */}
+        {/* All texts editable in Notion Site Settings → keys: anima_scenes_* */}
         <div className="mb-16">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-            {locale === "uk" ? "ЛІБРЕТО · АРКАНИ" : "Libretto · Arcana"}
+            {locale === "uk"
+              ? (settings.animaScenesLabelUk || "ЛІБРЕТО · АРКАНИ")
+              : (settings.animaScenesLabelEn || "Libretto · Arcana")}
           </div>
           <div className="flex items-center justify-between gap-6 mb-4 flex-wrap">
             <h2
               className="text-3xl text-brand-white"
               style={{ fontFamily: "NAMU-1400, serif" }}
             >
-              {locale === "uk" ? "7 Арканів" : "7 Arcana"}
+              {locale === "uk"
+                ? (settings.animaScenesTitleUk || "7 Арканів")
+                : (settings.animaScenesTitleEn || "7 Arcana")}
             </h2>
             {/* Libretto PDF — desktop only; mobile version is below the LITSO section */}
             {settings.animaLibrettoPdf && (
@@ -180,8 +185,8 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           </div>
           <p className="text-[15px] text-brand-grey max-w-[520px]">
             {locale === "uk"
-              ? "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя."
-              : "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent."}
+              ? (settings.animaScenesDescriptionUk || "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя.")
+              : (settings.animaScenesDescriptionEn || "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent.")}
           </p>
         </div>
 
@@ -323,8 +328,8 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             : (settings.animaFestivalVenueEn || d.festival.venue.en)}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-10 mb-12 items-start">
+          <div className="pt-1">
             <p className="text-[15px] text-[#999] leading-[1.7] mb-6">
               {locale === "uk"
                 ? (settings.animaFestivalDescriptionUk || d.festival.description.uk)
@@ -337,7 +342,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             </p>
           </div>
 
-          {/* Festival program image */}
+          {/* Festival program image — slightly larger, right-aligned with text top */}
           <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[#111]">
             <ZoomableImage
               src={d.festival.programImage}

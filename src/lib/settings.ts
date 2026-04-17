@@ -51,6 +51,13 @@ export interface SiteSettings {
   animaLitsoTitleUk: string;
   animaLitsoBodyEn: string;
   animaLitsoBodyUk: string;
+  /** Scenes / Arcana section header */
+  animaScenesLabelEn: string;
+  animaScenesLabelUk: string;
+  animaScenesTitleEn: string;
+  animaScenesTitleUk: string;
+  animaScenesDescriptionEn: string;
+  animaScenesDescriptionUk: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -100,6 +107,12 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   animaLitsoTitleUk: "",
   animaLitsoBodyEn: "",
   animaLitsoBodyUk: "",
+  animaScenesLabelEn: "",
+  animaScenesLabelUk: "",
+  animaScenesTitleEn: "",
+  animaScenesTitleUk: "",
+  animaScenesDescriptionEn: "",
+  animaScenesDescriptionUk: "",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -202,6 +215,19 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       if (key === "anima_litso_body") {
         if (valueEn) settings.animaLitsoBodyEn = valueEn;
         if (valueUk) settings.animaLitsoBodyUk = valueUk;
+      }
+      // Scenes section header
+      if (key === "anima_scenes_label") {
+        if (valueEn) settings.animaScenesLabelEn = valueEn;
+        if (valueUk) settings.animaScenesLabelUk = valueUk;
+      }
+      if (key === "anima_scenes_title") {
+        if (valueEn) settings.animaScenesTitleEn = valueEn;
+        if (valueUk) settings.animaScenesTitleUk = valueUk;
+      }
+      if (key === "anima_scenes_description") {
+        if (valueEn) settings.animaScenesDescriptionEn = valueEn;
+        if (valueUk) settings.animaScenesDescriptionUk = valueUk;
       }
     }
 
