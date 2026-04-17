@@ -34,6 +34,23 @@ export interface SiteSettings {
   animaVideoPremiereUk: string;
   animaVideoRehearsalEn: string;
   animaVideoRehearsalUk: string;
+  /** Festival section */
+  animaFestivalName: string;
+  animaFestivalSubtitleEn: string;
+  animaFestivalSubtitleUk: string;
+  animaFestivalDatesEn: string;
+  animaFestivalDatesUk: string;
+  animaFestivalVenueEn: string;
+  animaFestivalVenueUk: string;
+  animaFestivalDescriptionEn: string;
+  animaFestivalDescriptionUk: string;
+  animaFestivalOrganizersEn: string;
+  animaFestivalOrganizersUk: string;
+  /** LITSO → NBB section */
+  animaLitsoTitleEn: string;
+  animaLitsoTitleUk: string;
+  animaLitsoBodyEn: string;
+  animaLitsoBodyUk: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -68,6 +85,21 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   animaVideoPremiereUk: "",
   animaVideoRehearsalEn: "",
   animaVideoRehearsalUk: "",
+  animaFestivalName: "",
+  animaFestivalSubtitleEn: "",
+  animaFestivalSubtitleUk: "",
+  animaFestivalDatesEn: "",
+  animaFestivalDatesUk: "",
+  animaFestivalVenueEn: "",
+  animaFestivalVenueUk: "",
+  animaFestivalDescriptionEn: "",
+  animaFestivalDescriptionUk: "",
+  animaFestivalOrganizersEn: "",
+  animaFestivalOrganizersUk: "",
+  animaLitsoTitleEn: "",
+  animaLitsoTitleUk: "",
+  animaLitsoBodyEn: "",
+  animaLitsoBodyUk: "",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -139,6 +171,37 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       if (key === "anima_video_rehearsal") {
         if (valueEn) settings.animaVideoRehearsalEn = valueEn;
         if (valueUk) settings.animaVideoRehearsalUk = valueUk;
+      }
+      // Festival section
+      if (key === "anima_festival_name" && valueEn) settings.animaFestivalName = valueEn;
+      if (key === "anima_festival_subtitle") {
+        if (valueEn) settings.animaFestivalSubtitleEn = valueEn;
+        if (valueUk) settings.animaFestivalSubtitleUk = valueUk;
+      }
+      if (key === "anima_festival_dates") {
+        if (valueEn) settings.animaFestivalDatesEn = valueEn;
+        if (valueUk) settings.animaFestivalDatesUk = valueUk;
+      }
+      if (key === "anima_festival_venue") {
+        if (valueEn) settings.animaFestivalVenueEn = valueEn;
+        if (valueUk) settings.animaFestivalVenueUk = valueUk;
+      }
+      if (key === "anima_festival_description") {
+        if (valueEn) settings.animaFestivalDescriptionEn = valueEn;
+        if (valueUk) settings.animaFestivalDescriptionUk = valueUk;
+      }
+      if (key === "anima_festival_organizers") {
+        if (valueEn) settings.animaFestivalOrganizersEn = valueEn;
+        if (valueUk) settings.animaFestivalOrganizersUk = valueUk;
+      }
+      // LITSO → NBB section
+      if (key === "anima_litso_title") {
+        if (valueEn) settings.animaLitsoTitleEn = valueEn;
+        if (valueUk) settings.animaLitsoTitleUk = valueUk;
+      }
+      if (key === "anima_litso_body") {
+        if (valueEn) settings.animaLitsoBodyEn = valueEn;
+        if (valueUk) settings.animaLitsoBodyUk = valueUk;
       }
     }
 

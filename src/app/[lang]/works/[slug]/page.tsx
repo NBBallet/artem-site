@@ -297,6 +297,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       </section>
 
       {/* ===== 6. FESTIVAL ===== */}
+      {/* All texts editable in Notion Site Settings → keys: anima_festival_* */}
       <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
           {locale === "uk" ? "Фестиваль" : "Festival"}
@@ -305,22 +306,34 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           className="text-3xl text-brand-white mb-4"
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
-          {d.festival.name}
+          {settings.animaFestivalName || d.festival.name}
         </h2>
         <p className="text-lg text-brand-grey mb-2">
-          {d.festival.fullName[locale]}
+          {locale === "uk"
+            ? (settings.animaFestivalSubtitleUk || d.festival.fullName.uk)
+            : (settings.animaFestivalSubtitleEn || d.festival.fullName.en)}
         </p>
         <p className="text-sm text-brand-dark-grey mb-8">
-          {d.festival.dates[locale]} · {d.festival.venue[locale]}
+          {locale === "uk"
+            ? (settings.animaFestivalDatesUk || d.festival.dates.uk)
+            : (settings.animaFestivalDatesEn || d.festival.dates.en)}
+          {" · "}
+          {locale === "uk"
+            ? (settings.animaFestivalVenueUk || d.festival.venue.uk)
+            : (settings.animaFestivalVenueEn || d.festival.venue.en)}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
           <div>
             <p className="text-[15px] text-[#999] leading-[1.7] mb-6">
-              {d.festival.description[locale]}
+              {locale === "uk"
+                ? (settings.animaFestivalDescriptionUk || d.festival.description.uk)
+                : (settings.animaFestivalDescriptionEn || d.festival.description.en)}
             </p>
             <p className="text-[15px] text-[#999] leading-[1.7]">
-              {d.festival.organizers[locale]}
+              {locale === "uk"
+                ? (settings.animaFestivalOrganizersUk || d.festival.organizers.uk)
+                : (settings.animaFestivalOrganizersEn || d.festival.organizers.en)}
             </p>
           </div>
 
@@ -339,6 +352,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       </section>
 
       {/* ===== 7. ABOUT LITSO → NBB ===== */}
+      {/* All texts editable in Notion Site Settings → keys: anima_litso_* */}
       <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
           LITSO → NBB
@@ -347,10 +361,14 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           className="text-3xl text-brand-white mb-8"
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
-          {locale === "uk" ? "Від LITSO до Newspaper Birds" : "From LITSO to Newspaper Birds"}
+          {locale === "uk"
+            ? (settings.animaLitsoTitleUk || "Від LITSO до Newspaper Birds")
+            : (settings.animaLitsoTitleEn || "From LITSO to Newspaper Birds")}
         </h2>
         <p className="text-[15px] text-[#999] leading-[1.8]">
-          {d.litsoCompany[locale]}
+          {locale === "uk"
+            ? (settings.animaLitsoBodyUk || d.litsoCompany.uk)
+            : (settings.animaLitsoBodyEn || d.litsoCompany.en)}
         </p>
       </section>
 
