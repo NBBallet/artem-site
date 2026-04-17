@@ -77,7 +77,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             {/* Credits — all editable in Notion Site Settings DB */}
             <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
-                {locale === "uk" ? "Ідея" : "Idea"}
+                {locale === "uk" ? "Продюсер" : "Producer"}
               </dt>
               <dd className="text-brand-grey">
                 {locale === "uk"
