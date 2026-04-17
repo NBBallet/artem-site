@@ -27,6 +27,13 @@ export interface SiteSettings {
   animaCreditVenueEn: string;
   animaCreditVenueUk: string;
   animaCreditCompany: string;
+  /** Video captions — editable in Notion Site Settings */
+  animaVideoShowreelEn: string;
+  animaVideoShowreelUk: string;
+  animaVideoPremiereEn: string;
+  animaVideoPremiereUk: string;
+  animaVideoRehearsalEn: string;
+  animaVideoRehearsalUk: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -55,6 +62,12 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   animaCreditVenueEn: "",
   animaCreditVenueUk: "",
   animaCreditCompany: "",
+  animaVideoShowreelEn: "",
+  animaVideoShowreelUk: "",
+  animaVideoPremiereEn: "",
+  animaVideoPremiereUk: "",
+  animaVideoRehearsalEn: "",
+  animaVideoRehearsalUk: "",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -114,6 +127,19 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueUk) settings.animaCreditVenueUk = valueUk;
       }
       if (key === "anima_credit_company" && valueEn) settings.animaCreditCompany = valueEn;
+      // Video captions
+      if (key === "anima_video_showreel") {
+        if (valueEn) settings.animaVideoShowreelEn = valueEn;
+        if (valueUk) settings.animaVideoShowreelUk = valueUk;
+      }
+      if (key === "anima_video_premiere") {
+        if (valueEn) settings.animaVideoPremiereEn = valueEn;
+        if (valueUk) settings.animaVideoPremiereUk = valueUk;
+      }
+      if (key === "anima_video_rehearsal") {
+        if (valueEn) settings.animaVideoRehearsalEn = valueEn;
+        if (valueUk) settings.animaVideoRehearsalUk = valueUk;
+      }
     }
 
     return settings;

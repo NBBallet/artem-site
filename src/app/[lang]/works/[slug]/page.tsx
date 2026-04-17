@@ -150,38 +150,43 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       {/* ===== 4. SCENES — Gallery of 7 Arcana ===== */}
       <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          {locale === "uk" ? "ЛІБРЕТО · АРКАНИ" : "Libretto · Arcana"}
-        </div>
-        <h2
-          className="text-3xl text-brand-white mb-4"
-          style={{ fontFamily: "NAMU-1400, serif" }}
-        >
-          {locale === "uk" ? "7 Арканів" : "7 Arcana"}
-        </h2>
-        <p className="text-[15px] text-brand-grey mb-12 max-w-[600px]">
-          {locale === "uk"
-            ? "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя."
-            : "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent."}
-        </p>
-
-        {/* Libretto PDF download — URL editable in Notion Site Settings → key "anima_libretto_pdf" */}
-        {settings.animaLibrettoPdf && (
-          <div className="mb-16">
-            <a
-              href={settings.animaLibrettoPdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase"
+        {/* Header row: title+desc left, libretto button right */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+          <div>
+            <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+              {locale === "uk" ? "ЛІБРЕТО · АРКАНИ" : "Libretto · Arcana"}
+            </div>
+            <h2
+              className="text-3xl text-brand-white mb-4"
               style={{ fontFamily: "NAMU-1400, serif" }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
-              </svg>
-              {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
-            </a>
+              {locale === "uk" ? "7 Арканів" : "7 Arcana"}
+            </h2>
+            <p className="text-[15px] text-brand-grey max-w-[520px]">
+              {locale === "uk"
+                ? "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя."
+                : "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent."}
+            </p>
           </div>
-        )}
+
+          {/* Libretto PDF — URL editable in Notion Site Settings → key "anima_libretto_pdf" */}
+          {settings.animaLibrettoPdf && (
+            <div className="flex-none">
+              <a
+                href={settings.animaLibrettoPdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-6 py-3 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase whitespace-nowrap"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
+                </svg>
+                {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
+              </a>
+            </div>
+          )}
+        </div>
 
         <div className="space-y-16">
           {scenes.map((scene, idx) => (
@@ -250,7 +255,11 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               className="w-full h-full"
             />
           </div>
-          <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{d.videos.showreel.title[locale]}</p>
+          <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">
+            {locale === "uk"
+              ? (settings.animaVideoShowreelUk || d.videos.showreel.title.uk)
+              : (settings.animaVideoShowreelEn || d.videos.showreel.title.en)}
+          </p>
         </div>
 
         {/* Secondary videos */}
@@ -265,7 +274,11 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                 className="w-full h-full"
               />
             </div>
-            <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{d.videos.premiere.title[locale]}</p>
+            <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">
+              {locale === "uk"
+                ? (settings.animaVideoPremiereUk || d.videos.premiere.title.uk)
+                : (settings.animaVideoPremiereEn || d.videos.premiere.title.en)}
+            </p>
           </div>
           <div>
             <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
@@ -277,7 +290,11 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                 className="w-full h-full"
               />
             </div>
-            <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{d.videos.rehearsal.title[locale]}</p>
+            <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">
+              {locale === "uk"
+                ? (settings.animaVideoRehearsalUk || d.videos.rehearsal.title.uk)
+                : (settings.animaVideoRehearsalEn || d.videos.rehearsal.title.en)}
+            </p>
           </div>
         </div>
       </section>
@@ -362,6 +379,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                     alt={`ANIMA poster ${i + 1}`}
                     fill
                     className="object-cover"
+                    fit="contain"
                   />
                 </div>
               ))}
