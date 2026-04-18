@@ -82,6 +82,13 @@ export interface SiteSettings {
   cvCtaBtnUk: string;
   /** CV URL — language-agnostic, stored in Value EN */
   cvUrl: string;
+  /** Firebird page */
+  firebirdImage: string;
+  firebirdUrl: string;
+  firebirdBtnEn: string;
+  firebirdBtnUk: string;
+  firebirdCaptionEn: string;
+  firebirdCaptionUk: string;
   /** Contact section */
   contactTitleEn: string;
   contactTitleUk: string;
@@ -168,6 +175,12 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   cvCtaBtnEn: "",
   cvCtaBtnUk: "",
   cvUrl: "",
+  firebirdImage: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Nicholas_Roerich_-_Mother_of_the_World%2C_1924_-_warmer_colours.jpg",
+  firebirdUrl: "https://firebird-hordieiev.surge.sh/",
+  firebirdBtnEn: "View full concept",
+  firebirdBtnUk: "Переглянути повну концепцію",
+  firebirdCaptionEn: "N. Roerich, Mother of the World, 1924",
+  firebirdCaptionUk: "М. Реріх, Мати Світу, 1924",
   contactTitleEn: "",
   contactTitleUk: "",
   contactSubtitleEn: "",
@@ -343,6 +356,17 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       if (key === "contact_subtitle") {
         if (valueEn) settings.contactSubtitleEn = valueEn;
         if (valueUk) settings.contactSubtitleUk = valueUk;
+      }
+      // Firebird page
+      if (key === "firebird_image" && valueEn) settings.firebirdImage = valueEn;
+      if (key === "firebird_url" && valueEn) settings.firebirdUrl = valueEn;
+      if (key === "firebird_btn") {
+        if (valueEn) settings.firebirdBtnEn = valueEn;
+        if (valueUk) settings.firebirdBtnUk = valueUk;
+      }
+      if (key === "firebird_caption") {
+        if (valueEn) settings.firebirdCaptionEn = valueEn;
+        if (valueUk) settings.firebirdCaptionUk = valueUk;
       }
       if (key === "contact_email" && valueEn) settings.contactEmail = valueEn;
       if (key === "social_instagram" && valueEn) settings.socialInstagram = valueEn;

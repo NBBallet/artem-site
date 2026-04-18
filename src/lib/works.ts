@@ -139,6 +139,21 @@ export const works: Work[] = [
     image: "/images/works/anima/poster-v3.jpg",
   },
   {
+    slug: "firebird",
+    title: { en: "Firebird", uk: "Жар-Птиця" },
+    subtitle: {
+      en: "Original Staging Concept",
+      uk: "Авторська постановочна концепція",
+    },
+    year: "2026",
+    music: "Igor Stravinsky",
+    description: {
+      en: "The Firebird is the fire that pours light into a human being and creates a moment of awakening. This production begins with the first cause of the mysterious fire — a cosmogony growing from the philosophical legacy of the Roerich family.",
+      uk: "Жар-Птиця — це вогонь, що вливає світло в людину і створює момент пробудження. Ця постановка починається з першопричини таємничого вогню — космогонія, що виростає з філософської спадщини родини Реріхів.",
+    },
+    image: "",
+  },
+  {
     slug: "ikar-markevich",
     title: { en: "Ikar / Markevich", uk: "Ікар / Маркевич" },
     subtitle: {
@@ -243,18 +258,20 @@ export async function getWorks(): Promise<Work[]> {
   // Try Notion first
   const notionWorks = await getWorksFromNotion();
   if (notionWorks.length > 0) {
-    // Merge static-only fields (videos) and fallback image if Notion URL is invalid
-    const merged = notionWorks.map((nw) => {
-      const staticWork = works.find((w) => w.slug === nw.slug);
+    // Use static array as order backbone; overlay Notion data where available.
+    // Static-only works (no Notion entry) are included as-is.
+    const merged = works.map((sw) => {
+      const nw = notionWorks.find((n) => n.slug === sw.slug);
+      if (!nw) return sw;
       const imageOk = nw.image &&
         !nw.image.includes("photos.google.com") &&
         !nw.image.includes("drive.google.com") &&
         !nw.image.includes("photo/AF1");
       return {
         ...nw,
-        image: imageOk ? nw.image : (staticWork?.image || ""),
-        videos: staticWork?.videos ?? nw.videos,
-        gallery: staticWork?.gallery ?? nw.gallery,
+        image: imageOk ? nw.image : (sw.image || ""),
+        videos: sw.videos ?? nw.videos,
+        gallery: sw.gallery ?? nw.gallery,
       };
     });
     _cachedWorks = merged;

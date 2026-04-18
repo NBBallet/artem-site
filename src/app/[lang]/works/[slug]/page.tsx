@@ -11,6 +11,7 @@ import MarqueeCTA from "@/components/MarqueeCTA";
 import ZoomableImage from "@/components/ZoomableImage";
 import DownloadButton from "@/components/DownloadButton";
 import { getSiteSettings } from "@/lib/settings";
+import { firebirdData } from "@/lib/firebird-data";
 
 // ISR: revalidate every 30 seconds
 export const revalidate = 30;
@@ -434,6 +435,115 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
   );
 }
 
+/* ─── FIREBIRD-specific page ─── */
+async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<typeof getWorkBySlug>>; locale: Locale; t: Record<string, string> }) {
+  const lang = locale;
+  const settings = await getSiteSettings();
+  const FIREBIRD_URL = settings.firebirdUrl;
+  const MOTHER_IMG = settings.firebirdImage;
+
+  return (
+    <article className="pt-24">
+
+      {/* ===== HERO ===== */}
+      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+        <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
+
+        <Link
+          href={`/${lang}#works`}
+          className="inline-block mb-8 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
+        >
+          ← {t["work.back"]}
+        </Link>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+          {/* Poster — Roerich "Mother of the World", clicking opens the full concept site */}
+          <a
+            href={FIREBIRD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative aspect-[3/4] block rounded-lg overflow-hidden bg-[#0d0d0d]"
+          >
+            <Image
+              src={MOTHER_IMG}
+              alt={locale === "uk" ? "М. Реріх — Мати Світу, 1924" : "N. Roerich — Mother of the World, 1924"}
+              fill
+              className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+              priority
+            />
+            {/* dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            {/* hover CTA badge */}
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+              <span className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase font-semibold text-brand-white bg-brand-red/90 backdrop-blur-sm px-3 py-1.5 rounded-sm">
+                {locale === "uk" ? "Відкрити сайт" : "Open site"} →
+              </span>
+            </div>
+            {/* image caption bottom — editable via Notion Site Settings → firebird_caption */}
+            <p className="absolute bottom-4 left-5 text-[10px] text-white/40 tracking-[1px]">
+              {locale === "uk" ? settings.firebirdCaptionUk : settings.firebirdCaptionEn}
+            </p>
+          </a>
+
+          {/* Info */}
+          <div>
+            <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
+              2026 · Igor Stravinsky
+            </div>
+
+            <h1
+              className="text-[clamp(48px,8vw,80px)] leading-[1.05] text-brand-white mb-2"
+              style={{ fontFamily: "NAMU-1400, serif" }}
+            >
+              {locale === "uk" ? "Жар-Птиця" : "Firebird"}
+            </h1>
+            <p
+              className="text-xl text-brand-grey mb-8"
+              style={{ fontFamily: "NAMU-Pro, sans-serif" }}
+            >
+              {work.subtitle[locale]}
+            </p>
+
+            <p className="text-[16px] text-[#aaa] leading-[1.8] mb-10">
+              {work.description[locale]}
+            </p>
+
+            {/* Branded CTA — link to full concept site */}
+            <a
+              href={FIREBIRD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-4 w-full md:w-auto bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 px-8 py-5 rounded-sm"
+            >
+              <span
+                className="text-[13px] tracking-[4px] uppercase font-semibold"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                {locale === "uk" ? settings.firebirdBtnUk : settings.firebirdBtnEn}
+              </span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="flex-none group-hover:translate-x-1 transition-transform duration-300"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== CTA + Navigation ===== */}
+      <WorkFooter slug="firebird" locale={locale} />
+    </article>
+  );
+}
+
 /* ─── Generic work page (for non-ANIMA works) ─── */
 function GenericWorkPage({
   work,
@@ -512,14 +622,21 @@ function GenericWorkPage({
           </div>
         </section>
       ) : (
-        <section className="aspect-[21/9] bg-[#111] border-b border-[#1a1a1a] flex items-center justify-center">
-          <div className="text-center">
-            <span className="text-3xl text-brand-grey/20" style={{ fontFamily: "NAMU-1400, serif" }}>
-              {work.title[locale]}
-            </span>
-            <p className="text-[11px] text-brand-dark-grey mt-4 tracking-[2px] uppercase">
-              Photo / Video coming soon
-            </p>
+        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+          <div className="aspect-[21/9] bg-[#0d0d0d] border border-[#1a1a1a] rounded-lg flex items-center justify-center">
+            <div className="text-center px-6">
+              <p className="text-[11px] tracking-[4px] uppercase text-brand-red/50 mb-3">
+                {locale === "uk" ? "Проєкт у розробці" : "Project in development"}
+              </p>
+              <span className="text-3xl text-brand-grey/20" style={{ fontFamily: "NAMU-1400, serif" }}>
+                {work.title[locale]}
+              </span>
+              <p className="text-[13px] text-brand-dark-grey/60 mt-4 leading-[1.6]">
+                {locale === "uk"
+                  ? "Відео та матеріали з'являться найближчим часом"
+                  : "Video and materials coming soon"}
+              </p>
+            </div>
           </div>
         </section>
       )}
@@ -580,6 +697,10 @@ export default async function WorkPage({
 
   if (slug === "anima") {
     return <AnimaPage work={work} locale={locale} t={t} />;
+  }
+
+  if (slug === "firebird") {
+    return <FirebirdPage work={work} locale={locale} t={t} />;
   }
 
   return <GenericWorkPage work={work} locale={locale} t={t} />;

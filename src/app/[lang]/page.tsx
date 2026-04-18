@@ -5,6 +5,7 @@ import { getWorks } from "@/lib/works";
 import { getSiteSettings } from "@/lib/settings";
 import Tryzub from "@/components/Tryzub";
 import ContactForm from "@/components/ContactForm";
+import SocialLinks from "@/components/SocialLinks";
 
 // ISR: revalidate every 30 seconds — Notion edits appear on site within ~30s
 export const revalidate = 30;
@@ -101,12 +102,17 @@ export default async function HomePage({
                     </div>
                   </>
                 ) : (
-                  <span
-                    className="absolute inset-0 flex items-center justify-center text-2xl text-brand-grey/30 group-hover:text-brand-red/50 transition-colors"
-                    style={{ fontFamily: "NAMU-1400, serif" }}
-                  >
-                    {work.title[locale]}
-                  </span>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center">
+                    <span
+                      className="text-2xl text-brand-grey/30 group-hover:text-brand-red/50 transition-colors"
+                      style={{ fontFamily: "NAMU-1400, serif" }}
+                    >
+                      {work.title[locale]}
+                    </span>
+                    <span className="text-[10px] tracking-[2px] uppercase text-brand-dark-grey/60">
+                      {locale === "uk" ? "У розробці · незабаром" : "In development · coming soon"}
+                    </span>
+                  </div>
                 )}
               </div>
               <div className="p-5">
@@ -176,9 +182,9 @@ export default async function HomePage({
            Editable in Notion Site Settings → keys: cv_cta_*, cv_url */}
       <section className="border-b border-[#1a1a1a] bg-[#080808]">
         <div className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-10">
+          <div className="flex flex-col items-start md:items-center gap-10">
             {/* Text */}
-            <div className="flex-1 max-w-[600px]">
+            <div className="w-full max-w-[700px]">
               <div className="mb-3 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
                 {locale === "uk"
                   ? (settings.cvCtaLabelUk || "РЕЗЮМЕ")
@@ -205,41 +211,31 @@ export default async function HomePage({
                 href={settings.cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-none group inline-flex items-center gap-4 px-8 py-5 border border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all duration-200 rounded-sm"
+                className="group inline-flex items-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm text-base"
                 style={{ fontFamily: "NAMU-1400, serif" }}
               >
-                <span className="text-[11px] tracking-[3px] uppercase whitespace-nowrap">
+                <span className="text-[14px] tracking-[4px] uppercase whitespace-nowrap font-semibold">
                   {locale === "uk"
                     ? (settings.cvCtaBtnUk || "Відкрити CV")
                     : (settings.cvCtaBtnEn || "Open CV")}
                 </span>
                 <svg
-                  width="18" height="18" viewBox="0 0 24 24"
+                  width="22" height="22" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" strokeWidth="1.5"
                   className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 >
                   <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
                 </svg>
               </a>
-            ) : (
-              /* Placeholder shown when no URL is set yet — invisible to visitors but
-                 reminds the admin where to add the link in Notion */
-              <div className="flex-none inline-flex items-center gap-4 px-8 py-5 border border-dashed border-[#333] rounded-sm opacity-40 select-none">
-                <span className="text-[11px] tracking-[3px] uppercase text-[#555] whitespace-nowrap"
-                  style={{ fontFamily: "NAMU-1400, serif" }}>
-                  {locale === "uk" ? "Додай cv_url у Notion →" : "Add cv_url in Notion →"}
-                </span>
-              </div>
-            )}
+            ) : null}
           </div>
         </div>
       </section>
 
       {/* ===== CONTACT =====
-           3-column: Email left · Form center · Social right
+           2-column: Write button (WhatsApp) · Social links
            Editable in Notion Site Settings → keys: contact_*, social_* */}
       <section id="contact" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto">
-        {/* White heading only — no duplicate red label */}
         <h2
           className="text-4xl text-brand-white mb-4"
           style={{ fontFamily: "NAMU-1400, serif" }}
@@ -254,85 +250,28 @@ export default async function HomePage({
             : (settings.contactSubtitleEn || t["contact.subtitle"])}
         </p>
 
-        {/* 3-column grid: Email | Form | Social */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr_1fr] gap-12 md:gap-8">
+        {/* 2-column: Write | Social */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
 
-          {/* ── LEFT: Email ── */}
+          {/* ── LEFT: WhatsApp button ── */}
           <div>
-            <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-5">
-              {t["contact.email"]}
-            </h3>
-            <a
-              href={`mailto:${contactEmail}`}
-              className="text-base text-brand-white hover:text-brand-red transition-colors break-all"
-            >
-              {contactEmail}
-            </a>
-          </div>
-
-          {/* ── CENTER: Contact form → WhatsApp ── */}
-          <div>
-            <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-5">
-              {locale === "uk" ? "Зворотний зв'язок" : "Get in Touch"}
+            <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-6">
+              {locale === "uk" ? "Зв'язок" : "Get in touch"}
             </h3>
             <ContactForm locale={locale} whatsappPhone="77052980397" />
           </div>
 
           {/* ── RIGHT: Social links ── */}
           <div>
-            <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-5">
+            <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-6">
               {t["contact.social"]}
             </h3>
-            <div className="flex flex-col gap-4">
-
-              {/* Instagram */}
-              <a
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 text-[#777] hover:text-brand-white transition-colors"
-              >
-                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors flex-none">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                  </svg>
-                </div>
-                <span className="text-sm tracking-wide">Instagram</span>
-              </a>
-
-              {/* Threads */}
-              <a
-                href={threadsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 text-[#777] hover:text-brand-white transition-colors"
-              >
-                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors flex-none">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.028-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.014-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.163 1.43 1.783 3.631 2.698 6.54 2.717 1.677-.01 3.151-.306 4.276-.882 1.312-.675 2.028-1.69 2.028-2.924 0-.73-.174-1.356-.49-1.822-.322-.476-.831-.814-1.496-.97l-2.274-.501c-1.196-.263-2.215-.73-3.028-1.387-1.108-.899-1.657-2.073-1.596-3.396.065-1.42.78-2.621 2.08-3.477 1.14-.748 2.623-1.131 4.293-1.107 1.73.025 3.26.48 4.42 1.32.987.718 1.7 1.734 2.12 3.02l-1.978.694c-.596-1.867-2.029-2.904-4.545-2.945-1.307-.02-2.375.258-3.081.74-.614.42-.942.985-.973 1.638-.027.563.208 1.028.694 1.385.544.4 1.325.694 2.32.9l2.275.502c1.247.274 2.24.808 2.95 1.591.738.817 1.132 1.9 1.132 3.133 0 2.042-1.087 3.761-3.064 4.883-1.443.813-3.282 1.256-5.323 1.27z"/>
-                  </svg>
-                </div>
-                <span className="text-sm tracking-wide">Threads</span>
-              </a>
-
-              {/* Telegram */}
-              <a
-                href={telegramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-4 text-[#777] hover:text-brand-white transition-colors"
-              >
-                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors flex-none">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.985 13.645l-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/>
-                  </svg>
-                </div>
-                <span className="text-sm tracking-wide">Telegram</span>
-              </a>
-
-            </div>
+            <SocialLinks
+              instagram={instagramUrl}
+              threads={threadsUrl}
+              telegram={telegramUrl}
+              locale={locale}
+            />
           </div>
         </div>
       </section>
