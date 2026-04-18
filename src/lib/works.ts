@@ -139,6 +139,61 @@ export const works: Work[] = [
     image: "/images/works/anima/poster-v3.jpg",
   },
   {
+    slug: "adios",
+    title: { en: "Adios", uk: "Адіос" },
+    subtitle: {
+      en: "Contemporary ballet · Solo",
+      uk: "Сучасний балет · Соло",
+    },
+    year: "2016",
+    music: "Benjamin Clementine",
+    description: {
+      en: "A contemporary solo charged with longing and departure — set to Benjamin Clementine's iconic song from his Mercury Prize-winning debut album At Least for Now. Sparse piano, strings, and the artist's unmistakable voice create a landscape of intimate grief that choreography translates into pure physical poetry.",
+      uk: "Сучасне соло, насичене тугою та прощанням — на однойменну пісню Бенджаміна Клементайна з його дебютного альбому At Least for Now, що отримав Mercury Prize. Стриманий діалог фортепіано, смичкових та неповторного голосу художника перетворюється на ліричний монолог тіла.",
+    },
+    image: "https://i.ytimg.com/vi/3dIw8OuNJLY/hqdefault.jpg",
+    videos: [
+      {
+        id: "3dIw8OuNJLY",
+        title: {
+          en: "Adios — staging recording",
+          uk: "Адіос — постановочний запис",
+        },
+      },
+    ],
+  },
+  {
+    slug: "carmen",
+    title: { en: "Carmen", uk: "Кармен" },
+    subtitle: {
+      en: "One-act ballet · Bizet-Shchedrin",
+      uk: "Одноактний балет · Бізе-Щедрін",
+    },
+    year: "2019",
+    music: "Georges Bizet / Rodion Shchedrin",
+    description: {
+      en: "Bizet's immortal opera reborn through Rodion Shchedrin's radical 1967 orchestration for strings and percussion — a Carmen of raw passion and modern psychological depth. Presented at the Lviv Opera choreographers competition, this staging strips the story to its essential conflict: freedom against possession, fire against submission.",
+      uk: "Безсмертна опера Бізе, переосмислена крізь радикальну оркестровку Родіона Щедріна для смичкових та ударних (1967). Представлена на конкурсі балетмейстерів у Львівській опері, постановка зводить сюжет до сутнісного конфлікту: свобода проти власництва, вогонь проти підкорення.",
+    },
+    image: "https://i.ytimg.com/vi/t8pL0hzb2i0/hqdefault.jpg",
+    videos: [
+      {
+        id: "m24yjydh5sg",
+        title: {
+          en: "Theatrical recording · Choreographers Competition, Lviv Opera",
+          uk: "Театральний запис · Конкурс балетмейстерів, Львівська опера",
+        },
+      },
+      {
+        id: "t8pL0hzb2i0",
+        title: {
+          en: "Teaser · Scene 6",
+          uk: "Тизер · Сцена 6",
+        },
+      },
+    ],
+  },
+  {
     slug: "firebird",
     title: { en: "Firebird", uk: "Жар-Птиця" },
     subtitle: {
@@ -151,7 +206,7 @@ export const works: Work[] = [
       en: "The Firebird is the fire that pours light into a human being and creates a moment of awakening. This production begins with the first cause of the mysterious fire — a cosmogony growing from the philosophical legacy of the Roerich family.",
       uk: "Жар-Птиця — це вогонь, що вливає світло в людину і створює момент пробудження. Ця постановка починається з першопричини таємничого вогню — космогонія, що виростає з філософської спадщини родини Реріхів.",
     },
-    image: "",
+    image: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Nicholas_Roerich_-_Mother_of_the_World%2C_1924_-_warmer_colours.jpg",
   },
   {
     slug: "ikar-markevich",
