@@ -4,8 +4,7 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 import { getWorks } from "@/lib/works";
 import { getSiteSettings } from "@/lib/settings";
 import Tryzub from "@/components/Tryzub";
-import ContactForm from "@/components/ContactForm";
-import SocialLinks from "@/components/SocialLinks";
+import ContactSection from "@/components/ContactSection";
 
 // ISR: revalidate every 30 seconds — Notion edits appear on site within ~30s
 export const revalidate = 30;
@@ -27,7 +26,6 @@ export default async function HomePage({
   const instagramUrl = settings.socialInstagram || "https://instagram.com/artem_hordieiev";
   const threadsUrl   = settings.socialThreads   || "https://threads.net/@artem_hordieiev";
   const telegramUrl  = settings.socialTelegram  || "https://t.me/artemhordieiev";
-  const contactEmail = settings.contactEmail    || "artem@newspaperbirds.com";
 
   return (
     <>
@@ -57,9 +55,6 @@ export default async function HomePage({
 
       {/* ===== WORKS ===== */}
       <section id="works" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          {t["works.title"]}
-        </div>
         <h2 className="text-4xl text-brand-white mb-4" style={{ fontFamily: "NAMU-1400, serif" }}>
           {t["works.title"]}
         </h2>
@@ -131,11 +126,6 @@ export default async function HomePage({
       {/* ===== ABOUT =====
            All texts editable in Notion Site Settings → keys: about_* */}
       <section id="about" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          {locale === "uk"
-            ? (settings.aboutLabelUk || t["about.label"])
-            : (settings.aboutLabelEn || t["about.label"])}
-        </div>
         <h2
           className="text-4xl text-brand-white mb-4"
           style={{ fontFamily: "NAMU-1400, serif" }}
@@ -182,14 +172,9 @@ export default async function HomePage({
            Editable in Notion Site Settings → keys: cv_cta_*, cv_url */}
       <section className="border-b border-[#1a1a1a] bg-[#080808]">
         <div className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto">
-          <div className="flex flex-col items-start md:items-center gap-10">
+          <div className="flex flex-col items-center gap-10">
             {/* Text */}
-            <div className="w-full max-w-[700px]">
-              <div className="mb-3 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-                {locale === "uk"
-                  ? (settings.cvCtaLabelUk || "РЕЗЮМЕ")
-                  : (settings.cvCtaLabelEn || "RÉSUMÉ")}
-              </div>
+            <div className="w-full max-w-[700px] text-center">
               <h2
                 className="text-[clamp(32px,5vw,56px)] leading-[1.05] text-brand-white mb-5"
                 style={{ fontFamily: "NAMU-1400, serif" }}
@@ -250,30 +235,14 @@ export default async function HomePage({
             : (settings.contactSubtitleEn || t["contact.subtitle"])}
         </p>
 
-        {/* 2-column: Write | Social */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-
-          {/* ── LEFT: WhatsApp button ── */}
-          <div>
-            <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-6">
-              {locale === "uk" ? "Зв'язок" : "Get in touch"}
-            </h3>
-            <ContactForm locale={locale} whatsappPhone="77052980397" />
-          </div>
-
-          {/* ── RIGHT: Social links ── */}
-          <div>
-            <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-6">
-              {t["contact.social"]}
-            </h3>
-            <SocialLinks
-              instagram={instagramUrl}
-              threads={threadsUrl}
-              telegram={telegramUrl}
-              locale={locale}
-            />
-          </div>
-        </div>
+        {/* 4-column: WhatsApp · Instagram · Threads · Telegram */}
+        <ContactSection
+          instagram={instagramUrl}
+          threads={threadsUrl}
+          telegram={telegramUrl}
+          locale={locale}
+          whatsappPhone="77052980397"
+        />
       </section>
     </>
   );

@@ -263,10 +263,15 @@ export async function getWorks(): Promise<Work[]> {
     const merged = works.map((sw) => {
       const nw = notionWorks.find((n) => n.slug === sw.slug);
       if (!nw) return sw;
-      const imageOk = nw.image &&
+      // Only use Notion's image if:
+      // 1. The static version already has an image (intentionally imageless = stay imageless)
+      // 2. The URL is from a reliable non-expiring host (not Google Photos / Notion S3)
+      const imageOk = !!sw.image && nw.image &&
         !nw.image.includes("photos.google.com") &&
         !nw.image.includes("drive.google.com") &&
-        !nw.image.includes("photo/AF1");
+        !nw.image.includes("photo/AF1") &&
+        !nw.image.includes("prod-files-secure") &&
+        !nw.image.includes("amazonaws.com");
       return {
         ...nw,
         image: imageOk ? nw.image : (sw.image || ""),
