@@ -58,6 +58,40 @@ export interface SiteSettings {
   animaScenesTitleUk: string;
   animaScenesDescriptionEn: string;
   animaScenesDescriptionUk: string;
+  /** About section — editable in Notion Site Settings */
+  aboutLabelEn: string;
+  aboutLabelUk: string;
+  aboutNameEn: string;
+  aboutNameUk: string;
+  aboutRoleEn: string;
+  aboutRoleUk: string;
+  aboutManifestoEn: string;
+  aboutManifestoUk: string;
+  aboutBioEn: string;
+  aboutBioUk: string;
+  aboutNbbEn: string;
+  aboutNbbUk: string;
+  /** CV / Résumé CTA section */
+  cvCtaLabelEn: string;
+  cvCtaLabelUk: string;
+  cvCtaTitleEn: string;
+  cvCtaTitleUk: string;
+  cvCtaTextEn: string;
+  cvCtaTextUk: string;
+  cvCtaBtnEn: string;
+  cvCtaBtnUk: string;
+  /** CV URL — language-agnostic, stored in Value EN */
+  cvUrl: string;
+  /** Contact section */
+  contactTitleEn: string;
+  contactTitleUk: string;
+  contactSubtitleEn: string;
+  contactSubtitleUk: string;
+  /** Email + social links — stored in Value EN */
+  contactEmail: string;
+  socialInstagram: string;
+  socialThreads: string;
+  socialTelegram: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -113,6 +147,35 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   animaScenesTitleUk: "",
   animaScenesDescriptionEn: "",
   animaScenesDescriptionUk: "",
+  aboutLabelEn: "",
+  aboutLabelUk: "",
+  aboutNameEn: "",
+  aboutNameUk: "",
+  aboutRoleEn: "",
+  aboutRoleUk: "",
+  aboutManifestoEn: "",
+  aboutManifestoUk: "",
+  aboutBioEn: "",
+  aboutBioUk: "",
+  aboutNbbEn: "",
+  aboutNbbUk: "",
+  cvCtaLabelEn: "",
+  cvCtaLabelUk: "",
+  cvCtaTitleEn: "",
+  cvCtaTitleUk: "",
+  cvCtaTextEn: "",
+  cvCtaTextUk: "",
+  cvCtaBtnEn: "",
+  cvCtaBtnUk: "",
+  cvUrl: "",
+  contactTitleEn: "",
+  contactTitleUk: "",
+  contactSubtitleEn: "",
+  contactSubtitleUk: "",
+  contactEmail: "",
+  socialInstagram: "",
+  socialThreads: "",
+  socialTelegram: "",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -229,6 +292,62 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueEn) settings.animaScenesDescriptionEn = valueEn;
         if (valueUk) settings.animaScenesDescriptionUk = valueUk;
       }
+      // About section
+      if (key === "about_label") {
+        if (valueEn) settings.aboutLabelEn = valueEn;
+        if (valueUk) settings.aboutLabelUk = valueUk;
+      }
+      if (key === "about_name") {
+        if (valueEn) settings.aboutNameEn = valueEn;
+        if (valueUk) settings.aboutNameUk = valueUk;
+      }
+      if (key === "about_role") {
+        if (valueEn) settings.aboutRoleEn = valueEn;
+        if (valueUk) settings.aboutRoleUk = valueUk;
+      }
+      if (key === "about_manifesto") {
+        if (valueEn) settings.aboutManifestoEn = valueEn;
+        if (valueUk) settings.aboutManifestoUk = valueUk;
+      }
+      if (key === "about_bio") {
+        if (valueEn) settings.aboutBioEn = valueEn;
+        if (valueUk) settings.aboutBioUk = valueUk;
+      }
+      if (key === "about_nbb") {
+        if (valueEn) settings.aboutNbbEn = valueEn;
+        if (valueUk) settings.aboutNbbUk = valueUk;
+      }
+      // CV CTA section
+      if (key === "cv_cta_label") {
+        if (valueEn) settings.cvCtaLabelEn = valueEn;
+        if (valueUk) settings.cvCtaLabelUk = valueUk;
+      }
+      if (key === "cv_cta_title") {
+        if (valueEn) settings.cvCtaTitleEn = valueEn;
+        if (valueUk) settings.cvCtaTitleUk = valueUk;
+      }
+      if (key === "cv_cta_text") {
+        if (valueEn) settings.cvCtaTextEn = valueEn;
+        if (valueUk) settings.cvCtaTextUk = valueUk;
+      }
+      if (key === "cv_cta_btn") {
+        if (valueEn) settings.cvCtaBtnEn = valueEn;
+        if (valueUk) settings.cvCtaBtnUk = valueUk;
+      }
+      if (key === "cv_url" && valueEn) settings.cvUrl = valueEn;
+      // Contact section
+      if (key === "contact_title") {
+        if (valueEn) settings.contactTitleEn = valueEn;
+        if (valueUk) settings.contactTitleUk = valueUk;
+      }
+      if (key === "contact_subtitle") {
+        if (valueEn) settings.contactSubtitleEn = valueEn;
+        if (valueUk) settings.contactSubtitleUk = valueUk;
+      }
+      if (key === "contact_email" && valueEn) settings.contactEmail = valueEn;
+      if (key === "social_instagram" && valueEn) settings.socialInstagram = valueEn;
+      if (key === "social_threads" && valueEn) settings.socialThreads = valueEn;
+      if (key === "social_telegram" && valueEn) settings.socialTelegram = valueEn;
     }
 
     return settings;
