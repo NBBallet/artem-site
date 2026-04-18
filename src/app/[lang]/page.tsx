@@ -4,6 +4,7 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 import { getWorks } from "@/lib/works";
 import { getSiteSettings } from "@/lib/settings";
 import Tryzub from "@/components/Tryzub";
+import ContactForm from "@/components/ContactForm";
 
 // ISR: revalidate every 30 seconds — Notion edits appear on site within ~30s
 export const revalidate = 30;
@@ -235,6 +236,7 @@ export default async function HomePage({
       </section>
 
       {/* ===== CONTACT =====
+           3-column: Email left · Form center · Social right
            Editable in Notion Site Settings → keys: contact_*, social_* */}
       <section id="contact" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto">
         {/* White heading only — no duplicate red label */}
@@ -252,21 +254,31 @@ export default async function HomePage({
             : (settings.contactSubtitleEn || t["contact.subtitle"])}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Email */}
+        {/* 3-column grid: Email | Form | Social */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr_1fr] gap-12 md:gap-8">
+
+          {/* ── LEFT: Email ── */}
           <div>
             <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-5">
               {t["contact.email"]}
             </h3>
             <a
               href={`mailto:${contactEmail}`}
-              className="text-lg text-brand-white hover:text-brand-red transition-colors"
+              className="text-base text-brand-white hover:text-brand-red transition-colors break-all"
             >
               {contactEmail}
             </a>
           </div>
 
-          {/* Social links — with platform logos */}
+          {/* ── CENTER: Contact form → WhatsApp ── */}
+          <div>
+            <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-5">
+              {locale === "uk" ? "Зворотний зв'язок" : "Get in Touch"}
+            </h3>
+            <ContactForm locale={locale} whatsappPhone="77052980397" />
+          </div>
+
+          {/* ── RIGHT: Social links ── */}
           <div>
             <h3 className="text-[11px] tracking-[3px] uppercase text-brand-red mb-5">
               {t["contact.social"]}
@@ -280,7 +292,7 @@ export default async function HomePage({
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 text-[#777] hover:text-brand-white transition-colors"
               >
-                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors">
+                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors flex-none">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
@@ -297,7 +309,7 @@ export default async function HomePage({
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 text-[#777] hover:text-brand-white transition-colors"
               >
-                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors">
+                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors flex-none">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.028-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.014-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.163 1.43 1.783 3.631 2.698 6.54 2.717 1.677-.01 3.151-.306 4.276-.882 1.312-.675 2.028-1.69 2.028-2.924 0-.73-.174-1.356-.49-1.822-.322-.476-.831-.814-1.496-.97l-2.274-.501c-1.196-.263-2.215-.73-3.028-1.387-1.108-.899-1.657-2.073-1.596-3.396.065-1.42.78-2.621 2.08-3.477 1.14-.748 2.623-1.131 4.293-1.107 1.73.025 3.26.48 4.42 1.32.987.718 1.7 1.734 2.12 3.02l-1.978.694c-.596-1.867-2.029-2.904-4.545-2.945-1.307-.02-2.375.258-3.081.74-.614.42-.942.985-.973 1.638-.027.563.208 1.028.694 1.385.544.4 1.325.694 2.32.9l2.275.502c1.247.274 2.24.808 2.95 1.591.738.817 1.132 1.9 1.132 3.133 0 2.042-1.087 3.761-3.064 4.883-1.443.813-3.282 1.256-5.323 1.27z"/>
                   </svg>
@@ -312,7 +324,7 @@ export default async function HomePage({
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 text-[#777] hover:text-brand-white transition-colors"
               >
-                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors">
+                <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors flex-none">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.985 13.645l-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/>
                   </svg>
