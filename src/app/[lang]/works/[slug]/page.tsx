@@ -571,11 +571,30 @@ async function GenericWorkPage({
 }) {
   const settings = await getSiteSettings();
   const s = work.slug;
+  const uk = locale === "uk";
+
+  // Returns Notion-overridden caption for a video at position `idx`, falling back to works.ts title
+  const getVideoCaption = (idx: number): string => {
+    const v = work.videos?.[idx];
+    if (!v) return "";
+    type Cap = { en: string; uk: string };
+    const caps: Record<string, Cap[]> = {
+      "the-ants":  [{ en: settings.theAntsVideo1En,  uk: settings.theAntsVideo1Uk  },
+                    { en: settings.theAntsVideo2En,  uk: settings.theAntsVideo2Uk  }],
+      "mozart25":  [{ en: settings.mozart25Video1En, uk: settings.mozart25Video1Uk },
+                    { en: settings.mozart25Video2En, uk: settings.mozart25Video2Uk }],
+      "adios":     [{ en: settings.adiosVideo1En,    uk: settings.adiosVideo1Uk    },
+                    { en: settings.adiosVideo2En,    uk: settings.adiosVideo2Uk    }],
+      "carmen":    [{ en: settings.carmenVideo1En,   uk: settings.carmenVideo1Uk   }],
+    };
+    const cap = caps[s]?.[idx];
+    if (!cap) return v.title[locale];
+    return (uk ? cap.uk : cap.en) || v.title[locale];
+  };
 
   // Per-work overrides from Notion Site Settings DB
   // Keys: adios_title / adios_subtitle / adios_description / adios_year / adios_music
   //       carmen_title / carmen_subtitle / carmen_description / carmen_year / carmen_music
-  const uk = locale === "uk";
   const overrideTitle       = uk ? (s === "adios" ? settings.adiosTitleUk       : s === "carmen" ? settings.carmenTitleUk       : "") : (s === "adios" ? settings.adiosTitleEn       : s === "carmen" ? settings.carmenTitleEn       : "");
   const overrideSubtitle    = uk ? (s === "adios" ? settings.adiosSubtitleUk    : s === "carmen" ? settings.carmenSubtitleUk    : "") : (s === "adios" ? settings.adiosSubtitleEn    : s === "carmen" ? settings.carmenSubtitleEn    : "");
   const overrideDescription = uk ? (s === "adios" ? settings.adiosDescriptionUk : s === "carmen" ? settings.carmenDescriptionUk : "") : (s === "adios" ? settings.adiosDescriptionEn : s === "carmen" ? settings.carmenDescriptionEn : "");
@@ -639,18 +658,18 @@ async function GenericWorkPage({
             {locale === "uk" ? "Відео" : "Video"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-            {work.videos.map((video) => (
+            {work.videos.map((video, idx) => (
               <div key={video.id}>
                 <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
                   <iframe
                     src={`https://www.youtube.com/embed/${video.id}`}
-                    title={video.title[locale]}
+                    title={getVideoCaption(idx)}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
                   />
                 </div>
-                <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{video.title[locale]}</p>
+                <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{getVideoCaption(idx)}</p>
               </div>
             ))}
           </div>

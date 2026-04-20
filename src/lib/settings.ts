@@ -122,6 +122,21 @@ export interface SiteSettings {
   carmenDescriptionUk: string;
   carmenYear: string;
   carmenMusic: string;
+  /** Video captions — per-work (all editable in per-work Notion DBs) */
+  theAntsVideo1En: string;
+  theAntsVideo1Uk: string;
+  theAntsVideo2En: string;
+  theAntsVideo2Uk: string;
+  mozart25Video1En: string;
+  mozart25Video1Uk: string;
+  mozart25Video2En: string;
+  mozart25Video2Uk: string;
+  adiosVideo1En: string;
+  adiosVideo1Uk: string;
+  adiosVideo2En: string;
+  adiosVideo2Uk: string;
+  carmenVideo1En: string;
+  carmenVideo1Uk: string;
   /** Contact section */
   contactTitleEn: string;
   contactTitleUk: string;
@@ -243,6 +258,20 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   carmenDescriptionUk: "Безсмертна опера Бізе, переосмислена крізь оркестровку Щедріна для смичкових та ударних (1967). Представлена на конкурсі балетмейстерів у Львівській опері.",
   carmenYear: "2019",
   carmenMusic: "Georges Bizet / Rodion Shchedrin",
+  theAntsVideo1En: "Part 1. Awakening of life in the anthill. Dance of the Queen, the secret service, princesses and ordinary workers.",
+  theAntsVideo1Uk: "Частина 1. Пробудження життя в мурашнику. Танок Королеви, секретної служби, принцес та звичайних робітників.",
+  theAntsVideo2En: "Part 2. Solo of the Prince, the main hero of the performance.",
+  theAntsVideo2Uk: "Частина 2. Соло принца, головного героя вистави.",
+  mozart25Video1En: "Stage choreographic development of the ballet. First act. Teaser.",
+  mozart25Video1Uk: "Сценічна хореографічна розробка балету. Перший акт. Тизер.",
+  mozart25Video2En: "A more extensive, full version of the choreographic text.",
+  mozart25Video2Uk: "Більш розлога, повна версія хореографічного тексту.",
+  adiosVideo1En: "БАЛЕТ-FEST · 1st Place · Theatrical Recording",
+  adiosVideo1Uk: "БАЛЕТ-FEST · 1 місце · Театральний запис",
+  adiosVideo2En: "Adios — staging tease",
+  adiosVideo2Uk: "Адіос — постановочний тизер",
+  carmenVideo1En: "Teaser · Scene 6",
+  carmenVideo1Uk: "Тизер · Сцена 6",
   contactTitleEn: "",
   contactTitleUk: "",
   contactSubtitleEn: "",
@@ -263,7 +292,8 @@ async function queryDb(dbId: string | undefined): Promise<unknown[]> {
   try {
     const res = await notion.databases.query({ database_id: dbId });
     return res.results;
-  } catch {
+  } catch (err) {
+    console.error(`[settings] queryDb(${dbId.slice(0, 8)}…) failed:`, err);
     return [];
   }
 }
@@ -273,18 +303,23 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     return DEFAULT_SETTINGS;
 
   try {
-    // All five DBs queried in parallel — per-work DBs override main DB for their keys
-    const [mainRows, animaRows, adiosRows, carmenRows, firebirdRows] =
+    // All DBs queried in parallel — per-work DBs override main DB for their keys
+    const [mainRows, animaRows, adiosRows, carmenRows, firebirdRows, theAntsRows, mozart25Rows] =
       await Promise.all([
         queryDb(process.env.NOTION_SETTINGS_DB_ID),
         queryDb(process.env.NOTION_ANIMA_DB_ID),
         queryDb(process.env.NOTION_ADIOS_DB_ID),
         queryDb(process.env.NOTION_CARMEN_DB_ID),
         queryDb(process.env.NOTION_FIREBIRD_DB_ID),
+        queryDb(process.env.NOTION_THE_ANTS_DB_ID),
+        queryDb(process.env.NOTION_MOZART25_DB_ID),
       ]);
 
     const settings: SiteSettings = { ...DEFAULT_SETTINGS };
-    const allRows = [...mainRows, ...animaRows, ...adiosRows, ...carmenRows, ...firebirdRows];
+    const allRows = [
+      ...mainRows, ...animaRows, ...adiosRows, ...carmenRows,
+      ...firebirdRows, ...theAntsRows, ...mozart25Rows,
+    ];
 
     for (const page of allRows) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -502,6 +537,35 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       }
       if (key === "carmen_year" && valueEn) settings.carmenYear = valueEn;
       if (key === "carmen_music" && valueEn) settings.carmenMusic = valueEn;
+      // Video captions
+      if (key === "the_ants_video_1") {
+        if (valueEn) settings.theAntsVideo1En = valueEn;
+        if (valueUk) settings.theAntsVideo1Uk = valueUk;
+      }
+      if (key === "the_ants_video_2") {
+        if (valueEn) settings.theAntsVideo2En = valueEn;
+        if (valueUk) settings.theAntsVideo2Uk = valueUk;
+      }
+      if (key === "mozart25_video_1") {
+        if (valueEn) settings.mozart25Video1En = valueEn;
+        if (valueUk) settings.mozart25Video1Uk = valueUk;
+      }
+      if (key === "mozart25_video_2") {
+        if (valueEn) settings.mozart25Video2En = valueEn;
+        if (valueUk) settings.mozart25Video2Uk = valueUk;
+      }
+      if (key === "adios_video_1") {
+        if (valueEn) settings.adiosVideo1En = valueEn;
+        if (valueUk) settings.adiosVideo1Uk = valueUk;
+      }
+      if (key === "adios_video_2") {
+        if (valueEn) settings.adiosVideo2En = valueEn;
+        if (valueUk) settings.adiosVideo2Uk = valueUk;
+      }
+      if (key === "carmen_video_1") {
+        if (valueEn) settings.carmenVideo1En = valueEn;
+        if (valueUk) settings.carmenVideo1Uk = valueUk;
+      }
       if (key === "contact_email" && valueEn) settings.contactEmail = valueEn;
       if (key === "social_instagram" && valueEn) settings.socialInstagram = valueEn;
       if (key === "social_threads" && valueEn) settings.socialThreads = valueEn;
