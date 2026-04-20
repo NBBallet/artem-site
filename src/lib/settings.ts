@@ -89,6 +89,39 @@ export interface SiteSettings {
   firebirdBtnUk: string;
   firebirdCaptionEn: string;
   firebirdCaptionUk: string;
+  /** Firebird page — editable texts */
+  firebirdTitleEn: string;
+  firebirdTitleUk: string;
+  firebirdSubtitleEn: string;
+  firebirdSubtitleUk: string;
+  firebirdDescriptionEn: string;
+  firebirdDescriptionUk: string;
+  firebirdYear: string;
+  firebirdMusic: string;
+  /** Firebird — NYCB reference video */
+  firebirdRefVideoId: string;
+  firebirdRefLabelEn: string;
+  firebirdRefLabelUk: string;
+  firebirdRefTitleEn: string;
+  firebirdRefTitleUk: string;
+  /** Adios work — editable texts */
+  adiosTitleEn: string;
+  adiosTitleUk: string;
+  adiosSubtitleEn: string;
+  adiosSubtitleUk: string;
+  adiosDescriptionEn: string;
+  adiosDescriptionUk: string;
+  adiosYear: string;
+  adiosMusic: string;
+  /** Carmen work — editable texts */
+  carmenTitleEn: string;
+  carmenTitleUk: string;
+  carmenSubtitleEn: string;
+  carmenSubtitleUk: string;
+  carmenDescriptionEn: string;
+  carmenDescriptionUk: string;
+  carmenYear: string;
+  carmenMusic: string;
   /** Contact section */
   contactTitleEn: string;
   contactTitleUk: string;
@@ -181,6 +214,35 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   firebirdBtnUk: "Переглянути повну концепцію",
   firebirdCaptionEn: "N. Roerich, Mother of the World, 1924",
   firebirdCaptionUk: "М. Реріх, Мати Світу, 1924",
+  firebirdTitleEn: "",
+  firebirdTitleUk: "",
+  firebirdSubtitleEn: "",
+  firebirdSubtitleUk: "",
+  firebirdDescriptionEn: "",
+  firebirdDescriptionUk: "",
+  firebirdYear: "2026",
+  firebirdMusic: "Igor Stravinsky",
+  firebirdRefVideoId: "MXM3HtkdHMQ",
+  firebirdRefLabelEn: "Relevance · Reference",
+  firebirdRefLabelUk: "Актуальність · Референс",
+  firebirdRefTitleEn: "New York City Ballet — Firebird (Stravinsky)",
+  firebirdRefTitleUk: "Нью-Йоркський міський балет — Жар-Птиця (Стравінський)",
+  adiosTitleEn: "Adios",
+  adiosTitleUk: "Адіос",
+  adiosSubtitleEn: "Contemporary ballet · БАЛЕТ-FEST 1st Place",
+  adiosSubtitleUk: "Сучасний балет · БАЛЕТ-FEST 1 місце",
+  adiosDescriptionEn: "A contemporary solo charged with longing and departure — set to Benjamin Clementine's iconic song from his Mercury Prize-winning debut album At Least for Now.",
+  adiosDescriptionUk: "Сучасне соло, насичене тугою та прощанням — на однойменну пісню Бенджаміна Клементайна з його дебютного альбому At Least for Now, що отримав Mercury Prize.",
+  adiosYear: "2016",
+  adiosMusic: "Benjamin Clementine",
+  carmenTitleEn: "Carmen",
+  carmenTitleUk: "Кармен",
+  carmenSubtitleEn: "One-act ballet · Bizet-Shchedrin",
+  carmenSubtitleUk: "Одноактний балет · Бізе-Щедрін",
+  carmenDescriptionEn: "Bizet's immortal opera reborn through Rodion Shchedrin's 1967 orchestration for strings and percussion. Presented at the Lviv Opera choreographers competition.",
+  carmenDescriptionUk: "Безсмертна опера Бізе, переосмислена крізь оркестровку Щедріна для смичкових та ударних (1967). Представлена на конкурсі балетмейстерів у Львівській опері.",
+  carmenYear: "2019",
+  carmenMusic: "Georges Bizet / Rodion Shchedrin",
   contactTitleEn: "",
   contactTitleUk: "",
   contactSubtitleEn: "",
@@ -368,6 +430,57 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueEn) settings.firebirdCaptionEn = valueEn;
         if (valueUk) settings.firebirdCaptionUk = valueUk;
       }
+      if (key === "firebird_title") {
+        if (valueEn) settings.firebirdTitleEn = valueEn;
+        if (valueUk) settings.firebirdTitleUk = valueUk;
+      }
+      if (key === "firebird_subtitle") {
+        if (valueEn) settings.firebirdSubtitleEn = valueEn;
+        if (valueUk) settings.firebirdSubtitleUk = valueUk;
+      }
+      if (key === "firebird_description") {
+        if (valueEn) settings.firebirdDescriptionEn = valueEn;
+        if (valueUk) settings.firebirdDescriptionUk = valueUk;
+      }
+      if (key === "firebird_year" && valueEn) settings.firebirdYear = valueEn;
+      if (key === "firebird_music" && valueEn) settings.firebirdMusic = valueEn;
+      if (key === "firebird_ref_video" && valueEn) settings.firebirdRefVideoId = valueEn;
+      if (key === "firebird_ref_label") {
+        if (valueEn) settings.firebirdRefLabelEn = valueEn;
+        if (valueUk) settings.firebirdRefLabelUk = valueUk;
+      }
+      if (key === "firebird_ref_title") {
+        if (valueEn) settings.firebirdRefTitleEn = valueEn;
+        if (valueUk) settings.firebirdRefTitleUk = valueUk;
+      }
+      if (key === "adios_title") {
+        if (valueEn) settings.adiosTitleEn = valueEn;
+        if (valueUk) settings.adiosTitleUk = valueUk;
+      }
+      if (key === "adios_subtitle") {
+        if (valueEn) settings.adiosSubtitleEn = valueEn;
+        if (valueUk) settings.adiosSubtitleUk = valueUk;
+      }
+      if (key === "adios_description") {
+        if (valueEn) settings.adiosDescriptionEn = valueEn;
+        if (valueUk) settings.adiosDescriptionUk = valueUk;
+      }
+      if (key === "adios_year" && valueEn) settings.adiosYear = valueEn;
+      if (key === "adios_music" && valueEn) settings.adiosMusic = valueEn;
+      if (key === "carmen_title") {
+        if (valueEn) settings.carmenTitleEn = valueEn;
+        if (valueUk) settings.carmenTitleUk = valueUk;
+      }
+      if (key === "carmen_subtitle") {
+        if (valueEn) settings.carmenSubtitleEn = valueEn;
+        if (valueUk) settings.carmenSubtitleUk = valueUk;
+      }
+      if (key === "carmen_description") {
+        if (valueEn) settings.carmenDescriptionEn = valueEn;
+        if (valueUk) settings.carmenDescriptionUk = valueUk;
+      }
+      if (key === "carmen_year" && valueEn) settings.carmenYear = valueEn;
+      if (key === "carmen_music" && valueEn) settings.carmenMusic = valueEn;
       if (key === "contact_email" && valueEn) settings.contactEmail = valueEn;
       if (key === "social_instagram" && valueEn) settings.socialInstagram = valueEn;
       if (key === "social_threads" && valueEn) settings.socialThreads = valueEn;

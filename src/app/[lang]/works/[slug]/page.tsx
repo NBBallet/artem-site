@@ -441,6 +441,11 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   const settings = await getSiteSettings();
   const FIREBIRD_URL = settings.firebirdUrl;
   const MOTHER_IMG = settings.firebirdImage;
+  const firebirdYear = settings.firebirdYear || "2026";
+  const firebirdMusicLabel = settings.firebirdMusic || "Igor Stravinsky";
+  const firebirdTitle = locale === "uk" ? (settings.firebirdTitleUk || "Жар-Птиця") : (settings.firebirdTitleEn || "Firebird");
+  const firebirdSubtitle = locale === "uk" ? (settings.firebirdSubtitleUk || work.subtitle.uk) : (settings.firebirdSubtitleEn || work.subtitle.en);
+  const firebirdDesc = locale === "uk" ? (settings.firebirdDescriptionUk || work.description.uk) : (settings.firebirdDescriptionEn || work.description.en);
 
   return (
     <article className="pt-24">
@@ -458,55 +463,44 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
-          {/* Poster — Roerich "Mother of the World", clicking opens the full concept site */}
-          <a
-            href={FIREBIRD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative aspect-[3/4] block rounded-lg overflow-hidden bg-[#0d0d0d]"
-          >
+          {/* Poster — Roerich "Mother of the World" (non-clickable) */}
+          <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#0d0d0d]">
             <Image
               src={MOTHER_IMG}
               alt={locale === "uk" ? "М. Реріх — Мати Світу, 1924" : "N. Roerich — Mother of the World, 1924"}
               fill
-              className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+              className="object-cover"
               priority
             />
             {/* dark gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-            {/* hover CTA badge */}
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-              <span className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase font-semibold text-brand-white bg-brand-red/90 backdrop-blur-sm px-3 py-1.5 rounded-sm">
-                {locale === "uk" ? "Відкрити сайт" : "Open site"} →
-              </span>
-            </div>
             {/* image caption bottom — editable via Notion Site Settings → firebird_caption */}
             <p className="absolute bottom-4 left-5 text-[10px] text-white/40 tracking-[1px]">
               {locale === "uk" ? settings.firebirdCaptionUk : settings.firebirdCaptionEn}
             </p>
-          </a>
+          </div>
 
           {/* Info */}
           <div>
             <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
-              2026 · Igor Stravinsky
+              {firebirdYear} · {firebirdMusicLabel}
             </div>
 
             <h1
               className="text-[clamp(48px,8vw,80px)] leading-[1.05] text-brand-white mb-2"
               style={{ fontFamily: "NAMU-1400, serif" }}
             >
-              {locale === "uk" ? "Жар-Птиця" : "Firebird"}
+              {firebirdTitle}
             </h1>
             <p
               className="text-xl text-brand-grey mb-8"
               style={{ fontFamily: "NAMU-Pro, sans-serif" }}
             >
-              {work.subtitle[locale]}
+              {firebirdSubtitle}
             </p>
 
             <p className="text-[16px] text-[#aaa] leading-[1.8] mb-10">
-              {work.description[locale]}
+              {firebirdDesc}
             </p>
 
             {/* Branded CTA — link to full concept site */}
@@ -538,6 +532,27 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
         </div>
       </section>
 
+      {/* ===== REFERENCE VIDEO — NYCB (editable via Notion → firebird_ref_video / firebird_ref_label / firebird_ref_title) ===== */}
+      {settings.firebirdRefVideoId && (
+        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+          <div className="mb-8 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+            {locale === "uk" ? settings.firebirdRefLabelUk : settings.firebirdRefLabelEn}
+          </div>
+          <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+            <iframe
+              src={`https://www.youtube.com/embed/${settings.firebirdRefVideoId}`}
+              title={locale === "uk" ? settings.firebirdRefTitleUk : settings.firebirdRefTitleEn}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </div>
+          <p className="text-[13px] text-white/40 mt-4 leading-[1.5]">
+            {locale === "uk" ? settings.firebirdRefTitleUk : settings.firebirdRefTitleEn}
+          </p>
+        </section>
+      )}
+
       {/* ===== CTA + Navigation ===== */}
       <WorkFooter slug="firebird" locale={locale} />
     </article>
@@ -545,7 +560,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
 }
 
 /* ─── Generic work page (for non-ANIMA works) ─── */
-function GenericWorkPage({
+async function GenericWorkPage({
   work,
   locale,
   t,
@@ -554,6 +569,25 @@ function GenericWorkPage({
   locale: Locale;
   t: Record<string, string>;
 }) {
+  const settings = await getSiteSettings();
+  const s = work.slug;
+
+  // Per-work overrides from Notion Site Settings DB
+  // Keys: adios_title / adios_subtitle / adios_description / adios_year / adios_music
+  //       carmen_title / carmen_subtitle / carmen_description / carmen_year / carmen_music
+  const uk = locale === "uk";
+  const overrideTitle       = uk ? (s === "adios" ? settings.adiosTitleUk       : s === "carmen" ? settings.carmenTitleUk       : "") : (s === "adios" ? settings.adiosTitleEn       : s === "carmen" ? settings.carmenTitleEn       : "");
+  const overrideSubtitle    = uk ? (s === "adios" ? settings.adiosSubtitleUk    : s === "carmen" ? settings.carmenSubtitleUk    : "") : (s === "adios" ? settings.adiosSubtitleEn    : s === "carmen" ? settings.carmenSubtitleEn    : "");
+  const overrideDescription = uk ? (s === "adios" ? settings.adiosDescriptionUk : s === "carmen" ? settings.carmenDescriptionUk : "") : (s === "adios" ? settings.adiosDescriptionEn : s === "carmen" ? settings.carmenDescriptionEn : "");
+  const overrideYear  = s === "adios" ? settings.adiosYear  : s === "carmen" ? settings.carmenYear  : "";
+  const overrideMusic = s === "adios" ? settings.adiosMusic : s === "carmen" ? settings.carmenMusic : "";
+
+  const displayTitle       = overrideTitle       || work.title[locale];
+  const displaySubtitle    = overrideSubtitle    || work.subtitle[locale];
+  const displayDescription = overrideDescription || work.description[locale];
+  const displayYear        = overrideYear        || work.year;
+  const displayMusic       = overrideMusic       || work.music;
+
   return (
     <article className="pt-24">
 
@@ -571,23 +605,23 @@ function GenericWorkPage({
           {/* Left: title */}
           <div>
             <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
-              {work.year} · {work.music}
+              {displayYear} · {displayMusic}
             </div>
             <h1
               className="text-[clamp(40px,6vw,80px)] leading-[1.05] text-brand-white mb-3"
               style={{ fontFamily: "NAMU-1400, serif" }}
             >
-              {work.title[locale]}
+              {displayTitle}
             </h1>
             <p className="text-lg text-brand-grey">
-              {work.subtitle[locale]}
+              {displaySubtitle}
             </p>
           </div>
 
           {/* Right: description */}
           <div className="md:pt-8">
             <p className="text-[16px] text-[#aaa] leading-[1.8]">
-              {work.description[locale]}
+              {displayDescription}
             </p>
           </div>
         </div>

@@ -142,8 +142,8 @@ export const works: Work[] = [
     slug: "adios",
     title: { en: "Adios", uk: "Адіос" },
     subtitle: {
-      en: "Contemporary ballet · Solo",
-      uk: "Сучасний балет · Соло",
+      en: "Contemporary ballet · БАЛЕТ-FEST 1st Place",
+      uk: "Сучасний балет · БАЛЕТ-FEST 1 місце",
     },
     year: "2016",
     music: "Benjamin Clementine",
@@ -151,13 +151,20 @@ export const works: Work[] = [
       en: "A contemporary solo charged with longing and departure — set to Benjamin Clementine's iconic song from his Mercury Prize-winning debut album At Least for Now. Sparse piano, strings, and the artist's unmistakable voice create a landscape of intimate grief that choreography translates into pure physical poetry.",
       uk: "Сучасне соло, насичене тугою та прощанням — на однойменну пісню Бенджаміна Клементайна з його дебютного альбому At Least for Now, що отримав Mercury Prize. Стриманий діалог фортепіано, смичкових та неповторного голосу художника перетворюється на ліричний монолог тіла.",
     },
-    image: "https://i.ytimg.com/vi/3dIw8OuNJLY/hqdefault.jpg",
+    image: "https://i.ytimg.com/vi/m24yjydh5sg/hqdefault.jpg",
     videos: [
+      {
+        id: "m24yjydh5sg",
+        title: {
+          en: "БАЛЕТ-FEST · 1st Place · Theatrical Recording",
+          uk: "БАЛЕТ-FEST · 1 місце · Театральний запис",
+        },
+      },
       {
         id: "3dIw8OuNJLY",
         title: {
-          en: "Adios — staging recording",
-          uk: "Адіос — постановочний запис",
+          en: "Adios — staging tease",
+          uk: "Адіос — постановочний тизер",
         },
       },
     ],
@@ -177,13 +184,6 @@ export const works: Work[] = [
     },
     image: "https://i.ytimg.com/vi/t8pL0hzb2i0/hqdefault.jpg",
     videos: [
-      {
-        id: "m24yjydh5sg",
-        title: {
-          en: "Theatrical recording · Choreographers Competition, Lviv Opera",
-          uk: "Театральний запис · Конкурс балетмейстерів, Львівська опера",
-        },
-      },
       {
         id: "t8pL0hzb2i0",
         title: {
