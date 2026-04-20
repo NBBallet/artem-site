@@ -257,15 +257,36 @@ function richText(rt: Array<{ plain_text: string }> | undefined): string {
   return rt?.map((t) => t.plain_text).join("") ?? "";
 }
 
+/** Query one Notion DB, return [] if env var is missing or query fails. */
+async function queryDb(dbId: string | undefined): Promise<unknown[]> {
+  if (!dbId) return [];
+  try {
+    const res = await notion.databases.query({ database_id: dbId });
+    return res.results;
+  } catch {
+    return [];
+  }
+}
+
 export async function getSiteSettings(): Promise<SiteSettings> {
-  const dbId = process.env.NOTION_SETTINGS_DB_ID;
-  if (!process.env.NOTION_API_KEY || !dbId) return DEFAULT_SETTINGS;
+  if (!process.env.NOTION_API_KEY || !process.env.NOTION_SETTINGS_DB_ID)
+    return DEFAULT_SETTINGS;
 
   try {
-    const response = await notion.databases.query({ database_id: dbId });
-    const settings: SiteSettings = { ...DEFAULT_SETTINGS };
+    // All five DBs queried in parallel — per-work DBs override main DB for their keys
+    const [mainRows, animaRows, adiosRows, carmenRows, firebirdRows] =
+      await Promise.all([
+        queryDb(process.env.NOTION_SETTINGS_DB_ID),
+        queryDb(process.env.NOTION_ANIMA_DB_ID),
+        queryDb(process.env.NOTION_ADIOS_DB_ID),
+        queryDb(process.env.NOTION_CARMEN_DB_ID),
+        queryDb(process.env.NOTION_FIREBIRD_DB_ID),
+      ]);
 
-    for (const page of response.results) {
+    const settings: SiteSettings = { ...DEFAULT_SETTINGS };
+    const allRows = [...mainRows, ...animaRows, ...adiosRows, ...carmenRows, ...firebirdRows];
+
+    for (const page of allRows) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const props = (page as any).properties as Record<string, any>;
 
