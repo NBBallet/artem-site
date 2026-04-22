@@ -652,7 +652,7 @@ async function GenericWorkPage({
       {work.gallery && work.gallery.length > 0 && !(work.videos?.length === 1) && (() => {
         // Per-work thumbnail object-position overrides
         const thumbPositions: Record<string, Record<number, string>> = {
-          "adios": { 1: "top", 8: "20% top" },
+          "adios": { 1: "top" },
         };
         const overrides = thumbPositions[s] ?? {};
         const positions = work.gallery!.map((_, i) => overrides[i] ?? "center");

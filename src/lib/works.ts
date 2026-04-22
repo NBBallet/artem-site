@@ -161,7 +161,6 @@ export const works: Work[] = [
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850460/IMG_1779_qwbngl.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850470/IMG_1782_wfd4th.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850477/IMG_1794_ibs6so.jpg",
-      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850467/IMG_1786_sqn9nn.jpg",   // diploma variant — objectPosition: 20%
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850615/IMG_2711_q17xsv.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850434/IMG_1772_fnpnv5.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850610/IMG_2709_qtevrr.jpg",
