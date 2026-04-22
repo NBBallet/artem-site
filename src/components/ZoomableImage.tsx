@@ -11,7 +11,8 @@ interface Props {
   className?: string;
   sizes?: string;
   priority?: boolean;
-  /** "cover" | "contain" — how the image fits inside the lightbox */
+  /** "cover" | "contain" — how the image fits inside the lightbox.
+   *  Defaults to "contain" so the full photo is always visible on open. */
   fit?: "cover" | "contain";
   /**
    * Pass ALL sibling image URLs (including this one) to enable
@@ -35,7 +36,7 @@ interface Props {
  */
 export default function ZoomableImage({
   src, alt, fill, className, sizes, priority,
-  fit = "cover",
+  fit = "contain",
   group, groupIndex = 0,
 }: Props) {
   const [open, setOpen]           = useState(false);

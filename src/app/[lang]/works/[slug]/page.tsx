@@ -691,6 +691,7 @@ async function GenericWorkPage({
                       alt={`Photo ${i + 1}`}
                       fill
                       className="object-cover"
+                      fit="contain"
                       group={work.gallery!}
                       groupIndex={i}
                     />
