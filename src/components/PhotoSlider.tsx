@@ -13,7 +13,15 @@ import { createPortal } from "react-dom";
  *   • mobile finger swipe left / right to navigate
  *   • pinch-to-zoom, scroll-to-zoom, double-click zoom, drag when zoomed
  */
-export default function PhotoSlider({ photos }: { photos: string[] }) {
+export default function PhotoSlider({
+  photos,
+  objectPositions,
+}: {
+  photos: string[];
+  /** Optional per-photo CSS object-position for the strip thumbnails.
+   *  Length must match photos array. Defaults to "center" when omitted. */
+  objectPositions?: string[];
+}) {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [zoom, setZoom]         = useState(1);
   const [pos, setPos]           = useState({ x: 0, y: 0 });
@@ -136,6 +144,7 @@ export default function PhotoSlider({ photos }: { photos: string[] }) {
               <Image
                 src={src} alt={`Photo ${i + 1}`} fill
                 className="object-cover transition-opacity duration-300 group-hover/photo:opacity-75"
+                style={{ objectPosition: objectPositions?.[i] ?? "center" }}
                 sizes="(max-width: 768px) 70vw, 26vw"
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/photo:opacity-100 transition-opacity">

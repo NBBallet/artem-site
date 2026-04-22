@@ -154,13 +154,14 @@ export const works: Work[] = [
     image: "https://i.ytimg.com/vi/m24yjydh5sg/hqdefault.jpg",
     gallery: [
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850615/IMG_2708_nyxpju.jpg",
-      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850467/IMG_1786_sqn9nn.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850467/IMG_1786_sqn9nn.jpg",   // diploma — objectPosition: top
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850615/IMG_2706_kesqdi.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850451/IMG_1777_zhhzoe.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850608/IMG_2705_prcqou.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850460/IMG_1779_qwbngl.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850470/IMG_1782_wfd4th.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850477/IMG_1794_ibs6so.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850467/IMG_1786_sqn9nn.jpg",   // diploma variant — objectPosition: 20%
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850615/IMG_2711_q17xsv.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850434/IMG_1772_fnpnv5.jpg",
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850610/IMG_2709_qtevrr.jpg",
@@ -204,6 +205,10 @@ export const works: Work[] = [
       uk: "Безсмертна опера Бізе, переосмислена крізь радикальну оркестровку Родіона Щедріна для смичкових та ударних (1967). Представлена на конкурсі балетмейстерів у Львівській опері, постановка зводить сюжет до сутнісного конфлікту: свобода проти власництва, вогонь проти підкорення.",
     },
     image: "https://i.ytimg.com/vi/t8pL0hzb2i0/hqdefault.jpg",
+    gallery: [
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850967/IMG_1142_jjtllw.jpg",
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776850970/IMG_1227_cw0633.jpg",
+    ],
     videos: [
       {
         id: "t8pL0hzb2i0",

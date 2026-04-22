@@ -647,10 +647,17 @@ async function GenericWorkPage({
         </div>
       </section>
 
-      {/* ── PHOTO SLIDER — full width, right after header ── */}
-      {work.gallery && work.gallery.length > 0 && (
-        <PhotoSlider photos={work.gallery} />
-      )}
+      {/* ── PHOTO SLIDER — full width, right after header.
+           Skipped for works that show gallery photos beside the video instead. ── */}
+      {work.gallery && work.gallery.length > 0 && !(work.videos?.length === 1) && (() => {
+        // Per-work thumbnail object-position overrides
+        const thumbPositions: Record<string, Record<number, string>> = {
+          "adios": { 1: "top", 8: "20% top" },
+        };
+        const overrides = thumbPositions[s] ?? {};
+        const positions = work.gallery!.map((_, i) => overrides[i] ?? "center");
+        return <PhotoSlider photos={work.gallery!} objectPositions={positions} />;
+      })()}
 
       {/* ── VIDEO ── */}
       {work.videos && work.videos.length > 0 ? (
@@ -658,22 +665,58 @@ async function GenericWorkPage({
           <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
             {locale === "uk" ? "Відео" : "Video"}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-            {work.videos.map((video, idx) => (
-              <div key={video.id}>
+
+          {/* Single video + gallery photos side by side (e.g. Carmen) */}
+          {work.videos.length === 1 && work.gallery && work.gallery.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 items-start">
+              {/* Left: video */}
+              <div>
                 <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
                   <iframe
-                    src={`https://www.youtube.com/embed/${video.id}`}
-                    title={getVideoCaption(idx)}
+                    src={`https://www.youtube.com/embed/${work.videos[0].id}`}
+                    title={getVideoCaption(0)}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
                   />
                 </div>
-                <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{getVideoCaption(idx)}</p>
+                <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{getVideoCaption(0)}</p>
               </div>
-            ))}
-          </div>
+              {/* Right: photos stacked, same lightbox/zoom/swipe as rest of site */}
+              <div className="flex flex-col gap-4">
+                {work.gallery.map((src, i) => (
+                  <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[#111]">
+                    <ZoomableImage
+                      src={src}
+                      alt={`Photo ${i + 1}`}
+                      fill
+                      className="object-cover"
+                      group={work.gallery!}
+                      groupIndex={i}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            /* Multiple videos — original grid layout */
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              {work.videos.map((video, idx) => (
+                <div key={video.id}>
+                  <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.id}`}
+                      title={getVideoCaption(idx)}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">{getVideoCaption(idx)}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
       ) : (
         <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
