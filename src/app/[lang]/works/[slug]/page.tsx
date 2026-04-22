@@ -13,8 +13,8 @@ import DownloadButton from "@/components/DownloadButton";
 import { getSiteSettings } from "@/lib/settings";
 import { firebirdData } from "@/lib/firebird-data";
 
-// ISR: revalidate every 30 seconds
-export const revalidate = 30;
+// Always render fresh from Notion — no stale-while-revalidate confusion
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return locales.flatMap((lang) =>

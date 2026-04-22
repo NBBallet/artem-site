@@ -6,8 +6,8 @@ import { getSiteSettings } from "@/lib/settings";
 import Tryzub from "@/components/Tryzub";
 import ContactSection from "@/components/ContactSection";
 
-// ISR: revalidate every 30 seconds — Notion edits appear on site within ~30s
-export const revalidate = 30;
+// Always render fresh from Notion — no stale-while-revalidate confusion
+export const dynamic = "force-dynamic";
 
 export default async function HomePage({
   params,
