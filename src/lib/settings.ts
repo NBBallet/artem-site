@@ -104,6 +104,24 @@ export interface SiteSettings {
   firebirdRefLabelUk: string;
   firebirdRefTitleEn: string;
   firebirdRefTitleUk: string;
+  /** The Ants work — editable texts */
+  theAntsTitleEn: string;
+  theAntsTitleUk: string;
+  theAntsSubtitleEn: string;
+  theAntsSubtitleUk: string;
+  theAntsDescriptionEn: string;
+  theAntsDescriptionUk: string;
+  theAntsYear: string;
+  theAntsMusic: string;
+  /** Mozart 25 work — editable texts */
+  mozart25TitleEn: string;
+  mozart25TitleUk: string;
+  mozart25SubtitleEn: string;
+  mozart25SubtitleUk: string;
+  mozart25DescriptionEn: string;
+  mozart25DescriptionUk: string;
+  mozart25Year: string;
+  mozart25Music: string;
   /** Adios work — editable texts */
   adiosTitleEn: string;
   adiosTitleUk: string;
@@ -242,6 +260,22 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   firebirdRefLabelUk: "Актуальність · Референс",
   firebirdRefTitleEn: "New York City Ballet — Firebird (Stravinsky)",
   firebirdRefTitleUk: "Нью-Йоркський міський балет — Жар-Птиця (Стравінський)",
+  theAntsTitleEn: "The Ants",
+  theAntsTitleUk: "Мурахі",
+  theAntsSubtitleEn: "Full-length ballet in two acts",
+  theAntsSubtitleUk: "Повнометражний балет у двох діях",
+  theAntsDescriptionEn: "A civilization of ants becomes a mirror of human society — its hierarchies, fears, and the eternal search for truth. Based on Bernard Werber's novel, this ballet weaves Vivaldi's Four Seasons with Richter's recompositions to explore what happens when a small creature dares to question the order of things.",
+  theAntsDescriptionUk: "Цивілізація мурах стає дзеркалом людського суспільства — його ієрархій, страхів та вічного пошуку правди. За романом Бернара Вербера, цей балет поєднує Пори року Вівальді з рекомпозиціями Ріхтера, щоб дослідити, що відбувається, коли маленька істота наважується поставити під сумнів порядок речей.",
+  theAntsYear: "2018–2024",
+  theAntsMusic: "Antonio Vivaldi / Max Richter / J.S. Bach",
+  mozart25TitleEn: "Mozart 25",
+  mozart25TitleUk: "Моцарт 25",
+  mozart25SubtitleEn: "One-act ballet",
+  mozart25SubtitleUk: "Одноактний балет",
+  mozart25DescriptionEn: "An immersion into the complex, contradictory inner world of the great composer. We witness the forces that drove his artistic visions and demanded that Amadeus move ceaselessly upward along the staircase of his musical path — not counting even the Archbishop of Salzburg.",
+  mozart25DescriptionUk: "Занурення у складний та суперечливий внутрішній світ великого композитора. Ми бачимо на власні очі, які сили спонукали мистецькі візії та вимагали від великого Амадея рухатися безупинно вверх і вгору сходами свого музичного шляху, не рахуючись навіть з Архієпископом Зальцбурзьким.",
+  mozart25Year: "2019–2025",
+  mozart25Music: "Wolfgang Amadeus Mozart",
   adiosTitleEn: "Adios",
   adiosTitleUk: "Адіос",
   adiosSubtitleEn: "Contemporary ballet · БАЛЕТ-FEST 1st Place",
@@ -509,6 +543,34 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueEn) settings.firebirdRefTitleEn = valueEn;
         if (valueUk) settings.firebirdRefTitleUk = valueUk;
       }
+      if (key === "the_ants_title") {
+        if (valueEn) settings.theAntsTitleEn = valueEn;
+        if (valueUk) settings.theAntsTitleUk = valueUk;
+      }
+      if (key === "the_ants_subtitle") {
+        if (valueEn) settings.theAntsSubtitleEn = valueEn;
+        if (valueUk) settings.theAntsSubtitleUk = valueUk;
+      }
+      if (key === "the_ants_description") {
+        if (valueEn) settings.theAntsDescriptionEn = valueEn;
+        if (valueUk) settings.theAntsDescriptionUk = valueUk;
+      }
+      if (key === "the_ants_year" && valueEn) settings.theAntsYear = valueEn;
+      if (key === "the_ants_music" && valueEn) settings.theAntsMusic = valueEn;
+      if (key === "mozart25_title") {
+        if (valueEn) settings.mozart25TitleEn = valueEn;
+        if (valueUk) settings.mozart25TitleUk = valueUk;
+      }
+      if (key === "mozart25_subtitle") {
+        if (valueEn) settings.mozart25SubtitleEn = valueEn;
+        if (valueUk) settings.mozart25SubtitleUk = valueUk;
+      }
+      if (key === "mozart25_description") {
+        if (valueEn) settings.mozart25DescriptionEn = valueEn;
+        if (valueUk) settings.mozart25DescriptionUk = valueUk;
+      }
+      if (key === "mozart25_year" && valueEn) settings.mozart25Year = valueEn;
+      if (key === "mozart25_music" && valueEn) settings.mozart25Music = valueEn;
       if (key === "adios_title") {
         if (valueEn) settings.adiosTitleEn = valueEn;
         if (valueUk) settings.adiosTitleUk = valueUk;

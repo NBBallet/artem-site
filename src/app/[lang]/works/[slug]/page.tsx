@@ -592,20 +592,21 @@ async function GenericWorkPage({
     return (uk ? cap.uk : cap.en) || v.title[locale];
   };
 
-  // Per-work overrides from Notion Site Settings DB
-  // Keys: adios_title / adios_subtitle / adios_description / adios_year / adios_music
-  //       carmen_title / carmen_subtitle / carmen_description / carmen_year / carmen_music
-  const overrideTitle       = uk ? (s === "adios" ? settings.adiosTitleUk       : s === "carmen" ? settings.carmenTitleUk       : "") : (s === "adios" ? settings.adiosTitleEn       : s === "carmen" ? settings.carmenTitleEn       : "");
-  const overrideSubtitle    = uk ? (s === "adios" ? settings.adiosSubtitleUk    : s === "carmen" ? settings.carmenSubtitleUk    : "") : (s === "adios" ? settings.adiosSubtitleEn    : s === "carmen" ? settings.carmenSubtitleEn    : "");
-  const overrideDescription = uk ? (s === "adios" ? settings.adiosDescriptionUk : s === "carmen" ? settings.carmenDescriptionUk : "") : (s === "adios" ? settings.adiosDescriptionEn : s === "carmen" ? settings.carmenDescriptionEn : "");
-  const overrideYear  = s === "adios" ? settings.adiosYear  : s === "carmen" ? settings.carmenYear  : "";
-  const overrideMusic = s === "adios" ? settings.adiosMusic : s === "carmen" ? settings.carmenMusic : "";
+  // Per-work Notion overrides — lookup map covers all 4 fully-editable works
+  type WorkOv = { titleEn: string; titleUk: string; subtitleEn: string; subtitleUk: string; descEn: string; descUk: string; year: string; music: string };
+  const workOverrides: Record<string, WorkOv> = {
+    "the-ants": { titleEn: settings.theAntsTitleEn,   titleUk: settings.theAntsTitleUk,   subtitleEn: settings.theAntsSubtitleEn,   subtitleUk: settings.theAntsSubtitleUk,   descEn: settings.theAntsDescriptionEn,   descUk: settings.theAntsDescriptionUk,   year: settings.theAntsYear,   music: settings.theAntsMusic },
+    "mozart25": { titleEn: settings.mozart25TitleEn,  titleUk: settings.mozart25TitleUk,  subtitleEn: settings.mozart25SubtitleEn,  subtitleUk: settings.mozart25SubtitleUk,  descEn: settings.mozart25DescriptionEn,  descUk: settings.mozart25DescriptionUk,  year: settings.mozart25Year,  music: settings.mozart25Music },
+    "adios":    { titleEn: settings.adiosTitleEn,     titleUk: settings.adiosTitleUk,     subtitleEn: settings.adiosSubtitleEn,     subtitleUk: settings.adiosSubtitleUk,     descEn: settings.adiosDescriptionEn,     descUk: settings.adiosDescriptionUk,     year: settings.adiosYear,     music: settings.adiosMusic },
+    "carmen":   { titleEn: settings.carmenTitleEn,    titleUk: settings.carmenTitleUk,    subtitleEn: settings.carmenSubtitleEn,    subtitleUk: settings.carmenSubtitleUk,    descEn: settings.carmenDescriptionEn,    descUk: settings.carmenDescriptionUk,    year: settings.carmenYear,    music: settings.carmenMusic },
+  };
+  const ov = workOverrides[s];
 
-  const displayTitle       = overrideTitle       || work.title[locale];
-  const displaySubtitle    = overrideSubtitle    || work.subtitle[locale];
-  const displayDescription = overrideDescription || work.description[locale];
-  const displayYear        = overrideYear        || work.year;
-  const displayMusic       = overrideMusic       || work.music;
+  const displayTitle       = (uk ? ov?.titleUk     : ov?.titleEn)     || work.title[locale];
+  const displaySubtitle    = (uk ? ov?.subtitleUk  : ov?.subtitleEn)  || work.subtitle[locale];
+  const displayDescription = (uk ? ov?.descUk      : ov?.descEn)      || work.description[locale];
+  const displayYear        = ov?.year  || work.year;
+  const displayMusic       = ov?.music || work.music;
 
   return (
     <article className="pt-24">
