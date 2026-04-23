@@ -234,19 +234,19 @@ export const works: Work[] = [
     image: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Nicholas_Roerich_-_Mother_of_the_World%2C_1924_-_warmer_colours.jpg",
   },
   {
-    slug: "ikar-markevich",
-    title: { en: "Ikar / Markevich", uk: "Ікар / Маркевич" },
+    slug: "icare",
+    title: { en: "ICARE", uk: "ІКАР" },
     subtitle: {
-      en: "One-act ballet",
-      uk: "Одноактний балет",
+      en: "World Premiere · One-act ballet",
+      uk: "Світова прем'єра · Одноактний балет",
     },
-    year: "2020",
-    music: "Igor Markevich — The Flight of Icarus",
+    year: "2026",
+    music: 'Igor Markevich — "Le Vol d\'Icare" (1932)',
     description: {
-      en: "A ballet inspired by the life and music of Igor Markevich — the Ukrainian-born conductor and composer whose Flight of Icarus became a symbol of daring artistic ambition and the price of reaching too close to the sun.",
-      uk: "Балет, натхненний життям та музикою Ігоря Маркевича — українського за походженням диригента та композитора, чий Політ Ікара став символом зухвалих мистецьких амбіцій та ціни наближення до сонця.",
+      en: "The world's first staging of Igor Markevich's Le Vol d'Icare — composed in Paris in 1932, unperformed for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
+      uk: "Перша в світі постановка «Польоту Ікара» Ігоря Маркевича — написаного в Парижі 1932 року, 93 роки без прем'єри. Не притча-застереження. Гімн усвідомленому вибору летіти.",
     },
-    image: "",
+    image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Jazz_-_Icarus_%281947%29.jpg",
   },
   {
     slug: "roerich-ballet",

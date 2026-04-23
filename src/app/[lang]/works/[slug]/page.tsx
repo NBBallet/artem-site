@@ -559,6 +559,608 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   );
 }
 
+/* ─── ICARE pitch page — world premiere of Markevich's Le Vol d'Icare ─── */
+async function IcarePage({
+  work,
+  locale,
+  t,
+}: {
+  work: NonNullable<ReturnType<typeof getWorkBySlug>>;
+  locale: Locale;
+  t: Record<string, string>;
+}) {
+  const lang = locale;
+  const uk = locale === "uk";
+
+  // ICARE brand palette
+  const ULTRA = "#1B3FA0"; // Ultramarine
+  const RED   = "#C8102E"; // Heart Red
+  const OCHRE = "#D4A017"; // Ochre Star
+
+  const MATISSE_SRC =
+    "https://upload.wikimedia.org/wikipedia/commons/4/4a/Jazz_-_Icarus_%281947%29.jpg";
+
+  const scoreVideoId = work.videos?.[0]?.id ?? "";
+
+  const movements = [
+    {
+      num: "I", timeEn: "0:00", durEn: "2′09″",
+      en: "Prelude", uk: "Прелюдія",
+      descEn: "The world before wings. Silence that holds all possible flights.",
+      descUk: "Світ до крил. Тиша, що містить усі можливі польоти.",
+    },
+    {
+      num: "II", timeEn: "2:09", durEn: "2′51″",
+      en: "Youth Games", uk: "Юнацькі ігри",
+      descEn: "The body discovering its own language. Joy without gravity.",
+      descUk: "Тіло відкриває свою мову. Радість без тяжіння.",
+    },
+    {
+      num: "III", timeEn: "5:00", durEn: "3′46″",
+      en: "Icarus Studies Birds", uk: "Ікар вивчає птахів",
+      descEn: "Observation becomes obsession. The first understanding: flight is possible.",
+      descUk: "Спостереження стає одержимістю. Перше усвідомлення: політ можливий.",
+    },
+    {
+      num: "IV", timeEn: "8:46", durEn: "4′22″",
+      en: "Wings Attached", uk: "Кріплення крил",
+      descEn: "The technical and the sacred. Wax and feather. When instrument becomes destiny.",
+      descUk: "Технічне і священне. Віск і пір'я. Коли інструмент стає долею.",
+    },
+    {
+      num: "V", timeEn: "13:08", durEn: "5′18″",
+      en: "Flight", uk: "Політ",
+      descEn: "The longest movement. The fullest freedom. This is the purpose of everything before.",
+      descUk: "Найдовша частина. Найповніша свобода. Це ціль усього, що було до.",
+    },
+    {
+      num: "VI", timeEn: "18:26", durEn: "2′08″",
+      en: "The Fall", uk: "Падіння",
+      descEn: "The briefest movement. Not punishment — transformation. The body returns to its element.",
+      descUk: "Найкоротша частина. Не покарання — трансформація. Тіло повертається до свого елементу.",
+    },
+    {
+      num: "VII", timeEn: "20:34", durEn: "6′56″",
+      en: "Death / Illumination", uk: "Смерть / Осяяння",
+      descEn: "Icarus does not end. He becomes light. The final movement is the longest — meaning requires time to arrive.",
+      descUk: "Ікар не зникає. Він стає світлом. Фінальна частина найдовша — смислу потрібен час.",
+    },
+  ];
+
+  return (
+    <article className="pt-24" style={{ background: "#0A0A0A" }}>
+
+      {/* ===== 1. HERO ===== */}
+      <section className="relative min-h-[85vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a] overflow-hidden">
+        {/* Ultramarine atmospheric glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: `radial-gradient(ellipse 70% 90% at 75% 50%, ${ULTRA}1a 0%, transparent 70%)` }}
+        />
+
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto">
+          <Link
+            href={`/${lang}#works`}
+            className="inline-block mb-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
+          >
+            ← {t["work.back"]}
+          </Link>
+
+          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-center">
+
+            {/* Left: Matisse Icarus */}
+            <div className="relative aspect-[3/4] rounded-sm overflow-hidden">
+              <Image
+                src={MATISSE_SRC}
+                alt="Henri Matisse — Icare, Jazz (1947)"
+                fill
+                className="object-cover"
+                priority
+              />
+              {/* edge vignettes */}
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to right, #0A0A0A 0%, transparent 25%, transparent 75%, #0A0A0A 100%)" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to bottom, transparent 55%, #0A0A0A 100%)" }}
+              />
+              <p className="absolute bottom-4 left-5 text-[10px] tracking-[1px] text-white/20">
+                Henri Matisse — Icare, Jazz, 1947
+              </p>
+            </div>
+
+            {/* Right: title block */}
+            <div>
+              {/* World premiere badge */}
+              <div className="flex items-center gap-3 mb-6">
+                <span className="inline-block w-2 h-2 rounded-full flex-none" style={{ backgroundColor: RED }} />
+                <span className="text-[11px] tracking-[5px] uppercase" style={{ color: OCHRE }}>
+                  {uk ? "Світова прем'єра · 2026" : "World Premiere · 2026"}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h1
+                className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-5"
+                style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}
+              >
+                ICARE
+              </h1>
+
+              {/* Ultramarine rule */}
+              <div className="w-20 h-[2px] mb-7" style={{ backgroundColor: ULTRA }} />
+
+              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
+                {uk ? "За партитурою Ігоря Маркевича, 1932" : "After the score by Igor Markevich, 1932"}
+              </p>
+              <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
+                {uk
+                  ? "Перша в історії постановка балету, що 93 роки чекав хореографа."
+                  : "The first staging in history of a ballet that waited 93 years for a choreographer."}
+              </p>
+
+              {/* Spec chips */}
+              <div className="flex flex-wrap gap-2 mb-10">
+                {([
+                  { en: "27 min",          uk: "27 хвилин" },
+                  { en: "One act",         uk: "Одна дія" },
+                  { en: "Ensemble of Five",uk: "Ensemble of Five" },
+                  { en: "Chamber music",   uk: "Камерна музика" },
+                ] as { en: string; uk: string }[]).map((chip) => (
+                  <span
+                    key={chip.en}
+                    className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
+                    style={{ border: `1px solid ${ULTRA}55`, color: "#777" }}
+                  >
+                    {uk ? chip.uk : chip.en}
+                  </span>
+                ))}
+              </div>
+
+              {/* Primary CTA */}
+              <a
+                href="https://wa.me/77052980397"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
+                style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
+              >
+                <span className="text-[12px] tracking-[4px] uppercase font-semibold">
+                  {uk ? "Обговорити постановку" : "Discuss Production"}
+                </span>
+                <svg
+                  width="18" height="18" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="1.5"
+                  className="flex-none transition-transform duration-200 group-hover:translate-x-0.5"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 2. THE UNFINISHED MISSION ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+            {uk ? "Нездійснена місія" : "The Unfinished Mission"}
+          </div>
+          <h2
+            className="text-[clamp(28px,4vw,52px)] text-white mb-12 max-w-[720px]"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            {uk
+              ? "93 роки очікування. Одна світова прем'єра."
+              : "93 years of waiting. One world premiere."}
+          </h2>
+
+          {/* 3-column timeline */}
+          <div className="grid grid-cols-1 md:grid-cols-3 mb-16">
+            {([
+              {
+                year: "1932",
+                accent: ULTRA,
+                en: "Igor Markevich composes Le Vol d'Icare in Paris. Written for Diaghilev's company. Diaghilev died in 1929 — the premiere was postponed indefinitely.",
+                uk: "Ігор Маркевич написав «Політ Ікара» в Парижі для трупи Дягілєва. Дягілєв помер у 1929-му — прем'єра відтерміновується назавжди.",
+              },
+              {
+                year: "93",
+                accent: `${ULTRA}44`,
+                en: "Years of silence. The score survived. Concert performances existed. No choreographer gave it a body.",
+                uk: "Роки тиші. Партитура існувала. Концертні виконання були. Хореографічного тіла — не було.",
+              },
+              {
+                year: "2026",
+                accent: RED,
+                en: "Artem Hordieiev creates the first full staging. Ensemble of Five performs the original 1932 score. A world premiere 93 years in the making.",
+                uk: "Артем Гордієв створює першу повноцінну постановку. Ensemble of Five виконує партитуру 1932 року. Світова прем'єра через 93 роки.",
+              },
+            ] as { year: string; accent: string; en: string; uk: string }[]).map((card) => (
+              <div
+                key={card.year}
+                className="pl-8 py-8 pr-6 border-l-2 border-b md:border-b-0 border-[#1a1a1a]"
+                style={{ borderLeftColor: card.accent }}
+              >
+                <div
+                  className="text-[52px] font-light text-white/10 mb-4 leading-none"
+                  style={{ fontFamily: "NAMU-1400, serif" }}
+                >
+                  {card.year}
+                </div>
+                <p className="text-[14px] text-white/45 leading-[1.7]">
+                  {uk ? card.uk : card.en}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Central quote */}
+          <blockquote className="border-l-2 pl-8 max-w-[640px]" style={{ borderColor: ULTRA }}>
+            <p
+              className="text-xl text-white/60 italic leading-[1.65]"
+              style={{ fontFamily: "NAMU-Pro, sans-serif" }}
+            >
+              &ldquo;{uk
+                ? "Ікар не впав через помилку. Він вибрав летіти."
+                : "Icarus did not fall by mistake. He chose to fly."}&rdquo;
+            </p>
+            <cite className="block mt-4 text-[10px] tracking-[3px] uppercase text-white/25 not-italic">
+              {uk ? "Артем Гордієв — хореограф-постановник" : "Artem Hordieiev — Choreographer"}
+            </cite>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* ===== 3. CONCEPT — 3 PILLARS ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+            {uk ? "Концепція" : "Concept"}
+          </div>
+          <h2
+            className="text-[clamp(28px,4vw,52px)] text-white mb-3"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            {uk ? "Три осі координат" : "Three Axes"}
+          </h2>
+          <p className="text-[15px] text-white/40 mb-12 max-w-[600px] leading-[1.7]">
+            {uk
+              ? "Вистава будується на перетині трьох культурних пластів, що разом утворюють власну хореографічну мову."
+              : "The production is built on the intersection of three cultural strata — together they form a choreographic language entirely its own."}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {([
+              {
+                num: "I",
+                en: "Flight as Conscious Choice",
+                uk: "Польот як усвідомлений вибір",
+                descEn: "Icarus was not reckless. He knew the wax would melt. He flew anyway — and longer than any human before him. This myth is not a warning. It is a manifesto.",
+                descUk: "Ікар не безрозсудний. Він знав, що віск розтопиться. Він летів — і довше, ніж будь-хто до нього. Цей міф — не застереження. Це маніфест.",
+              },
+              {
+                num: "II",
+                en: "Minoan Substrate",
+                uk: "Мінойський субстрат",
+                descEn: "Crete. The labyrinth. Daedalus. Minoan civilisation as the original source — a movement culture that precedes Greece, precedes logos, where the body is the only truth.",
+                descUk: "Крит. Лабіринт. Дедал. Мінойська цивілізація як першоджерело — культура руху, що передує Греції, передує логосу, де тіло є єдиною правдою.",
+              },
+              {
+                num: "III",
+                en: "Matisse — Body Syntax",
+                uk: "Матіс — синтаксис тіла",
+                descEn: "Blue Nudes. The Jazz cut-outs. Choreography that refuses ornament — only contour, only the essential line, only the irreducible truth of the body in space.",
+                descUk: "Сині Ню. Аплікації з «Джазу». Хореографія, що відмовляється від орнаменту — тільки контур, тільки суттєва лінія, тільки незвідна правда тіла в просторі.",
+              },
+            ] as { num: string; en: string; uk: string; descEn: string; descUk: string }[]).map((pillar) => (
+              <div
+                key={pillar.num}
+                className="p-8"
+                style={{ background: `${ULTRA}0a`, border: `1px solid ${ULTRA}25` }}
+              >
+                <div
+                  className="text-[40px] font-light mb-5 leading-none"
+                  style={{ color: OCHRE, fontFamily: "NAMU-1400, serif" }}
+                >
+                  {pillar.num}
+                </div>
+                <h3
+                  className="text-[17px] text-white mb-4"
+                  style={{ fontFamily: "NAMU-1400, serif" }}
+                >
+                  {uk ? pillar.uk : pillar.en}
+                </h3>
+                <p className="text-[14px] text-white/45 leading-[1.7]">
+                  {uk ? pillar.descUk : pillar.descEn}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 4. THE SCORE + VIDEO ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+            {uk ? "Партитура" : "The Score"}
+          </div>
+          <h2
+            className="text-[clamp(28px,4vw,52px)] text-white mb-4"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            Le Vol d&apos;Icare
+          </h2>
+          <p className="text-[15px] text-white/45 mb-2 leading-[1.6]">
+            {uk ? "Ігор Маркевич, Париж, 1932" : "Igor Markevich, Paris, 1932"}
+          </p>
+          <p className="text-[15px] text-white/35 mb-10 max-w-[580px] leading-[1.7]">
+            {uk
+              ? "Квінтет: скрипка, альт, віолончель, контрабас, фортепіано. Тривалість: 27 хвилин. Виконує Ensemble of Five."
+              : "Quintet: violin, viola, cello, double bass, piano. Duration: 27 minutes. Performed by Ensemble of Five."}
+          </p>
+
+          {scoreVideoId ? (
+            <>
+              <div className="aspect-video rounded-sm overflow-hidden bg-[#111] mb-4">
+                <iframe
+                  src={`https://www.youtube.com/embed/${scoreVideoId}`}
+                  title={
+                    uk
+                      ? "Ensemble of Five — Ігор Маркевич, Політ Ікара"
+                      : "Ensemble of Five — Igor Markevich, Le Vol d'Icare"
+                  }
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+              <p className="text-[12px] text-white/25 tracking-[1px]">
+                Ensemble of Five —{" "}
+                {uk
+                  ? "Ігор Маркевич, «Політ Ікара», 1932"
+                  : "Igor Markevich, Le Vol d'Icare, 1932"}
+              </p>
+            </>
+          ) : (
+            <div
+              className="aspect-video rounded-sm flex items-center justify-center"
+              style={{ background: `${ULTRA}08`, border: `1px dashed ${ULTRA}30` }}
+            >
+              <div className="text-center px-6">
+                <p
+                  className="text-[10px] tracking-[4px] uppercase mb-4"
+                  style={{ color: `${ULTRA}80` }}
+                >
+                  {uk ? "Відео незабаром" : "Score recording forthcoming"}
+                </p>
+                <p
+                  className="text-[28px] text-white/10"
+                  style={{ fontFamily: "NAMU-1400, serif" }}
+                >
+                  Ensemble of Five
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ===== 5. DRAMATURGY — 7 MOVEMENTS ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+            {uk ? "Драматургія" : "Dramaturgy"}
+          </div>
+          <h2
+            className="text-[clamp(28px,4vw,52px)] text-white mb-3"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            {uk ? "7 частин · 27 хвилин" : "7 Movements · 27 Minutes"}
+          </h2>
+          <p className="text-[15px] text-white/40 mb-12 max-w-[540px] leading-[1.7]">
+            {uk
+              ? "Від тиші до польоту до осяяння. Кожна частина — окремий стан тіла і душі."
+              : "From silence to flight to illumination. Each movement — a distinct state of body and soul."}
+          </p>
+
+          <div>
+            {movements.map((m) => (
+              <div
+                key={m.num}
+                className="grid gap-4 md:gap-8 items-baseline py-5 border-b border-[#1a1a1a] group"
+                style={{ gridTemplateColumns: "40px 72px 1fr 56px" }}
+              >
+                <span
+                  className="text-[13px] text-white/15 group-hover:text-white/30 transition-colors"
+                  style={{ fontFamily: "NAMU-1400, serif" }}
+                >
+                  {m.num}
+                </span>
+                <span
+                  className="text-[11px] tracking-[2px] text-white/22 tabular-nums"
+                >
+                  {m.timeEn}
+                </span>
+                <div>
+                  <p
+                    className="text-[15px] text-white/75 mb-1"
+                    style={{ fontFamily: "NAMU-1400, serif" }}
+                  >
+                    {uk ? m.uk : m.en}
+                  </p>
+                  <p className="text-[13px] text-white/33 leading-[1.5]">
+                    {uk ? m.descUk : m.descEn}
+                  </p>
+                </div>
+                <span className="text-[11px] text-white/18 text-right tracking-[0.5px]">
+                  {m.durEn}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 6. PRODUCTION SPECIFICATIONS ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+            {uk ? "Технічні характеристики" : "Production Specifications"}
+          </div>
+          <h2
+            className="text-[clamp(28px,4vw,52px)] text-white mb-12"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            {uk ? "Умови постановки" : "Production Requirements"}
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+            {([
+              {
+                en: "Format",
+                uk: "Формат",
+                val: uk ? "Одноактний балет" : "One-act ballet",
+              },
+              {
+                en: "Duration",
+                uk: "Тривалість",
+                val: "27 min",
+              },
+              {
+                en: "Music",
+                uk: "Музика",
+                val: uk
+                  ? "Живе виконання — Ensemble of Five"
+                  : "Live — Ensemble of Five (5 musicians)",
+              },
+              {
+                en: "Instrumentation",
+                uk: "Склад ансамблю",
+                val: uk
+                  ? "Скрипка · альт · віолончель · контрабас · фортепіано"
+                  : "Violin · Viola · Cello · Double bass · Piano",
+              },
+              {
+                en: "Choreography",
+                uk: "Хореографія",
+                val: "Artem Hordieiev",
+              },
+              {
+                en: "Premiere availability",
+                uk: "Доступність прем'єри",
+                val: uk
+                  ? "Відкрито для переговорів · 2026"
+                  : "Open for negotiation · 2026",
+              },
+            ] as { en: string; uk: string; val: string }[]).map((row) => (
+              <div
+                key={row.en}
+                className="grid gap-6 py-5 border-b border-[#1a1a1a]"
+                style={{ gridTemplateColumns: "1fr 2fr" }}
+              >
+                <span className="text-[11px] tracking-[2px] uppercase text-white/25">
+                  {uk ? row.uk : row.en}
+                </span>
+                <span className="text-[14px] text-white/65">
+                  {row.val}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 7. CHOREOGRAPHER ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+            {uk ? "Хореограф" : "Choreographer"}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 items-start">
+            <div>
+              <h2
+                className="text-[clamp(32px,4vw,60px)] text-white mb-3 leading-[1.0]"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                Artem<br />Hordieiev
+              </h2>
+              <p className="text-[11px] tracking-[3px] uppercase" style={{ color: OCHRE }}>
+                {uk ? "Засновник NBB · Хореограф" : "NBB Founder · Choreographer"}
+              </p>
+            </div>
+            <div className="md:pt-4">
+              <p className="text-[15px] text-white/50 leading-[1.85] mb-6">
+                {uk
+                  ? "Артем Гордієв — хореограф і засновник Newspaper Ballet Bureau (NBB). Його роботи відзначені на міжнародних конкурсах і представлені на сценах України та Європи. Серед постановок — «Мурахи» (за Бернаром Вербером), «Аніма», «Моцарт 25», «Кармен» (Бізе–Щедрін)."
+                  : "Artem Hordieiev is a choreographer and founder of Newspaper Ballet Bureau (NBB). His works have been recognised at international competitions and presented on stages across Ukraine and Europe. Productions include The Ants (after Bernard Werber), Anima, Mozart 25, and Carmen (Bizet–Shchedrin)."}
+              </p>
+              <p className="text-[15px] text-white/50 leading-[1.85]">
+                {uk
+                  ? "ICARE — перша в світі хореографічна постановка «Польоту Ікара» Маркевича — стане центральним проєктом його паризького сезону 2026 року."
+                  : "ICARE — the world's first choreographic staging of Markevich's Le Vol d'Icare — will be the centrepiece of his 2026 Paris season."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 8. BOOKING CTA ===== */}
+      <section
+        className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
+        style={{ background: `linear-gradient(135deg, #0A0A0A 0%, ${ULTRA}16 100%)` }}
+      >
+        <div className="max-w-[800px] mx-auto text-center">
+          <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+            {uk ? "Бронювання" : "Booking"}
+          </div>
+          <h2
+            className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            {uk
+              ? "Доступна\nдля прем'єри"
+              : "Available for\nWorld Premiere"}
+          </h2>
+          <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
+            {uk
+              ? "ICARE відкрита для переговорів з театрами, фестивалями та продюсерськими організаціями — виключний партнер для першої постановки у світі."
+              : "ICARE is open to negotiations with theatres, festivals, and producing organisations — exclusive partner for the world premiere staging."}
+          </p>
+          <a
+            href="https://wa.me/77052980397"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
+          >
+            <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+              {uk ? "Написати хореографу" : "Contact Choreographer"}
+            </span>
+            <svg
+              width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="1.5"
+              className="flex-none transition-transform duration-200 group-hover:translate-x-0.5"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </a>
+          <p className="text-[11px] tracking-[2px] text-white/20 uppercase">
+            art_om@me.com
+          </p>
+        </div>
+      </section>
+
+      {/* ===== Navigation ===== */}
+      <WorkFooter slug="icare" locale={locale} />
+    </article>
+  );
+}
+
 /* ─── Generic work page (for non-ANIMA works) ─── */
 async function GenericWorkPage({
   work,
@@ -799,6 +1401,10 @@ export default async function WorkPage({
 
   if (slug === "firebird") {
     return <FirebirdPage work={work} locale={locale} t={t} />;
+  }
+
+  if (slug === "icare") {
+    return <IcarePage work={work} locale={locale} t={t} />;
   }
 
   return <GenericWorkPage work={work} locale={locale} t={t} />;
