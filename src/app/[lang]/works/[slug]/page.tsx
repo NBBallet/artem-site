@@ -571,14 +571,15 @@ async function IcarePage({
 }) {
   const lang = locale;
   const uk = locale === "uk";
+  const settings = await getSiteSettings();
 
   // ICARE brand palette
   const ULTRA = "#1B3FA0"; // Ultramarine
   const RED   = "#C8102E"; // Heart Red
   const OCHRE = "#D4A017"; // Ochre Star
 
-  const MATISSE_SRC =
-    "https://upload.wikimedia.org/wikipedia/commons/4/4a/Jazz_-_Icarus_%281947%29.jpg";
+  const MATISSE_SRC = settings.icareImage ||
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Jazz_-_Icarus_%281947%29.jpg/600px-Jazz_-_Icarus_%281947%29.jpg";
 
   const scoreVideoId = work.videos?.[0]?.id ?? "";
 
@@ -677,7 +678,7 @@ async function IcarePage({
               <div className="flex items-center gap-3 mb-6">
                 <span className="inline-block w-2 h-2 rounded-full flex-none" style={{ backgroundColor: RED }} />
                 <span className="text-[11px] tracking-[5px] uppercase" style={{ color: OCHRE }}>
-                  {uk ? "Світова прем'єра · 2026" : "World Premiere · 2026"}
+                  {uk ? settings.icareHeroLabelUk : settings.icareHeroLabelEn}
                 </span>
               </div>
 
@@ -693,12 +694,10 @@ async function IcarePage({
               <div className="w-20 h-[2px] mb-7" style={{ backgroundColor: ULTRA }} />
 
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
-                {uk ? "За партитурою Ігоря Маркевича, 1932" : "After the score by Igor Markevich, 1932"}
+                {uk ? settings.icareHeroSubtitleUk : settings.icareHeroSubtitleEn}
               </p>
               <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
-                {uk
-                  ? "Перша в історії постановка балету, що 93 роки чекав хореографа."
-                  : "The first staging in history of a ballet that waited 93 years for a choreographer."}
+                {uk ? settings.icareHeroTaglineUk : settings.icareHeroTaglineEn}
               </p>
 
               {/* Spec chips */}
@@ -728,7 +727,7 @@ async function IcarePage({
                 style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
               >
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
-                  {uk ? "Обговорити постановку" : "Discuss Production"}
+                  {uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
                 </span>
                 <svg
                   width="18" height="18" viewBox="0 0 24 24"
@@ -753,32 +752,15 @@ async function IcarePage({
             className="text-[clamp(28px,4vw,52px)] text-white mb-12 max-w-[720px]"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {uk
-              ? "93 роки очікування. Одна світова прем'єра."
-              : "93 years of waiting. One world premiere."}
+            {uk ? settings.icareMissionTitleUk : settings.icareMissionTitleEn}
           </h2>
 
           {/* 3-column timeline */}
           <div className="grid grid-cols-1 md:grid-cols-3 mb-16">
             {([
-              {
-                year: "1932",
-                accent: ULTRA,
-                en: "Igor Markevich composes Le Vol d'Icare in Paris. Written for Diaghilev's company. Diaghilev died in 1929 — the premiere was postponed indefinitely.",
-                uk: "Ігор Маркевич написав «Політ Ікара» в Парижі для трупи Дягілєва. Дягілєв помер у 1929-му — прем'єра відтерміновується назавжди.",
-              },
-              {
-                year: "93",
-                accent: `${ULTRA}44`,
-                en: "Years of silence. The score survived. Concert performances existed. No choreographer gave it a body.",
-                uk: "Роки тиші. Партитура існувала. Концертні виконання були. Хореографічного тіла — не було.",
-              },
-              {
-                year: "2026",
-                accent: RED,
-                en: "Artem Hordieiev creates the first full staging. Ensemble of Five performs the original 1932 score. A world premiere 93 years in the making.",
-                uk: "Артем Гордієв створює першу повноцінну постановку. Ensemble of Five виконує партитуру 1932 року. Світова прем'єра через 93 роки.",
-              },
+              { year: "1932", accent: ULTRA,         en: settings.icareMission1932En, uk: settings.icareMission1932Uk },
+              { year: "93",   accent: `${ULTRA}44`,  en: settings.icareMission93En,   uk: settings.icareMission93Uk   },
+              { year: "2026", accent: RED,            en: settings.icareMission2026En, uk: settings.icareMission2026Uk },
             ] as { year: string; accent: string; en: string; uk: string }[]).map((card) => (
               <div
                 key={card.year}
@@ -804,12 +786,10 @@ async function IcarePage({
               className="text-xl text-white/60 italic leading-[1.65]"
               style={{ fontFamily: "NAMU-Pro, sans-serif" }}
             >
-              &ldquo;{uk
-                ? "Ікар не впав через помилку. Він вибрав летіти."
-                : "Icarus did not fall by mistake. He chose to fly."}&rdquo;
+              &ldquo;{uk ? settings.icareQuoteUk : settings.icareQuoteEn}&rdquo;
             </p>
             <cite className="block mt-4 text-[10px] tracking-[3px] uppercase text-white/25 not-italic">
-              {uk ? "Артем Гордієв — хореограф-постановник" : "Artem Hordieiev — Choreographer"}
+              {uk ? settings.icareQuoteCiteUk : settings.icareQuoteCiteEn}
             </cite>
           </blockquote>
         </div>
@@ -825,37 +805,17 @@ async function IcarePage({
             className="text-[clamp(28px,4vw,52px)] text-white mb-3"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {uk ? "Три осі координат" : "Three Axes"}
+            {uk ? settings.icareConceptTitleUk : settings.icareConceptTitleEn}
           </h2>
           <p className="text-[15px] text-white/40 mb-12 max-w-[600px] leading-[1.7]">
-            {uk
-              ? "Вистава будується на перетині трьох культурних пластів, що разом утворюють власну хореографічну мову."
-              : "The production is built on the intersection of three cultural strata — together they form a choreographic language entirely its own."}
+            {uk ? settings.icareConceptDescUk : settings.icareConceptDescEn}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {([
-              {
-                num: "I",
-                en: "Flight as Conscious Choice",
-                uk: "Польот як усвідомлений вибір",
-                descEn: "Icarus was not reckless. He knew the wax would melt. He flew anyway — and longer than any human before him. This myth is not a warning. It is a manifesto.",
-                descUk: "Ікар не безрозсудний. Він знав, що віск розтопиться. Він летів — і довше, ніж будь-хто до нього. Цей міф — не застереження. Це маніфест.",
-              },
-              {
-                num: "II",
-                en: "Minoan Substrate",
-                uk: "Мінойський субстрат",
-                descEn: "Crete. The labyrinth. Daedalus. Minoan civilisation as the original source — a movement culture that precedes Greece, precedes logos, where the body is the only truth.",
-                descUk: "Крит. Лабіринт. Дедал. Мінойська цивілізація як першоджерело — культура руху, що передує Греції, передує логосу, де тіло є єдиною правдою.",
-              },
-              {
-                num: "III",
-                en: "Matisse — Body Syntax",
-                uk: "Матіс — синтаксис тіла",
-                descEn: "Blue Nudes. The Jazz cut-outs. Choreography that refuses ornament — only contour, only the essential line, only the irreducible truth of the body in space.",
-                descUk: "Сині Ню. Аплікації з «Джазу». Хореографія, що відмовляється від орнаменту — тільки контур, тільки суттєва лінія, тільки незвідна правда тіла в просторі.",
-              },
+              { num: "I",   en: settings.icarePillar1TitleEn, uk: settings.icarePillar1TitleUk, descEn: settings.icarePillar1DescEn, descUk: settings.icarePillar1DescUk },
+              { num: "II",  en: settings.icarePillar2TitleEn, uk: settings.icarePillar2TitleUk, descEn: settings.icarePillar2DescEn, descUk: settings.icarePillar2DescUk },
+              { num: "III", en: settings.icarePillar3TitleEn, uk: settings.icarePillar3TitleUk, descEn: settings.icarePillar3DescEn, descUk: settings.icarePillar3DescUk },
             ] as { num: string; en: string; uk: string; descEn: string; descUk: string }[]).map((pillar) => (
               <div
                 key={pillar.num}
@@ -896,12 +856,10 @@ async function IcarePage({
             Le Vol d&apos;Icare
           </h2>
           <p className="text-[15px] text-white/45 mb-2 leading-[1.6]">
-            {uk ? "Ігор Маркевич, Париж, 1932" : "Igor Markevich, Paris, 1932"}
+            {uk ? settings.icareScoreSubtitleUk : settings.icareScoreSubtitleEn}
           </p>
           <p className="text-[15px] text-white/35 mb-10 max-w-[580px] leading-[1.7]">
-            {uk
-              ? "Квінтет: скрипка, альт, віолончель, контрабас, фортепіано. Тривалість: 27 хвилин. Виконує Ensemble of Five."
-              : "Quintet: violin, viola, cello, double bass, piano. Duration: 27 minutes. Performed by Ensemble of Five."}
+            {uk ? settings.icareScoreDescUk : settings.icareScoreDescEn}
           </p>
 
           {scoreVideoId ? (
@@ -960,12 +918,10 @@ async function IcarePage({
             className="text-[clamp(28px,4vw,52px)] text-white mb-3"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {uk ? "7 частин · 27 хвилин" : "7 Movements · 27 Minutes"}
+            {uk ? settings.icareDramaturgyTitleUk : settings.icareDramaturgyTitleEn}
           </h2>
           <p className="text-[15px] text-white/40 mb-12 max-w-[540px] leading-[1.7]">
-            {uk
-              ? "Від тиші до польоту до осяяння. Кожна частина — окремий стан тіла і душі."
-              : "From silence to flight to illumination. Each movement — a distinct state of body and soul."}
+            {uk ? settings.icareDramaturgyDescUk : settings.icareDramaturgyDescEn}
           </p>
 
           <div>
@@ -1016,7 +972,7 @@ async function IcarePage({
             className="text-[clamp(28px,4vw,52px)] text-white mb-12"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {uk ? "Умови постановки" : "Production Requirements"}
+            {uk ? settings.icareSpecsTitleUk : settings.icareSpecsTitleEn}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
@@ -1095,14 +1051,10 @@ async function IcarePage({
             </div>
             <div className="md:pt-4">
               <p className="text-[15px] text-white/50 leading-[1.85] mb-6">
-                {uk
-                  ? "Артем Гордієв — хореограф і засновник Newspaper Ballet Bureau (NBB). Його роботи відзначені на міжнародних конкурсах і представлені на сценах України та Європи. Серед постановок — «Мурахи» (за Бернаром Вербером), «Аніма», «Моцарт 25», «Кармен» (Бізе–Щедрін)."
-                  : "Artem Hordieiev is a choreographer and founder of Newspaper Ballet Bureau (NBB). His works have been recognised at international competitions and presented on stages across Ukraine and Europe. Productions include The Ants (after Bernard Werber), Anima, Mozart 25, and Carmen (Bizet–Shchedrin)."}
+                {uk ? settings.icareBioUk : settings.icareBioEn}
               </p>
               <p className="text-[15px] text-white/50 leading-[1.85]">
-                {uk
-                  ? "ICARE — перша в світі хореографічна постановка «Польоту Ікара» Маркевича — стане центральним проєктом його паризького сезону 2026 року."
-                  : "ICARE — the world's first choreographic staging of Markevich's Le Vol d'Icare — will be the centrepiece of his 2026 Paris season."}
+                {uk ? settings.icareBio2Uk : settings.icareBio2En}
               </p>
             </div>
           </div>
@@ -1122,14 +1074,10 @@ async function IcarePage({
             className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {uk
-              ? "Доступна\nдля прем'єри"
-              : "Available for\nWorld Premiere"}
+            {uk ? settings.icareCtaTitleUk : settings.icareCtaTitleEn}
           </h2>
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
-            {uk
-              ? "ICARE відкрита для переговорів з театрами, фестивалями та продюсерськими організаціями — виключний партнер для першої постановки у світі."
-              : "ICARE is open to negotiations with theatres, festivals, and producing organisations — exclusive partner for the world premiere staging."}
+            {uk ? settings.icareCtaTextUk : settings.icareCtaTextEn}
           </p>
           <a
             href="https://wa.me/77052980397"
@@ -1139,7 +1087,7 @@ async function IcarePage({
             style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
           >
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
-              {uk ? "Написати хореографу" : "Contact Choreographer"}
+              {uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
             </span>
             <svg
               width="20" height="20" viewBox="0 0 24 24"
@@ -1340,6 +1288,50 @@ async function GenericWorkPage({
           </div>
         </section>
       )}
+
+      {/* ── PREMIERE CTA — shown for the-ants, mozart25, carmen ── */}
+      {(s === "the-ants" || s === "mozart25" || s === "carmen") && (() => {
+        type Texts = { titleEn: string; titleUk: string; textEn: string; textUk: string; btnEn: string; btnUk: string };
+        const map: Record<string, Texts> = {
+          "the-ants": { titleEn: settings.theAntsPremiereTitleEn, titleUk: settings.theAntsPremiereTitleUk, textEn: settings.theAntsPremiereTextEn, textUk: settings.theAntsPremiereTextUk, btnEn: settings.theAntsPremiereBtnEn, btnUk: settings.theAntsPremiereBtnUk },
+          "mozart25": { titleEn: settings.mozart25PremiereTitleEn, titleUk: settings.mozart25PremiereTitleUk, textEn: settings.mozart25PremiereTextEn, textUk: settings.mozart25PremiereTextUk, btnEn: settings.mozart25PremiereBtnEn, btnUk: settings.mozart25PremiereBtnUk },
+          "carmen":   { titleEn: settings.carmenPremiereTitleEn,  titleUk: settings.carmenPremiereTitleUk,  textEn: settings.carmenPremiereTextEn,  textUk: settings.carmenPremiereTextUk,  btnEn: settings.carmenPremiereBtnEn,  btnUk: settings.carmenPremiereBtnUk  },
+        };
+        const p = map[s];
+        return (
+          <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a] bg-[#080808]">
+            <div className="max-w-[800px] mx-auto text-center">
+              <div className="mb-4 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+                {uk ? "Бронювання" : "Booking"}
+              </div>
+              <h2
+                className="text-[clamp(32px,5vw,60px)] text-brand-white mb-6 leading-[1.05]"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                {uk ? p.titleUk : p.titleEn}
+              </h2>
+              <p className="text-[15px] text-[#777] mb-10 leading-[1.8] max-w-[520px] mx-auto">
+                {uk ? p.textUk : p.textEn}
+              </p>
+              <a
+                href="https://wa.me/77052980397"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+                  {uk ? p.btnUk : p.btnEn}
+                </span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+                  className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </a>
+            </div>
+          </section>
+        );
+      })()}
 
       <WorkFooter slug={work.slug} locale={locale} />
     </article>

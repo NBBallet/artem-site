@@ -165,6 +165,45 @@ export interface SiteSettings {
   socialInstagram: string;
   socialThreads: string;
   socialTelegram: string;
+  /** ── ICARE pitch page — all editable in ⚙️ ICARE Settings DB ── */
+  icareImage: string;
+  icareHeroLabelEn: string;  icareHeroLabelUk: string;
+  icareHeroSubtitleEn: string; icareHeroSubtitleUk: string;
+  icareHeroTaglineEn: string;  icareHeroTaglineUk: string;
+  icareMissionTitleEn: string; icareMissionTitleUk: string;
+  icareMission1932En: string;  icareMission1932Uk: string;
+  icareMission93En: string;    icareMission93Uk: string;
+  icareMission2026En: string;  icareMission2026Uk: string;
+  icareQuoteEn: string;        icareQuoteUk: string;
+  icareQuoteCiteEn: string;    icareQuoteCiteUk: string;
+  icareConceptTitleEn: string; icareConceptTitleUk: string;
+  icareConceptDescEn: string;  icareConceptDescUk: string;
+  icarePillar1TitleEn: string; icarePillar1TitleUk: string;
+  icarePillar1DescEn: string;  icarePillar1DescUk: string;
+  icarePillar2TitleEn: string; icarePillar2TitleUk: string;
+  icarePillar2DescEn: string;  icarePillar2DescUk: string;
+  icarePillar3TitleEn: string; icarePillar3TitleUk: string;
+  icarePillar3DescEn: string;  icarePillar3DescUk: string;
+  icareScoreSubtitleEn: string; icareScoreSubtitleUk: string;
+  icareScoreDescEn: string;    icareScoreDescUk: string;
+  icareDramaturgyTitleEn: string; icareDramaturgyTitleUk: string;
+  icareDramaturgyDescEn: string;  icareDramaturgyDescUk: string;
+  icareSpecsTitleEn: string;   icareSpecsTitleUk: string;
+  icareBioEn: string;          icareBioUk: string;
+  icareBio2En: string;         icareBio2Uk: string;
+  icareCtaTitleEn: string;     icareCtaTitleUk: string;
+  icareCtaTextEn: string;      icareCtaTextUk: string;
+  icareCtaBtnEn: string;       icareCtaBtnUk: string;
+  /** Premiere CTA — per work (editable in each work's Notion DB) */
+  theAntsPremiereTitleEn: string;  theAntsPremiereTitleUk: string;
+  theAntsPremiereTextEn: string;   theAntsPremiereTextUk: string;
+  theAntsPremiereBtnEn: string;    theAntsPremiereBtnUk: string;
+  mozart25PremiereTitleEn: string; mozart25PremiereTitleUk: string;
+  mozart25PremiereTextEn: string;  mozart25PremiereTextUk: string;
+  mozart25PremiereBtnEn: string;   mozart25PremiereBtnUk: string;
+  carmenPremiereTitleEn: string;   carmenPremiereTitleUk: string;
+  carmenPremiereTextEn: string;    carmenPremiereTextUk: string;
+  carmenPremiereBtnEn: string;     carmenPremiereBtnUk: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -308,6 +347,45 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   socialInstagram: "",
   socialThreads: "",
   socialTelegram: "",
+  // ── ICARE defaults ──
+  icareImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Jazz_-_Icarus_%281947%29.jpg/600px-Jazz_-_Icarus_%281947%29.jpg",
+  icareHeroLabelEn: "World Premiere · 2026",        icareHeroLabelUk: "Світова прем'єра · 2026",
+  icareHeroSubtitleEn: "After the score by Igor Markevich, 1932", icareHeroSubtitleUk: "За партитурою Ігоря Маркевича, 1932",
+  icareHeroTaglineEn: "The first staging in history of a ballet that waited 93 years for a choreographer.", icareHeroTaglineUk: "Перша в історії постановка балету, що 93 роки чекав хореографа.",
+  icareMissionTitleEn: "93 years of waiting. One world premiere.", icareMissionTitleUk: "93 роки очікування. Одна світова прем'єра.",
+  icareMission1932En: "Igor Markevich composes Le Vol d'Icare in Paris. Written for Diaghilev's company. Diaghilev died in 1929 — the premiere was postponed indefinitely.", icareMission1932Uk: "Ігор Маркевич написав «Політ Ікара» в Парижі для трупи Дягілєва. Дягілєв помер у 1929-му — прем'єра відтерміновується назавжди.",
+  icareMission93En: "Years of silence. The score survived. Concert performances existed. No choreographer gave it a body.", icareMission93Uk: "Роки тиші. Партитура існувала. Концертні виконання були. Хореографічного тіла — не було.",
+  icareMission2026En: "Artem Hordieiev creates the first full staging. Ensemble of Five performs the original 1932 score. A world premiere 93 years in the making.", icareMission2026Uk: "Артем Гордієв створює першу повноцінну постановку. Ensemble of Five виконує партитуру 1932 року. Світова прем'єра через 93 роки.",
+  icareQuoteEn: "Icarus did not fall by mistake. He chose to fly.", icareQuoteUk: "Ікар не впав через помилку. Він вибрав летіти.",
+  icareQuoteCiteEn: "Artem Hordieiev — Choreographer", icareQuoteCiteUk: "Артем Гордієв — хореограф-постановник",
+  icareConceptTitleEn: "Three Axes", icareConceptTitleUk: "Три осі координат",
+  icareConceptDescEn: "The production is built on the intersection of three cultural strata — together they form a choreographic language entirely its own.", icareConceptDescUk: "Вистава будується на перетині трьох культурних пластів, що разом утворюють власну хореографічну мову.",
+  icarePillar1TitleEn: "Flight as Conscious Choice", icarePillar1TitleUk: "Польот як усвідомлений вибір",
+  icarePillar1DescEn: "Icarus was not reckless. He knew the wax would melt. He flew anyway — and longer than any human before him. This myth is not a warning. It is a manifesto.", icarePillar1DescUk: "Ікар не безрозсудний. Він знав, що віск розтопиться. Він летів — і довше, ніж будь-хто до нього. Цей міф — не застереження. Це маніфест.",
+  icarePillar2TitleEn: "Minoan Substrate", icarePillar2TitleUk: "Мінойський субстрат",
+  icarePillar2DescEn: "Crete. The labyrinth. Daedalus. Minoan civilisation as the original source — a movement culture that precedes Greece, precedes logos, where the body is the only truth.", icarePillar2DescUk: "Крит. Лабіринт. Дедал. Мінойська цивілізація як першоджерело — культура руху, що передує Греції, передує логосу, де тіло є єдиною правдою.",
+  icarePillar3TitleEn: "Matisse — Body Syntax", icarePillar3TitleUk: "Матіс — синтаксис тіла",
+  icarePillar3DescEn: "Blue Nudes. The Jazz cut-outs. Choreography that refuses ornament — only contour, only the essential line, only the irreducible truth of the body in space.", icarePillar3DescUk: "Сині Ню. Аплікації з «Джазу». Хореографія, що відмовляється від орнаменту — тільки контур, тільки суттєва лінія, тільки незвідна правда тіла в просторі.",
+  icareScoreSubtitleEn: "Igor Markevich, Paris, 1932", icareScoreSubtitleUk: "Ігор Маркевич, Париж, 1932",
+  icareScoreDescEn: "Quintet: violin, viola, cello, double bass, piano. Duration: 27 minutes. Performed by Ensemble of Five.", icareScoreDescUk: "Квінтет: скрипка, альт, віолончель, контрабас, фортепіано. Тривалість: 27 хвилин. Виконує Ensemble of Five.",
+  icareDramaturgyTitleEn: "7 Movements · 27 Minutes", icareDramaturgyTitleUk: "7 частин · 27 хвилин",
+  icareDramaturgyDescEn: "From silence to flight to illumination. Each movement — a distinct state of body and soul.", icareDramaturgyDescUk: "Від тиші до польоту до осяяння. Кожна частина — окремий стан тіла і душі.",
+  icareSpecsTitleEn: "Production Requirements", icareSpecsTitleUk: "Умови постановки",
+  icareBioEn: "Artem Hordieiev is a choreographer and founder of Newspaper Ballet Bureau (NBB). His works have been recognised at international competitions and presented on stages across Ukraine and Europe. Productions include The Ants (after Bernard Werber), Anima, Mozart 25, and Carmen (Bizet–Shchedrin).", icareBioUk: "Артем Гордієв — хореограф і засновник Newspaper Ballet Bureau (NBB). Його роботи відзначені на міжнародних конкурсах і представлені на сценах України та Європи. Серед постановок — «Мурахи» (за Бернаром Вербером), «Аніма», «Моцарт 25», «Кармен» (Бізе–Щедрін).",
+  icareBio2En: "ICARE — the world's first choreographic staging of Markevich's Le Vol d'Icare — will be the centrepiece of his 2026 Paris season.", icareBio2Uk: "ICARE — перша в світі хореографічна постановка «Польоту Ікара» Маркевича — стане центральним проєктом його паризького сезону 2026 року.",
+  icareCtaTitleEn: "Available for World Premiere", icareCtaTitleUk: "Доступна для прем'єри",
+  icareCtaTextEn: "ICARE is open to negotiations with theatres, festivals, and producing organisations — exclusive partner for the world premiere staging.", icareCtaTextUk: "ICARE відкрита для переговорів з театрами, фестивалями та продюсерськими організаціями — виключний партнер для першої постановки у світі.",
+  icareCtaBtnEn: "Contact Choreographer", icareCtaBtnUk: "Написати хореографу",
+  // ── Premiere CTA defaults ──
+  theAntsPremiereTitleEn: "Available for Co-Production",  theAntsPremiereTitleUk: "Доступна для копродукції",
+  theAntsPremiereTextEn: "The Ants is available for international co-production, festival presentation and touring. Contact us to discuss collaboration.", theAntsPremiereTextUk: "«Мурахи» доступні для міжнародної копродукції, фестивального показу та гастролей. Зв'яжіться з нами, щоб обговорити співпрацю.",
+  theAntsPremiereBtnEn: "Book Performance", theAntsPremiereBtnUk: "Замовити виставу",
+  mozart25PremiereTitleEn: "Available for International Stages", mozart25PremiereTitleUk: "Доступна для міжнародних сцен",
+  mozart25PremiereTextEn: "Mozart 25 is available for festival presentation, international touring and co-production. Contact us to discuss programming.", mozart25PremiereTextUk: "«Моцарт 25» доступний для фестивального показу, міжнародних гастролей та копродукції. Зв'яжіться з нами для обговорення програмування.",
+  mozart25PremiereBtnEn: "Book Performance", mozart25PremiereBtnUk: "Замовити виставу",
+  carmenPremiereTitleEn: "Available for International Stages", carmenPremiereTitleUk: "Доступна для міжнародних сцен",
+  carmenPremiereTextEn: "Carmen (Bizet–Shchedrin) is available for festival presentation, competition and international touring. Contact us to discuss programming.", carmenPremiereTextUk: "«Кармен» (Бізе–Щедрін) доступна для фестивального показу, конкурсу та міжнародних гастролей. Зв'яжіться для обговорення.",
+  carmenPremiereBtnEn: "Book Performance", carmenPremiereBtnUk: "Замовити виставу",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -332,7 +410,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
   try {
     // All DBs queried in parallel — per-work DBs override main DB for their keys
-    const [mainRows, animaRows, adiosRows, carmenRows, firebirdRows, theAntsRows, mozart25Rows] =
+    const [mainRows, animaRows, adiosRows, carmenRows, firebirdRows, theAntsRows, mozart25Rows, icareRows] =
       await Promise.all([
         queryDb(process.env.NOTION_SETTINGS_DB_ID),
         queryDb(process.env.NOTION_ANIMA_DB_ID),
@@ -341,12 +419,13 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         queryDb(process.env.NOTION_FIREBIRD_DB_ID),
         queryDb(process.env.NOTION_THE_ANTS_DB_ID),
         queryDb(process.env.NOTION_MOZART25_DB_ID),
+        queryDb(process.env.NOTION_ICARE_DB_ID),
       ]);
 
     const settings: SiteSettings = { ...DEFAULT_SETTINGS };
     const allRows = [
       ...mainRows, ...animaRows, ...adiosRows, ...carmenRows,
-      ...firebirdRows, ...theAntsRows, ...mozart25Rows,
+      ...firebirdRows, ...theAntsRows, ...mozart25Rows, ...icareRows,
     ];
 
     for (const page of allRows) {
@@ -626,6 +705,45 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       if (key === "social_instagram" && valueEn) settings.socialInstagram = valueEn;
       if (key === "social_threads" && valueEn) settings.socialThreads = valueEn;
       if (key === "social_telegram" && valueEn) settings.socialTelegram = valueEn;
+      // ── ICARE page ──
+      if (key === "icare_image" && valueEn) settings.icareImage = valueEn;
+      if (key === "icare_hero_label") { if (valueEn) settings.icareHeroLabelEn = valueEn; if (valueUk) settings.icareHeroLabelUk = valueUk; }
+      if (key === "icare_hero_subtitle") { if (valueEn) settings.icareHeroSubtitleEn = valueEn; if (valueUk) settings.icareHeroSubtitleUk = valueUk; }
+      if (key === "icare_hero_tagline") { if (valueEn) settings.icareHeroTaglineEn = valueEn; if (valueUk) settings.icareHeroTaglineUk = valueUk; }
+      if (key === "icare_mission_title") { if (valueEn) settings.icareMissionTitleEn = valueEn; if (valueUk) settings.icareMissionTitleUk = valueUk; }
+      if (key === "icare_mission_1932") { if (valueEn) settings.icareMission1932En = valueEn; if (valueUk) settings.icareMission1932Uk = valueUk; }
+      if (key === "icare_mission_93") { if (valueEn) settings.icareMission93En = valueEn; if (valueUk) settings.icareMission93Uk = valueUk; }
+      if (key === "icare_mission_2026") { if (valueEn) settings.icareMission2026En = valueEn; if (valueUk) settings.icareMission2026Uk = valueUk; }
+      if (key === "icare_quote") { if (valueEn) settings.icareQuoteEn = valueEn; if (valueUk) settings.icareQuoteUk = valueUk; }
+      if (key === "icare_quote_cite") { if (valueEn) settings.icareQuoteCiteEn = valueEn; if (valueUk) settings.icareQuoteCiteUk = valueUk; }
+      if (key === "icare_concept_title") { if (valueEn) settings.icareConceptTitleEn = valueEn; if (valueUk) settings.icareConceptTitleUk = valueUk; }
+      if (key === "icare_concept_desc") { if (valueEn) settings.icareConceptDescEn = valueEn; if (valueUk) settings.icareConceptDescUk = valueUk; }
+      if (key === "icare_pillar_1_title") { if (valueEn) settings.icarePillar1TitleEn = valueEn; if (valueUk) settings.icarePillar1TitleUk = valueUk; }
+      if (key === "icare_pillar_1_desc") { if (valueEn) settings.icarePillar1DescEn = valueEn; if (valueUk) settings.icarePillar1DescUk = valueUk; }
+      if (key === "icare_pillar_2_title") { if (valueEn) settings.icarePillar2TitleEn = valueEn; if (valueUk) settings.icarePillar2TitleUk = valueUk; }
+      if (key === "icare_pillar_2_desc") { if (valueEn) settings.icarePillar2DescEn = valueEn; if (valueUk) settings.icarePillar2DescUk = valueUk; }
+      if (key === "icare_pillar_3_title") { if (valueEn) settings.icarePillar3TitleEn = valueEn; if (valueUk) settings.icarePillar3TitleUk = valueUk; }
+      if (key === "icare_pillar_3_desc") { if (valueEn) settings.icarePillar3DescEn = valueEn; if (valueUk) settings.icarePillar3DescUk = valueUk; }
+      if (key === "icare_score_subtitle") { if (valueEn) settings.icareScoreSubtitleEn = valueEn; if (valueUk) settings.icareScoreSubtitleUk = valueUk; }
+      if (key === "icare_score_desc") { if (valueEn) settings.icareScoreDescEn = valueEn; if (valueUk) settings.icareScoreDescUk = valueUk; }
+      if (key === "icare_dramaturgy_title") { if (valueEn) settings.icareDramaturgyTitleEn = valueEn; if (valueUk) settings.icareDramaturgyTitleUk = valueUk; }
+      if (key === "icare_dramaturgy_desc") { if (valueEn) settings.icareDramaturgyDescEn = valueEn; if (valueUk) settings.icareDramaturgyDescUk = valueUk; }
+      if (key === "icare_specs_title") { if (valueEn) settings.icareSpecsTitleEn = valueEn; if (valueUk) settings.icareSpecsTitleUk = valueUk; }
+      if (key === "icare_bio") { if (valueEn) settings.icareBioEn = valueEn; if (valueUk) settings.icareBioUk = valueUk; }
+      if (key === "icare_bio_2") { if (valueEn) settings.icareBio2En = valueEn; if (valueUk) settings.icareBio2Uk = valueUk; }
+      if (key === "icare_cta_title") { if (valueEn) settings.icareCtaTitleEn = valueEn; if (valueUk) settings.icareCtaTitleUk = valueUk; }
+      if (key === "icare_cta_text") { if (valueEn) settings.icareCtaTextEn = valueEn; if (valueUk) settings.icareCtaTextUk = valueUk; }
+      if (key === "icare_cta_btn") { if (valueEn) settings.icareCtaBtnEn = valueEn; if (valueUk) settings.icareCtaBtnUk = valueUk; }
+      // ── Premiere CTA per work ──
+      if (key === "the_ants_premiere_title") { if (valueEn) settings.theAntsPremiereTitleEn = valueEn; if (valueUk) settings.theAntsPremiereTitleUk = valueUk; }
+      if (key === "the_ants_premiere_text") { if (valueEn) settings.theAntsPremiereTextEn = valueEn; if (valueUk) settings.theAntsPremiereTextUk = valueUk; }
+      if (key === "the_ants_premiere_btn") { if (valueEn) settings.theAntsPremiereBtnEn = valueEn; if (valueUk) settings.theAntsPremiereBtnUk = valueUk; }
+      if (key === "mozart25_premiere_title") { if (valueEn) settings.mozart25PremiereTitleEn = valueEn; if (valueUk) settings.mozart25PremiereTitleUk = valueUk; }
+      if (key === "mozart25_premiere_text") { if (valueEn) settings.mozart25PremiereTextEn = valueEn; if (valueUk) settings.mozart25PremiereTextUk = valueUk; }
+      if (key === "mozart25_premiere_btn") { if (valueEn) settings.mozart25PremiereBtnEn = valueEn; if (valueUk) settings.mozart25PremiereBtnUk = valueUk; }
+      if (key === "carmen_premiere_title") { if (valueEn) settings.carmenPremiereTitleEn = valueEn; if (valueUk) settings.carmenPremiereTitleUk = valueUk; }
+      if (key === "carmen_premiere_text") { if (valueEn) settings.carmenPremiereTextEn = valueEn; if (valueUk) settings.carmenPremiereTextUk = valueUk; }
+      if (key === "carmen_premiere_btn") { if (valueEn) settings.carmenPremiereBtnEn = valueEn; if (valueUk) settings.carmenPremiereBtnUk = valueUk; }
     }
 
     return settings;
