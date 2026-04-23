@@ -39,7 +39,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         {/* Burgundy atmospheric glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 80% 70% at 80% 40%, ${ANIMA_ACCENT}20 0%, transparent 65%)` }}
+          style={{ background: `radial-gradient(ellipse 80% 70% at 80% 40%, ${ANIMA_ACCENT}50 0%, transparent 65%)` }}
         />
         <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
 
@@ -469,7 +469,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
         {/* Fiery orange + violet atmospheric glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 60% 80% at 20% 60%, ${FB_ORANGE}22 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 80% 30%, ${FB_VIOLET}18 0%, transparent 55%)` }}
+          style={{ background: `radial-gradient(ellipse 60% 80% at 20% 60%, ${FB_ORANGE}55 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 80% 30%, ${FB_VIOLET}45 0%, transparent 55%)` }}
         />
         <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
 
@@ -1422,7 +1422,7 @@ async function GenericWorkPage({
         {/* Atmospheric glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 80% 70% at 15% 40%, ${theme.glow}18 0%, transparent 65%)` }}
+          style={{ background: `radial-gradient(ellipse 80% 70% at 15% 40%, ${theme.glow}55 0%, transparent 65%)` }}
         />
         <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
         <Link
