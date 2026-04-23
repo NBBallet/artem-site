@@ -1109,6 +1109,393 @@ async function IcarePage({
   );
 }
 
+/* ─── MERCY page — pandemic-born work, Max Richter Voices ─── */
+async function MercyPage({
+  locale,
+  t,
+}: {
+  work: NonNullable<ReturnType<typeof getWorkBySlug>>;
+  locale: Locale;
+  t: Record<string, string>;
+}) {
+  const lang = locale;
+  const uk = locale === "uk";
+  const settings = await getSiteSettings();
+
+  const ROSE   = "#CC2954";
+  const BLUSH  = "#F5A7B8";
+
+  return (
+    <article className="pt-24" style={{ background: "#0A0608" }}>
+
+      {/* ===== 1. HERO ===== */}
+      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: `radial-gradient(ellipse 70% 90% at 65% 50%, ${ROSE}18 0%, transparent 70%)` }}
+        />
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto">
+          <Link href={`/${lang}#works`}
+            className="inline-block mb-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors">
+            ← {t["work.back"]}
+          </Link>
+
+          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-center">
+            {/* Left: cover image or gradient placeholder */}
+            <div className="relative aspect-[3/4] rounded-sm overflow-hidden"
+              style={{ background: `linear-gradient(160deg, ${ROSE} 0%, #7A0022 50%, #1A0008 100%)` }}
+            >
+              {settings.mercyImage ? (
+                <Image src={settings.mercyImage} alt="Mercy" fill className="object-cover" priority />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                  <p className="text-[11px] tracking-[6px] uppercase text-white/15">Mercy</p>
+                  <p className="text-[9px] tracking-[2px] uppercase text-white/10">Max Richter · Voices</p>
+                </div>
+              )}
+              <div className="absolute inset-0"
+                style={{ background: "linear-gradient(to bottom, transparent 55%, #0A0608 100%)" }}
+              />
+            </div>
+
+            {/* Right: title + meta */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="inline-block w-2 h-2 rounded-full flex-none" style={{ backgroundColor: ROSE }} />
+                <span className="text-[11px] tracking-[5px] uppercase" style={{ color: BLUSH }}>
+                  {uk ? settings.mercyHeroLabelUk : settings.mercyHeroLabelEn}
+                </span>
+              </div>
+
+              <h1 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-5"
+                style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}>
+                Mercy
+              </h1>
+
+              <div className="w-20 h-[2px] mb-7" style={{ backgroundColor: ROSE }} />
+
+              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
+                {uk ? settings.mercyHeroSubtitleUk : settings.mercyHeroSubtitleEn}
+              </p>
+              <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
+                {uk ? settings.mercyHeroTaglineUk : settings.mercyHeroTaglineEn}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-10">
+                {([
+                  { en: "2021", uk: "2021" },
+                  { en: "Dance Film", uk: "Танцювальний фільм" },
+                  { en: "Max Richter — Voices", uk: "Max Richter — Voices" },
+                  { en: "Lviv", uk: "Львів" },
+                ] as { en: string; uk: string }[]).map((chip) => (
+                  <span key={chip.en} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
+                    style={{ border: `1px solid ${ROSE}55`, color: "#777" }}>
+                    {uk ? chip.uk : chip.en}
+                  </span>
+                ))}
+              </div>
+
+              <a href="https://wa.me/77052980397" target="_blank" rel="noopener noreferrer"
+                className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
+                style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
+                <span className="text-[12px] tracking-[4px] uppercase font-semibold">
+                  {uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
+                </span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+                  className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 2. THE STORY ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[800px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+            {uk ? "Передісторія" : "The Story"}
+          </div>
+          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.mercyIntroTitleUk : settings.mercyIntroTitleEn}
+          </h2>
+          <p className="text-[16px] text-white/50 leading-[1.9]">
+            {uk ? settings.mercyIntroBodyUk : settings.mercyIntroBodyEn}
+          </p>
+        </div>
+      </section>
+
+      {/* ===== 3. CONTEXT — MAX RICHTER CHAIN ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]"
+        style={{ background: `${ROSE}06` }}>
+        <div className="max-w-[800px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+            {uk ? "Контекст" : "Context"}
+          </div>
+          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.mercyContextTitleUk : settings.mercyContextTitleEn}
+          </h2>
+          <p className="text-[16px] text-white/50 leading-[1.9]">
+            {uk ? settings.mercyContextBodyUk : settings.mercyContextBodyEn}
+          </p>
+        </div>
+      </section>
+
+      {/* ===== 4. VIDEO — only shown if mercy_video_1 set in Notion ===== */}
+      {settings.mercyVideo1Id && (
+        <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+              {uk ? "Відео" : "Video"}
+            </div>
+            <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
+              <iframe
+                src={`https://www.youtube.com/embed/${settings.mercyVideo1Id}`}
+                title={uk ? settings.mercyVideo1Uk : settings.mercyVideo1En}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen className="w-full h-full"
+              />
+            </div>
+            {(settings.mercyVideo1En || settings.mercyVideo1Uk) && (
+              <p className="text-[13px] text-white/35 mt-4 leading-[1.5]">
+                {uk ? settings.mercyVideo1Uk : settings.mercyVideo1En}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ===== 5. BOOKING CTA ===== */}
+      <section className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
+        style={{ background: `linear-gradient(135deg, #0A0608 0%, ${ROSE}12 100%)` }}>
+        <div className="max-w-[800px] mx-auto text-center">
+          <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+            {uk ? "Запит" : "Inquiry"}
+          </div>
+          <h2 className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.mercyCtaTitleUk : settings.mercyCtaTitleEn}
+          </h2>
+          <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
+            {uk ? settings.mercyCtaTextUk : settings.mercyCtaTextEn}
+          </p>
+          <a href="https://wa.me/77052980397" target="_blank" rel="noopener noreferrer"
+            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
+            <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+              {uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
+            </span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+              className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </a>
+          <p className="text-[11px] tracking-[2px] text-white/20 uppercase">art_om@me.com</p>
+        </div>
+      </section>
+
+      <WorkFooter slug="mercy" locale={locale} />
+    </article>
+  );
+}
+
+/* ─── HUMANS page — Roerich cosmogony, sacred cycle ─── */
+async function HumansPage({
+  locale,
+  t,
+}: {
+  work: NonNullable<ReturnType<typeof getWorkBySlug>>;
+  locale: Locale;
+  t: Record<string, string>;
+}) {
+  const lang = locale;
+  const uk = locale === "uk";
+  const settings = await getSiteSettings();
+
+  const INDIGO = "#2D1B69";
+  const VIOLET = "#7B3FD4";
+  const GOLD   = "#D4A017";
+
+  return (
+    <article className="pt-24" style={{ background: "#080612" }}>
+
+      {/* ===== 1. HERO ===== */}
+      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: `radial-gradient(ellipse 70% 90% at 65% 50%, ${INDIGO}55 0%, transparent 70%)` }}
+        />
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto">
+          <Link href={`/${lang}#works`}
+            className="inline-block mb-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors">
+            ← {t["work.back"]}
+          </Link>
+
+          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-center">
+            {/* Left: cover image or cosmic gradient */}
+            <div className="relative aspect-[3/4] rounded-sm overflow-hidden"
+              style={{ background: `linear-gradient(160deg, ${INDIGO} 0%, #0E0830 50%, #080612 100%)` }}
+            >
+              {settings.humansImage ? (
+                <Image src={settings.humansImage} alt="Humans" fill className="object-cover" priority />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                  <div className="w-28 h-28 rounded-full opacity-15"
+                    style={{ background: `radial-gradient(circle, ${GOLD} 0%, ${VIOLET} 60%, transparent 100%)` }}
+                  />
+                  <p className="text-[11px] tracking-[6px] uppercase text-white/15">Humans</p>
+                </div>
+              )}
+              <div className="absolute inset-0"
+                style={{ background: "linear-gradient(to bottom, transparent 55%, #080612 100%)" }}
+              />
+            </div>
+
+            {/* Right: title + meta */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="inline-block w-2 h-2 rounded-full flex-none" style={{ backgroundColor: GOLD }} />
+                <span className="text-[11px] tracking-[5px] uppercase" style={{ color: GOLD }}>
+                  {uk ? settings.humansHeroLabelUk : settings.humansHeroLabelEn}
+                </span>
+              </div>
+
+              <h1 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-5"
+                style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}>
+                Humans
+              </h1>
+
+              <div className="w-20 h-[2px] mb-7" style={{ backgroundColor: VIOLET }} />
+
+              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
+                {uk ? settings.humansHeroSubtitleUk : settings.humansHeroSubtitleEn}
+              </p>
+              <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
+                {uk ? settings.humansHeroTaglineUk : settings.humansHeroTaglineEn}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-10">
+                {([
+                  { en: "2020", uk: "2020" },
+                  { en: "Dance Piece", uk: "Танцювальна п'єса" },
+                  { en: "Roerich Cycle", uk: "Цикл Реріха" },
+                  { en: "Cosmogony", uk: "Космогонія" },
+                ] as { en: string; uk: string }[]).map((chip) => (
+                  <span key={chip.en} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
+                    style={{ border: `1px solid ${VIOLET}55`, color: "#777" }}>
+                    {uk ? chip.uk : chip.en}
+                  </span>
+                ))}
+              </div>
+
+              <a href="https://wa.me/77052980397" target="_blank" rel="noopener noreferrer"
+                className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
+                style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
+                <span className="text-[12px] tracking-[4px] uppercase font-semibold">
+                  {uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
+                </span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+                  className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 2. CONCEPT ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[800px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+            {uk ? "Концепція" : "Concept"}
+          </div>
+          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.humansIntroTitleUk : settings.humansIntroTitleEn}
+          </h2>
+          <p className="text-[16px] text-white/50 leading-[1.9]">
+            {uk ? settings.humansIntroBodyUk : settings.humansIntroBodyEn}
+          </p>
+        </div>
+      </section>
+
+      {/* ===== 3. THE MYTH ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]"
+        style={{ background: `${INDIGO}08` }}>
+        <div className="max-w-[800px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+            {uk ? "Міф" : "The Myth"}
+          </div>
+          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.humansMythTitleUk : settings.humansMythTitleEn}
+          </h2>
+          <p className="text-[16px] text-white/50 leading-[1.9]">
+            {uk ? settings.humansMythBodyUk : settings.humansMythBodyEn}
+          </p>
+        </div>
+      </section>
+
+      {/* ===== 4. VIDEO — only shown if humans_video_1 set in Notion ===== */}
+      {settings.humansVideo1Id && (
+        <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+              {uk ? "Відео" : "Video"}
+            </div>
+            <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
+              <iframe
+                src={`https://www.youtube.com/embed/${settings.humansVideo1Id}`}
+                title={uk ? settings.humansVideo1Uk : settings.humansVideo1En}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen className="w-full h-full"
+              />
+            </div>
+            {(settings.humansVideo1En || settings.humansVideo1Uk) && (
+              <p className="text-[13px] text-white/35 mt-4 leading-[1.5]">
+                {uk ? settings.humansVideo1Uk : settings.humansVideo1En}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ===== 5. BOOKING CTA ===== */}
+      <section className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
+        style={{ background: `linear-gradient(135deg, #080612 0%, ${INDIGO}22 100%)` }}>
+        <div className="max-w-[800px] mx-auto text-center">
+          <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+            {uk ? "Запит" : "Inquiry"}
+          </div>
+          <h2 className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.humansCtaTitleUk : settings.humansCtaTitleEn}
+          </h2>
+          <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
+            {uk ? settings.humansCtaTextUk : settings.humansCtaTextEn}
+          </p>
+          <a href="https://wa.me/77052980397" target="_blank" rel="noopener noreferrer"
+            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
+            <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+              {uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
+            </span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+              className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </a>
+          <p className="text-[11px] tracking-[2px] text-white/20 uppercase">art_om@me.com</p>
+        </div>
+      </section>
+
+      <WorkFooter slug="humans" locale={locale} />
+    </article>
+  );
+}
+
 /* ─── Generic work page (for non-ANIMA works) ─── */
 async function GenericWorkPage({
   work,
@@ -1397,6 +1784,14 @@ export default async function WorkPage({
 
   if (slug === "icare") {
     return <IcarePage work={work} locale={locale} t={t} />;
+  }
+
+  if (slug === "mercy") {
+    return <MercyPage work={work} locale={locale} t={t} />;
+  }
+
+  if (slug === "humans") {
+    return <HumansPage work={work} locale={locale} t={t} />;
   }
 
   return <GenericWorkPage work={work} locale={locale} t={t} />;

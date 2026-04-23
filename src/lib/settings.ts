@@ -204,6 +204,34 @@ export interface SiteSettings {
   carmenPremiereTitleEn: string;   carmenPremiereTitleUk: string;
   carmenPremiereTextEn: string;    carmenPremiereTextUk: string;
   carmenPremiereBtnEn: string;     carmenPremiereBtnUk: string;
+  /** Mercy page — all editable in ⚙️ Mercy Settings DB */
+  mercyImage: string;
+  mercyHeroLabelEn: string;     mercyHeroLabelUk: string;
+  mercyHeroSubtitleEn: string;  mercyHeroSubtitleUk: string;
+  mercyHeroTaglineEn: string;   mercyHeroTaglineUk: string;
+  mercyIntroTitleEn: string;    mercyIntroTitleUk: string;
+  mercyIntroBodyEn: string;     mercyIntroBodyUk: string;
+  mercyContextTitleEn: string;  mercyContextTitleUk: string;
+  mercyContextBodyEn: string;   mercyContextBodyUk: string;
+  mercyVideo1Id: string;
+  mercyVideo1En: string;        mercyVideo1Uk: string;
+  mercyCtaTitleEn: string;      mercyCtaTitleUk: string;
+  mercyCtaTextEn: string;       mercyCtaTextUk: string;
+  mercyCtaBtnEn: string;        mercyCtaBtnUk: string;
+  /** Humans page — all editable in ⚙️ Humans Settings DB */
+  humansImage: string;
+  humansHeroLabelEn: string;    humansHeroLabelUk: string;
+  humansHeroSubtitleEn: string; humansHeroSubtitleUk: string;
+  humansHeroTaglineEn: string;  humansHeroTaglineUk: string;
+  humansIntroTitleEn: string;   humansIntroTitleUk: string;
+  humansIntroBodyEn: string;    humansIntroBodyUk: string;
+  humansMythTitleEn: string;    humansMythTitleUk: string;
+  humansMythBodyEn: string;     humansMythBodyUk: string;
+  humansVideo1Id: string;
+  humansVideo1En: string;       humansVideo1Uk: string;
+  humansCtaTitleEn: string;     humansCtaTitleUk: string;
+  humansCtaTextEn: string;      humansCtaTextUk: string;
+  humansCtaBtnEn: string;       humansCtaBtnUk: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {
@@ -348,7 +376,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   socialThreads: "",
   socialTelegram: "",
   // ── ICARE defaults ──
-  icareImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Jazz_-_Icarus_%281947%29.jpg/600px-Jazz_-_Icarus_%281947%29.jpg",
+  icareImage: "https://www.artic.edu/iiif/2/3bbeb5c0-82ad-cae7-0c52-4db83b283f5b/full/843,/0/default.jpg",
   icareHeroLabelEn: "World Premiere · 2026",        icareHeroLabelUk: "Світова прем'єра · 2026",
   icareHeroSubtitleEn: "After the score by Igor Markevich, 1932", icareHeroSubtitleUk: "За партитурою Ігоря Маркевича, 1932",
   icareHeroTaglineEn: "The first staging in history of a ballet that waited 93 years for a choreographer.", icareHeroTaglineUk: "Перша в історії постановка балету, що 93 роки чекав хореографа.",
@@ -386,6 +414,40 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   carmenPremiereTitleEn: "Available for International Stages", carmenPremiereTitleUk: "Доступна для міжнародних сцен",
   carmenPremiereTextEn: "Carmen (Bizet–Shchedrin) is available for festival presentation, competition and international touring. Contact us to discuss programming.", carmenPremiereTextUk: "«Кармен» (Бізе–Щедрін) доступна для фестивального показу, конкурсу та міжнародних гастролей. Зв'яжіться для обговорення.",
   carmenPremiereBtnEn: "Book Performance", carmenPremiereBtnUk: "Замовити виставу",
+  // ── Mercy defaults ──
+  mercyImage: "",
+  mercyHeroLabelEn: "2021 · Max Richter · Voices",   mercyHeroLabelUk: "2021 · Max Richter · Voices",
+  mercyHeroSubtitleEn: "Dance Film · Vocal-Choreographic Piece", mercyHeroSubtitleUk: "Танцювальний фільм · Вокально-хореографічна п'єса",
+  mercyHeroTaglineEn: "Born in lockdown. Danced in defiance. A meditation on mercy, freedom, and the thin line between them.", mercyHeroTaglineUk: "Народжена у локдауні. Станцьована всупереч. Медитація про милосердя, свободу та тонку межу між ними.",
+  mercyIntroTitleEn: "When Rehearsal Became Impossible", mercyIntroTitleUk: "Коли репетиція стала неможливою",
+  mercyIntroBodyEn: "The pandemic split the National Ballet into seven isolated cohorts of five or six. Ensemble work — the very architecture of ballet — became illegal. Walking through empty Kyiv, the choreographer encountered the raw paradox of the human condition: total isolation inside an entire city. That sensation became the work. At personal expense, without institutional support, he travelled to Lviv and created Mercy — a small production that elevated corps dancers to the status of principal soloists. Not a compromise. A manifesto of what persists when everything is taken away.",
+  mercyIntroBodyUk: "Пандемія розбила Національний балет на сім ізольованих груп по п'ять-шість людей. Ансамблева робота — сама архітектура балету — стала незаконною. Блукаючи порожнім Києвом, хореограф зіткнувся з парадоксом людського становища: повна ізоляція всередині цілого міста. Це відчуття стало виставою. За власні кошти, без інституційної підтримки, він поїхав до Львова і створив Mercy — невелику постановку, яка підняла артистів кордебалету до статусу провідних солістів. Не компроміс. Маніфест того, що лишається, коли все відібрано.",
+  mercyContextTitleEn: "Max Richter · Voices · The Chain of Meaning", mercyContextTitleUk: "Max Richter · Voices · Ланцюг смислу",
+  mercyContextBodyEn: "The choreography is set to Max Richter's Voices (2020), built on a single radical act: a twenty-four-hour continuous reading of the Universal Declaration of Human Rights, as voiced by Eleanor Roosevelt in 1948. That Declaration, in turn, invoked the Roerich Pact — the first international treaty protecting cultural heritage in wartime, signed in Washington in 1935. The chain: a ballet born from pandemic isolation, choreographed to music about human rights, rooted in a treaty that made culture sacred. Mercy stands in that lineage. In potential — it is a large project.",
+  mercyContextBodyUk: "Хореографія поставлена на музику Макса Ріхтера Voices (2020) — твір, побудований на одному радикальному акті: двадцятичотиригодинному безперервному читанні Загальної декларації прав людини у виконанні Елеонори Рузвельт, 1948. Та Декларація, своєю чергою, спиралась на Пакт Реріха — перший міжнародний договір про захист культурної спадщини під час війни, підписаний у Вашингтоні 1935 року. Ланцюг: балет, народжений з пандемічної ізоляції, поставлений на музику про права людини, вкорінену в договорі, що зробив культуру священною. Mercy стоїть у цій традиції. В потенціалі — великий проєкт.",
+  mercyVideo1Id: "",
+  mercyVideo1En: "", mercyVideo1Uk: "",
+  mercyCtaTitleEn: "A Work in Development",  mercyCtaTitleUk: "Проєкт у розробці",
+  mercyCtaTextEn: "Mercy is in the conceptual and choreographic development phase. Producing partners interested in a full-length development are welcome to reach out. The artistic foundation exists. The scale is available.",
+  mercyCtaTextUk: "Mercy перебуває у фазі концептуальної та хореографічної розробки. Виробничі партнери, зацікавлені у повномасштабній постановці, можуть звернутися напряму. Мистецька основа існує. Масштаб — доступний.",
+  mercyCtaBtnEn: "Discuss the Project",      mercyCtaBtnUk: "Обговорити проєкт",
+  // ── Humans defaults ──
+  humansImage: "",
+  humansHeroLabelEn: "Roerich Cosmogony · Dance Piece", humansHeroLabelUk: "Космогонія Реріха · Танцювальна п'єса",
+  humansHeroSubtitleEn: "Part of the Roerich Sacred Cycle", humansHeroSubtitleUk: "Частина сакрального циклу Реріха",
+  humansHeroTaglineEn: "Before the first rule. Before the first word. The ritual that made us human.", humansHeroTaglineUk: "До першого правила. До першого слова. Ритуал, що зробив нас людьми.",
+  humansIntroTitleEn: "A Choreographic Cosmogony", humansIntroTitleUk: "Хореографічна космогонія",
+  humansIntroBodyEn: "Humans is the second chapter of a sacred cycle rooted in the philosophical legacy of Nicholas Roerich — painter, explorer, and architect of the Roerich Pact. The work continues a choreographic research into the ancient mystical rituals that precede recorded civilization: the awakening of nature, the origin of consciousness, the first moment a body became human. The audience enters a hypothetical world in which human beings were not born — they were made. Not by gods in the theological sense. By cosmic parents: beings from another plane whose ritual dance is itself the act of creation.",
+  humansIntroBodyUk: "Humans — другий розділ сакрального циклу, вкоріненого у філософській спадщині Миколи Реріха — художника, дослідника і архітектора Пакту Реріха. Вистава продовжує хореографічне дослідження стародавніх містичних ритуалів, що передують зафіксованій цивілізації: пробудження природи, витоки свідомості, перший момент, коли тіло стало людиною. Глядач занурюється у гіпотетичний світ, де людей не народжують — їх творять. Не богами в теологічному сенсі. Космічними батьками: істотами з іншої площини, чий ритуальний танець є самим актом творення.",
+  humansMythTitleEn: "The Myth of Making", humansMythTitleUk: "Міф про Творення",
+  humansMythBodyEn: "The cosmic parents arrive. Their bodies enact an ancient ritual: the awakening of matter, the shaping of form, the ignition of consciousness. From their movement, a human being is born — incomplete, dependent, terrified, full of unrealised potential. Then the parents depart. Back to their native planet. The created being is left alone on Earth — to discover language, to establish rules, to build civilisation from nothing. This is the fundamental human condition: made by something greater than ourselves, then abandoned to the impossible task of becoming.",
+  humansMythBodyUk: "Космічні батьки з'являються. Їхні тіла відтворюють стародавній ритуал: пробудження матерії, формування форми, запалення свідомості. З їхнього руху народжується людина — неповна, залежна, налякана, сповнена нереалізованого потенціалу. Потім батьки йдуть. Назад на свою рідну планету. Створена істота залишається на Землі на самоті — щоб відкрити мову, встановити правила, побудувати цивілізацію з нічого. Це фундаментальний стан людини: створений чимось більшим за себе, а потім покинутий перед неможливим завданням ставати.",
+  humansVideo1Id: "",
+  humansVideo1En: "", humansVideo1Uk: "",
+  humansCtaTitleEn: "Part of the Roerich Cycle", humansCtaTitleUk: "Частина циклу Реріха",
+  humansCtaTextEn: "Humans is in active development as the second part of a larger Roerich cosmogony trilogy. Co-production partners and festival presenters are invited to begin a conversation about future staging.",
+  humansCtaTextUk: "Humans у активній розробці як друга частина більшої трилогії космогонії Реріха. Виробничі партнери та фестивальні презентери запрошуються до початку розмови про майбутню постановку.",
+  humansCtaBtnEn: "Discuss the Project", humansCtaBtnUk: "Обговорити проєкт",
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
@@ -410,7 +472,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
   try {
     // All DBs queried in parallel — per-work DBs override main DB for their keys
-    const [mainRows, animaRows, adiosRows, carmenRows, firebirdRows, theAntsRows, mozart25Rows, icareRows] =
+    const [mainRows, animaRows, adiosRows, carmenRows, firebirdRows, theAntsRows, mozart25Rows, icareRows, mercyRows, humansRows] =
       await Promise.all([
         queryDb(process.env.NOTION_SETTINGS_DB_ID),
         queryDb(process.env.NOTION_ANIMA_DB_ID),
@@ -420,12 +482,15 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         queryDb(process.env.NOTION_THE_ANTS_DB_ID),
         queryDb(process.env.NOTION_MOZART25_DB_ID),
         queryDb(process.env.NOTION_ICARE_DB_ID),
+        queryDb(process.env.NOTION_MERCY_DB_ID),
+        queryDb(process.env.NOTION_HUMANS_DB_ID),
       ]);
 
     const settings: SiteSettings = { ...DEFAULT_SETTINGS };
     const allRows = [
       ...mainRows, ...animaRows, ...adiosRows, ...carmenRows,
       ...firebirdRows, ...theAntsRows, ...mozart25Rows, ...icareRows,
+      ...mercyRows, ...humansRows,
     ];
 
     for (const page of allRows) {
@@ -744,6 +809,34 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       if (key === "carmen_premiere_title") { if (valueEn) settings.carmenPremiereTitleEn = valueEn; if (valueUk) settings.carmenPremiereTitleUk = valueUk; }
       if (key === "carmen_premiere_text") { if (valueEn) settings.carmenPremiereTextEn = valueEn; if (valueUk) settings.carmenPremiereTextUk = valueUk; }
       if (key === "carmen_premiere_btn") { if (valueEn) settings.carmenPremiereBtnEn = valueEn; if (valueUk) settings.carmenPremiereBtnUk = valueUk; }
+      // ── Mercy page ──
+      if (key === "mercy_image" && valueEn) settings.mercyImage = valueEn;
+      if (key === "mercy_hero_label") { if (valueEn) settings.mercyHeroLabelEn = valueEn; if (valueUk) settings.mercyHeroLabelUk = valueUk; }
+      if (key === "mercy_hero_subtitle") { if (valueEn) settings.mercyHeroSubtitleEn = valueEn; if (valueUk) settings.mercyHeroSubtitleUk = valueUk; }
+      if (key === "mercy_hero_tagline") { if (valueEn) settings.mercyHeroTaglineEn = valueEn; if (valueUk) settings.mercyHeroTaglineUk = valueUk; }
+      if (key === "mercy_intro_title") { if (valueEn) settings.mercyIntroTitleEn = valueEn; if (valueUk) settings.mercyIntroTitleUk = valueUk; }
+      if (key === "mercy_intro_body") { if (valueEn) settings.mercyIntroBodyEn = valueEn; if (valueUk) settings.mercyIntroBodyUk = valueUk; }
+      if (key === "mercy_context_title") { if (valueEn) settings.mercyContextTitleEn = valueEn; if (valueUk) settings.mercyContextTitleUk = valueUk; }
+      if (key === "mercy_context_body") { if (valueEn) settings.mercyContextBodyEn = valueEn; if (valueUk) settings.mercyContextBodyUk = valueUk; }
+      if (key === "mercy_video_1" && valueEn) settings.mercyVideo1Id = valueEn;
+      if (key === "mercy_video_1_caption") { if (valueEn) settings.mercyVideo1En = valueEn; if (valueUk) settings.mercyVideo1Uk = valueUk; }
+      if (key === "mercy_cta_title") { if (valueEn) settings.mercyCtaTitleEn = valueEn; if (valueUk) settings.mercyCtaTitleUk = valueUk; }
+      if (key === "mercy_cta_text") { if (valueEn) settings.mercyCtaTextEn = valueEn; if (valueUk) settings.mercyCtaTextUk = valueUk; }
+      if (key === "mercy_cta_btn") { if (valueEn) settings.mercyCtaBtnEn = valueEn; if (valueUk) settings.mercyCtaBtnUk = valueUk; }
+      // ── Humans page ──
+      if (key === "humans_image" && valueEn) settings.humansImage = valueEn;
+      if (key === "humans_hero_label") { if (valueEn) settings.humansHeroLabelEn = valueEn; if (valueUk) settings.humansHeroLabelUk = valueUk; }
+      if (key === "humans_hero_subtitle") { if (valueEn) settings.humansHeroSubtitleEn = valueEn; if (valueUk) settings.humansHeroSubtitleUk = valueUk; }
+      if (key === "humans_hero_tagline") { if (valueEn) settings.humansHeroTaglineEn = valueEn; if (valueUk) settings.humansHeroTaglineUk = valueUk; }
+      if (key === "humans_intro_title") { if (valueEn) settings.humansIntroTitleEn = valueEn; if (valueUk) settings.humansIntroTitleUk = valueUk; }
+      if (key === "humans_intro_body") { if (valueEn) settings.humansIntroBodyEn = valueEn; if (valueUk) settings.humansIntroBodyUk = valueUk; }
+      if (key === "humans_myth_title") { if (valueEn) settings.humansMythTitleEn = valueEn; if (valueUk) settings.humansMythTitleUk = valueUk; }
+      if (key === "humans_myth_body") { if (valueEn) settings.humansMythBodyEn = valueEn; if (valueUk) settings.humansMythBodyUk = valueUk; }
+      if (key === "humans_video_1" && valueEn) settings.humansVideo1Id = valueEn;
+      if (key === "humans_video_1_caption") { if (valueEn) settings.humansVideo1En = valueEn; if (valueUk) settings.humansVideo1Uk = valueUk; }
+      if (key === "humans_cta_title") { if (valueEn) settings.humansCtaTitleEn = valueEn; if (valueUk) settings.humansCtaTitleUk = valueUk; }
+      if (key === "humans_cta_text") { if (valueEn) settings.humansCtaTextEn = valueEn; if (valueUk) settings.humansCtaTextUk = valueUk; }
+      if (key === "humans_cta_btn") { if (valueEn) settings.humansCtaBtnEn = valueEn; if (valueUk) settings.humansCtaBtnUk = valueUk; }
     }
 
     return settings;

@@ -246,7 +246,7 @@ export const works: Work[] = [
       en: "The world's first staging of Igor Markevich's Le Vol d'Icare — composed in Paris in 1932, unperformed for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
       uk: "Перша в світі постановка «Польоту Ікара» Ігоря Маркевича — написаного в Парижі 1932 року, 93 роки без прем'єри. Не притча-застереження. Гімн усвідомленому вибору летіти.",
     },
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Jazz_-_Icarus_%281947%29.jpg",
+    image: "https://www.artic.edu/iiif/2/3bbeb5c0-82ad-cae7-0c52-4db83b283f5b/full/843,/0/default.jpg",
     videos: [
       {
         id: "BOpf7s2eqVs",
@@ -258,62 +258,17 @@ export const works: Work[] = [
     ],
   },
   {
-    slug: "roerich-ballet",
-    title: { en: "Roerich Ballet", uk: "Балет Реріха" },
-    subtitle: {
-      en: "Full-length ballet in development",
-      uk: "Повнометражний балет у розробці",
-    },
-    year: "2025–",
-    music: "TBA",
-    description: {
-      en: "A new full-length work exploring the intersection of East and West through the life, expeditions, and artistic philosophy of Nicholas Roerich — painter, philosopher, and visionary who bridged cultures through art.",
-      uk: "Нова повнометражна робота, що досліджує перетин Сходу і Заходу через життя, експедиції та мистецьку філософію Миколи Реріха — художника, філософа і візіонера, який поєднував культури через мистецтво.",
-    },
-    image: "",
-  },
-  {
-    slug: "antifragile",
-    title: { en: "Antifragile", uk: "Антихрупкість" },
-    subtitle: {
-      en: "Contemporary ballet",
-      uk: "Сучасний балет",
-    },
-    year: "2023",
-    music: "TBA",
-    description: {
-      en: "Inspired by Nassim Taleb's philosophy, this work explores systems and beings that gain from disorder — bodies that grow stronger under stress, spirits that thrive in chaos.",
-      uk: "Натхненний філософією Насіма Талеба, ця робота досліджує системи та істот, що зміцнюються від хаосу — тіла, що стають сильнішими під тиском, духи, що розквітають у безладді.",
-    },
-    image: "",
-  },
-  {
     slug: "mercy",
     title: { en: "Mercy", uk: "Mercy" },
     subtitle: {
-      en: "Short film / dance piece",
-      uk: "Короткометражка / танцювальна п'єса",
-    },
-    year: "2022",
-    music: "TBA",
-    description: {
-      en: "A visceral dance film exploring compassion, vulnerability, and the thin line between mercy and surrender.",
-      uk: "Танцювальний фільм, що досліджує співчуття, вразливість та тонку межу між милосердям і капітуляцією.",
-    },
-    image: "",
-  },
-  {
-    slug: "voices",
-    title: { en: "VOICES", uk: "VOICES" },
-    subtitle: {
-      en: "Vocal-choreographic performance",
-      uk: "Вокально-хореографічна вистава",
+      en: "Dance Film · Vocal-Choreographic Piece",
+      uk: "Танцювальний фільм · Вокально-хореографічна п'єса",
     },
     year: "2021",
-    music: "Various",
+    music: 'Max Richter — "Voices" (2020)',
     description: {
-      en: "A performance where voice and body become one instrument — exploring the primal connection between breath, sound, and movement.",
-      uk: "Вистава, де голос і тіло стають одним інструментом — досліджуючи первісний зв'язок між диханням, звуком та рухом.",
+      en: "Born in lockdown. A meditation on mercy, freedom, and what persists when everything is taken away. Set to Max Richter's Voices — a work grounded in the Universal Declaration of Human Rights and the Roerich Pact.",
+      uk: "Народжена у локдауні. Медитація про милосердя, свободу та те, що лишається, коли все відібрано. На музику Макса Ріхтера Voices — твір, вкорінений у Загальній декларації прав людини та Пакті Реріха.",
     },
     image: "",
   },
@@ -321,14 +276,14 @@ export const works: Work[] = [
     slug: "humans",
     title: { en: "Humans", uk: "Humans" },
     subtitle: {
-      en: "Dance performance",
-      uk: "Танцювальна вистава",
+      en: "Part of the Roerich Sacred Cycle",
+      uk: "Частина сакрального циклу Реріха",
     },
     year: "2020",
     music: "TBA",
     description: {
-      en: "What makes us human? A choreographic investigation into the essence of being, stripped of social roles and cultural armor.",
-      uk: "Що робить нас людьми? Хореографічне дослідження сутності буття, позбавлене соціальних ролей та культурної броні.",
+      en: "Before the first rule. Before the first word. A choreographic cosmogony: cosmic parents perform their ancient ritual; a human is born from their dance; they depart. The created being is left alone on Earth to begin.",
+      uk: "До першого правила. До першого слова. Хореографічна космогонія: космічні батьки виконують стародавній ритуал; з їхнього танцю народжується людина; вони йдуть. Створена істота залишається на Землі сама — щоб починати.",
     },
     image: "",
   },
