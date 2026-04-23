@@ -247,6 +247,15 @@ export const works: Work[] = [
       uk: "Перша в світі постановка «Польоту Ікара» Ігоря Маркевича — написаного в Парижі 1932 року, 93 роки без прем'єри. Не притча-застереження. Гімн усвідомленому вибору летіти.",
     },
     image: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Jazz_-_Icarus_%281947%29.jpg",
+    videos: [
+      {
+        id: "BOpf7s2eqVs",
+        title: {
+          en: "L'Envol d'Icare — Igor Markevich conducting the Belgian National Orchestra (complete)",
+          uk: "«Політ Ікара» — Ігор Маркевич диригує Бельгійським національним оркестром (повна версія)",
+        },
+      },
+    ],
   },
   {
     slug: "roerich-ballet",
