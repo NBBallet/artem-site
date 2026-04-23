@@ -28,10 +28,19 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
   const lang = locale;
   const [cast, scenes, settings] = await Promise.all([getAnimaCast(), getAnimaScenes(), getSiteSettings()]);
 
+  // ANIMA palette
+  const ANIMA_BG     = "#08000A";
+  const ANIMA_ACCENT = "#8B0A1A";
+
   return (
-    <article className="pt-24">
+    <article className="pt-24" style={{ background: ANIMA_BG }}>
       {/* ===== 1. HERO ===== */}
-      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a] overflow-hidden">
+        {/* Burgundy atmospheric glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: `radial-gradient(ellipse 80% 70% at 80% 40%, ${ANIMA_ACCENT}20 0%, transparent 65%)` }}
+        />
         <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
 
         <Link
@@ -447,11 +456,21 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   const firebirdSubtitle = locale === "uk" ? (settings.firebirdSubtitleUk || work.subtitle.uk) : (settings.firebirdSubtitleEn || work.subtitle.en);
   const firebirdDesc = locale === "uk" ? (settings.firebirdDescriptionUk || work.description.uk) : (settings.firebirdDescriptionEn || work.description.en);
 
+  // FIREBIRD palette
+  const FB_BG     = "#0A0500";
+  const FB_ORANGE = "#E86200";
+  const FB_VIOLET = "#5B2CC4";
+
   return (
-    <article className="pt-24">
+    <article className="pt-24" style={{ background: FB_BG }}>
 
       {/* ===== HERO ===== */}
-      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a] overflow-hidden">
+        {/* Fiery orange + violet atmospheric glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: `radial-gradient(ellipse 60% 80% at 20% 60%, ${FB_ORANGE}22 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 80% 30%, ${FB_VIOLET}18 0%, transparent 55%)` }}
+        />
         <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
 
         <Link
@@ -579,7 +598,7 @@ async function IcarePage({
   const OCHRE = "#D4A017"; // Ochre Star
 
   const MATISSE_SRC = settings.icareImage ||
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Jazz_-_Icarus_%281947%29.jpg/600px-Jazz_-_Icarus_%281947%29.jpg";
+    "https://www.artic.edu/iiif/2/3bbeb5c0-82ad-cae7-0c52-4db83b283f5b/full/843,/0/default.jpg";
 
   const scoreVideoId = work.videos?.[0]?.id ?? "";
 
@@ -651,12 +670,11 @@ async function IcarePage({
 
             {/* Left: Matisse Icarus */}
             <div className="relative aspect-[3/4] rounded-sm overflow-hidden">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={MATISSE_SRC}
                 alt="Henri Matisse — Icare, Jazz (1947)"
-                fill
-                className="object-cover"
-                priority
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
               />
               {/* edge vignettes */}
               <div
@@ -696,7 +714,7 @@ async function IcarePage({
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
                 {uk ? settings.icareHeroSubtitleUk : settings.icareHeroSubtitleEn}
               </p>
-              <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
+              <p className="text-[15px] text-white/65 mb-10 leading-[1.7] max-w-[460px]">
                 {uk ? settings.icareHeroTaglineUk : settings.icareHeroTaglineEn}
               </p>
 
@@ -773,25 +791,25 @@ async function IcarePage({
                 >
                   {card.year}
                 </div>
-                <p className="text-[14px] text-white/45 leading-[1.7]">
+                <p className="text-[14px] text-white/70 leading-[1.7]">
                   {uk ? card.uk : card.en}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* Central quote */}
-          <blockquote className="border-l-2 pl-8 max-w-[640px]" style={{ borderColor: ULTRA }}>
+          {/* Central quote — large, centered */}
+          <div className="text-center py-12 border-t border-[#1a1a1a] mt-8">
             <p
-              className="text-xl text-white/60 italic leading-[1.65]"
+              className="text-[clamp(24px,3.5vw,52px)] text-white/85 italic leading-[1.3] mb-6 max-w-[900px] mx-auto"
               style={{ fontFamily: "NAMU-Pro, sans-serif" }}
             >
               &ldquo;{uk ? settings.icareQuoteUk : settings.icareQuoteEn}&rdquo;
             </p>
-            <cite className="block mt-4 text-[10px] tracking-[3px] uppercase text-white/25 not-italic">
-              {uk ? settings.icareQuoteCiteUk : settings.icareQuoteCiteEn}
-            </cite>
-          </blockquote>
+            <p className="text-[11px] tracking-[4px] uppercase text-white/45">
+              — {uk ? settings.icareQuoteCiteUk : settings.icareQuoteCiteEn}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -807,7 +825,7 @@ async function IcarePage({
           >
             {uk ? settings.icareConceptTitleUk : settings.icareConceptTitleEn}
           </h2>
-          <p className="text-[15px] text-white/40 mb-12 max-w-[600px] leading-[1.7]">
+          <p className="text-[15px] text-white/65 mb-12 max-w-[600px] leading-[1.7]">
             {uk ? settings.icareConceptDescUk : settings.icareConceptDescEn}
           </p>
 
@@ -834,7 +852,7 @@ async function IcarePage({
                 >
                   {uk ? pillar.uk : pillar.en}
                 </h3>
-                <p className="text-[14px] text-white/45 leading-[1.7]">
+                <p className="text-[14px] text-white/70 leading-[1.7]">
                   {uk ? pillar.descUk : pillar.descEn}
                 </p>
               </div>
@@ -855,16 +873,16 @@ async function IcarePage({
           >
             Le Vol d&apos;Icare
           </h2>
-          <p className="text-[15px] text-white/45 mb-2 leading-[1.6]">
+          <p className="text-[15px] text-white/70 mb-2 leading-[1.6]">
             {uk ? settings.icareScoreSubtitleUk : settings.icareScoreSubtitleEn}
           </p>
-          <p className="text-[15px] text-white/35 mb-10 max-w-[580px] leading-[1.7]">
+          <p className="text-[15px] text-white/65 mb-10 max-w-[580px] leading-[1.7]">
             {uk ? settings.icareScoreDescUk : settings.icareScoreDescEn}
           </p>
 
           {scoreVideoId ? (
             <>
-              <div className="aspect-video rounded-sm overflow-hidden bg-[#111] mb-4">
+              <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
                 <iframe
                   src={`https://www.youtube.com/embed/${scoreVideoId}`}
                   title={
@@ -877,12 +895,6 @@ async function IcarePage({
                   className="w-full h-full"
                 />
               </div>
-              <p className="text-[12px] text-white/25 tracking-[1px]">
-                Ensemble of Five —{" "}
-                {uk
-                  ? "Ігор Маркевич, «Політ Ікара», 1932"
-                  : "Igor Markevich, Le Vol d'Icare, 1932"}
-              </p>
             </>
           ) : (
             <div
@@ -908,160 +920,7 @@ async function IcarePage({
         </div>
       </section>
 
-      {/* ===== 5. DRAMATURGY — 7 MOVEMENTS ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {uk ? "Драматургія" : "Dramaturgy"}
-          </div>
-          <h2
-            className="text-[clamp(28px,4vw,52px)] text-white mb-3"
-            style={{ fontFamily: "NAMU-1400, serif" }}
-          >
-            {uk ? settings.icareDramaturgyTitleUk : settings.icareDramaturgyTitleEn}
-          </h2>
-          <p className="text-[15px] text-white/40 mb-12 max-w-[540px] leading-[1.7]">
-            {uk ? settings.icareDramaturgyDescUk : settings.icareDramaturgyDescEn}
-          </p>
-
-          <div>
-            {movements.map((m) => (
-              <div
-                key={m.num}
-                className="grid gap-4 md:gap-8 items-baseline py-5 border-b border-[#1a1a1a] group"
-                style={{ gridTemplateColumns: "40px 72px 1fr 56px" }}
-              >
-                <span
-                  className="text-[13px] text-white/15 group-hover:text-white/30 transition-colors"
-                  style={{ fontFamily: "NAMU-1400, serif" }}
-                >
-                  {m.num}
-                </span>
-                <span
-                  className="text-[11px] tracking-[2px] text-white/22 tabular-nums"
-                >
-                  {m.timeEn}
-                </span>
-                <div>
-                  <p
-                    className="text-[15px] text-white/75 mb-1"
-                    style={{ fontFamily: "NAMU-1400, serif" }}
-                  >
-                    {uk ? m.uk : m.en}
-                  </p>
-                  <p className="text-[13px] text-white/33 leading-[1.5]">
-                    {uk ? m.descUk : m.descEn}
-                  </p>
-                </div>
-                <span className="text-[11px] text-white/18 text-right tracking-[0.5px]">
-                  {m.durEn}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== 6. PRODUCTION SPECIFICATIONS ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {uk ? "Технічні характеристики" : "Production Specifications"}
-          </div>
-          <h2
-            className="text-[clamp(28px,4vw,52px)] text-white mb-12"
-            style={{ fontFamily: "NAMU-1400, serif" }}
-          >
-            {uk ? settings.icareSpecsTitleUk : settings.icareSpecsTitleEn}
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-            {([
-              {
-                en: "Format",
-                uk: "Формат",
-                val: uk ? "Одноактний балет" : "One-act ballet",
-              },
-              {
-                en: "Duration",
-                uk: "Тривалість",
-                val: "27 min",
-              },
-              {
-                en: "Music",
-                uk: "Музика",
-                val: uk
-                  ? "Живе виконання — Ensemble of Five"
-                  : "Live — Ensemble of Five (5 musicians)",
-              },
-              {
-                en: "Instrumentation",
-                uk: "Склад ансамблю",
-                val: uk
-                  ? "Скрипка · альт · віолончель · контрабас · фортепіано"
-                  : "Violin · Viola · Cello · Double bass · Piano",
-              },
-              {
-                en: "Choreography",
-                uk: "Хореографія",
-                val: "Artem Hordieiev",
-              },
-              {
-                en: "Premiere availability",
-                uk: "Доступність прем'єри",
-                val: uk
-                  ? "Відкрито для переговорів · 2026"
-                  : "Open for negotiation · 2026",
-              },
-            ] as { en: string; uk: string; val: string }[]).map((row) => (
-              <div
-                key={row.en}
-                className="grid gap-6 py-5 border-b border-[#1a1a1a]"
-                style={{ gridTemplateColumns: "1fr 2fr" }}
-              >
-                <span className="text-[11px] tracking-[2px] uppercase text-white/25">
-                  {uk ? row.uk : row.en}
-                </span>
-                <span className="text-[14px] text-white/65">
-                  {row.val}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== 7. CHOREOGRAPHER ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {uk ? "Хореограф" : "Choreographer"}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 items-start">
-            <div>
-              <h2
-                className="text-[clamp(32px,4vw,60px)] text-white mb-3 leading-[1.0]"
-                style={{ fontFamily: "NAMU-1400, serif" }}
-              >
-                Artem<br />Hordieiev
-              </h2>
-              <p className="text-[11px] tracking-[3px] uppercase" style={{ color: OCHRE }}>
-                {uk ? "Засновник NBB · Хореограф" : "NBB Founder · Choreographer"}
-              </p>
-            </div>
-            <div className="md:pt-4">
-              <p className="text-[15px] text-white/50 leading-[1.85] mb-6">
-                {uk ? settings.icareBioUk : settings.icareBioEn}
-              </p>
-              <p className="text-[15px] text-white/50 leading-[1.85]">
-                {uk ? settings.icareBio2Uk : settings.icareBio2En}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== 8. BOOKING CTA ===== */}
+      {/* ===== 5. BOOKING CTA ===== */}
       <section
         className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
         style={{ background: `linear-gradient(135deg, #0A0A0A 0%, ${ULTRA}16 100%)` }}
@@ -1405,40 +1264,7 @@ async function HumansPage({
         </div>
       </section>
 
-      {/* ===== 2. CONCEPT ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
-        <div className="max-w-[800px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
-            {uk ? "Концепція" : "Concept"}
-          </div>
-          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.humansIntroTitleUk : settings.humansIntroTitleEn}
-          </h2>
-          <p className="text-[16px] text-white/50 leading-[1.9]">
-            {uk ? settings.humansIntroBodyUk : settings.humansIntroBodyEn}
-          </p>
-        </div>
-      </section>
-
-      {/* ===== 3. THE MYTH ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]"
-        style={{ background: `${INDIGO}08` }}>
-        <div className="max-w-[800px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
-            {uk ? "Міф" : "The Myth"}
-          </div>
-          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.humansMythTitleUk : settings.humansMythTitleEn}
-          </h2>
-          <p className="text-[16px] text-white/50 leading-[1.9]">
-            {uk ? settings.humansMythBodyUk : settings.humansMythBodyEn}
-          </p>
-        </div>
-      </section>
-
-      {/* ===== 4. VIDEO — only shown if humans_video_1 set in Notion ===== */}
+      {/* ===== 2. VIDEO — only shown if humans_video_1 set in Notion ===== */}
       {settings.humansVideo1Id && (
         <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
           <div className="max-w-[1200px] mx-auto">
@@ -1461,6 +1287,39 @@ async function HumansPage({
           </div>
         </section>
       )}
+
+      {/* ===== 3. CONCEPT ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[800px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+            {uk ? "Концепція" : "Concept"}
+          </div>
+          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.humansIntroTitleUk : settings.humansIntroTitleEn}
+          </h2>
+          <p className="text-[16px] text-white/50 leading-[1.9]">
+            {uk ? settings.humansIntroBodyUk : settings.humansIntroBodyEn}
+          </p>
+        </div>
+      </section>
+
+      {/* ===== 4. THE MYTH ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]"
+        style={{ background: `${INDIGO}08` }}>
+        <div className="max-w-[800px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+            {uk ? "Міф" : "The Myth"}
+          </div>
+          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.humansMythTitleUk : settings.humansMythTitleEn}
+          </h2>
+          <p className="text-[16px] text-white/50 leading-[1.9]">
+            {uk ? settings.humansMythBodyUk : settings.humansMythBodyEn}
+          </p>
+        </div>
+      </section>
 
       {/* ===== 5. BOOKING CTA ===== */}
       <section className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
@@ -1545,23 +1404,38 @@ async function GenericWorkPage({
   const displayYear        = ov?.year  || work.year;
   const displayMusic       = ov?.music || work.music;
 
+  // Per-work atmospheric palette — bg color, glow color, accent color for labels/CTA
+  type WorkTheme = { bg: string; glow: string; accent: string };
+  const workThemes: Record<string, WorkTheme> = {
+    "the-ants": { bg: "#080400", glow: "#C44A00",  accent: "#C44A00" },
+    "mozart25": { bg: "#020810", glow: "#1B5FA0",  accent: "#1B5FA0" },
+    "adios":    { bg: "#0A0A0A", glow: "#888888",  accent: "#CCCCCC" },
+    "carmen":   { bg: "#010804", glow: "#1A6B3C",  accent: "#1A6B3C" },
+  };
+  const theme = workThemes[s] ?? { bg: "#0A0A0A", glow: "#C8102E", accent: "#C8102E" };
+
   return (
-    <article className="pt-24">
+    <article className="pt-24" style={{ background: theme.bg }}>
 
       {/* ── HEADER: title + description side by side ── */}
-      <section className="relative px-6 md:px-16 py-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+      <section className="relative px-6 md:px-16 py-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a] overflow-hidden">
+        {/* Atmospheric glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: `radial-gradient(ellipse 80% 70% at 15% 40%, ${theme.glow}18 0%, transparent 65%)` }}
+        />
         <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
         <Link
           href={`/${locale}#works`}
-          className="inline-block mb-8 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
+          className="inline-block mb-8 relative z-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
         >
           ← {t["work.back"]}
         </Link>
 
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-start">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-start">
           {/* Left: title */}
           <div>
-            <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
+            <div className="mb-2 text-[11px] tracking-[3px] uppercase font-semibold" style={{ color: theme.accent }}>
               {displayYear} · {displayMusic}
             </div>
             <h1
@@ -1599,7 +1473,7 @@ async function GenericWorkPage({
       {/* ── VIDEO ── */}
       {work.videos && work.videos.length > 0 ? (
         <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: theme.accent }}>
             {locale === "uk" ? "Відео" : "Video"}
           </div>
 
