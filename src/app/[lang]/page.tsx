@@ -16,11 +16,19 @@ export default async function HomePage({
 }) {
   const { lang } = await params;
   const locale = lang as Locale;
-  const [t, works, settings] = await Promise.all([
+  const [t, rawWorks, settings] = await Promise.all([
     getDictionary(locale),
     getWorks(),
     getSiteSettings(),
   ]);
+
+  // Inject Notion poster images for works that have no static image
+  // (mercy and humans keep image:"" in works.ts so getWorks() never fills them in)
+  const works = rawWorks.map((w) => {
+    if (w.slug === "mercy"  && !w.image && settings.mercyImage)  return { ...w, image: settings.mercyImage };
+    if (w.slug === "humans" && !w.image && settings.humansImage) return { ...w, image: settings.humansImage };
+    return w;
+  });
 
   // ── Social links with fallbacks ──
   const instagramUrl = settings.socialInstagram || "https://instagram.com/artem_hordieiev";
@@ -65,13 +73,13 @@ export default async function HomePage({
         {/* Per-work gradient backgrounds for imageless cards */}
         {(() => {
           const workCardBg: Record<string, string> = {
-            "mercy":    "linear-gradient(160deg, #7A1535 0%, #420A20 45%, #0A0608 100%)",
+            "mercy":    "linear-gradient(160deg, #7A0015 0%, #3E0010 45%, #0A0608 100%)",
             "humans":   "linear-gradient(160deg, #32207A 0%, #130940 45%, #070511 100%)",
             "icare":    "linear-gradient(160deg, #0F2068 0%, #060F32 50%, #020410 100%)",
             "firebird": "linear-gradient(160deg, #0A1A50 0%, #050D2A 50%, #010508 100%)",
           };
           const workCardAccent: Record<string, string> = {
-            "mercy":    "#CC2954",
+            "mercy":    "#C4001E",
             "humans":   "#7B3FD4",
             "icare":    "#1B45B5",
             "firebird": "#0F2760",

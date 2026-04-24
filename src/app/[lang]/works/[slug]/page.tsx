@@ -499,7 +499,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
 
           {/* Info */}
           <div>
-            <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
+            <div className="mb-2 text-[11px] tracking-[3px] uppercase font-semibold" style={{ color: FB_BLUE }}>
               {firebirdYear} · {firebirdMusicLabel}
             </div>
 
@@ -525,7 +525,8 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
               href={FIREBIRD_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-4 w-full md:w-auto bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 px-8 py-5 rounded-sm"
+              className="group inline-flex items-center gap-4 w-full md:w-auto text-white transition-all duration-300 hover:brightness-110 px-8 py-5 rounded-sm"
+              style={{ backgroundColor: FB_BLUE }}
             >
               <span
                 className="text-[13px] tracking-[4px] uppercase font-semibold"
@@ -552,7 +553,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
       {/* ===== REFERENCE VIDEO — NYCB (editable via Notion → firebird_ref_video / firebird_ref_label / firebird_ref_title) ===== */}
       {settings.firebirdRefVideoId && (
         <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-          <div className="mb-8 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+          <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: FB_BLUE }}>
             {locale === "uk" ? settings.firebirdRefLabelUk : settings.firebirdRefLabelEn}
           </div>
           <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
@@ -982,8 +983,8 @@ async function MercyPage({
   const uk = locale === "uk";
   const settings = await getSiteSettings();
 
-  const ROSE   = "#CC2954";
-  const BLUSH  = "#F5A7B8";
+  const ROSE   = "#C4001E";   // deep crimson — Max Richter Voices album palette
+  const BLUSH  = "#F07090";   // warm blush accent
 
   // Parse video: supports Vimeo URLs, YouTube IDs, and full YouTube URLs
   function buildVideoSrc(val: string): string {
@@ -1010,10 +1011,10 @@ async function MercyPage({
             ← {t["work.back"]}
           </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-start">
             {/* Left: cover image or gradient placeholder */}
             <div className="relative aspect-[3/4] rounded-sm overflow-hidden"
-              style={{ background: `linear-gradient(160deg, ${ROSE} 0%, #7A0022 50%, #1A0008 100%)` }}
+              style={{ background: `linear-gradient(160deg, ${ROSE}CC 0%, #7A0022 50%, #1A0008 100%)` }}
             >
               {settings.mercyImage ? (
                 <Image src={settings.mercyImage} alt="Mercy" fill className="object-cover" priority />
@@ -1037,12 +1038,10 @@ async function MercyPage({
                 </span>
               </div>
 
-              <h1 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-5"
+              <h1 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-8"
                 style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}>
                 Mercy
               </h1>
-
-              <div className="w-20 h-[2px] mb-7" style={{ backgroundColor: ROSE }} />
 
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
                 {uk ? settings.mercyHeroSubtitleUk : settings.mercyHeroSubtitleEn}
@@ -1205,7 +1204,7 @@ async function HumansPage({
             ← {t["work.back"]}
           </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-start">
             {/* Left: cover image or cosmic gradient */}
             <div className="relative aspect-[3/4] rounded-sm overflow-hidden"
               style={{ background: `linear-gradient(160deg, ${INDIGO} 0%, #0E0830 50%, #080612 100%)` }}
@@ -1234,12 +1233,10 @@ async function HumansPage({
                 </span>
               </div>
 
-              <h1 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-5"
+              <h1 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-8"
                 style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}>
                 Humans
               </h1>
-
-              <div className="w-20 h-[2px] mb-7" style={{ backgroundColor: VIOLET }} />
 
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
                 {uk ? settings.humansHeroSubtitleUk : settings.humansHeroSubtitleEn}
@@ -1621,7 +1618,7 @@ const WORK_ACCENTS: Record<string, string> = {
   "carmen":   "#1A6B3C",   // emerald
   "firebird": "#0F2760",   // midnight ultramarine
   "icare":    "#1B45B5",   // Paris cerulean
-  "mercy":    "#CC2954",   // rose
+  "mercy":    "#C4001E",   // deep crimson
   "humans":   "#7B3FD4",   // violet
 };
 
