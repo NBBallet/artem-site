@@ -22,11 +22,18 @@ export default async function HomePage({
     getSiteSettings(),
   ]);
 
-  // Inject Notion poster images for works that have no static image
-  // (mercy and humans keep image:"" in works.ts so getWorks() never fills them in)
+  // Inject Notion poster images and corrected year for imageless works
   const works = rawWorks.map((w) => {
-    if (w.slug === "mercy"  && !w.image && settings.mercyImage)  return { ...w, image: settings.mercyImage };
-    if (w.slug === "humans" && !w.image && settings.humansImage) return { ...w, image: settings.humansImage };
+    if (w.slug === "mercy") return {
+      ...w,
+      image: (!w.image && settings.mercyImage) ? settings.mercyImage : w.image,
+      year: settings.mercyChip1En || "2021",  // year chip = source of truth
+    };
+    if (w.slug === "humans") return {
+      ...w,
+      image: (!w.image && settings.humansImage) ? settings.humansImage : w.image,
+      year: settings.humansChip1En || "2020",
+    };
     return w;
   });
 
@@ -49,10 +56,10 @@ export default async function HomePage({
           <span className="text-brand-red">HORDIEIEV</span>
         </h1>
         <p className="text-sm tracking-[6px] text-brand-grey uppercase font-light mb-12">
-          {t["hero.tagline"]}
+          {(locale === "uk" ? settings.heroTaglineUk : settings.heroTaglineEn) || t["hero.tagline"]}
         </p>
         <p className="text-[11px] tracking-[3px] text-brand-dark-grey uppercase">
-          {t["hero.role"]}
+          {(locale === "uk" ? settings.heroRoleUk : settings.heroRoleEn) || t["hero.role"]}
         </p>
         <div className="absolute bottom-8 animate-bounce">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2">

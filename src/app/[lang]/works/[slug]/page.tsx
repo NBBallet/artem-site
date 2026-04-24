@@ -169,35 +169,33 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               ? (settings.animaScenesLabelUk || "ЛІБРЕТО · АРКАНИ")
               : (settings.animaScenesLabelEn || "Libretto · Arcana")}
           </div>
-          <div className="flex items-center justify-between gap-6 mb-4 flex-wrap">
-            <h2
-              className="text-3xl text-brand-white"
-              style={{ fontFamily: "NAMU-1400, serif" }}
-            >
-              {locale === "uk"
-                ? (settings.animaScenesTitleUk || "7 Арканів")
-                : (settings.animaScenesTitleEn || "7 Arcana")}
-            </h2>
-            {/* Libretto PDF — desktop only; mobile version is below the LITSO section */}
-            {settings.animaLibrettoPdf && (
-              <DownloadButton
-                href={settings.animaLibrettoPdf}
-                filename="ANIMA-libretto.pdf"
-                className="hidden md:inline-flex items-center gap-3 px-6 py-3 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase whitespace-nowrap flex-none cursor-pointer"
-                style={{ fontFamily: "NAMU-1400, serif" }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
-                </svg>
-                {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
-              </DownloadButton>
-            )}
-          </div>
-          <p className="text-[15px] text-brand-grey max-w-[520px]">
+          <h2
+            className="text-3xl text-brand-white mb-4"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            {locale === "uk"
+              ? (settings.animaScenesTitleUk || "7 Арканів")
+              : (settings.animaScenesTitleEn || "7 Arcana")}
+          </h2>
+          <p className="text-[15px] text-brand-grey max-w-[520px] mb-8">
             {locale === "uk"
               ? (settings.animaScenesDescriptionUk || "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя.")
               : (settings.animaScenesDescriptionEn || "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent.")}
           </p>
+          {/* Libretto PDF — prominent standalone button */}
+          {settings.animaLibrettoPdf && (
+            <DownloadButton
+              href={settings.animaLibrettoPdf}
+              filename="ANIMA-libretto.pdf"
+              className="inline-flex items-center gap-4 px-10 py-5 border-2 border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-300 text-[12px] tracking-[4px] uppercase cursor-pointer"
+              style={{ fontFamily: "NAMU-1400, serif" }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
+              </svg>
+              {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
+            </DownloadButton>
+          )}
         </div>
 
         <div className="space-y-16">
@@ -247,22 +245,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           ))}
         </div>
 
-        {/* Mobile libretto button — right after last scene, mobile only */}
-        {settings.animaLibrettoPdf && (
-          <div className="md:hidden mt-12">
-            <DownloadButton
-              href={settings.animaLibrettoPdf}
-              filename="ANIMA-libretto.pdf"
-              className="w-full flex items-center justify-center gap-3 px-6 py-4 border border-brand-red/60 hover:border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-200 rounded-sm text-[11px] tracking-[3px] uppercase cursor-pointer"
-              style={{ fontFamily: "NAMU-1400, serif" }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
-              </svg>
-              {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
-            </DownloadButton>
-          </div>
-        )}
+        {/* mobile duplicate removed — unified button is above the scenes grid */}
       </section>
 
       {/* ===== 5. VIDEO ===== */}
@@ -437,6 +420,47 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           </section>
         );
       })()}
+
+      {/* ===== 9. BOOKING CTA — programmers, producers, festival directors ===== */}
+      <section
+        className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
+        style={{ background: `linear-gradient(135deg, ${ANIMA_BG} 0%, ${ANIMA_ACCENT}14 100%)` }}
+      >
+        <div className="max-w-[800px] mx-auto text-center">
+          <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ANIMA_ACCENT }}>
+            {locale === "uk" ? "Програмування · Продюсування" : "Programming · Production"}
+          </div>
+          <h2
+            className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
+            style={{ fontFamily: "NAMU-1400, serif" }}
+          >
+            {locale === "uk"
+              ? "Відкрита до міжнародної сцени"
+              : "Available for International Stages"}
+          </h2>
+          <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[540px] mx-auto">
+            {locale === "uk"
+              ? "ANIMA доступна для міжнародних гастролей, фестивального програмування та копродукції. Запрошуємо продюсерів, програмних директорів та організаторів фестивалів до діалогу."
+              : "ANIMA is available for international touring, festival programming and co-production. Producers, programming directors and festival organisers are welcome to begin a conversation."}
+          </p>
+          <a
+            href="https://wa.me/77052980397"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            style={{ backgroundColor: ANIMA_ACCENT, fontFamily: "NAMU-1400, serif" }}
+          >
+            <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+              {locale === "uk" ? "Написати хореографу" : "Contact Choreographer"}
+            </span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+              className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </a>
+          <p className="text-[11px] tracking-[2px] text-white/20 uppercase">art_om@me.com</p>
+        </div>
+      </section>
 
       {/* ===== CTA + Navigation ===== */}
       <WorkFooter slug="anima" locale={locale} />
@@ -668,7 +692,7 @@ async function IcarePage({
             ← {t["work.back"]}
           </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-start">
 
             {/* Left: Matisse Icarus */}
             <div className="relative aspect-[3/4] rounded-sm overflow-hidden">
@@ -704,14 +728,11 @@ async function IcarePage({
 
               {/* Title */}
               <h1
-                className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-5"
+                className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-8"
                 style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}
               >
                 ICARE
               </h1>
-
-              {/* Ultramarine rule */}
-              <div className="w-20 h-[2px] mb-7" style={{ backgroundColor: ULTRA }} />
 
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
                 {uk ? settings.icareHeroSubtitleUk : settings.icareHeroSubtitleEn}
@@ -1050,14 +1071,15 @@ async function MercyPage({
                 {uk ? settings.mercyHeroTaglineUk : settings.mercyHeroTaglineEn}
               </p>
 
+              {/* Chips — editable in Notion Mercy DB: mercy_chip_1 … mercy_chip_4 */}
               <div className="flex flex-wrap gap-2 mb-10">
                 {([
-                  { en: "2021", uk: "2021" },
-                  { en: "Dance Film", uk: "Танцювальний фільм" },
-                  { en: "Max Richter — Voices", uk: "Max Richter — Voices" },
-                  { en: "Lviv", uk: "Львів" },
-                ] as { en: string; uk: string }[]).map((chip) => (
-                  <span key={chip.en} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
+                  { en: settings.mercyChip1En, uk: settings.mercyChip1Uk },
+                  { en: settings.mercyChip2En, uk: settings.mercyChip2Uk },
+                  { en: settings.mercyChip3En, uk: settings.mercyChip3Uk },
+                  { en: settings.mercyChip4En, uk: settings.mercyChip4Uk },
+                ] as { en: string; uk: string }[]).filter(c => c.en || c.uk).map((chip, i) => (
+                  <span key={i} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
                     style={{ border: `1px solid ${ROSE}55`, color: "#777" }}>
                     {uk ? chip.uk : chip.en}
                   </span>
@@ -1245,14 +1267,15 @@ async function HumansPage({
                 {uk ? settings.humansHeroTaglineUk : settings.humansHeroTaglineEn}
               </p>
 
+              {/* Chips — editable in Notion Humans DB: humans_chip_1 … humans_chip_4 */}
               <div className="flex flex-wrap gap-2 mb-10">
                 {([
-                  { en: "2020", uk: "2020" },
-                  { en: "Dance Piece", uk: "Танцювальна п'єса" },
-                  { en: "Roerich Cycle", uk: "Цикл Реріха" },
-                  { en: "Cosmogony", uk: "Космогонія" },
-                ] as { en: string; uk: string }[]).map((chip) => (
-                  <span key={chip.en} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
+                  { en: settings.humansChip1En, uk: settings.humansChip1Uk },
+                  { en: settings.humansChip2En, uk: settings.humansChip2Uk },
+                  { en: settings.humansChip3En, uk: settings.humansChip3Uk },
+                  { en: settings.humansChip4En, uk: settings.humansChip4Uk },
+                ] as { en: string; uk: string }[]).filter(c => c.en || c.uk).map((chip, i) => (
+                  <span key={i} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
                     style={{ border: `1px solid ${VIOLET}55`, color: "#777" }}>
                     {uk ? chip.uk : chip.en}
                   </span>

@@ -218,6 +218,19 @@ export interface SiteSettings {
   mercyCtaTitleEn: string;      mercyCtaTitleUk: string;
   mercyCtaTextEn: string;       mercyCtaTextUk: string;
   mercyCtaBtnEn: string;        mercyCtaBtnUk: string;
+  /** Homepage hero — editable in ⚙️ Site Settings DB */
+  heroTaglineEn: string;  heroTaglineUk: string;
+  heroRoleEn: string;     heroRoleUk: string;
+  /** Mercy hero chips — 4 label pills, editable in ⚙️ Mercy Settings DB */
+  mercyChip1En: string;   mercyChip1Uk: string;   // year
+  mercyChip2En: string;   mercyChip2Uk: string;   // type
+  mercyChip3En: string;   mercyChip3Uk: string;   // music
+  mercyChip4En: string;   mercyChip4Uk: string;   // place
+  /** Humans hero chips — 4 label pills, editable in ⚙️ Humans Settings DB */
+  humansChip1En: string;  humansChip1Uk: string;  // year
+  humansChip2En: string;  humansChip2Uk: string;  // type
+  humansChip3En: string;  humansChip3Uk: string;  // cycle
+  humansChip4En: string;  humansChip4Uk: string;  // theme
   /** Humans page — all editable in ⚙️ Humans Settings DB */
   humansImage: string;
   humansHeroLabelEn: string;    humansHeroLabelUk: string;
@@ -414,6 +427,19 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   carmenPremiereTitleEn: "Available for International Stages", carmenPremiereTitleUk: "Доступна для міжнародних сцен",
   carmenPremiereTextEn: "Carmen (Bizet–Shchedrin) is available for festival presentation, competition and international touring. Contact us to discuss programming.", carmenPremiereTextUk: "«Кармен» (Бізе–Щедрін) доступна для фестивального показу, конкурсу та міжнародних гастролей. Зв'яжіться для обговорення.",
   carmenPremiereBtnEn: "Book Performance", carmenPremiereBtnUk: "Замовити виставу",
+  // ── Homepage hero defaults ──
+  heroTaglineEn: "",   heroTaglineUk: "",
+  heroRoleEn: "",      heroRoleUk: "",
+  // ── Mercy chip defaults ──
+  mercyChip1En: "2021",             mercyChip1Uk: "2021",
+  mercyChip2En: "Dance Film",       mercyChip2Uk: "Танцювальний фільм",
+  mercyChip3En: "Max Richter — Voices", mercyChip3Uk: "Max Richter — Voices",
+  mercyChip4En: "Lviv",             mercyChip4Uk: "Львів",
+  // ── Humans chip defaults ──
+  humansChip1En: "2020",            humansChip1Uk: "2020",
+  humansChip2En: "Dance Piece",     humansChip2Uk: "Танцювальна п'єса",
+  humansChip3En: "Roerich Cycle",   humansChip3Uk: "Цикл Реріха",
+  humansChip4En: "Cosmogony",       humansChip4Uk: "Космогонія",
   // ── Mercy defaults ──
   mercyImage: "",
   mercyHeroLabelEn: "2021 · Max Richter · Voices",   mercyHeroLabelUk: "2021 · Max Richter · Voices",
@@ -451,7 +477,8 @@ export const DEFAULT_SETTINGS: SiteSettings = {
 };
 
 function richText(rt: Array<{ plain_text: string }> | undefined): string {
-  return rt?.map((t) => t.plain_text).join("") ?? "";
+  // Collapse Notion newlines to spaces so body text wraps naturally in HTML
+  return (rt?.map((t) => t.plain_text).join("") ?? "").replace(/\n/g, " ");
 }
 
 /** Query one Notion DB, return [] if env var is missing or query fails. */
@@ -505,6 +532,19 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueEn) settings.ctaTextEn = valueEn;
         if (valueUk) settings.ctaTextUk = valueUk;
       }
+      // Homepage hero
+      if (key === "hero_tagline") { if (valueEn) settings.heroTaglineEn = valueEn; if (valueUk) settings.heroTaglineUk = valueUk; }
+      if (key === "hero_role") { if (valueEn) settings.heroRoleEn = valueEn; if (valueUk) settings.heroRoleUk = valueUk; }
+      // Mercy chips
+      if (key === "mercy_chip_1") { if (valueEn) settings.mercyChip1En = valueEn; if (valueUk) settings.mercyChip1Uk = valueUk; }
+      if (key === "mercy_chip_2") { if (valueEn) settings.mercyChip2En = valueEn; if (valueUk) settings.mercyChip2Uk = valueUk; }
+      if (key === "mercy_chip_3") { if (valueEn) settings.mercyChip3En = valueEn; if (valueUk) settings.mercyChip3Uk = valueUk; }
+      if (key === "mercy_chip_4") { if (valueEn) settings.mercyChip4En = valueEn; if (valueUk) settings.mercyChip4Uk = valueUk; }
+      // Humans chips
+      if (key === "humans_chip_1") { if (valueEn) settings.humansChip1En = valueEn; if (valueUk) settings.humansChip1Uk = valueUk; }
+      if (key === "humans_chip_2") { if (valueEn) settings.humansChip2En = valueEn; if (valueUk) settings.humansChip2Uk = valueUk; }
+      if (key === "humans_chip_3") { if (valueEn) settings.humansChip3En = valueEn; if (valueUk) settings.humansChip3Uk = valueUk; }
+      if (key === "humans_chip_4") { if (valueEn) settings.humansChip4En = valueEn; if (valueUk) settings.humansChip4Uk = valueUk; }
       if (key === "anima_blockquote") {
         if (valueEn) settings.animaBlockquoteEn = valueEn;
         if (valueUk) settings.animaBlockquoteUk = valueUk;
