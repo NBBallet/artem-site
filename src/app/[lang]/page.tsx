@@ -65,16 +65,16 @@ export default async function HomePage({
         {/* Per-work gradient backgrounds for imageless cards */}
         {(() => {
           const workCardBg: Record<string, string> = {
-            "mercy":   "linear-gradient(160deg, #6B1530 0%, #380818 50%, #0A0608 100%)",
-            "humans":  "linear-gradient(160deg, #2D1B69 0%, #0E0830 50%, #080612 100%)",
-            "icare":   "linear-gradient(160deg, #0D2060 0%, #060F2E 50%, #020410 100%)",
-            "firebird":"linear-gradient(160deg, #0A1A50 0%, #050D2A 50%, #020608 100%)",
+            "mercy":    "linear-gradient(160deg, #7A1535 0%, #420A20 45%, #0A0608 100%)",
+            "humans":   "linear-gradient(160deg, #32207A 0%, #130940 45%, #070511 100%)",
+            "icare":    "linear-gradient(160deg, #0F2068 0%, #060F32 50%, #020410 100%)",
+            "firebird": "linear-gradient(160deg, #0A1A50 0%, #050D2A 50%, #010508 100%)",
           };
           const workCardAccent: Record<string, string> = {
-            "mercy":  "#CC2954",
-            "humans": "#7B3FD4",
-            "icare":  "#1B3FA0",
-            "firebird":"#1B3FA0",
+            "mercy":    "#CC2954",
+            "humans":   "#7B3FD4",
+            "icare":    "#1B45B5",
+            "firebird": "#0F2760",
           };
           return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -115,15 +115,17 @@ export default async function HomePage({
                     </div>
                   </>
                 ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center"
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-4 text-center"
                     style={{ background: cardBg || undefined }}>
+                    {/* Thin accent line above title */}
+                    <div className="w-8 h-[1px]" style={{ backgroundColor: cardAccent + "88" }} />
                     <span
-                      className="text-2xl text-white/55 group-hover:text-white/80 transition-colors drop-shadow-lg"
+                      className="text-[clamp(20px,3vw,30px)] text-white/70 group-hover:text-white/90 transition-colors drop-shadow-lg leading-tight tracking-[2px]"
                       style={{ fontFamily: "NAMU-1400, serif" }}
                     >
                       {work.title[locale]}
                     </span>
-                    <span className="text-[10px] tracking-[2px] uppercase" style={{ color: cardAccent + "99" }}>
+                    <span className="text-[9px] tracking-[3px] uppercase font-semibold" style={{ color: cardAccent + "CC" }}>
                       {work.year}
                     </span>
                   </div>

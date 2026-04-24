@@ -14,6 +14,8 @@ interface MarqueeCTAProps {
   textEn?: string;
   textUk?: string;
   href?: string;
+  /** Accent color of the CURRENT page — used for the "Next →" label, arrow, and letter fill */
+  accentColor?: string;
 }
 
 export default function MarqueeCTA({
@@ -23,6 +25,7 @@ export default function MarqueeCTA({
   textEn,
   textUk,
   href = "#works",
+  accentColor = "#c8102e",
 }: MarqueeCTAProps) {
   const rawText =
     locale === "uk" ? (textUk ?? DEFAULT_UK) : (textEn ?? DEFAULT_EN);
@@ -64,23 +67,23 @@ export default function MarqueeCTA({
         {/* ── Right column: NEXT label above title, both right-aligned ── */}
         <div className="flex-none pr-6 md:pr-12 pl-4 flex flex-col items-end justify-center gap-[4px]">
 
-          {/* NEXT → — brand style, red, above the title */}
+          {/* NEXT → — styled with current page's accent color */}
           <div className="flex items-center gap-[6px]">
             <span
-              className="text-[clamp(9px,1vw,12px)] tracking-[4px] uppercase text-brand-red group-hover:opacity-70 transition-opacity"
-              style={{ fontFamily: "NAMU-1400, serif" }}
+              className="text-[clamp(9px,1vw,12px)] tracking-[4px] uppercase group-hover:opacity-70 transition-opacity"
+              style={{ fontFamily: "NAMU-1400, serif", color: accentColor }}
             >
               {locale === "uk" ? "Наступна" : "Next"}
             </span>
             <svg
               width="13" height="13" viewBox="0 0 24 24"
-              fill="none" stroke="#c8102e" strokeWidth="2"
+              fill="none" stroke={accentColor} strokeWidth="2"
             >
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </div>
 
-          {/* Work title — image fills letters when available, red otherwise ── */}
+          {/* Work title — image fills letters when available; accent gradient otherwise ── */}
           <span
             className="leading-none uppercase select-none tracking-[0.05em]"
             style={{
@@ -88,7 +91,7 @@ export default function MarqueeCTA({
               fontSize: "clamp(26px, 4.5vw, 58px)",
               ...(workImage
                 ? {
-                    backgroundImage: `url(${workImage}), linear-gradient(135deg, #c8102e 0%, #a00d24 100%)`,
+                    backgroundImage: `url(${workImage}), linear-gradient(135deg, ${accentColor} 0%, ${accentColor}99 100%)`,
                     backgroundSize: "cover, 100% 100%",
                     backgroundPosition: "center, 0 0",
                     WebkitBackgroundClip: "text",
@@ -97,7 +100,11 @@ export default function MarqueeCTA({
                     filter: "brightness(1.55) saturate(0.8)",
                   }
                 : {
-                    color: "#c8102e",
+                    /* Gradient fill using the accent color — intentionally designed, not a fallback */
+                    backgroundImage: `linear-gradient(125deg, ${accentColor} 0%, ${accentColor}bb 100%)`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
                   }),
             }}
           >

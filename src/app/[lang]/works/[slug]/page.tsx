@@ -28,9 +28,9 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
   const lang = locale;
   const [cast, scenes, settings] = await Promise.all([getAnimaCast(), getAnimaScenes(), getSiteSettings()]);
 
-  // ANIMA palette
-  const ANIMA_BG     = "#08000A";
-  const ANIMA_ACCENT = "#8B0A1A";
+  // ANIMA palette — tarot, soul, Marseille orchestra
+  const ANIMA_BG     = "#060009";
+  const ANIMA_ACCENT = "#8B0A1A";   // deep claret
 
   return (
     <article className="pt-24 relative" style={{ background: ANIMA_BG }}>
@@ -457,8 +457,8 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   const firebirdDesc = locale === "uk" ? (settings.firebirdDescriptionUk || work.description.uk) : (settings.firebirdDescriptionEn || work.description.en);
 
   // FIREBIRD palette — ultramarine blue only (matching ICARE / Stravinsky era)
-  const FB_BG   = "#020608";
-  const FB_BLUE = "#1B3FA0";
+  const FB_BG   = "#010508";   // near-black, cold indigo-night
+  const FB_BLUE = "#0F2760";   // midnight ultramarine — Stravinsky / Roerich night sky
 
   return (
     <article className="pt-24 relative" style={{ background: FB_BG }}>
@@ -591,7 +591,7 @@ async function IcarePage({
   const settings = await getSiteSettings();
 
   // ICARE brand palette
-  const ULTRA = "#1B3FA0"; // Ultramarine
+  const ULTRA = "#1B45B5"; // Paris cerulean — Markevich composed ICARE in Paris, 1932
   const RED   = "#C8102E"; // Heart Red
   const OCHRE = "#D4A017"; // Ochre Star
 
@@ -650,16 +650,15 @@ async function IcarePage({
   ];
 
   return (
-    <article className="pt-24" style={{ background: "#0A0A0A" }}>
+    <article className="pt-24 relative" style={{ background: "#060810" }}>
+      {/* Cerulean atmospheric glow — article level, never clipped */}
+      <div
+        className="absolute top-0 left-0 w-full pointer-events-none"
+        style={{ height: "85vh", background: `radial-gradient(ellipse 80% 100% at 70% 0%, ${ULTRA}50 0%, transparent 68%)`, zIndex: 0 }}
+      />
 
       {/* ===== 1. HERO ===== */}
-      <section className="relative min-h-[85vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a] overflow-hidden">
-        {/* Ultramarine atmospheric glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 70% 90% at 75% 50%, ${ULTRA}50 0%, transparent 70%)` }}
-        />
-
+      <section className="relative min-h-[85vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
         <div className="relative z-10 w-full max-w-[1200px] mx-auto">
           <Link
             href={`/${lang}#works`}
@@ -1186,18 +1185,20 @@ async function HumansPage({
   const uk = locale === "uk";
   const settings = await getSiteSettings();
 
-  const INDIGO = "#2D1B69";
-  const VIOLET = "#7B3FD4";
-  const GOLD   = "#D4A017";
+  const INDIGO = "#28186A";   // deep space indigo — Roerich cosmogony
+  const VIOLET = "#7B3FD4";   // cosmic violet
+  const GOLD   = "#C89A14";   // sacred gold — muted, like old icon gilding
 
   return (
-    <article className="pt-24" style={{ background: "#080612" }}>
+    <article className="pt-24 relative" style={{ background: "#070511" }}>
+      {/* Violet atmospheric glow — article level so it's never clipped */}
+      <div
+        className="absolute top-0 left-0 w-full pointer-events-none"
+        style={{ height: "80vh", background: `radial-gradient(ellipse 75% 100% at 65% 0%, ${INDIGO}55 0%, transparent 70%)`, zIndex: 0 }}
+      />
 
       {/* ===== 1. HERO ===== */}
-      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a] overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 70% 90% at 65% 50%, ${INDIGO}55 0%, transparent 70%)` }}
-        />
+      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
         <div className="relative z-10 w-full max-w-[1200px] mx-auto">
           <Link href={`/${lang}#works`}
             className="inline-block mb-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors">
@@ -1420,10 +1421,10 @@ async function GenericWorkPage({
   // Per-work atmospheric palette — bg color, glow color, accent color for labels/CTA
   type WorkTheme = { bg: string; glow: string; accent: string };
   const workThemes: Record<string, WorkTheme> = {
-    "the-ants": { bg: "#080400", glow: "#C44A00",  accent: "#C44A00" },
-    "mozart25": { bg: "#020810", glow: "#1B5FA0",  accent: "#1B5FA0" },
-    "adios":    { bg: "#0A0A0A", glow: "#888888",  accent: "#CCCCCC" },
-    "carmen":   { bg: "#010804", glow: "#1A6B3C",  accent: "#1A6B3C" },
+    "the-ants": { bg: "#070401", glow: "#B8451A",  accent: "#C44A00" },  // terra amber — earth, Vivaldi, antiquity
+    "mozart25": { bg: "#020810", glow: "#1E52A0",  accent: "#1E52A0" },  // French blue — Rococo, classical
+    "adios":    { bg: "#080808", glow: "#8C7E72",  accent: "#B0A090" },  // warm pearl — departure, melancholy
+    "carmen":   { bg: "#010804", glow: "#1A6040",  accent: "#1A6B3C" },  // forest emerald — flamenco tension
   };
   const theme = workThemes[s] ?? { bg: "#0A0A0A", glow: "#C8102E", accent: "#C8102E" };
 
@@ -1611,6 +1612,19 @@ async function GenericWorkPage({
   );
 }
 
+/* ─── Per-work accent colors — source of truth for MarqueeCTA theming ─── */
+const WORK_ACCENTS: Record<string, string> = {
+  "the-ants": "#C44A00",   // terra amber
+  "mozart25": "#1E52A0",   // French blue
+  "anima":    "#8B0A1A",   // deep burgundy
+  "adios":    "#A09288",   // warm ash
+  "carmen":   "#1A6B3C",   // emerald
+  "firebird": "#0F2760",   // midnight ultramarine
+  "icare":    "#1B45B5",   // Paris cerulean
+  "mercy":    "#CC2954",   // rose
+  "humans":   "#7B3FD4",   // violet
+};
+
 /* ─── Work Footer: CTA strip only (prev/next nav removed) ─── */
 async function WorkFooter({ slug, locale }: { slug: string; locale: Locale }) {
   const [allWorks, settings] = await Promise.all([getWorks(), getSiteSettings()]);
@@ -1632,6 +1646,9 @@ async function WorkFooter({ slug, locale }: { slug: string; locale: Locale }) {
     ? `/${locale}/works/${ctaWork.slug}`
     : `/${locale}#works`;
 
+  // Accent = current page's palette color (the strip belongs to THIS page)
+  const accentColor = WORK_ACCENTS[slug] ?? "#C8102E";
+
   return (
     <MarqueeCTA
       locale={locale}
@@ -1640,6 +1657,7 @@ async function WorkFooter({ slug, locale }: { slug: string; locale: Locale }) {
       href={ctaHref}
       textEn={settings.ctaTextEn}
       textUk={settings.ctaTextUk}
+      accentColor={accentColor}
     />
   );
 }
