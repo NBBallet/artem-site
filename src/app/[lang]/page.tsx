@@ -62,8 +62,26 @@ export default async function HomePage({
           {t["works.subtitle"]}
         </p>
 
+        {/* Per-work gradient backgrounds for imageless cards */}
+        {(() => {
+          const workCardBg: Record<string, string> = {
+            "mercy":   "linear-gradient(160deg, #6B1530 0%, #380818 50%, #0A0608 100%)",
+            "humans":  "linear-gradient(160deg, #2D1B69 0%, #0E0830 50%, #080612 100%)",
+            "icare":   "linear-gradient(160deg, #0D2060 0%, #060F2E 50%, #020410 100%)",
+            "firebird":"linear-gradient(160deg, #0A1A50 0%, #050D2A 50%, #020608 100%)",
+          };
+          const workCardAccent: Record<string, string> = {
+            "mercy":  "#CC2954",
+            "humans": "#7B3FD4",
+            "icare":  "#1B3FA0",
+            "firebird":"#1B3FA0",
+          };
+          return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {works.map((work) => (
+          {works.map((work) => {
+            const cardBg = workCardBg[work.slug];
+            const cardAccent = workCardAccent[work.slug] || "#C8102E";
+            return (
             <Link
               key={work.slug}
               href={`/${lang}/works/${work.slug}`}
@@ -97,15 +115,16 @@ export default async function HomePage({
                     </div>
                   </>
                 ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center"
+                    style={{ background: cardBg || undefined }}>
                     <span
-                      className="text-2xl text-brand-grey/30 group-hover:text-brand-red/50 transition-colors"
+                      className="text-2xl text-white/55 group-hover:text-white/80 transition-colors drop-shadow-lg"
                       style={{ fontFamily: "NAMU-1400, serif" }}
                     >
                       {work.title[locale]}
                     </span>
-                    <span className="text-[10px] tracking-[2px] uppercase text-brand-dark-grey/60">
-                      {locale === "uk" ? "У розробці · незабаром" : "In development · coming soon"}
+                    <span className="text-[10px] tracking-[2px] uppercase" style={{ color: cardAccent + "99" }}>
+                      {work.year}
                     </span>
                   </div>
                 )}
@@ -119,8 +138,11 @@ export default async function HomePage({
                 </div>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
+          );
+        })()}
       </section>
 
       {/* ===== ABOUT =====

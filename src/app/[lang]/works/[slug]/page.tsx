@@ -33,15 +33,15 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
   const ANIMA_ACCENT = "#8B0A1A";
 
   return (
-    <article className="pt-24" style={{ background: ANIMA_BG }}>
+    <article className="pt-24 relative" style={{ background: ANIMA_BG }}>
+      {/* Burgundy atmospheric glow — full viewport width, fades from top-right */}
+      <div
+        className="absolute top-0 left-0 w-full pointer-events-none"
+        style={{ height: "80vh", background: `radial-gradient(ellipse 70% 100% at 85% 0%, ${ANIMA_ACCENT}50 0%, transparent 65%)`, zIndex: 0 }}
+      />
+
       {/* ===== 1. HERO ===== */}
-      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a] overflow-hidden">
-        {/* Burgundy atmospheric glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 80% 70% at 80% 40%, ${ANIMA_ACCENT}50 0%, transparent 65%)` }}
-        />
-        <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
+      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
 
         <Link
           href={`/${lang}#works`}
@@ -456,22 +456,20 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   const firebirdSubtitle = locale === "uk" ? (settings.firebirdSubtitleUk || work.subtitle.uk) : (settings.firebirdSubtitleEn || work.subtitle.en);
   const firebirdDesc = locale === "uk" ? (settings.firebirdDescriptionUk || work.description.uk) : (settings.firebirdDescriptionEn || work.description.en);
 
-  // FIREBIRD palette
-  const FB_BG     = "#0A0500";
-  const FB_ORANGE = "#E86200";
-  const FB_VIOLET = "#5B2CC4";
+  // FIREBIRD palette — ultramarine blue only (matching ICARE / Stravinsky era)
+  const FB_BG   = "#020608";
+  const FB_BLUE = "#1B3FA0";
 
   return (
-    <article className="pt-24" style={{ background: FB_BG }}>
+    <article className="pt-24 relative" style={{ background: FB_BG }}>
+      {/* Ultramarine atmospheric glow — full viewport width */}
+      <div
+        className="absolute top-0 left-0 w-full pointer-events-none"
+        style={{ height: "80vh", background: `radial-gradient(ellipse 80% 100% at 20% 0%, ${FB_BLUE}50 0%, transparent 65%)`, zIndex: 0 }}
+      />
 
       {/* ===== HERO ===== */}
-      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a] overflow-hidden">
-        {/* Fiery orange + violet atmospheric glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 60% 80% at 20% 60%, ${FB_ORANGE}55 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 80% 30%, ${FB_VIOLET}45 0%, transparent 55%)` }}
-        />
-        <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
+      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
 
         <Link
           href={`/${lang}#works`}
@@ -483,7 +481,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
           {/* Poster — Roerich "Mother of the World" (non-clickable) */}
-          <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#0d0d0d]">
+          <div className="relative aspect-[3/4] rounded-lg overflow-hidden" style={{ background: "#020610" }}>
             <Image
               src={MOTHER_IMG}
               alt={locale === "uk" ? "М. Реріх — Мати Світу, 1924" : "N. Roerich — Mother of the World, 1924"}
@@ -597,8 +595,12 @@ async function IcarePage({
   const RED   = "#C8102E"; // Heart Red
   const OCHRE = "#D4A017"; // Ochre Star
 
-  const MATISSE_SRC = settings.icareImage ||
-    "https://www.artic.edu/iiif/2/3bbeb5c0-82ad-cae7-0c52-4db83b283f5b/full/843,/0/default.jpg";
+  // Crop to the Icarus silhouette (right side of the Jazz spread) — no handwriting visible
+  const MATISSE_SRC = (settings.icareImage && !settings.icareImage.includes("wikimedia"))
+    ? settings.icareImage.includes("/full/")
+      ? settings.icareImage.replace("/full/", "/pct:48,3,52,94/")
+      : settings.icareImage
+    : "https://www.artic.edu/iiif/2/3bbeb5c0-82ad-cae7-0c52-4db83b283f5b/pct:48,3,52,94/843,/0/default.jpg";
 
   const scoreVideoId = work.videos?.[0]?.id ?? "";
 
@@ -655,7 +657,7 @@ async function IcarePage({
         {/* Ultramarine atmospheric glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 70% 90% at 75% 50%, ${ULTRA}1a 0%, transparent 70%)` }}
+          style={{ background: `radial-gradient(ellipse 70% 90% at 75% 50%, ${ULTRA}50 0%, transparent 70%)` }}
         />
 
         <div className="relative z-10 w-full max-w-[1200px] mx-auto">
@@ -984,14 +986,25 @@ async function MercyPage({
   const ROSE   = "#CC2954";
   const BLUSH  = "#F5A7B8";
 
+  // Parse video: supports Vimeo URLs, YouTube IDs, and full YouTube URLs
+  function buildVideoSrc(val: string): string {
+    if (!val) return "";
+    const vimeoM = val.match(/vimeo\.com\/(\d+)/);
+    if (vimeoM) return `https://player.vimeo.com/video/${vimeoM[1]}`;
+    if (val.startsWith("http")) return val;
+    return `https://www.youtube.com/embed/${val}`;
+  }
+
   return (
-    <article className="pt-24" style={{ background: "#0A0608" }}>
+    <article className="pt-24 relative" style={{ background: "#0A0608" }}>
+      {/* Rose atmospheric glow — full viewport width */}
+      <div
+        className="absolute top-0 left-0 w-full pointer-events-none"
+        style={{ height: "85vh", background: `radial-gradient(ellipse 70% 100% at 70% 0%, ${ROSE}50 0%, transparent 70%)`, zIndex: 0 }}
+      />
 
       {/* ===== 1. HERO ===== */}
-      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a] overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 70% 90% at 65% 50%, ${ROSE}18 0%, transparent 70%)` }}
-        />
+      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
         <div className="relative z-10 w-full max-w-[1200px] mx-auto">
           <Link href={`/${lang}#works`}
             className="inline-block mb-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors">
@@ -1069,40 +1082,7 @@ async function MercyPage({
         </div>
       </section>
 
-      {/* ===== 2. THE STORY ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
-        <div className="max-w-[800px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
-            {uk ? "Передісторія" : "The Story"}
-          </div>
-          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.mercyIntroTitleUk : settings.mercyIntroTitleEn}
-          </h2>
-          <p className="text-[16px] text-white/50 leading-[1.9]">
-            {uk ? settings.mercyIntroBodyUk : settings.mercyIntroBodyEn}
-          </p>
-        </div>
-      </section>
-
-      {/* ===== 3. CONTEXT — MAX RICHTER CHAIN ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]"
-        style={{ background: `${ROSE}06` }}>
-        <div className="max-w-[800px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
-            {uk ? "Контекст" : "Context"}
-          </div>
-          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.mercyContextTitleUk : settings.mercyContextTitleEn}
-          </h2>
-          <p className="text-[16px] text-white/50 leading-[1.9]">
-            {uk ? settings.mercyContextBodyUk : settings.mercyContextBodyEn}
-          </p>
-        </div>
-      </section>
-
-      {/* ===== 4. VIDEO — only shown if mercy_video_1 set in Notion ===== */}
+      {/* ===== 2. VIDEO — right after hero, only shown if mercy_video_1 set in Notion ===== */}
       {settings.mercyVideo1Id && (
         <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
           <div className="max-w-[1200px] mx-auto">
@@ -1111,9 +1091,9 @@ async function MercyPage({
             </div>
             <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
               <iframe
-                src={`https://www.youtube.com/embed/${settings.mercyVideo1Id}`}
+                src={buildVideoSrc(settings.mercyVideo1Id)}
                 title={uk ? settings.mercyVideo1Uk : settings.mercyVideo1En}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                 allowFullScreen className="w-full h-full"
               />
             </div>
@@ -1125,6 +1105,39 @@ async function MercyPage({
           </div>
         </section>
       )}
+
+      {/* ===== 3. THE STORY ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <div className="max-w-[800px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+            {uk ? "Передісторія" : "The Story"}
+          </div>
+          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1] break-words"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.mercyIntroTitleUk : settings.mercyIntroTitleEn}
+          </h2>
+          <p className="text-[16px] text-white/55 leading-[1.9] break-words overflow-wrap-anywhere">
+            {uk ? settings.mercyIntroBodyUk : settings.mercyIntroBodyEn}
+          </p>
+        </div>
+      </section>
+
+      {/* ===== 4. CONTEXT — MAX RICHTER CHAIN ===== */}
+      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]"
+        style={{ background: `${ROSE}06` }}>
+        <div className="max-w-[800px] mx-auto">
+          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+            {uk ? "Контекст" : "Context"}
+          </div>
+          <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1] break-words"
+            style={{ fontFamily: "NAMU-1400, serif" }}>
+            {uk ? settings.mercyContextTitleUk : settings.mercyContextTitleEn}
+          </h2>
+          <p className="text-[16px] text-white/55 leading-[1.9] break-words">
+            {uk ? settings.mercyContextBodyUk : settings.mercyContextBodyEn}
+          </p>
+        </div>
+      </section>
 
       {/* ===== 5. BOOKING CTA ===== */}
       <section className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
@@ -1415,24 +1428,23 @@ async function GenericWorkPage({
   const theme = workThemes[s] ?? { bg: "#0A0A0A", glow: "#C8102E", accent: "#C8102E" };
 
   return (
-    <article className="pt-24" style={{ background: theme.bg }}>
+    <article className="pt-24 relative" style={{ background: theme.bg }}>
+      {/* Atmospheric glow — full viewport width, fades from top-left */}
+      <div
+        className="absolute top-0 left-0 w-full pointer-events-none"
+        style={{ height: "75vh", background: `radial-gradient(ellipse 80% 100% at 15% 0%, ${theme.glow}55 0%, transparent 65%)`, zIndex: 0 }}
+      />
 
       {/* ── HEADER: title + description side by side ── */}
-      <section className="relative px-6 md:px-16 py-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a] overflow-hidden">
-        {/* Atmospheric glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse 80% 70% at 15% 40%, ${theme.glow}55 0%, transparent 65%)` }}
-        />
-        <Tryzub className="absolute right-8 top-16 opacity-[0.04] hidden md:block" />
+      <section className="relative px-6 md:px-16 py-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
         <Link
           href={`/${locale}#works`}
-          className="inline-block mb-8 relative z-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
+          className="inline-block mb-8 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
         >
           ← {t["work.back"]}
         </Link>
 
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-start">
           {/* Left: title */}
           <div>
             <div className="mb-2 text-[11px] tracking-[3px] uppercase font-semibold" style={{ color: theme.accent }}>
@@ -1560,9 +1572,9 @@ async function GenericWorkPage({
         };
         const p = map[s];
         return (
-          <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a] bg-[#080808]">
+          <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]" style={{ background: `${theme.bg}` }}>
             <div className="max-w-[800px] mx-auto text-center">
-              <div className="mb-4 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+              <div className="mb-4 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: theme.accent }}>
                 {uk ? "Бронювання" : "Booking"}
               </div>
               <h2
@@ -1571,15 +1583,15 @@ async function GenericWorkPage({
               >
                 {uk ? p.titleUk : p.titleEn}
               </h2>
-              <p className="text-[15px] text-[#777] mb-10 leading-[1.8] max-w-[520px] mx-auto">
+              <p className="text-[15px] text-[#999] mb-10 leading-[1.8] max-w-[520px] mx-auto">
                 {uk ? p.textUk : p.textEn}
               </p>
               <a
                 href="https://wa.me/77052980397"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm"
-                style={{ fontFamily: "NAMU-1400, serif" }}
+                className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 rounded-sm"
+                style={{ backgroundColor: theme.accent, fontFamily: "NAMU-1400, serif" }}
               >
                 <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
                   {uk ? p.btnUk : p.btnEn}
