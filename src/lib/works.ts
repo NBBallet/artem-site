@@ -315,7 +315,8 @@ export async function getWorks(): Promise<Work[]> {
         !nw.image.includes("drive.google.com") &&
         !nw.image.includes("photo/AF1") &&
         !nw.image.includes("prod-files-secure") &&
-        !nw.image.includes("amazonaws.com");
+        !nw.image.includes("amazonaws.com") &&
+        !nw.image.includes("artic.edu");
       return {
         ...nw,
         image: imageOk ? nw.image : (sw.image || ""),
