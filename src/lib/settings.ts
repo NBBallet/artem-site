@@ -389,7 +389,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   socialThreads: "",
   socialTelegram: "",
   // ── ICARE defaults ──
-  icareImage: "https://www.artic.edu/iiif/2/3bbeb5c0-82ad-cae7-0c52-4db83b283f5b/full/843,/0/default.jpg",
+  icareImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Pieter_Bruegel_de_Oude_-_De_val_van_Icarus.jpg/1200px-Pieter_Bruegel_de_Oude_-_De_val_van_Icarus.jpg",
   icareHeroLabelEn: "World Premiere · 2026",        icareHeroLabelUk: "Світова прем'єра · 2026",
   icareHeroSubtitleEn: "After the score by Igor Markevich, 1932", icareHeroSubtitleUk: "За партитурою Ігоря Маркевича, 1932",
   icareHeroTaglineEn: "The first staging in history of a ballet that waited 93 years for a choreographer.", icareHeroTaglineUk: "Перша в історії постановка балету, що 93 роки чекав хореографа.",
