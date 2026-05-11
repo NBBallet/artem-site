@@ -246,7 +246,7 @@ export const works: Work[] = [
       en: "The world's first staging of Igor Markevich's Le Vol d'Icare — composed in Paris in 1932, unperformed for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
       uk: "Перша в світі постановка «Польоту Ікара» Ігоря Маркевича — написаного в Парижі 1932 року, 93 роки без прем'єри. Не притча-застереження. Гімн усвідомленому вибору летіти.",
     },
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Pieter_Bruegel_de_Oude_-_De_val_van_Icarus.jpg/1200px-Pieter_Bruegel_de_Oude_-_De_val_van_Icarus.jpg",
+    image: "https://i.ytimg.com/vi/BOpf7s2eqVs/maxresdefault.jpg",
     videos: [
       {
         id: "BOpf7s2eqVs",
