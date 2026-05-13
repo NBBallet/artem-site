@@ -9,33 +9,31 @@ interface Props {
 }
 
 /**
- * Forces a direct file download (no new tab) via fetch → blob.
- * Works for cross-origin URLs (Cloudinary, etc.).
- * Falls back to window.open if fetch fails.
+ * For Cloudinary URLs — adds fl_attachment so the server sends
+ * Content-Disposition: attachment. This makes downloads work on
+ * iOS Safari and Android where fetch → blob approaches fail.
  */
+function toDownloadUrl(href: string, filename?: string): string {
+  if (!href.includes("res.cloudinary.com")) return href;
+  const safeName = (filename || "file.pdf")
+    .replace(/\.[^.]+$/, "")
+    .replace(/[^a-zA-Z0-9_-]/g, "_");
+  return href.replace(/\/upload\//, `/upload/fl_attachment:${safeName}/`);
+}
+
 export default function DownloadButton({ href, filename, className, style, children }: Props) {
-  const handleClick = async () => {
-    try {
-      const res = await fetch(href);
-      if (!res.ok) throw new Error("fetch failed");
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename || href.split("/").pop()?.split("?")[0] || "libretto.pdf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } catch {
-      // Fallback: open in new tab
-      window.open(href, "_blank", "noopener,noreferrer");
-    }
-  };
+  const downloadUrl = toDownloadUrl(href, filename);
 
   return (
-    <button onClick={handleClick} className={className} style={style} type="button">
+    <a
+      href={downloadUrl}
+      download={filename}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      style={style}
+    >
       {children}
-    </button>
+    </a>
   );
 }

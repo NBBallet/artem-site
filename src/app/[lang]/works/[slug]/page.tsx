@@ -10,6 +10,7 @@ import PhotoSlider from "@/components/PhotoSlider";
 import MarqueeCTA from "@/components/MarqueeCTA";
 import ZoomableImage from "@/components/ZoomableImage";
 import DownloadButton from "@/components/DownloadButton";
+import IcareImage from "@/components/IcareImage";
 import { getSiteSettings } from "@/lib/settings";
 import { firebirdData } from "@/lib/firebird-data";
 
@@ -620,12 +621,11 @@ async function IcarePage({
   const RED   = "#C8102E"; // Heart Red
   const OCHRE = "#D4A017"; // Ochre Star
 
-  // Crop to the Icarus silhouette (right side of the Jazz spread) — no handwriting visible
-  const MATISSE_SRC = (settings.icareImage && !settings.icareImage.includes("wikimedia"))
-    ? settings.icareImage.includes("/full/")
-      ? settings.icareImage.replace("/full/", "/pct:48,3,52,94/")
-      : settings.icareImage
-    : "https://www.artic.edu/iiif/2/3bbeb5c0-82ad-cae7-0c52-4db83b283f5b/pct:48,3,52,94/843,/0/default.jpg";
+  // Matisse — Icare (Jazz, 1947). Hosted in /public for reliability.
+  // Override via Notion icare_image setting (Cloudinary URL).
+  const MATISSE_SRC = (settings.icareImage && !settings.icareImage.includes("artic.edu"))
+    ? settings.icareImage
+    : "/images/matisse-icare.jpg";
 
   const scoreVideoId = work.videos?.[0]?.id ?? "";
 
@@ -696,12 +696,7 @@ async function IcarePage({
 
             {/* Left: Matisse Icarus */}
             <div className="relative aspect-[3/4] rounded-sm overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={MATISSE_SRC}
-                alt="Henri Matisse — Icare, Jazz (1947)"
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              <IcareImage src={MATISSE_SRC} />
               {/* edge vignettes */}
               <div
                 className="absolute inset-0"
