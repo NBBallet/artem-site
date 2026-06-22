@@ -280,7 +280,7 @@ export default async function HomePage({
           threads={threadsUrl}
           telegram={telegramUrl}
           locale={locale}
-          whatsappPhone="77052980397"
+          whatsappPhone="19402371274"
         />
       </section>
     </>
