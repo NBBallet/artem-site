@@ -37,10 +37,10 @@ export default async function HomePage({
     return w;
   });
 
-  // ── Social links with fallbacks ──
-  const instagramUrl = settings.socialInstagram || "https://instagram.com/artem_hordieiev";
-  const threadsUrl   = settings.socialThreads   || "https://threads.net/@artem_hordieiev";
-  const telegramUrl  = settings.socialTelegram  || "https://t.me/artemhordieiev";
+  // ── Social links — canonical handles (artem_hordieiev) ──
+  const instagramUrl = "https://www.instagram.com/artem_hordieiev";
+  const threadsUrl   = "https://www.threads.com/@artem_hordieiev";
+  const telegramUrl  = "https://t.me/artem_hordieiev";
 
   return (
     <>
