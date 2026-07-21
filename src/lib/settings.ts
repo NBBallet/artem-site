@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client";
+import { withRetry } from "./notion-retry";
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
@@ -748,7 +749,7 @@ function richText(rt: Array<{ plain_text: string }> | undefined): string {
 async function queryDb(dbId: string | undefined): Promise<unknown[]> {
   if (!dbId) return [];
   try {
-    const res = await notion.databases.query({ database_id: dbId });
+    const res = await withRetry(() => notion.databases.query({ database_id: dbId }));
     return res.results;
   } catch (err) {
     console.error(`[settings] queryDb(${dbId.slice(0, 8)}…) failed:`, err);

@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import type { Work } from "./works";
+import { withRetry } from "./notion-retry";
 
 const notion = new Client({
   auth: process.env.NOTION_API_KEY,
@@ -95,7 +96,7 @@ export async function getWorksFromNotion(): Promise<NotionWork[]> {
   }
 
   try {
-    const response = await notion.databases.query({
+    const response = await withRetry(() => notion.databases.query({
       database_id: PORTFOLIO_DB_ID,
       filter: {
         property: "Published",
@@ -104,7 +105,7 @@ export async function getWorksFromNotion(): Promise<NotionWork[]> {
       sorts: [
         { property: "Sort Order", direction: "ascending" },
       ],
-    });
+    }));
 
     return response.results.map((page) => {
       const p = page as unknown as Record<string, unknown>;

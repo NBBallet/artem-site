@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { animaData } from "./anima-data";
+import { withRetry } from "./notion-retry";
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
@@ -40,10 +41,10 @@ export async function getAnimaCast(): Promise<AnimaCastMember[]> {
   const dbId = process.env.NOTION_ANIMA_CAST_DB_ID;
   if (!process.env.NOTION_API_KEY || !dbId) return getStaticCast();
   try {
-    const res = await notion.databases.query({
+    const res = await withRetry(() => notion.databases.query({
       database_id: dbId,
       sorts: [{ property: "Sort Order", direction: "ascending" }],
-    });
+    }));
     if (res.results.length === 0) return getStaticCast();
     return res.results.map((page) => {
       const p = (page as unknown as Record<string, unknown>).properties as Record<string, unknown>;
@@ -73,10 +74,10 @@ export async function getAnimaScenes(): Promise<AnimaScene[]> {
   const dbId = process.env.NOTION_ANIMA_SCENES_DB_ID;
   if (!process.env.NOTION_API_KEY || !dbId) return getStaticScenes();
   try {
-    const res = await notion.databases.query({
+    const res = await withRetry(() => notion.databases.query({
       database_id: dbId,
       sorts: [{ property: "Sort Order", direction: "ascending" }],
-    });
+    }));
     if (res.results.length === 0) return getStaticScenes();
     return res.results.map((page) => {
       const p = (page as unknown as Record<string, unknown>).properties as Record<string, unknown>;
