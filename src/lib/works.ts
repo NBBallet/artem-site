@@ -288,7 +288,7 @@ export const works: Work[] = [
       fr: "Film de danse · Pièce vocale-chorégraphique",
     },
     year: "2021",
-    music: 'Max Richter — "Voices" (2020)',
+    music: "Max Richter — Voices",
     description: {
       en: "Born in lockdown. A meditation on mercy, freedom, and what persists when everything is taken away. Set to Max Richter's Voices — a work grounded in the Universal Declaration of Human Rights and the Roerich Pact.",
       uk: "Народжена у локдауні. Медитація про милосердя, свободу та те, що лишається, коли все відібрано. На музику Макса Ріхтера Voices — твір, вкорінений у Загальній декларації прав людини та Пакті Реріха.",
@@ -305,7 +305,7 @@ export const works: Work[] = [
       fr: "Partie du cycle sacré de Roerich",
     },
     year: "2020",
-    music: "TBA",
+    music: 'Alessandro Martire – "A Turn of the Page" (John Talbot Mix)',
     description: {
       en: "Before the first rule. Before the first word. A choreographic cosmogony: cosmic parents perform their ancient ritual; a human is born from their dance; they depart. The created being is left alone on Earth to begin.",
       uk: "До першого правила. До першого слова. Хореографічна космогонія: космічні батьки виконують стародавній ритуал; з їхнього танцю народжується людина; вони йдуть. Створена істота залишається на Землі сама — щоб починати.",
