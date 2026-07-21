@@ -261,7 +261,7 @@ export const works: Work[] = [
       fr: "Première mondiale · Ballet en un acte",
     },
     year: "2026",
-    music: 'Igor Markevich — "Le Vol d\'Icare" (1932)',
+    music: "Igor Markevich — Le Vol d'Icare (1932)",
     description: {
       en: "The world's first staging of Igor Markevich's Le Vol d'Icare — composed in Paris in 1932, unperformed for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
       uk: "Перша в світі постановка «Польоту Ікара» Ігоря Маркевича — написаного в Парижі 1932 року, 93 роки без прем'єри. Не притча-застереження. Гімн усвідомленому вибору летіти.",
@@ -305,7 +305,7 @@ export const works: Work[] = [
       fr: "Partie du cycle sacré de Roerich",
     },
     year: "2020",
-    music: 'Alessandro Martire – "A Turn of the Page" (John Talbot Mix)',
+    music: "Alessandro Martire – A Turn of the Page (John Talbot Mix)",
     description: {
       en: "Before the first rule. Before the first word. A choreographic cosmogony: cosmic parents perform their ancient ritual; a human is born from their dance; they depart. The created being is left alone on Earth to begin.",
       uk: "До першого правила. До першого слова. Хореографічна космогонія: космічні батьки виконують стародавній ритуал; з їхнього танцю народжується людина; вони йдуть. Створена істота залишається на Землі сама — щоб починати.",
