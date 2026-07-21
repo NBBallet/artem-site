@@ -683,7 +683,9 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   humansChip4En: "Cosmogony",       humansChip4Uk: "Космогонія",
   humansChip4Fr: "Cosmogonie",
   // ── Mercy defaults ──
-  mercyImage: "",
+  // Real cover URL as fallback (like firebirdImage/icareImage) so a failed
+  // Notion read can never blank the cover — Notion still overrides when it loads.
+  mercyImage: "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776951300/IMG_2809_tlnttb.jpg",
   mercyHeroLabelEn: "2021 · Max Richter · Voices",   mercyHeroLabelUk: "2021 · Max Richter · Voices",
   mercyHeroLabelFr: "2021 · Max Richter · Voices",
   mercyHeroSubtitleEn: "Dance Film · Vocal-Choreographic Piece", mercyHeroSubtitleUk: "Танцювальний фільм · Вокально-хореографічна п'єса",
@@ -711,7 +713,9 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   mercyCtaBtnEn: "Discuss the Project",      mercyCtaBtnUk: "Обговорити проєкт",
   mercyCtaBtnFr: "Discuter du projet",
   // ── Humans defaults ──
-  humansImage: "",
+  // Real cover URL as fallback (like firebirdImage/icareImage) so a failed
+  // Notion read can never blank the cover — Notion still overrides when it loads.
+  humansImage: "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776950412/468992967_1566626490627910_2668617100649363576_n_anr4gh.jpg",
   humansHeroLabelEn: "Roerich Cosmogony · Dance Piece", humansHeroLabelUk: "Космогонія Реріха · Танцювальна п'єса",
   humansHeroLabelFr: "Cosmogonie de Roerich",
   humansHeroSubtitleEn: "Part of the Roerich Sacred Cycle", humansHeroSubtitleUk: "Частина сакрального циклу Реріха",
