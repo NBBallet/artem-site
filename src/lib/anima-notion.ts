@@ -14,8 +14,10 @@ export interface AnimaCastMember {
 export interface AnimaScene {
   arcana: string;
   arcanaUk: string;
+  arcanaFr: string;
   descriptionEn: string;
   descriptionUk: string;
+  descriptionFr: string;
   image: string;
 }
 
@@ -81,8 +83,10 @@ export async function getAnimaScenes(): Promise<AnimaScene[]> {
       return {
         arcana: rt(p["Arcana"]),
         arcanaUk: rt(p["Arcana UK"]),
+        arcanaFr: rt(p["Arcana FR"]) || rt(p["Arcana"]),
         descriptionEn: rt(p["Description EN"]),
         descriptionUk: rt(p["Description UK"]),
+        descriptionFr: rt(p["Description FR"]) || rt(p["Description EN"]),
         image: rt(p["Image URL"]),
       };
     });
@@ -93,8 +97,10 @@ function getStaticScenes(): AnimaScene[] {
   return animaData.scenes.map(s => ({
     arcana: s.arcana,
     arcanaUk: s.arcanaUk,
+    arcanaFr: s.arcanaFr,
     descriptionEn: s.description.en,
     descriptionUk: s.description.uk,
+    descriptionFr: s.description.fr,
     image: s.image,
   }));
 }

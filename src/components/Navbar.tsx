@@ -2,18 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { Locale } from "@/lib/i18n";
+import { locales, type Locale } from "@/lib/i18n";
 
 interface NavbarProps {
   lang: Locale;
   t: Record<string, string>;
 }
 
+const LANG_LABEL: Record<Locale, string> = { en: "EN", uk: "UA", fr: "FR" };
+
 export default function Navbar({ lang, t }: NavbarProps) {
   const pathname = usePathname();
-
-  const switchLang = lang === "en" ? "uk" : "en";
-  const switchPath = pathname.replace(`/${lang}`, `/${switchLang}`);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/92 backdrop-blur-[12px] border-b border-[#222] px-6 md:px-10 py-3 flex items-center justify-between">
@@ -43,12 +42,28 @@ export default function Navbar({ lang, t }: NavbarProps) {
         >
           {t["nav.contact"]}
         </a>
-        <Link
-          href={switchPath}
-          className="text-[11px] tracking-[2px] uppercase text-brand-red hover:text-brand-white transition-colors border border-brand-red/30 px-3 py-1 rounded"
-        >
-          {t["lang.switch"]}
-        </Link>
+        <div className="flex items-center gap-1 border border-brand-red/30 rounded overflow-hidden">
+          {locales.map((locale) => {
+            const isActive = locale === lang;
+            const path = pathname.replace(`/${lang}`, `/${locale}`);
+            return isActive ? (
+              <span
+                key={locale}
+                className="text-[11px] tracking-[2px] uppercase text-brand-white bg-brand-red/30 px-3 py-1"
+              >
+                {LANG_LABEL[locale]}
+              </span>
+            ) : (
+              <Link
+                key={locale}
+                href={path}
+                className="text-[11px] tracking-[2px] uppercase text-brand-red hover:text-brand-white transition-colors px-3 py-1"
+              >
+                {LANG_LABEL[locale]}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </nav>
   );

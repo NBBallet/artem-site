@@ -56,7 +56,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
             <ZoomableImage
               src={work.image || "/images/works/anima/poster-v3.jpg"}
-              alt="ANIMA poster"
+              alt={locale === "fr" ? "Affiche ANIMA" : locale === "uk" ? "Афіша ANIMA" : "ANIMA poster"}
               fill
               className="object-cover"
               priority
@@ -67,7 +67,9 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           <div>
             {/* Top meta — editable via Notion: anima_credit_premiere_date + anima_credit_company */}
             <div className="mb-2 text-[11px] tracking-[3px] uppercase text-brand-red font-semibold">
-              {locale === "uk"
+              {locale === "fr"
+                ? (settings.animaCreditPremiereDateFr || d.premiere.dateFr)
+                : locale === "uk"
                 ? (settings.animaCreditPremiereDateUk || d.premiere.dateUk)
                 : (settings.animaCreditPremiereDateEn || d.premiere.date)
               } · {settings.animaCreditCompany || d.credits.company}
@@ -89,53 +91,63 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             {/* Credits — all editable in Notion Site Settings DB */}
             <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
-                {locale === "uk" ? "Продюсер" : "Producer"}
+                {locale === "fr" ? "Producteur" : locale === "uk" ? "Продюсер" : "Producer"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk"
+                {locale === "fr"
+                  ? (settings.animaCreditIdeaFr || d.credits.idea.nameFr)
+                  : locale === "uk"
                   ? (settings.animaCreditIdeaUk || d.credits.idea.nameUk)
                   : (settings.animaCreditIdeaEn || d.credits.idea.name)}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
-                {locale === "uk" ? "Хореографія" : "Choreography"}
+                {locale === "fr" ? "Chorégraphie" : locale === "uk" ? "Хореографія" : "Choreography"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk"
+                {locale === "fr"
+                  ? (settings.animaCreditChoreographyFr || d.credits.choreography.nameFr)
+                  : locale === "uk"
                   ? (settings.animaCreditChoreographyUk || d.credits.choreography.nameUk)
                   : (settings.animaCreditChoreographyEn || d.credits.choreography.name)}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
-                {locale === "uk" ? "Музика" : "Music"}
+                {locale === "fr" ? "Musique" : locale === "uk" ? "Музика" : "Music"}
               </dt>
               <dd className="text-brand-grey">
                 {settings.animaCreditMusic || d.credits.music}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
-                {locale === "uk" ? "Костюми" : "Costumes"}
+                {locale === "fr" ? "Costumes" : locale === "uk" ? "Костюми" : "Costumes"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk"
+                {locale === "fr"
+                  ? (settings.animaCreditCostumesFr || d.credits.costumes.nameFr)
+                  : locale === "uk"
                   ? (settings.animaCreditCostumesUk || d.credits.costumes.nameUk)
                   : (settings.animaCreditCostumesEn || d.credits.costumes.name)}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
-                {locale === "uk" ? "Прем'єра" : "Premiere"}
+                {locale === "fr" ? "Première" : locale === "uk" ? "Прем'єра" : "Premiere"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk"
+                {locale === "fr"
+                  ? (settings.animaCreditPremiereDateFr || d.premiere.dateFr)
+                  : locale === "uk"
                   ? (settings.animaCreditPremiereDateUk || d.premiere.dateUk)
                   : (settings.animaCreditPremiereDateEn || d.premiere.date)}
               </dd>
 
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
-                {locale === "uk" ? "Місце" : "Venue"}
+                {locale === "fr" ? "Lieu" : locale === "uk" ? "Місце" : "Venue"}
               </dt>
               <dd className="text-brand-grey">
-                {locale === "uk"
+                {locale === "fr"
+                  ? (settings.animaCreditVenueFr || d.premiere.venue.fr)
+                  : locale === "uk"
                   ? (settings.animaCreditVenueUk || d.premiere.venue.uk)
                   : (settings.animaCreditVenueEn || d.premiere.venue.en)}
               </dd>
@@ -147,7 +159,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       {/* ===== 2. SYNOPSIS ===== */}
       <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          {locale === "uk" ? "Синопсис" : "Synopsis"}
+          {locale === "fr" ? "Synopsis" : locale === "uk" ? "Синопсис" : "Synopsis"}
         </div>
         <p className="text-[17px] text-[#bbb] leading-[1.8] mb-8">
           {work.description[locale]}
@@ -155,7 +167,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         {/* Blockquote — editable in Notion Site Settings DB → key "anima_blockquote" */}
         <blockquote className="border-l-2 border-brand-red pl-6">
           <p className="text-[15px] text-brand-grey italic leading-[1.7]">
-            {locale === "uk" ? settings.animaBlockquoteUk : settings.animaBlockquoteEn}
+            {locale === "fr" ? settings.animaBlockquoteFr : locale === "uk" ? settings.animaBlockquoteUk : settings.animaBlockquoteEn}
           </p>
         </blockquote>
       </section>
@@ -166,7 +178,9 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         {/* All texts editable in Notion Site Settings → keys: anima_scenes_* */}
         <div className="mb-16">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-            {locale === "uk"
+            {locale === "fr"
+              ? (settings.animaScenesLabelFr || "LIVRET · ARCANES")
+              : locale === "uk"
               ? (settings.animaScenesLabelUk || "ЛІБРЕТО · АРКАНИ")
               : (settings.animaScenesLabelEn || "Libretto · Arcana")}
           </div>
@@ -174,12 +188,16 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             className="text-3xl text-brand-white mb-4"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {locale === "uk"
+            {locale === "fr"
+              ? (settings.animaScenesTitleFr || "7 Arcanes")
+              : locale === "uk"
               ? (settings.animaScenesTitleUk || "7 Арканів")
               : (settings.animaScenesTitleEn || "7 Arcana")}
           </h2>
           <p className="text-[15px] text-brand-grey max-w-[520px] mb-8">
-            {locale === "uk"
+            {locale === "fr"
+              ? (settings.animaScenesDescriptionFr || "Chaque scène correspond à un Arcane majeur du Tarot — une étape de l'ascension spirituelle du Héros.")
+              : locale === "uk"
               ? (settings.animaScenesDescriptionUk || "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя.")
               : (settings.animaScenesDescriptionEn || "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent.")}
           </p>
@@ -194,7 +212,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
               </svg>
-              {locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
+              {locale === "fr" ? "Télécharger le livret" : locale === "uk" ? "Завантажити лібрето" : "Download Libretto"}
             </DownloadButton>
           )}
         </div>
@@ -234,12 +252,12 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                       {scene.arcana}
                     </h3>
                     <p className="text-[12px] text-brand-dark-grey uppercase tracking-[2px]">
-                      {locale === "uk" ? scene.arcanaUk : scene.arcana}
+                      {locale === "fr" ? scene.arcanaFr : locale === "uk" ? scene.arcanaUk : scene.arcana}
                     </p>
                   </div>
                 </div>
                 <p className="text-[15px] text-brand-grey leading-[1.7]">
-                  {locale === "uk" ? scene.descriptionUk : scene.descriptionEn}
+                  {locale === "fr" ? scene.descriptionFr : locale === "uk" ? scene.descriptionUk : scene.descriptionEn}
                 </p>
               </div>
             </div>
@@ -255,7 +273,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           className="text-3xl text-brand-white mb-12"
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
-          {locale === "uk" ? "Відео" : "Video"}
+          {locale === "fr" ? "Vidéo" : locale === "uk" ? "Відео" : "Video"}
         </h2>
 
         {/* Main showreel */}
@@ -270,7 +288,9 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             />
           </div>
           <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">
-            {locale === "uk"
+            {locale === "fr"
+              ? (settings.animaVideoShowreelFr || d.videos.showreel.title.fr)
+              : locale === "uk"
               ? (settings.animaVideoShowreelUk || d.videos.showreel.title.uk)
               : (settings.animaVideoShowreelEn || d.videos.showreel.title.en)}
           </p>
@@ -289,7 +309,9 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               />
             </div>
             <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">
-              {locale === "uk"
+              {locale === "fr"
+                ? (settings.animaVideoPremiereFr || d.videos.premiere.title.fr)
+                : locale === "uk"
                 ? (settings.animaVideoPremiereUk || d.videos.premiere.title.uk)
                 : (settings.animaVideoPremiereEn || d.videos.premiere.title.en)}
             </p>
@@ -305,7 +327,9 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               />
             </div>
             <p className="text-[14px] font-semibold text-white/80 mt-4 leading-[1.5]">
-              {locale === "uk"
+              {locale === "fr"
+                ? (settings.animaVideoRehearsalFr || d.videos.rehearsal.title.fr)
+                : locale === "uk"
                 ? (settings.animaVideoRehearsalUk || d.videos.rehearsal.title.uk)
                 : (settings.animaVideoRehearsalEn || d.videos.rehearsal.title.en)}
             </p>
@@ -317,7 +341,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       {/* All texts editable in Notion Site Settings → keys: anima_festival_* */}
       <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          {locale === "uk" ? "Фестиваль" : "Festival"}
+          {locale === "fr" ? "Festival" : locale === "uk" ? "Фестиваль" : "Festival"}
         </div>
         <h2
           className="text-3xl text-brand-white mb-4"
@@ -326,16 +350,22 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           {settings.animaFestivalName || d.festival.name}
         </h2>
         <p className="text-lg text-brand-grey mb-2">
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.animaFestivalSubtitleFr || d.festival.fullName.fr)
+            : locale === "uk"
             ? (settings.animaFestivalSubtitleUk || d.festival.fullName.uk)
             : (settings.animaFestivalSubtitleEn || d.festival.fullName.en)}
         </p>
         <p className="text-sm text-brand-dark-grey mb-8">
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.animaFestivalDatesFr || d.festival.dates.fr)
+            : locale === "uk"
             ? (settings.animaFestivalDatesUk || d.festival.dates.uk)
             : (settings.animaFestivalDatesEn || d.festival.dates.en)}
           {" · "}
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.animaFestivalVenueFr || d.festival.venue.fr)
+            : locale === "uk"
             ? (settings.animaFestivalVenueUk || d.festival.venue.uk)
             : (settings.animaFestivalVenueEn || d.festival.venue.en)}
         </p>
@@ -343,12 +373,16 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-10 mb-12 items-start">
           <div className="pt-1">
             <p className="text-[15px] text-[#999] leading-[1.7] mb-6">
-              {locale === "uk"
+              {locale === "fr"
+                ? (settings.animaFestivalDescriptionFr || d.festival.description.fr)
+                : locale === "uk"
                 ? (settings.animaFestivalDescriptionUk || d.festival.description.uk)
                 : (settings.animaFestivalDescriptionEn || d.festival.description.en)}
             </p>
             <p className="text-[15px] text-[#999] leading-[1.7]">
-              {locale === "uk"
+              {locale === "fr"
+                ? (settings.animaFestivalOrganizersFr || d.festival.organizers.fr)
+                : locale === "uk"
                 ? (settings.animaFestivalOrganizersUk || d.festival.organizers.uk)
                 : (settings.animaFestivalOrganizersEn || d.festival.organizers.en)}
             </p>
@@ -358,7 +392,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[#111]">
             <ZoomableImage
               src={d.festival.programImage}
-              alt="KMATOB-FEST 2014 program"
+              alt={locale === "fr" ? "Programme du KMATOB-FEST 2014" : locale === "uk" ? "Програма КМАТОБ-ФЕСТ 2014" : "KMATOB-FEST 2014 program"}
               fill
               className="object-contain"
               fit="contain"
@@ -378,12 +412,16 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           className="text-3xl text-brand-white mb-8"
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.animaLitsoTitleFr || "De LITSO à Newspaper Birds")
+            : locale === "uk"
             ? (settings.animaLitsoTitleUk || "Від LITSO до Newspaper Birds")
             : (settings.animaLitsoTitleEn || "From LITSO to Newspaper Birds")}
         </h2>
         <p className="text-[15px] text-[#999] leading-[1.8]">
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.animaLitsoBodyFr || d.litsoCompany.fr)
+            : locale === "uk"
             ? (settings.animaLitsoBodyUk || d.litsoCompany.uk)
             : (settings.animaLitsoBodyEn || d.litsoCompany.en)}
         </p>
@@ -401,7 +439,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         return (
           <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
             <div className="mb-8 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-              {locale === "uk" ? "Афіші" : "Posters"}
+              {locale === "fr" ? "Affiches" : locale === "uk" ? "Афіші" : "Posters"}
             </div>
             <div className={`grid gap-4 grid-cols-2 ${posters.length >= 3 ? "md:grid-cols-4" : "md:grid-cols-2"}`}>
               {posters.map((src, i) => (
@@ -429,20 +467,28 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       >
         <div className="max-w-[800px] mx-auto text-center">
           <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ANIMA_ACCENT }}>
-            {locale === "uk" ? "Програмування · Продюсування" : "Programming · Production"}
+            {locale === "fr"
+              ? (settings.animaCtaLabelFr || "Programmation · Production")
+              : locale === "uk"
+              ? (settings.animaCtaLabelUk || "Програмування · Продюсування")
+              : (settings.animaCtaLabelEn || "Programming · Production")}
           </div>
           <h2
             className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {locale === "uk"
-              ? "Відкрита до міжнародної сцени"
-              : "Available for International Stages"}
+            {locale === "fr"
+              ? (settings.animaCtaTitleFr || "Disponible pour les scènes internationales")
+              : locale === "uk"
+              ? (settings.animaCtaTitleUk || "Відкрита до міжнародної сцени")
+              : (settings.animaCtaTitleEn || "Available for International Stages")}
           </h2>
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[540px] mx-auto">
-            {locale === "uk"
-              ? "ANIMA доступна для міжнародних гастролей, фестивального програмування та копродукції. Запрошуємо продюсерів, програмних директорів та організаторів фестивалів до діалогу."
-              : "ANIMA is available for international touring, festival programming and co-production. Producers, programming directors and festival organisers are welcome to begin a conversation."}
+            {locale === "fr"
+              ? (settings.animaCtaTextFr || "ANIMA est disponible pour des tournées internationales, une programmation en festival et des coproductions. Producteurs, directeurs de programmation et organisateurs de festivals sont invités à entamer un dialogue.")
+              : locale === "uk"
+              ? (settings.animaCtaTextUk || "ANIMA доступна для міжнародних гастролей, фестивального програмування та копродукції. Запрошуємо продюсерів, програмних директорів та організаторів фестивалів до діалогу.")
+              : (settings.animaCtaTextEn || "ANIMA is available for international touring, festival programming and co-production. Producers, programming directors and festival organisers are welcome to begin a conversation.")}
           </p>
           <a
             href="https://wa.me/19402371274"
@@ -452,7 +498,11 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             style={{ backgroundColor: ANIMA_ACCENT, fontFamily: "NAMU-1400, serif" }}
           >
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
-              {locale === "uk" ? "Написати хореографу" : "Contact Choreographer"}
+              {locale === "fr"
+                ? (settings.animaCtaBtnFr || "Contacter le chorégraphe")
+                : locale === "uk"
+                ? (settings.animaCtaBtnUk || "Написати хореографу")
+                : (settings.animaCtaBtnEn || "Contact Choreographer")}
             </span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
               className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
@@ -477,9 +527,9 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   const MOTHER_IMG = settings.firebirdImage;
   const firebirdYear = settings.firebirdYear || "2026";
   const firebirdMusicLabel = settings.firebirdMusic || "Igor Stravinsky";
-  const firebirdTitle = locale === "uk" ? (settings.firebirdTitleUk || "Жар-Птиця") : (settings.firebirdTitleEn || "Firebird");
-  const firebirdSubtitle = locale === "uk" ? (settings.firebirdSubtitleUk || work.subtitle.uk) : (settings.firebirdSubtitleEn || work.subtitle.en);
-  const firebirdDesc = locale === "uk" ? (settings.firebirdDescriptionUk || work.description.uk) : (settings.firebirdDescriptionEn || work.description.en);
+  const firebirdTitle = locale === "fr" ? (settings.firebirdTitleFr || "L'Oiseau de feu") : locale === "uk" ? (settings.firebirdTitleUk || "Жар-Птиця") : (settings.firebirdTitleEn || "Firebird");
+  const firebirdSubtitle = locale === "fr" ? (settings.firebirdSubtitleFr || work.subtitle.fr) : locale === "uk" ? (settings.firebirdSubtitleUk || work.subtitle.uk) : (settings.firebirdSubtitleEn || work.subtitle.en);
+  const firebirdDesc = locale === "fr" ? (settings.firebirdDescriptionFr || work.description.fr) : locale === "uk" ? (settings.firebirdDescriptionUk || work.description.uk) : (settings.firebirdDescriptionEn || work.description.en);
 
   // FIREBIRD palette — ultramarine blue only (matching ICARE / Stravinsky era)
   const FB_BG   = "#010508";   // near-black, cold indigo-night
@@ -509,7 +559,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
           <div className="relative aspect-[3/4] rounded-lg overflow-hidden" style={{ background: "#020610" }}>
             <Image
               src={MOTHER_IMG}
-              alt={locale === "uk" ? "М. Реріх — Мати Світу, 1924" : "N. Roerich — Mother of the World, 1924"}
+              alt={locale === "fr" ? "N. Roerich — La Mère du Monde, 1924" : locale === "uk" ? "М. Реріх — Мати Світу, 1924" : "N. Roerich — Mother of the World, 1924"}
               fill
               className="object-cover"
               priority
@@ -518,7 +568,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             {/* image caption bottom — editable via Notion Site Settings → firebird_caption */}
             <p className="absolute bottom-4 left-5 text-[10px] text-white/40 tracking-[1px]">
-              {locale === "uk" ? settings.firebirdCaptionUk : settings.firebirdCaptionEn}
+              {locale === "fr" ? settings.firebirdCaptionFr : locale === "uk" ? settings.firebirdCaptionUk : settings.firebirdCaptionEn}
             </p>
           </div>
 
@@ -557,7 +607,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
                 className="text-[13px] tracking-[4px] uppercase font-semibold"
                 style={{ fontFamily: "NAMU-1400, serif" }}
               >
-                {locale === "uk" ? settings.firebirdBtnUk : settings.firebirdBtnEn}
+                {locale === "fr" ? settings.firebirdBtnFr : locale === "uk" ? settings.firebirdBtnUk : settings.firebirdBtnEn}
               </span>
               <svg
                 width="20"
@@ -579,19 +629,19 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
       {settings.firebirdRefVideoId && (
         <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
           <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: FB_BLUE }}>
-            {locale === "uk" ? settings.firebirdRefLabelUk : settings.firebirdRefLabelEn}
+            {locale === "fr" ? settings.firebirdRefLabelFr : locale === "uk" ? settings.firebirdRefLabelUk : settings.firebirdRefLabelEn}
           </div>
           <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
             <iframe
               src={`https://www.youtube.com/embed/${settings.firebirdRefVideoId}`}
-              title={locale === "uk" ? settings.firebirdRefTitleUk : settings.firebirdRefTitleEn}
+              title={locale === "fr" ? settings.firebirdRefTitleFr : locale === "uk" ? settings.firebirdRefTitleUk : settings.firebirdRefTitleEn}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full"
             />
           </div>
           <p className="text-[13px] text-white/40 mt-4 leading-[1.5]">
-            {locale === "uk" ? settings.firebirdRefTitleUk : settings.firebirdRefTitleEn}
+            {locale === "fr" ? settings.firebirdRefTitleFr : locale === "uk" ? settings.firebirdRefTitleUk : settings.firebirdRefTitleEn}
           </p>
         </section>
       )}
@@ -614,6 +664,7 @@ async function IcarePage({
 }) {
   const lang = locale;
   const uk = locale === "uk";
+  const fr = locale === "fr";
   const settings = await getSiteSettings();
 
   // ICARE brand palette
@@ -717,7 +768,7 @@ async function IcarePage({
               <div className="flex items-center gap-3 mb-6">
                 <span className="inline-block w-2 h-2 rounded-full flex-none" style={{ backgroundColor: RED }} />
                 <span className="text-[11px] tracking-[5px] uppercase" style={{ color: OCHRE }}>
-                  {uk ? settings.icareHeroLabelUk : settings.icareHeroLabelEn}
+                  {fr ? settings.icareHeroLabelFr : uk ? settings.icareHeroLabelUk : settings.icareHeroLabelEn}
                 </span>
               </div>
 
@@ -730,26 +781,26 @@ async function IcarePage({
               </h1>
 
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
-                {uk ? settings.icareHeroSubtitleUk : settings.icareHeroSubtitleEn}
+                {fr ? settings.icareHeroSubtitleFr : uk ? settings.icareHeroSubtitleUk : settings.icareHeroSubtitleEn}
               </p>
               <p className="text-[15px] text-white/65 mb-10 leading-[1.7] max-w-[460px]">
-                {uk ? settings.icareHeroTaglineUk : settings.icareHeroTaglineEn}
+                {fr ? settings.icareHeroTaglineFr : uk ? settings.icareHeroTaglineUk : settings.icareHeroTaglineEn}
               </p>
 
               {/* Spec chips */}
               <div className="flex flex-wrap gap-2 mb-10">
                 {([
-                  { en: "27 min",          uk: "27 хвилин" },
-                  { en: "One act",         uk: "Одна дія" },
-                  { en: "Ensemble of Five",uk: "Ensemble of Five" },
-                  { en: "Chamber music",   uk: "Камерна музика" },
-                ] as { en: string; uk: string }[]).map((chip) => (
+                  { en: "27 min",          uk: "27 хвилин",       fr: "27 min" },
+                  { en: "One act",         uk: "Одна дія",        fr: "Un acte" },
+                  { en: "Ensemble of Five",uk: "Ensemble of Five",fr: "Ensemble de cinq" },
+                  { en: "Chamber music",   uk: "Камерна музика",  fr: "Musique de chambre" },
+                ] as { en: string; uk: string; fr: string }[]).map((chip) => (
                   <span
                     key={chip.en}
                     className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
                     style={{ border: `1px solid ${ULTRA}55`, color: "#777" }}
                   >
-                    {uk ? chip.uk : chip.en}
+                    {fr ? chip.fr : uk ? chip.uk : chip.en}
                   </span>
                 ))}
               </div>
@@ -763,7 +814,7 @@ async function IcarePage({
                 style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
               >
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
-                  {uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
+                  {fr ? settings.icareCtaBtnFr : uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
                 </span>
                 <svg
                   width="18" height="18" viewBox="0 0 24 24"
@@ -782,22 +833,22 @@ async function IcarePage({
       <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {uk ? "Нездійснена місія" : "The Unfinished Mission"}
+            {fr ? "La Mission inaccomplie" : uk ? "Нездійснена місія" : "The Unfinished Mission"}
           </div>
           <h2
             className="text-[clamp(28px,4vw,52px)] text-white mb-12 max-w-[720px]"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {uk ? settings.icareMissionTitleUk : settings.icareMissionTitleEn}
+            {fr ? settings.icareMissionTitleFr : uk ? settings.icareMissionTitleUk : settings.icareMissionTitleEn}
           </h2>
 
           {/* 3-column timeline */}
           <div className="grid grid-cols-1 md:grid-cols-3 mb-16">
             {([
-              { year: "1932", accent: ULTRA,         en: settings.icareMission1932En, uk: settings.icareMission1932Uk },
-              { year: "93",   accent: `${ULTRA}44`,  en: settings.icareMission93En,   uk: settings.icareMission93Uk   },
-              { year: "2026", accent: RED,            en: settings.icareMission2026En, uk: settings.icareMission2026Uk },
-            ] as { year: string; accent: string; en: string; uk: string }[]).map((card) => (
+              { year: "1932", accent: ULTRA,         en: settings.icareMission1932En, uk: settings.icareMission1932Uk, fr: settings.icareMission1932Fr },
+              { year: "93",   accent: `${ULTRA}44`,  en: settings.icareMission93En,   uk: settings.icareMission93Uk,   fr: settings.icareMission93Fr   },
+              { year: "2026", accent: RED,            en: settings.icareMission2026En, uk: settings.icareMission2026Uk, fr: settings.icareMission2026Fr },
+            ] as { year: string; accent: string; en: string; uk: string; fr: string }[]).map((card) => (
               <div
                 key={card.year}
                 className="pl-8 py-8 pr-6 border-l-2 border-b md:border-b-0 border-[#1a1a1a]"
@@ -810,7 +861,7 @@ async function IcarePage({
                   {card.year}
                 </div>
                 <p className="text-[14px] text-white/70 leading-[1.7]">
-                  {uk ? card.uk : card.en}
+                  {fr ? card.fr : uk ? card.uk : card.en}
                 </p>
               </div>
             ))}
@@ -822,10 +873,10 @@ async function IcarePage({
               className="text-[clamp(24px,3.5vw,52px)] text-white/85 italic leading-[1.3] mb-6 max-w-[900px] mx-auto"
               style={{ fontFamily: "NAMU-Pro, sans-serif" }}
             >
-              &ldquo;{uk ? settings.icareQuoteUk : settings.icareQuoteEn}&rdquo;
+              &ldquo;{fr ? settings.icareQuoteFr : uk ? settings.icareQuoteUk : settings.icareQuoteEn}&rdquo;
             </p>
             <p className="text-[11px] tracking-[4px] uppercase text-white/45">
-              — {uk ? settings.icareQuoteCiteUk : settings.icareQuoteCiteEn}
+              — {fr ? settings.icareQuoteCiteFr : uk ? settings.icareQuoteCiteUk : settings.icareQuoteCiteEn}
             </p>
           </div>
         </div>
@@ -835,24 +886,24 @@ async function IcarePage({
       <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {uk ? "Концепція" : "Concept"}
+            {fr ? "Concept" : uk ? "Концепція" : "Concept"}
           </div>
           <h2
             className="text-[clamp(28px,4vw,52px)] text-white mb-3"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {uk ? settings.icareConceptTitleUk : settings.icareConceptTitleEn}
+            {fr ? settings.icareConceptTitleFr : uk ? settings.icareConceptTitleUk : settings.icareConceptTitleEn}
           </h2>
           <p className="text-[15px] text-white/65 mb-12 max-w-[600px] leading-[1.7]">
-            {uk ? settings.icareConceptDescUk : settings.icareConceptDescEn}
+            {fr ? settings.icareConceptDescFr : uk ? settings.icareConceptDescUk : settings.icareConceptDescEn}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {([
-              { num: "I",   en: settings.icarePillar1TitleEn, uk: settings.icarePillar1TitleUk, descEn: settings.icarePillar1DescEn, descUk: settings.icarePillar1DescUk },
-              { num: "II",  en: settings.icarePillar2TitleEn, uk: settings.icarePillar2TitleUk, descEn: settings.icarePillar2DescEn, descUk: settings.icarePillar2DescUk },
-              { num: "III", en: settings.icarePillar3TitleEn, uk: settings.icarePillar3TitleUk, descEn: settings.icarePillar3DescEn, descUk: settings.icarePillar3DescUk },
-            ] as { num: string; en: string; uk: string; descEn: string; descUk: string }[]).map((pillar) => (
+              { num: "I",   en: settings.icarePillar1TitleEn, uk: settings.icarePillar1TitleUk, fr: settings.icarePillar1TitleFr, descEn: settings.icarePillar1DescEn, descUk: settings.icarePillar1DescUk, descFr: settings.icarePillar1DescFr },
+              { num: "II",  en: settings.icarePillar2TitleEn, uk: settings.icarePillar2TitleUk, fr: settings.icarePillar2TitleFr, descEn: settings.icarePillar2DescEn, descUk: settings.icarePillar2DescUk, descFr: settings.icarePillar2DescFr },
+              { num: "III", en: settings.icarePillar3TitleEn, uk: settings.icarePillar3TitleUk, fr: settings.icarePillar3TitleFr, descEn: settings.icarePillar3DescEn, descUk: settings.icarePillar3DescUk, descFr: settings.icarePillar3DescFr },
+            ] as { num: string; en: string; uk: string; fr: string; descEn: string; descUk: string; descFr: string }[]).map((pillar) => (
               <div
                 key={pillar.num}
                 className="p-8"
@@ -868,10 +919,10 @@ async function IcarePage({
                   className="text-[17px] text-white mb-4"
                   style={{ fontFamily: "NAMU-1400, serif" }}
                 >
-                  {uk ? pillar.uk : pillar.en}
+                  {fr ? pillar.fr : uk ? pillar.uk : pillar.en}
                 </h3>
                 <p className="text-[14px] text-white/70 leading-[1.7]">
-                  {uk ? pillar.descUk : pillar.descEn}
+                  {fr ? pillar.descFr : uk ? pillar.descUk : pillar.descEn}
                 </p>
               </div>
             ))}
@@ -883,7 +934,7 @@ async function IcarePage({
       <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {uk ? "Партитура" : "The Score"}
+            {fr ? "La Partition" : uk ? "Партитура" : "The Score"}
           </div>
           <h2
             className="text-[clamp(28px,4vw,52px)] text-white mb-4"
@@ -892,10 +943,10 @@ async function IcarePage({
             Le Vol d&apos;Icare
           </h2>
           <p className="text-[15px] text-white/70 mb-2 leading-[1.6]">
-            {uk ? settings.icareScoreSubtitleUk : settings.icareScoreSubtitleEn}
+            {fr ? settings.icareScoreSubtitleFr : uk ? settings.icareScoreSubtitleUk : settings.icareScoreSubtitleEn}
           </p>
           <p className="text-[15px] text-white/65 mb-10 max-w-[580px] leading-[1.7]">
-            {uk ? settings.icareScoreDescUk : settings.icareScoreDescEn}
+            {fr ? settings.icareScoreDescFr : uk ? settings.icareScoreDescUk : settings.icareScoreDescEn}
           </p>
 
           {scoreVideoId ? (
@@ -904,7 +955,9 @@ async function IcarePage({
                 <iframe
                   src={`https://www.youtube.com/embed/${scoreVideoId}`}
                   title={
-                    uk
+                    fr
+                      ? "Ensemble de cinq — Igor Markevitch, Le Vol d'Icare"
+                      : uk
                       ? "Ensemble of Five — Ігор Маркевич, Політ Ікара"
                       : "Ensemble of Five — Igor Markevich, Le Vol d'Icare"
                   }
@@ -924,7 +977,7 @@ async function IcarePage({
                   className="text-[10px] tracking-[4px] uppercase mb-4"
                   style={{ color: `${ULTRA}80` }}
                 >
-                  {uk ? "Відео незабаром" : "Score recording forthcoming"}
+                  {fr ? "Enregistrement à venir" : uk ? "Відео незабаром" : "Score recording forthcoming"}
                 </p>
                 <p
                   className="text-[28px] text-white/10"
@@ -945,16 +998,16 @@ async function IcarePage({
       >
         <div className="max-w-[800px] mx-auto text-center">
           <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {uk ? "Бронювання" : "Booking"}
+            {fr ? "Réservation" : uk ? "Бронювання" : "Booking"}
           </div>
           <h2
             className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            {uk ? settings.icareCtaTitleUk : settings.icareCtaTitleEn}
+            {fr ? settings.icareCtaTitleFr : uk ? settings.icareCtaTitleUk : settings.icareCtaTitleEn}
           </h2>
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
-            {uk ? settings.icareCtaTextUk : settings.icareCtaTextEn}
+            {fr ? settings.icareCtaTextFr : uk ? settings.icareCtaTextUk : settings.icareCtaTextEn}
           </p>
           <a
             href="https://wa.me/19402371274"
@@ -964,7 +1017,7 @@ async function IcarePage({
             style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
           >
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
-              {uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
+              {fr ? settings.icareCtaBtnFr : uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
             </span>
             <svg
               width="20" height="20" viewBox="0 0 24 24"
@@ -997,6 +1050,7 @@ async function MercyPage({
 }) {
   const lang = locale;
   const uk = locale === "uk";
+  const fr = locale === "fr";
   const settings = await getSiteSettings();
 
   const ROSE   = "#C4001E";   // deep crimson — Max Richter Voices album palette
@@ -1050,7 +1104,7 @@ async function MercyPage({
               <div className="flex items-center gap-3 mb-6">
                 <span className="inline-block w-2 h-2 rounded-full flex-none" style={{ backgroundColor: ROSE }} />
                 <span className="text-[11px] tracking-[5px] uppercase" style={{ color: BLUSH }}>
-                  {uk ? settings.mercyHeroLabelUk : settings.mercyHeroLabelEn}
+                  {fr ? settings.mercyHeroLabelFr : uk ? settings.mercyHeroLabelUk : settings.mercyHeroLabelEn}
                 </span>
               </div>
 
@@ -1060,23 +1114,23 @@ async function MercyPage({
               </h1>
 
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
-                {uk ? settings.mercyHeroSubtitleUk : settings.mercyHeroSubtitleEn}
+                {fr ? settings.mercyHeroSubtitleFr : uk ? settings.mercyHeroSubtitleUk : settings.mercyHeroSubtitleEn}
               </p>
               <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
-                {uk ? settings.mercyHeroTaglineUk : settings.mercyHeroTaglineEn}
+                {fr ? settings.mercyHeroTaglineFr : uk ? settings.mercyHeroTaglineUk : settings.mercyHeroTaglineEn}
               </p>
 
               {/* Chips — editable in Notion Mercy DB: mercy_chip_1 … mercy_chip_4 */}
               <div className="flex flex-wrap gap-2 mb-10">
                 {([
-                  { en: settings.mercyChip1En, uk: settings.mercyChip1Uk },
-                  { en: settings.mercyChip2En, uk: settings.mercyChip2Uk },
-                  { en: settings.mercyChip3En, uk: settings.mercyChip3Uk },
-                  { en: settings.mercyChip4En, uk: settings.mercyChip4Uk },
-                ] as { en: string; uk: string }[]).filter(c => c.en || c.uk).map((chip, i) => (
+                  { en: settings.mercyChip1En, uk: settings.mercyChip1Uk, fr: settings.mercyChip1Fr },
+                  { en: settings.mercyChip2En, uk: settings.mercyChip2Uk, fr: settings.mercyChip2Fr },
+                  { en: settings.mercyChip3En, uk: settings.mercyChip3Uk, fr: settings.mercyChip3Fr },
+                  { en: settings.mercyChip4En, uk: settings.mercyChip4Uk, fr: settings.mercyChip4Fr },
+                ] as { en: string; uk: string; fr: string }[]).filter(c => c.en || c.uk).map((chip, i) => (
                   <span key={i} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
                     style={{ border: `1px solid ${ROSE}55`, color: "#777" }}>
-                    {uk ? chip.uk : chip.en}
+                    {fr ? chip.fr : uk ? chip.uk : chip.en}
                   </span>
                 ))}
               </div>
@@ -1085,7 +1139,7 @@ async function MercyPage({
                 className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
                 style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
-                  {uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
+                  {fr ? settings.mercyCtaBtnFr : uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
                 </span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
                   className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
@@ -1102,19 +1156,19 @@ async function MercyPage({
         <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
           <div className="max-w-[1200px] mx-auto">
             <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
-              {uk ? "Відео" : "Video"}
+              {fr ? "Vidéo" : uk ? "Відео" : "Video"}
             </div>
             <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
               <iframe
                 src={buildVideoSrc(settings.mercyVideo1Id)}
-                title={uk ? settings.mercyVideo1Uk : settings.mercyVideo1En}
+                title={fr ? settings.mercyVideo1Fr : uk ? settings.mercyVideo1Uk : settings.mercyVideo1En}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                 allowFullScreen className="w-full h-full"
               />
             </div>
             {(settings.mercyVideo1En || settings.mercyVideo1Uk) && (
               <p className="text-[13px] text-white/35 mt-4 leading-[1.5]">
-                {uk ? settings.mercyVideo1Uk : settings.mercyVideo1En}
+                {fr ? settings.mercyVideo1Fr : uk ? settings.mercyVideo1Uk : settings.mercyVideo1En}
               </p>
             )}
           </div>
@@ -1125,14 +1179,14 @@ async function MercyPage({
       <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
         <div className="max-w-[800px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
-            {uk ? "Передісторія" : "The Story"}
+            {fr ? "L'Histoire" : uk ? "Передісторія" : "The Story"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1] break-words"
             style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.mercyIntroTitleUk : settings.mercyIntroTitleEn}
+            {fr ? settings.mercyIntroTitleFr : uk ? settings.mercyIntroTitleUk : settings.mercyIntroTitleEn}
           </h2>
           <p className="text-[16px] text-white/55 leading-[1.9] break-words overflow-wrap-anywhere">
-            {uk ? settings.mercyIntroBodyUk : settings.mercyIntroBodyEn}
+            {fr ? settings.mercyIntroBodyFr : uk ? settings.mercyIntroBodyUk : settings.mercyIntroBodyEn}
           </p>
         </div>
       </section>
@@ -1142,14 +1196,14 @@ async function MercyPage({
         style={{ background: `${ROSE}06` }}>
         <div className="max-w-[800px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
-            {uk ? "Контекст" : "Context"}
+            {fr ? "Contexte" : uk ? "Контекст" : "Context"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1] break-words"
             style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.mercyContextTitleUk : settings.mercyContextTitleEn}
+            {fr ? settings.mercyContextTitleFr : uk ? settings.mercyContextTitleUk : settings.mercyContextTitleEn}
           </h2>
           <p className="text-[16px] text-white/55 leading-[1.9] break-words">
-            {uk ? settings.mercyContextBodyUk : settings.mercyContextBodyEn}
+            {fr ? settings.mercyContextBodyFr : uk ? settings.mercyContextBodyUk : settings.mercyContextBodyEn}
           </p>
         </div>
       </section>
@@ -1159,20 +1213,20 @@ async function MercyPage({
         style={{ background: `linear-gradient(135deg, #0A0608 0%, ${ROSE}12 100%)` }}>
         <div className="max-w-[800px] mx-auto text-center">
           <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
-            {uk ? "Запит" : "Inquiry"}
+            {fr ? "Demande" : uk ? "Запит" : "Inquiry"}
           </div>
           <h2 className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
             style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.mercyCtaTitleUk : settings.mercyCtaTitleEn}
+            {fr ? settings.mercyCtaTitleFr : uk ? settings.mercyCtaTitleUk : settings.mercyCtaTitleEn}
           </h2>
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
-            {uk ? settings.mercyCtaTextUk : settings.mercyCtaTextEn}
+            {fr ? settings.mercyCtaTextFr : uk ? settings.mercyCtaTextUk : settings.mercyCtaTextEn}
           </p>
           <a href="https://wa.me/19402371274" target="_blank" rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
-              {uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
+              {fr ? settings.mercyCtaBtnFr : uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
             </span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
               className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
@@ -1199,6 +1253,7 @@ async function HumansPage({
 }) {
   const lang = locale;
   const uk = locale === "uk";
+  const fr = locale === "fr";
   const settings = await getSiteSettings();
 
   const INDIGO = "#28186A";   // deep space indigo — Roerich cosmogony
@@ -1246,7 +1301,7 @@ async function HumansPage({
               <div className="flex items-center gap-3 mb-6">
                 <span className="inline-block w-2 h-2 rounded-full flex-none" style={{ backgroundColor: GOLD }} />
                 <span className="text-[11px] tracking-[5px] uppercase" style={{ color: GOLD }}>
-                  {uk ? settings.humansHeroLabelUk : settings.humansHeroLabelEn}
+                  {fr ? settings.humansHeroLabelFr : uk ? settings.humansHeroLabelUk : settings.humansHeroLabelEn}
                 </span>
               </div>
 
@@ -1256,23 +1311,23 @@ async function HumansPage({
               </h1>
 
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
-                {uk ? settings.humansHeroSubtitleUk : settings.humansHeroSubtitleEn}
+                {fr ? settings.humansHeroSubtitleFr : uk ? settings.humansHeroSubtitleUk : settings.humansHeroSubtitleEn}
               </p>
               <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
-                {uk ? settings.humansHeroTaglineUk : settings.humansHeroTaglineEn}
+                {fr ? settings.humansHeroTaglineFr : uk ? settings.humansHeroTaglineUk : settings.humansHeroTaglineEn}
               </p>
 
               {/* Chips — editable in Notion Humans DB: humans_chip_1 … humans_chip_4 */}
               <div className="flex flex-wrap gap-2 mb-10">
                 {([
-                  { en: settings.humansChip1En, uk: settings.humansChip1Uk },
-                  { en: settings.humansChip2En, uk: settings.humansChip2Uk },
-                  { en: settings.humansChip3En, uk: settings.humansChip3Uk },
-                  { en: settings.humansChip4En, uk: settings.humansChip4Uk },
-                ] as { en: string; uk: string }[]).filter(c => c.en || c.uk).map((chip, i) => (
+                  { en: settings.humansChip1En, uk: settings.humansChip1Uk, fr: settings.humansChip1Fr },
+                  { en: settings.humansChip2En, uk: settings.humansChip2Uk, fr: settings.humansChip2Fr },
+                  { en: settings.humansChip3En, uk: settings.humansChip3Uk, fr: settings.humansChip3Fr },
+                  { en: settings.humansChip4En, uk: settings.humansChip4Uk, fr: settings.humansChip4Fr },
+                ] as { en: string; uk: string; fr: string }[]).filter(c => c.en || c.uk).map((chip, i) => (
                   <span key={i} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
                     style={{ border: `1px solid ${VIOLET}55`, color: "#777" }}>
-                    {uk ? chip.uk : chip.en}
+                    {fr ? chip.fr : uk ? chip.uk : chip.en}
                   </span>
                 ))}
               </div>
@@ -1281,7 +1336,7 @@ async function HumansPage({
                 className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
                 style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
-                  {uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
+                  {fr ? settings.humansCtaBtnFr : uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
                 </span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
                   className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
@@ -1298,19 +1353,19 @@ async function HumansPage({
         <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
           <div className="max-w-[1200px] mx-auto">
             <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
-              {uk ? "Відео" : "Video"}
+              {fr ? "Vidéo" : uk ? "Відео" : "Video"}
             </div>
             <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
               <iframe
                 src={`https://www.youtube.com/embed/${settings.humansVideo1Id}`}
-                title={uk ? settings.humansVideo1Uk : settings.humansVideo1En}
+                title={fr ? settings.humansVideo1Fr : uk ? settings.humansVideo1Uk : settings.humansVideo1En}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen className="w-full h-full"
               />
             </div>
             {(settings.humansVideo1En || settings.humansVideo1Uk) && (
               <p className="text-[13px] text-white/35 mt-4 leading-[1.5]">
-                {uk ? settings.humansVideo1Uk : settings.humansVideo1En}
+                {fr ? settings.humansVideo1Fr : uk ? settings.humansVideo1Uk : settings.humansVideo1En}
               </p>
             )}
           </div>
@@ -1321,14 +1376,14 @@ async function HumansPage({
       <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
         <div className="max-w-[800px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
-            {uk ? "Концепція" : "Concept"}
+            {fr ? "Concept" : uk ? "Концепція" : "Concept"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
             style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.humansIntroTitleUk : settings.humansIntroTitleEn}
+            {fr ? settings.humansIntroTitleFr : uk ? settings.humansIntroTitleUk : settings.humansIntroTitleEn}
           </h2>
           <p className="text-[16px] text-white/50 leading-[1.9]">
-            {uk ? settings.humansIntroBodyUk : settings.humansIntroBodyEn}
+            {fr ? settings.humansIntroBodyFr : uk ? settings.humansIntroBodyUk : settings.humansIntroBodyEn}
           </p>
         </div>
       </section>
@@ -1338,14 +1393,14 @@ async function HumansPage({
         style={{ background: `${INDIGO}08` }}>
         <div className="max-w-[800px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
-            {uk ? "Міф" : "The Myth"}
+            {fr ? "Le Mythe" : uk ? "Міф" : "The Myth"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
             style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.humansMythTitleUk : settings.humansMythTitleEn}
+            {fr ? settings.humansMythTitleFr : uk ? settings.humansMythTitleUk : settings.humansMythTitleEn}
           </h2>
           <p className="text-[16px] text-white/50 leading-[1.9]">
-            {uk ? settings.humansMythBodyUk : settings.humansMythBodyEn}
+            {fr ? settings.humansMythBodyFr : uk ? settings.humansMythBodyUk : settings.humansMythBodyEn}
           </p>
         </div>
       </section>
@@ -1355,20 +1410,20 @@ async function HumansPage({
         style={{ background: `linear-gradient(135deg, #080612 0%, ${INDIGO}22 100%)` }}>
         <div className="max-w-[800px] mx-auto text-center">
           <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
-            {uk ? "Запит" : "Inquiry"}
+            {fr ? "Demande" : uk ? "Запит" : "Inquiry"}
           </div>
           <h2 className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
             style={{ fontFamily: "NAMU-1400, serif" }}>
-            {uk ? settings.humansCtaTitleUk : settings.humansCtaTitleEn}
+            {fr ? settings.humansCtaTitleFr : uk ? settings.humansCtaTitleUk : settings.humansCtaTitleEn}
           </h2>
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
-            {uk ? settings.humansCtaTextUk : settings.humansCtaTextEn}
+            {fr ? settings.humansCtaTextFr : uk ? settings.humansCtaTextUk : settings.humansCtaTextEn}
           </p>
           <a href="https://wa.me/19402371274" target="_blank" rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
-              {uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
+              {fr ? settings.humansCtaBtnFr : uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
             </span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
               className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
@@ -1397,39 +1452,40 @@ async function GenericWorkPage({
   const settings = await getSiteSettings();
   const s = work.slug;
   const uk = locale === "uk";
+  const fr = locale === "fr";
 
   // Returns Notion-overridden caption for a video at position `idx`, falling back to works.ts title
   const getVideoCaption = (idx: number): string => {
     const v = work.videos?.[idx];
     if (!v) return "";
-    type Cap = { en: string; uk: string };
+    type Cap = { en: string; uk: string; fr: string };
     const caps: Record<string, Cap[]> = {
-      "the-ants":  [{ en: settings.theAntsVideo1En,  uk: settings.theAntsVideo1Uk  },
-                    { en: settings.theAntsVideo2En,  uk: settings.theAntsVideo2Uk  }],
-      "mozart25":  [{ en: settings.mozart25Video1En, uk: settings.mozart25Video1Uk },
-                    { en: settings.mozart25Video2En, uk: settings.mozart25Video2Uk }],
-      "adios":     [{ en: settings.adiosVideo1En,    uk: settings.adiosVideo1Uk    },
-                    { en: settings.adiosVideo2En,    uk: settings.adiosVideo2Uk    }],
-      "carmen":    [{ en: settings.carmenVideo1En,   uk: settings.carmenVideo1Uk   }],
+      "the-ants":  [{ en: settings.theAntsVideo1En,  uk: settings.theAntsVideo1Uk,  fr: settings.theAntsVideo1Fr  },
+                    { en: settings.theAntsVideo2En,  uk: settings.theAntsVideo2Uk,  fr: settings.theAntsVideo2Fr  }],
+      "mozart25":  [{ en: settings.mozart25Video1En, uk: settings.mozart25Video1Uk, fr: settings.mozart25Video1Fr },
+                    { en: settings.mozart25Video2En, uk: settings.mozart25Video2Uk, fr: settings.mozart25Video2Fr }],
+      "adios":     [{ en: settings.adiosVideo1En,    uk: settings.adiosVideo1Uk,    fr: settings.adiosVideo1Fr    },
+                    { en: settings.adiosVideo2En,    uk: settings.adiosVideo2Uk,    fr: settings.adiosVideo2Fr    }],
+      "carmen":    [{ en: settings.carmenVideo1En,   uk: settings.carmenVideo1Uk,   fr: settings.carmenVideo1Fr   }],
     };
     const cap = caps[s]?.[idx];
     if (!cap) return v.title[locale];
-    return (uk ? cap.uk : cap.en) || v.title[locale];
+    return (fr ? cap.fr : uk ? cap.uk : cap.en) || v.title[locale];
   };
 
   // Per-work Notion overrides — lookup map covers all 4 fully-editable works
-  type WorkOv = { titleEn: string; titleUk: string; subtitleEn: string; subtitleUk: string; descEn: string; descUk: string; year: string; music: string };
+  type WorkOv = { titleEn: string; titleUk: string; titleFr: string; subtitleEn: string; subtitleUk: string; subtitleFr: string; descEn: string; descUk: string; descFr: string; year: string; music: string };
   const workOverrides: Record<string, WorkOv> = {
-    "the-ants": { titleEn: settings.theAntsTitleEn,   titleUk: settings.theAntsTitleUk,   subtitleEn: settings.theAntsSubtitleEn,   subtitleUk: settings.theAntsSubtitleUk,   descEn: settings.theAntsDescriptionEn,   descUk: settings.theAntsDescriptionUk,   year: settings.theAntsYear,   music: settings.theAntsMusic },
-    "mozart25": { titleEn: settings.mozart25TitleEn,  titleUk: settings.mozart25TitleUk,  subtitleEn: settings.mozart25SubtitleEn,  subtitleUk: settings.mozart25SubtitleUk,  descEn: settings.mozart25DescriptionEn,  descUk: settings.mozart25DescriptionUk,  year: settings.mozart25Year,  music: settings.mozart25Music },
-    "adios":    { titleEn: settings.adiosTitleEn,     titleUk: settings.adiosTitleUk,     subtitleEn: settings.adiosSubtitleEn,     subtitleUk: settings.adiosSubtitleUk,     descEn: settings.adiosDescriptionEn,     descUk: settings.adiosDescriptionUk,     year: settings.adiosYear,     music: settings.adiosMusic },
-    "carmen":   { titleEn: settings.carmenTitleEn,    titleUk: settings.carmenTitleUk,    subtitleEn: settings.carmenSubtitleEn,    subtitleUk: settings.carmenSubtitleUk,    descEn: settings.carmenDescriptionEn,    descUk: settings.carmenDescriptionUk,    year: settings.carmenYear,    music: settings.carmenMusic },
+    "the-ants": { titleEn: settings.theAntsTitleEn,   titleUk: settings.theAntsTitleUk,   titleFr: settings.theAntsTitleFr,   subtitleEn: settings.theAntsSubtitleEn,   subtitleUk: settings.theAntsSubtitleUk,   subtitleFr: settings.theAntsSubtitleFr,   descEn: settings.theAntsDescriptionEn,   descUk: settings.theAntsDescriptionUk,   descFr: settings.theAntsDescriptionFr,   year: settings.theAntsYear,   music: settings.theAntsMusic },
+    "mozart25": { titleEn: settings.mozart25TitleEn,  titleUk: settings.mozart25TitleUk,  titleFr: settings.mozart25TitleFr,  subtitleEn: settings.mozart25SubtitleEn,  subtitleUk: settings.mozart25SubtitleUk,  subtitleFr: settings.mozart25SubtitleFr,  descEn: settings.mozart25DescriptionEn,  descUk: settings.mozart25DescriptionUk,  descFr: settings.mozart25DescriptionFr,  year: settings.mozart25Year,  music: settings.mozart25Music },
+    "adios":    { titleEn: settings.adiosTitleEn,     titleUk: settings.adiosTitleUk,     titleFr: settings.adiosTitleFr,     subtitleEn: settings.adiosSubtitleEn,     subtitleUk: settings.adiosSubtitleUk,     subtitleFr: settings.adiosSubtitleFr,     descEn: settings.adiosDescriptionEn,     descUk: settings.adiosDescriptionUk,     descFr: settings.adiosDescriptionFr,     year: settings.adiosYear,     music: settings.adiosMusic },
+    "carmen":   { titleEn: settings.carmenTitleEn,    titleUk: settings.carmenTitleUk,    titleFr: settings.carmenTitleFr,    subtitleEn: settings.carmenSubtitleEn,    subtitleUk: settings.carmenSubtitleUk,    subtitleFr: settings.carmenSubtitleFr,    descEn: settings.carmenDescriptionEn,    descUk: settings.carmenDescriptionUk,    descFr: settings.carmenDescriptionFr,    year: settings.carmenYear,    music: settings.carmenMusic },
   };
   const ov = workOverrides[s];
 
-  const displayTitle       = (uk ? ov?.titleUk     : ov?.titleEn)     || work.title[locale];
-  const displaySubtitle    = (uk ? ov?.subtitleUk  : ov?.subtitleEn)  || work.subtitle[locale];
-  const displayDescription = (uk ? ov?.descUk      : ov?.descEn)      || work.description[locale];
+  const displayTitle       = (fr ? ov?.titleFr : uk ? ov?.titleUk     : ov?.titleEn)     || work.title[locale];
+  const displaySubtitle    = (fr ? ov?.subtitleFr : uk ? ov?.subtitleUk  : ov?.subtitleEn)  || work.subtitle[locale];
+  const displayDescription = (fr ? ov?.descFr : uk ? ov?.descUk      : ov?.descEn)      || work.description[locale];
   const displayYear        = ov?.year  || work.year;
   const displayMusic       = ov?.music || work.music;
 
@@ -1502,7 +1558,7 @@ async function GenericWorkPage({
       {work.videos && work.videos.length > 0 ? (
         <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: theme.accent }}>
-            {locale === "uk" ? "Відео" : "Video"}
+            {fr ? "Vidéo" : locale === "uk" ? "Відео" : "Video"}
           </div>
 
           {/* Single video + gallery photos side by side (e.g. Carmen) */}
@@ -1563,13 +1619,15 @@ async function GenericWorkPage({
           <div className="aspect-[21/9] bg-[#0d0d0d] border border-[#1a1a1a] rounded-lg flex items-center justify-center">
             <div className="text-center px-6">
               <p className="text-[11px] tracking-[4px] uppercase text-brand-red/50 mb-3">
-                {locale === "uk" ? "Проєкт у розробці" : "Project in development"}
+                {fr ? "Projet en développement" : locale === "uk" ? "Проєкт у розробці" : "Project in development"}
               </p>
               <span className="text-3xl text-brand-grey/20" style={{ fontFamily: "NAMU-1400, serif" }}>
                 {work.title[locale]}
               </span>
               <p className="text-[13px] text-brand-dark-grey/60 mt-4 leading-[1.6]">
-                {locale === "uk"
+                {fr
+                  ? "Vidéos et contenus disponibles prochainement"
+                  : locale === "uk"
                   ? "Відео та матеріали з'являться найближчим часом"
                   : "Video and materials coming soon"}
               </p>
@@ -1580,27 +1638,27 @@ async function GenericWorkPage({
 
       {/* ── PREMIERE CTA — shown for the-ants, mozart25, carmen ── */}
       {(s === "the-ants" || s === "mozart25" || s === "carmen") && (() => {
-        type Texts = { titleEn: string; titleUk: string; textEn: string; textUk: string; btnEn: string; btnUk: string };
+        type Texts = { titleEn: string; titleUk: string; titleFr: string; textEn: string; textUk: string; textFr: string; btnEn: string; btnUk: string; btnFr: string };
         const map: Record<string, Texts> = {
-          "the-ants": { titleEn: settings.theAntsPremiereTitleEn, titleUk: settings.theAntsPremiereTitleUk, textEn: settings.theAntsPremiereTextEn, textUk: settings.theAntsPremiereTextUk, btnEn: settings.theAntsPremiereBtnEn, btnUk: settings.theAntsPremiereBtnUk },
-          "mozart25": { titleEn: settings.mozart25PremiereTitleEn, titleUk: settings.mozart25PremiereTitleUk, textEn: settings.mozart25PremiereTextEn, textUk: settings.mozart25PremiereTextUk, btnEn: settings.mozart25PremiereBtnEn, btnUk: settings.mozart25PremiereBtnUk },
-          "carmen":   { titleEn: settings.carmenPremiereTitleEn,  titleUk: settings.carmenPremiereTitleUk,  textEn: settings.carmenPremiereTextEn,  textUk: settings.carmenPremiereTextUk,  btnEn: settings.carmenPremiereBtnEn,  btnUk: settings.carmenPremiereBtnUk  },
+          "the-ants": { titleEn: settings.theAntsPremiereTitleEn, titleUk: settings.theAntsPremiereTitleUk, titleFr: settings.theAntsPremiereTitleFr, textEn: settings.theAntsPremiereTextEn, textUk: settings.theAntsPremiereTextUk, textFr: settings.theAntsPremiereTextFr, btnEn: settings.theAntsPremiereBtnEn, btnUk: settings.theAntsPremiereBtnUk, btnFr: settings.theAntsPremiereBtnFr },
+          "mozart25": { titleEn: settings.mozart25PremiereTitleEn, titleUk: settings.mozart25PremiereTitleUk, titleFr: settings.mozart25PremiereTitleFr, textEn: settings.mozart25PremiereTextEn, textUk: settings.mozart25PremiereTextUk, textFr: settings.mozart25PremiereTextFr, btnEn: settings.mozart25PremiereBtnEn, btnUk: settings.mozart25PremiereBtnUk, btnFr: settings.mozart25PremiereBtnFr },
+          "carmen":   { titleEn: settings.carmenPremiereTitleEn,  titleUk: settings.carmenPremiereTitleUk,  titleFr: settings.carmenPremiereTitleFr,  textEn: settings.carmenPremiereTextEn,  textUk: settings.carmenPremiereTextUk,  textFr: settings.carmenPremiereTextFr,  btnEn: settings.carmenPremiereBtnEn,  btnUk: settings.carmenPremiereBtnUk,  btnFr: settings.carmenPremiereBtnFr  },
         };
         const p = map[s];
         return (
           <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]" style={{ background: `${theme.bg}` }}>
             <div className="max-w-[800px] mx-auto text-center">
               <div className="mb-4 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: theme.accent }}>
-                {uk ? "Бронювання" : "Booking"}
+                {fr ? "Réservation" : uk ? "Бронювання" : "Booking"}
               </div>
               <h2
                 className="text-[clamp(32px,5vw,60px)] text-brand-white mb-6 leading-[1.05]"
                 style={{ fontFamily: "NAMU-1400, serif" }}
               >
-                {uk ? p.titleUk : p.titleEn}
+                {fr ? p.titleFr : uk ? p.titleUk : p.titleEn}
               </h2>
               <p className="text-[15px] text-[#999] mb-10 leading-[1.8] max-w-[520px] mx-auto">
-                {uk ? p.textUk : p.textEn}
+                {fr ? p.textFr : uk ? p.textUk : p.textEn}
               </p>
               <a
                 href="https://wa.me/19402371274"
@@ -1610,7 +1668,7 @@ async function GenericWorkPage({
                 style={{ backgroundColor: theme.accent, fontFamily: "NAMU-1400, serif" }}
               >
                 <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
-                  {uk ? p.btnUk : p.btnEn}
+                  {fr ? p.btnFr : uk ? p.btnUk : p.btnEn}
                 </span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
                   className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
@@ -1672,6 +1730,7 @@ async function WorkFooter({ slug, locale }: { slug: string; locale: Locale }) {
       href={ctaHref}
       textEn={settings.ctaTextEn}
       textUk={settings.ctaTextUk}
+      textFr={settings.ctaTextFr}
       accentColor={accentColor}
     />
   );

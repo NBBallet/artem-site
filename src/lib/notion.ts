@@ -117,16 +117,19 @@ export async function getWorksFromNotion(): Promise<NotionWork[]> {
         title: {
           en: getTextProp(p, "Title"),
           uk: getTextProp(p, "Title UA") || getTextProp(p, "Title"),
+          fr: getTextProp(p, "Title FR") || getTextProp(p, "Title"),
         },
         subtitle: {
           en: getTextProp(p, "Subtitle EN"),
           uk: getTextProp(p, "Subtitle UA"),
+          fr: getTextProp(p, "Subtitle FR") || getTextProp(p, "Subtitle EN"),
         },
         year: getTextProp(p, "Year"),
         music: getTextProp(p, "Music"),
         description: {
           en: getTextProp(p, "Description EN"),
           uk: getTextProp(p, "Description UA"),
+          fr: getTextProp(p, "Description FR") || getTextProp(p, "Description EN"),
         },
         image: getUrlProp(p, "Cover Image") || getTextProp(p, "Cover Image"),
         category: getSelectProp(p, "Category"),

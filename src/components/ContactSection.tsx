@@ -27,6 +27,7 @@ export default function ContactSection({
   whatsappPhone,
 }: Props) {
   const uk = locale === "uk";
+  const fr = locale === "fr";
   const igHandle = handle(instagram);
   const tgHandle = handle(telegram);
   const thHandle = handle(threads);
@@ -54,7 +55,7 @@ export default function ContactSection({
             WhatsApp
           </p>
           <p className="text-[11px] text-[#555] mt-1">
-            {uk ? "Написати" : "Write"}
+            {fr ? "Écrire" : uk ? "Написати" : "Write"}
           </p>
         </div>
       </button>

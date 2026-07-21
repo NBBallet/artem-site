@@ -1,18 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import type { Locale } from "@/lib/i18n";
 
 const DEFAULT_EN =
   "JOIN THE COMMUNITY · Become part of the Newspaper Birds artistic family · Book a performance · Collaborate with us ·";
 const DEFAULT_UK =
   "ПРИЄДНУЙТЕСЬ · Станьте частиною артистичної родини Newspaper Birds · Замовте виставу · Співпрацюйте з нами ·";
+const DEFAULT_FR =
+  "REJOIGNEZ LA COMMUNAUTÉ · Faites partie de la famille artistique de Newspaper Birds · Réservez un spectacle · Collaborez avec nous ·";
 
 interface MarqueeCTAProps {
-  locale: "en" | "uk";
+  locale: Locale;
   workTitle: string;
   workImage?: string;
   textEn?: string;
   textUk?: string;
+  textFr?: string;
   href?: string;
   /** Accent color of the CURRENT page — used for the "Next →" label, arrow, and letter fill */
   accentColor?: string;
@@ -24,11 +28,14 @@ export default function MarqueeCTA({
   workImage,
   textEn,
   textUk,
+  textFr,
   href = "#works",
   accentColor = "#c8102e",
 }: MarqueeCTAProps) {
   const rawText =
-    locale === "uk" ? (textUk ?? DEFAULT_UK) : (textEn ?? DEFAULT_EN);
+    locale === "fr" ? (textFr ?? DEFAULT_FR)
+    : locale === "uk" ? (textUk ?? DEFAULT_UK)
+    : (textEn ?? DEFAULT_EN);
   const stream = Array(10).fill(rawText).join("   ·   ");
 
   return (
@@ -73,7 +80,7 @@ export default function MarqueeCTA({
               className="text-[clamp(9px,1vw,12px)] tracking-[4px] uppercase group-hover:opacity-70 transition-opacity"
               style={{ fontFamily: "NAMU-1400, serif", color: accentColor }}
             >
-              {locale === "uk" ? "Наступна" : "Next"}
+              {locale === "fr" ? "Suivant" : locale === "uk" ? "Наступна" : "Next"}
             </span>
             <svg
               width="13" height="13" viewBox="0 0 24 24"

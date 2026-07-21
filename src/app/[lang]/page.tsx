@@ -56,10 +56,10 @@ export default async function HomePage({
           <span className="text-brand-red">HORDIEIEV</span>
         </h1>
         <p className="text-sm tracking-[6px] text-brand-grey uppercase font-light mb-12">
-          {(locale === "uk" ? settings.heroTaglineUk : settings.heroTaglineEn) || t["hero.tagline"]}
+          {(locale === "fr" ? settings.heroTaglineFr : locale === "uk" ? settings.heroTaglineUk : settings.heroTaglineEn) || t["hero.tagline"]}
         </p>
         <p className="text-[11px] tracking-[3px] text-brand-dark-grey uppercase">
-          {(locale === "uk" ? settings.heroRoleUk : settings.heroRoleEn) || t["hero.role"]}
+          {(locale === "fr" ? settings.heroRoleFr : locale === "uk" ? settings.heroRoleUk : settings.heroRoleEn) || t["hero.role"]}
         </p>
         <div className="absolute bottom-8 animate-bounce">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="2">
@@ -169,12 +169,16 @@ export default async function HomePage({
           className="text-4xl text-brand-white mb-4"
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.aboutNameFr || t["about.title"])
+            : locale === "uk"
             ? (settings.aboutNameUk || t["about.title"])
             : (settings.aboutNameEn || t["about.title"])}
         </h2>
         <p className="text-[15px] text-brand-grey mb-8 max-w-[700px]">
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.aboutRoleFr || t["about.role"])
+            : locale === "uk"
             ? (settings.aboutRoleUk || t["about.role"])
             : (settings.aboutRoleEn || t["about.role"])}
         </p>
@@ -186,7 +190,9 @@ export default async function HomePage({
                 className="text-xl text-brand-white leading-[1.5] italic"
                 style={{ fontFamily: "NAMU-Pro, sans-serif" }}
               >
-                &ldquo;{locale === "uk"
+                &ldquo;{locale === "fr"
+                  ? (settings.aboutManifestoFr || t["about.manifesto"])
+                  : locale === "uk"
                   ? (settings.aboutManifestoUk || t["about.manifesto"])
                   : (settings.aboutManifestoEn || t["about.manifesto"])}&rdquo;
               </p>
@@ -194,12 +200,16 @@ export default async function HomePage({
           </div>
           <div>
             <p className="text-[15px] text-[#999] leading-[1.7] mb-6">
-              {locale === "uk"
+              {locale === "fr"
+                ? (settings.aboutBioFr || t["about.bio"])
+                : locale === "uk"
                 ? (settings.aboutBioUk || t["about.bio"])
                 : (settings.aboutBioEn || t["about.bio"])}
             </p>
             <p className="text-[15px] text-[#999] leading-[1.7]">
-              {locale === "uk"
+              {locale === "fr"
+                ? (settings.aboutNbbFr || t["about.nbb"])
+                : locale === "uk"
                 ? (settings.aboutNbbUk || t["about.nbb"])
                 : (settings.aboutNbbEn || t["about.nbb"])}
             </p>
@@ -218,12 +228,16 @@ export default async function HomePage({
                 className="text-[clamp(32px,5vw,56px)] leading-[1.05] text-brand-white mb-5"
                 style={{ fontFamily: "NAMU-1400, serif" }}
               >
-                {locale === "uk"
+                {locale === "fr"
+                  ? (settings.cvCtaTitleFr || "CV numérique")
+                  : locale === "uk"
                   ? (settings.cvCtaTitleUk || "Цифрове CV")
                   : (settings.cvCtaTitleEn || "Digital CV")}
               </h2>
               <p className="text-[15px] text-[#777] leading-[1.7]">
-                {locale === "uk"
+                {locale === "fr"
+                  ? (settings.cvCtaTextFr || "Vous souhaitez en savoir plus sur mon parcours artistique, mon répertoire et mes conditions de collaboration ? Vous trouverez ici tout ce qu'il faut pour la programmation et les réservations.")
+                  : locale === "uk"
                   ? (settings.cvCtaTextUk || "Хочеш дізнатися більше про мій творчий шлях, репертуар та умови співпраці? Тут — усе необхідне для програмування та бронювання.")
                   : (settings.cvCtaTextEn || "Want to learn more about my creative journey, repertoire and collaboration terms? Here is everything you need for programming and booking.")}
               </p>
@@ -239,7 +253,9 @@ export default async function HomePage({
                 style={{ fontFamily: "NAMU-1400, serif" }}
               >
                 <span className="text-[14px] tracking-[4px] uppercase whitespace-nowrap font-semibold">
-                  {locale === "uk"
+                  {locale === "fr"
+                    ? (settings.cvCtaBtnFr || "Consulter le CV")
+                    : locale === "uk"
                     ? (settings.cvCtaBtnUk || "Відкрити CV")
                     : (settings.cvCtaBtnEn || "Open CV")}
                 </span>
@@ -264,12 +280,16 @@ export default async function HomePage({
           className="text-4xl text-brand-white mb-4"
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.contactTitleFr || t["contact.title"])
+            : locale === "uk"
             ? (settings.contactTitleUk || t["contact.title"])
             : (settings.contactTitleEn || t["contact.title"])}
         </h2>
         <p className="text-[15px] text-[#999] max-w-[700px] mb-12 leading-[1.7]">
-          {locale === "uk"
+          {locale === "fr"
+            ? (settings.contactSubtitleFr || t["contact.subtitle"])
+            : locale === "uk"
             ? (settings.contactSubtitleUk || t["contact.subtitle"])
             : (settings.contactSubtitleEn || t["contact.subtitle"])}
         </p>

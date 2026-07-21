@@ -1,8 +1,9 @@
 import { getSiteSettings } from "@/lib/settings";
+import type { Locale } from "@/lib/i18n";
 import MarqueeCTA from "./MarqueeCTA";
 
 interface Props {
-  locale: "en" | "uk";
+  locale: Locale;
   workTitle: string;
   workImage?: string;
   href?: string;
@@ -23,6 +24,7 @@ export default async function MarqueeCTAServer({
       href={href}
       textEn={settings.ctaTextEn}
       textUk={settings.ctaTextUk}
+      textFr={settings.ctaTextFr}
     />
   );
 }

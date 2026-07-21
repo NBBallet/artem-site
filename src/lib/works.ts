@@ -1,15 +1,15 @@
 export interface WorkVideo {
   id: string;
-  title: { en: string; uk: string };
+  title: { en: string; uk: string; fr: string };
 }
 
 export interface Work {
   slug: string;
-  title: { en: string; uk: string };
-  subtitle: { en: string; uk: string };
+  title: { en: string; uk: string; fr: string };
+  subtitle: { en: string; uk: string; fr: string };
   year: string;
   music: string;
-  description: { en: string; uk: string };
+  description: { en: string; uk: string; fr: string };
   image: string;
   videos?: WorkVideo[];
   gallery?: string[]; // array of image URLs for horizontal slider
@@ -18,16 +18,18 @@ export interface Work {
 export const works: Work[] = [
   {
     slug: "the-ants",
-    title: { en: "The Ants", uk: "Мурахі" },
+    title: { en: "The Ants", uk: "Мурахі", fr: "Les Fourmis" },
     subtitle: {
       en: "Full-length ballet in two acts",
       uk: "Повнометражний балет у двох діях",
+      fr: "Ballet intégral en deux actes",
     },
     year: "2018–2024",
     music: "Antonio Vivaldi / Max Richter / J.S. Bach",
     description: {
       en: "A civilization of ants becomes a mirror of human society — its hierarchies, fears, and the eternal search for truth. Based on Bernard Werber's novel, this ballet weaves Vivaldi's Four Seasons with Richter's recompositions to explore what happens when a small creature dares to question the order of things.",
       uk: "Цивілізація мурах стає дзеркалом людського суспільства — його ієрархій, страхів та вічного пошуку правди. За романом Бернара Вербера, цей балет поєднує Пори року Вівальді з рекомпозиціями Ріхтера, щоб дослідити, що відбувається, коли маленька істота наважується поставити під сумнів порядок речей.",
+      fr: "Une civilisation de fourmis devient le miroir de la société humaine — ses hiérarchies, ses peurs et sa quête éternelle de vérité. D'après le roman de Bernard Werber, ce ballet entrelace Les Quatre Saisons de Vivaldi aux recompositions de Richter pour explorer ce qui se produit lorsqu'une petite créature ose remettre en question l'ordre des choses.",
     },
     image: "/images/works/the-ants/the-ants.jpg",
     gallery: [
@@ -54,6 +56,7 @@ export const works: Work[] = [
         title: {
           en: "Part 1. Awakening of life in the anthill. Dance of the Queen, the secret service, princesses and ordinary workers.",
           uk: "Частина 1. Пробудження життя в мурашнику. Танок Королеви, секретної служби, принцес та звичайних робітників.",
+          fr: "Partie 1. L'éveil de la vie dans la fourmilière. Danse de la Reine, des services secrets, des princesses et des ouvrières ordinaires.",
         },
       },
       {
@@ -61,22 +64,25 @@ export const works: Work[] = [
         title: {
           en: "Part 2. Solo of the Prince, the main hero of the performance.",
           uk: "Частина 2. Соло принца, головного героя вистави.",
+          fr: "Partie 2. Solo du Prince, héros principal du spectacle.",
         },
       },
     ],
   },
   {
     slug: "mozart25",
-    title: { en: "Mozart 25", uk: "Моцарт 25" },
+    title: { en: "Mozart 25", uk: "Моцарт 25", fr: "Mozart 25" },
     subtitle: {
       en: "One-act ballet",
       uk: "Одноактний балет",
+      fr: "Ballet en un acte",
     },
     year: "2019–2025",
     music: "Wolfgang Amadeus Mozart",
     description: {
       en: "An immersion into the complex, contradictory inner world of the great composer. We witness the forces that drove his artistic visions and demanded that Amadeus move ceaselessly upward along the staircase of his musical path — not counting even the Archbishop of Salzburg.",
       uk: "Занурення у складний та суперечливий внутрішній світ великого композитора. Ми бачимо на власні очі, які сили спонукали мистецькі візії та вимагали від великого Амадея рухатися безупинно вверх і вгору сходами свого музичного шляху, не рахуючись навіть з Архієпископом Зальцбурзьким.",
+      fr: "Une immersion dans le monde intérieur complexe et contradictoire du grand compositeur. Nous assistons aux forces qui ont nourri ses visions artistiques et qui exigeaient qu'Amadeus s'élève sans cesse sur l'escalier de son parcours musical — sans même compter l'archevêque de Salzbourg.",
     },
     image: "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332563/IMG_3263_fcvu8m.jpg",
     videos: [
@@ -85,6 +91,7 @@ export const works: Work[] = [
         title: {
           en: "Stage choreographic development of the ballet. First act. Teaser.",
           uk: "Сценічна хореографічна розробка балету. Перший акт. Тизер.",
+          fr: "Développement chorégraphique scénique du ballet. Premier acte. Teaser.",
         },
       },
       {
@@ -92,6 +99,7 @@ export const works: Work[] = [
         title: {
           en: "A more extensive, full version of the choreographic text.",
           uk: "Більш розлога, повна версія хореографічного тексту.",
+          fr: "Une version plus complète et développée du texte chorégraphique.",
         },
       },
     ],
@@ -125,31 +133,35 @@ export const works: Work[] = [
   },
   {
     slug: "anima",
-    title: { en: "Anima", uk: "Аніма" },
+    title: { en: "Anima", uk: "Аніма", fr: "Anima" },
     subtitle: {
       en: "One-act ballet · Rising of the Soul",
       uk: "Одноактний балет · Душа зростає",
+      fr: "Ballet en un acte · L'Ascension de l'âme",
     },
     year: "2014",
     music: "L'Orchestre de Contrebasses (Marseille, France)",
     description: {
       en: "The Soul encounters challenges beyond time and space. The Hero discovers the depth of his inner world, creating his own self by ascending the Major Arcana of Tarot. Through Justice, the Hermit, the Wheel, Strength, the Hanged Man, Death, and Temperance — the Soul rises according to the law of the Universe.",
       uk: "Душа зустрічає випробування поза часом і простором. Герой відкриває глибину свого внутрішнього світу, створюючи себе через проходження Старших Арканів Таро. Крізь Справедливість, Відлюдника, Колесо, Силу, Повішеного, Смерть і Поміркованість — Душа зростає згідно із законом Всесвіту.",
+      fr: "L'Âme rencontre des épreuves hors du temps et de l'espace. Le Héros découvre la profondeur de son monde intérieur, se créant lui-même en gravissant les Arcanes majeurs du Tarot. À travers la Justice, l'Ermite, la Roue, la Force, le Pendu, la Mort et la Tempérance — l'Âme s'élève selon la loi de l'Univers.",
     },
     image: "/images/works/anima/poster-v3.jpg",
   },
   {
     slug: "adios",
-    title: { en: "Adios", uk: "Адіос" },
+    title: { en: "Adios", uk: "Адіос", fr: "Adios" },
     subtitle: {
       en: "Contemporary ballet · БАЛЕТ-FEST 1st Place",
       uk: "Сучасний балет · БАЛЕТ-FEST 1 місце",
+      fr: "Ballet contemporain · BALLET-FEST 1re place",
     },
     year: "2016",
     music: "Benjamin Clementine",
     description: {
       en: "A contemporary solo charged with longing and departure — set to Benjamin Clementine's iconic song from his Mercury Prize-winning debut album At Least for Now. Sparse piano, strings, and the artist's unmistakable voice create a landscape of intimate grief that choreography translates into pure physical poetry.",
       uk: "Сучасне соло, насичене тугою та прощанням — на однойменну пісню Бенджаміна Клементайна з його дебютного альбому At Least for Now, що отримав Mercury Prize. Стриманий діалог фортепіано, смичкових та неповторного голосу художника перетворюється на ліричний монолог тіла.",
+      fr: "Un solo contemporain chargé de nostalgie et de départ — sur la chanson emblématique de Benjamin Clementine tirée de son premier album At Least for Now, lauréat du Mercury Prize. Un piano épuré, des cordes et la voix inimitable de l'artiste créent un paysage de deuil intime que la chorégraphie traduit en pure poésie physique.",
     },
     image: "https://i.ytimg.com/vi/m24yjydh5sg/hqdefault.jpg",
     gallery: [
@@ -179,6 +191,7 @@ export const works: Work[] = [
         title: {
           en: "БАЛЕТ-FEST · 1st Place · Theatrical Recording",
           uk: "БАЛЕТ-FEST · 1 місце · Театральний запис",
+          fr: "BALLET-FEST · 1re place · Captation théâtrale",
         },
       },
       {
@@ -186,22 +199,25 @@ export const works: Work[] = [
         title: {
           en: "Adios — staging tease",
           uk: "Адіос — постановочний тизер",
+          fr: "Adios — aperçu de la mise en scène",
         },
       },
     ],
   },
   {
     slug: "carmen",
-    title: { en: "Carmen", uk: "Кармен" },
+    title: { en: "Carmen", uk: "Кармен", fr: "Carmen" },
     subtitle: {
       en: "One-act ballet · Bizet-Shchedrin",
       uk: "Одноактний балет · Бізе-Щедрін",
+      fr: "Ballet en un acte · Bizet-Chtchedrine",
     },
     year: "2019",
     music: "Georges Bizet / Rodion Shchedrin",
     description: {
       en: "Bizet's immortal opera reborn through Rodion Shchedrin's radical 1967 orchestration for strings and percussion — a Carmen of raw passion and modern psychological depth. Presented at the Lviv Opera choreographers competition, this staging strips the story to its essential conflict: freedom against possession, fire against submission.",
       uk: "Безсмертна опера Бізе, переосмислена крізь радикальну оркестровку Родіона Щедріна для смичкових та ударних (1967). Представлена на конкурсі балетмейстерів у Львівській опері, постановка зводить сюжет до сутнісного конфлікту: свобода проти власництва, вогонь проти підкорення.",
+      fr: "L'opéra immortel de Bizet renaît à travers l'orchestration radicale de Rodion Chtchedrine pour cordes et percussions (1967) — une Carmen de passion brute et de profondeur psychologique moderne. Présentée au concours de chorégraphes de l'Opéra de Lviv, cette mise en scène réduit l'histoire à son conflit essentiel : la liberté contre la possession, le feu contre la soumission.",
     },
     image: "https://i.ytimg.com/vi/t8pL0hzb2i0/hqdefault.jpg",
     gallery: [
@@ -214,37 +230,42 @@ export const works: Work[] = [
         title: {
           en: "Teaser · Scene 6",
           uk: "Тизер · Сцена 6",
+          fr: "Teaser · Scène 6",
         },
       },
     ],
   },
   {
     slug: "firebird",
-    title: { en: "Firebird", uk: "Жар-Птиця" },
+    title: { en: "Firebird", uk: "Жар-Птиця", fr: "L'Oiseau de feu" },
     subtitle: {
       en: "Original Staging Concept",
       uk: "Авторська постановочна концепція",
+      fr: "Concept de mise en scène original",
     },
     year: "2026",
     music: "Igor Stravinsky",
     description: {
       en: "The Firebird is the fire that pours light into a human being and creates a moment of awakening. This production begins with the first cause of the mysterious fire — a cosmogony growing from the philosophical legacy of the Roerich family.",
       uk: "Жар-Птиця — це вогонь, що вливає світло в людину і створює момент пробудження. Ця постановка починається з першопричини таємничого вогню — космогонія, що виростає з філософської спадщини родини Реріхів.",
+      fr: "L'Oiseau de feu est ce feu qui déverse la lumière en l'être humain et crée un instant d'éveil. Cette production part de la cause première du feu mystérieux — une cosmogonie qui grandit à partir de l'héritage philosophique de la famille Roerich.",
     },
     image: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Nicholas_Roerich_-_Mother_of_the_World%2C_1924_-_warmer_colours.jpg",
   },
   {
     slug: "icare",
-    title: { en: "ICARE", uk: "ІКАР" },
+    title: { en: "ICARE", uk: "ІКАР", fr: "ICARE" },
     subtitle: {
       en: "World Premiere · One-act ballet",
       uk: "Світова прем'єра · Одноактний балет",
+      fr: "Première mondiale · Ballet en un acte",
     },
     year: "2026",
     music: 'Igor Markevich — "Le Vol d\'Icare" (1932)',
     description: {
       en: "The world's first staging of Igor Markevich's Le Vol d'Icare — composed in Paris in 1932, unperformed for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
       uk: "Перша в світі постановка «Польоту Ікара» Ігоря Маркевича — написаного в Парижі 1932 року, 93 роки без прем'єри. Не притча-застереження. Гімн усвідомленому вибору летіти.",
+      fr: "La première mise en scène mondiale du Vol d'Icare d'Igor Markevitch — composé à Paris en 1932, resté inédit pendant 93 ans. Non pas une mise en garde. Une célébration du choix conscient de voler.",
     },
     image: "/images/matisse-icare.jpg",
     videos: [
@@ -253,37 +274,42 @@ export const works: Work[] = [
         title: {
           en: "L'Envol d'Icare — Igor Markevich conducting the Belgian National Orchestra (complete)",
           uk: "«Політ Ікара» — Ігор Маркевич диригує Бельгійським національним оркестром (повна версія)",
+          fr: "L'Envol d'Icare — Igor Markevitch dirige l'Orchestre national de Belgique (intégrale)",
         },
       },
     ],
   },
   {
     slug: "mercy",
-    title: { en: "Mercy", uk: "Mercy" },
+    title: { en: "Mercy", uk: "Mercy", fr: "Mercy" },
     subtitle: {
       en: "Dance Film · Vocal-Choreographic Piece",
       uk: "Танцювальний фільм · Вокально-хореографічна п'єса",
+      fr: "Film de danse · Pièce vocale-chorégraphique",
     },
     year: "2021",
     music: 'Max Richter — "Voices" (2020)',
     description: {
       en: "Born in lockdown. A meditation on mercy, freedom, and what persists when everything is taken away. Set to Max Richter's Voices — a work grounded in the Universal Declaration of Human Rights and the Roerich Pact.",
       uk: "Народжена у локдауні. Медитація про милосердя, свободу та те, що лишається, коли все відібрано. На музику Макса Ріхтера Voices — твір, вкорінений у Загальній декларації прав людини та Пакті Реріха.",
+      fr: "Née en confinement. Une méditation sur la clémence, la liberté, et ce qui subsiste lorsque tout est retiré. Sur la musique de Voices de Max Richter — une œuvre ancrée dans la Déclaration universelle des droits de l'homme et le Pacte Roerich.",
     },
     image: "",
   },
   {
     slug: "humans",
-    title: { en: "Humans", uk: "Humans" },
+    title: { en: "Humans", uk: "Humans", fr: "Humans" },
     subtitle: {
       en: "Part of the Roerich Sacred Cycle",
       uk: "Частина сакрального циклу Реріха",
+      fr: "Partie du cycle sacré de Roerich",
     },
     year: "2020",
     music: "TBA",
     description: {
       en: "Before the first rule. Before the first word. A choreographic cosmogony: cosmic parents perform their ancient ritual; a human is born from their dance; they depart. The created being is left alone on Earth to begin.",
       uk: "До першого правила. До першого слова. Хореографічна космогонія: космічні батьки виконують стародавній ритуал; з їхнього танцю народжується людина; вони йдуть. Створена істота залишається на Землі сама — щоб починати.",
+      fr: "Avant la première règle. Avant le premier mot. Une cosmogonie chorégraphique : des parents cosmiques accomplissent leur rituel ancestral ; un humain naît de leur danse ; ils partent. L'être créé reste seul sur Terre pour commencer.",
     },
     image: "",
   },
