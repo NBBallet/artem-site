@@ -491,7 +491,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               : (settings.animaCtaTextEn || "ANIMA is available for international touring, festival programming and co-production. Producers, programming directors and festival organisers are welcome to begin a conversation.")}
           </p>
           <a
-            href="https://wa.me/19402371274"
+            href="https://wa.me/33743791841"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
@@ -807,7 +807,7 @@ async function IcarePage({
 
               {/* Primary CTA */}
               <a
-                href="https://wa.me/19402371274"
+                href="https://wa.me/33743791841"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
@@ -1010,7 +1010,7 @@ async function IcarePage({
             {fr ? settings.icareCtaTextFr : uk ? settings.icareCtaTextUk : settings.icareCtaTextEn}
           </p>
           <a
-            href="https://wa.me/19402371274"
+            href="https://wa.me/33743791841"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
@@ -1135,7 +1135,7 @@ async function MercyPage({
                 ))}
               </div>
 
-              <a href="https://wa.me/19402371274" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
                 style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
@@ -1222,7 +1222,7 @@ async function MercyPage({
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
             {fr ? settings.mercyCtaTextFr : uk ? settings.mercyCtaTextUk : settings.mercyCtaTextEn}
           </p>
-          <a href="https://wa.me/19402371274" target="_blank" rel="noopener noreferrer"
+          <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
@@ -1332,7 +1332,7 @@ async function HumansPage({
                 ))}
               </div>
 
-              <a href="https://wa.me/19402371274" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
                 style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
@@ -1419,7 +1419,7 @@ async function HumansPage({
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
             {fr ? settings.humansCtaTextFr : uk ? settings.humansCtaTextUk : settings.humansCtaTextEn}
           </p>
-          <a href="https://wa.me/19402371274" target="_blank" rel="noopener noreferrer"
+          <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
@@ -1661,7 +1661,7 @@ async function GenericWorkPage({
                 {fr ? p.textFr : uk ? p.textUk : p.textEn}
               </p>
               <a
-                href="https://wa.me/19402371274"
+                href="https://wa.me/33743791841"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 rounded-sm"

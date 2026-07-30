@@ -6,7 +6,7 @@ interface Props {
 }
 
 /** Single "Написати" button — opens WhatsApp app directly (no form fields). */
-export default function ContactForm({ locale, whatsappPhone = "19402371274" }: Props) {
+export default function ContactForm({ locale, whatsappPhone = "33743791841" }: Props) {
   const uk = locale === "uk";
 
   const handleClick = () => {
