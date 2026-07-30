@@ -652,7 +652,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   );
 }
 
-/* ─── ICARE pitch page — world premiere of Markevich's Le Vol d'Icare ─── */
+/* ─── ICARE pitch page — world premiere of Markevich's L'Envol d'Icare ─── */
 async function IcarePage({
   work,
   locale,
@@ -940,7 +940,7 @@ async function IcarePage({
             className="text-[clamp(28px,4vw,52px)] text-white mb-4"
             style={{ fontFamily: "NAMU-1400, serif" }}
           >
-            Le Vol d&apos;Icare
+            L&apos;Envol d&apos;Icare
           </h2>
           <p className="text-[15px] text-white/70 mb-2 leading-[1.6]">
             {fr ? settings.icareScoreSubtitleFr : uk ? settings.icareScoreSubtitleUk : settings.icareScoreSubtitleEn}
@@ -956,10 +956,10 @@ async function IcarePage({
                   src={`https://www.youtube.com/embed/${scoreVideoId}`}
                   title={
                     fr
-                      ? "Ensemble de cinq — Igor Markevitch, Le Vol d'Icare"
+                      ? "Ensemble de cinq — Igor Markevitch, L'Envol d'Icare"
                       : uk
                       ? "Ensemble of Five — Ігор Маркевич, Політ Ікара"
-                      : "Ensemble of Five — Igor Markevich, Le Vol d'Icare"
+                      : "Ensemble of Five — Igor Markevich, L'Envol d'Icare"
                   }
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

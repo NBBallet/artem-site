@@ -261,11 +261,11 @@ export const works: Work[] = [
       fr: "Première mondiale · Ballet en un acte",
     },
     year: "2026",
-    music: "Igor Markevich — Le Vol d'Icare (1932)",
+    music: "Igor Markevich — L'Envol d'Icare (1932)",
     description: {
-      en: "The world's first staging of Igor Markevich's Le Vol d'Icare — composed in Paris in 1932, unperformed for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
+      en: "The world's first staging of Igor Markevich's L'Envol d'Icare — composed in Paris in 1932, unperformed for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
       uk: "Перша в світі постановка «Польоту Ікара» Ігоря Маркевича — написаного в Парижі 1932 року, 93 роки без прем'єри. Не притча-застереження. Гімн усвідомленому вибору летіти.",
-      fr: "La première mise en scène mondiale du Vol d'Icare d'Igor Markevitch — composé à Paris en 1932, resté inédit pendant 93 ans. Non pas une mise en garde. Une célébration du choix conscient de voler.",
+      fr: "La première mise en scène mondiale de L'Envol d'Icare d'Igor Markevitch — composé à Paris en 1932, resté inédit pendant 93 ans. Non pas une mise en garde. Une célébration du choix conscient de voler.",
     },
     image: "/images/matisse-icare.jpg",
     videos: [
