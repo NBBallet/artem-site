@@ -40,7 +40,7 @@ export default async function HomePage({
   // ── Social links — canonical handles (artem_hordieiev) ──
   const instagramUrl = "https://www.instagram.com/artem_hordieiev";
   const threadsUrl   = "https://www.threads.com/@artem_hordieiev";
-  const telegramUrl  = "https://t.me/artem_hordieiev";
+  const facebookUrl  = "https://www.facebook.com/ArtemGordeevNB/";
 
   return (
     <>
@@ -294,11 +294,11 @@ export default async function HomePage({
             : (settings.contactSubtitleEn || t["contact.subtitle"])}
         </p>
 
-        {/* 4-column: WhatsApp · Instagram · Threads · Telegram */}
+        {/* 4-column: WhatsApp · Instagram · Threads · Facebook */}
         <ContactSection
           instagram={instagramUrl}
           threads={threadsUrl}
-          telegram={telegramUrl}
+          facebook={facebookUrl}
           locale={locale}
           whatsappPhone="33743791841"
         />

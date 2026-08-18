@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { locales, type Locale } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 
 interface NavbarProps {
   lang: Locale;
@@ -10,6 +10,8 @@ interface NavbarProps {
 }
 
 const LANG_LABEL: Record<Locale, string> = { en: "EN", uk: "UA", fr: "FR" };
+/** Display order of the switcher (routing order lives in @/lib/i18n). */
+const LANG_ORDER: Locale[] = ["en", "fr", "uk"];
 
 export default function Navbar({ lang, t }: NavbarProps) {
   const pathname = usePathname();
@@ -43,7 +45,7 @@ export default function Navbar({ lang, t }: NavbarProps) {
           {t["nav.contact"]}
         </a>
         <div className="flex items-center gap-1 border border-brand-red/30 rounded overflow-hidden">
-          {locales.map((locale) => {
+          {LANG_ORDER.map((locale) => {
             const isActive = locale === lang;
             const path = pathname.replace(`/${lang}`, `/${locale}`);
             return isActive ? (

@@ -3,7 +3,7 @@
 interface Props {
   instagram: string;
   threads: string;
-  telegram: string;
+  facebook: string;
   locale: string;
 }
 
@@ -20,9 +20,8 @@ function handle(url: string) {
   return url.replace(/\/$/, "").split("/").pop()?.replace(/^@/, "") ?? "";
 }
 
-export default function SocialLinks({ instagram, threads, telegram }: Props) {
+export default function SocialLinks({ instagram, threads, facebook }: Props) {
   const igHandle = handle(instagram);
-  const tgHandle = handle(telegram);
 
   return (
     <div className="flex flex-col gap-4">
@@ -59,18 +58,19 @@ export default function SocialLinks({ instagram, threads, telegram }: Props) {
         <span className="text-sm tracking-wide">Threads</span>
       </a>
 
-      {/* Telegram */}
+      {/* Facebook — no reliable deep-link; opens web in new tab */}
       <a
-        href={telegram}
-        onClick={(e) => { e.preventDefault(); openApp(`tg://resolve?domain=${tgHandle}`, telegram); }}
-        className="group flex items-center gap-4 text-[#777] hover:text-brand-white transition-colors cursor-pointer"
+        href={facebook}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center gap-4 text-[#777] hover:text-brand-white transition-colors"
       >
         <div className="w-10 h-10 flex items-center justify-center border border-[#2a2a2a] group-hover:border-brand-red/50 rounded-sm transition-colors flex-none">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.985 13.645l-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/>
+          <svg width="16" height="16" viewBox="0 0 320 512" fill="currentColor">
+            <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
           </svg>
         </div>
-        <span className="text-sm tracking-wide">Telegram</span>
+        <span className="text-sm tracking-wide">Facebook</span>
       </a>
 
     </div>

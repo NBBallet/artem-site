@@ -3,7 +3,7 @@
 interface Props {
   instagram: string;
   threads: string;
-  telegram: string;
+  facebook: string;
   locale: string;
   whatsappPhone: string;
 }
@@ -22,14 +22,13 @@ function handle(url: string): string {
 export default function ContactSection({
   instagram,
   threads,
-  telegram,
+  facebook,
   locale,
   whatsappPhone,
 }: Props) {
   const uk = locale === "uk";
   const fr = locale === "fr";
   const igHandle = handle(instagram);
-  const tgHandle = handle(telegram);
   const thHandle = handle(threads);
 
   return (
@@ -101,22 +100,23 @@ export default function ContactSection({
         </div>
       </a>
 
-      {/* ── Telegram ── */}
+      {/* ── Facebook ── */}
       <a
-        href={telegram}
-        onClick={(e) => { e.preventDefault(); openApp(`tg://resolve?domain=${tgHandle}`, telegram); }}
-        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-[#222] rounded-lg hover:border-brand-red/40 bg-[#111] hover:bg-[#161616] transition-all duration-200 cursor-pointer"
+        href={facebook}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-[#222] rounded-lg hover:border-brand-red/40 bg-[#111] hover:bg-[#161616] transition-all duration-200"
       >
         <div className="w-16 h-16 flex items-center justify-center bg-brand-red/10 rounded-full group-hover:bg-brand-red/20 transition-colors">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-brand-red">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.985 13.645l-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/>
+          <svg width="26" height="26" viewBox="0 0 320 512" fill="currentColor" className="text-brand-red">
+            <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
           </svg>
         </div>
         <div className="text-center">
           <p className="text-[13px] tracking-[2px] uppercase text-brand-white font-semibold" style={{ fontFamily: "NAMU-1400, serif" }}>
-            Telegram
+            Facebook
           </p>
-          <p className="text-[11px] text-[#555] mt-1">@{tgHandle}</p>
+          <p className="text-[11px] text-[#555] mt-1">{handle(facebook)}</p>
         </div>
       </a>
 
