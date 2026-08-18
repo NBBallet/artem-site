@@ -294,7 +294,7 @@ export default async function HomePage({
             : (settings.contactSubtitleEn || t["contact.subtitle"])}
         </p>
 
-        {/* 4-column: WhatsApp · Instagram · Threads · Facebook */}
+        {/* 4-column: WhatsApp · Instagram · Facebook · Threads */}
         <ContactSection
           instagram={instagramUrl}
           threads={threadsUrl}
