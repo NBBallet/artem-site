@@ -183,29 +183,17 @@ export default async function HomePage({
             : (settings.aboutRoleEn || t["about.role"])}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div>
-            <blockquote className="border-l-2 border-brand-red pl-6 mb-8">
-              <p
-                className="text-xl text-brand-white leading-[1.5] italic"
-                style={{ fontFamily: "NAMU-Pro, sans-serif" }}
-              >
-                &ldquo;{locale === "fr"
-                  ? (settings.aboutManifestoFr || t["about.manifesto"])
-                  : locale === "uk"
-                  ? (settings.aboutManifestoUk || t["about.manifesto"])
-                  : (settings.aboutManifestoEn || t["about.manifesto"])}&rdquo;
-              </p>
-            </blockquote>
-          </div>
-          <div>
-            <p className="text-[15px] text-[#999] leading-[1.7] mb-6">
+            <p className="text-[15px] text-[#999] leading-[1.7]">
               {locale === "fr"
                 ? (settings.aboutBioFr || t["about.bio"])
                 : locale === "uk"
                 ? (settings.aboutBioUk || t["about.bio"])
                 : (settings.aboutBioEn || t["about.bio"])}
             </p>
+          </div>
+          <div>
             <p className="text-[15px] text-[#999] leading-[1.7]">
               {locale === "fr"
                 ? (settings.aboutNbbFr || t["about.nbb"])
@@ -213,6 +201,66 @@ export default async function HomePage({
                 ? (settings.aboutNbbUk || t["about.nbb"])
                 : (settings.aboutNbbEn || t["about.nbb"])}
             </p>
+          </div>
+        </div>
+
+        {/* ===== COLLABORATION UKRAINE — USA =====
+             Rhoden / Richardson, Complexions, The Great Gatsby.
+             All texts editable in Notion Site Settings → keys: about_collab_* */}
+        <div className="mt-16 md:mt-[72px] pt-11 border-t border-[#1a1a1a]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div>
+              <p className="text-[14px] font-semibold tracking-[4.5px] uppercase text-brand-red mb-[22px]">
+                {locale === "fr"
+                  ? (settings.aboutCollabLabelFr || t["about.collabLabel"])
+                  : locale === "uk"
+                  ? (settings.aboutCollabLabelUk || t["about.collabLabel"])
+                  : (settings.aboutCollabLabelEn || t["about.collabLabel"])}
+              </p>
+              <p
+                className="text-[26px] md:text-[30px] leading-[1.2] text-brand-white mb-3"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                {locale === "fr"
+                  ? (settings.aboutCollabNamesFr || t["about.collabNames"])
+                  : locale === "uk"
+                  ? (settings.aboutCollabNamesUk || t["about.collabNames"])
+                  : (settings.aboutCollabNamesEn || t["about.collabNames"])}
+              </p>
+              <p
+                className="text-[15px] md:text-[17px] leading-[1.45] text-brand-grey"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                {locale === "fr"
+                  ? (settings.aboutCollabSubtitleFr || t["about.collabSubtitle"])
+                  : locale === "uk"
+                  ? (settings.aboutCollabSubtitleUk || t["about.collabSubtitle"])
+                  : (settings.aboutCollabSubtitleEn || t["about.collabSubtitle"])}
+              </p>
+            </div>
+            <div>
+              <p className="text-[16px] md:text-[17px] text-brand-white leading-[1.6] mb-[18px]">
+                {locale === "fr"
+                  ? (settings.aboutCollabLeadFr || t["about.collabLead"])
+                  : locale === "uk"
+                  ? (settings.aboutCollabLeadUk || t["about.collabLead"])
+                  : (settings.aboutCollabLeadEn || t["about.collabLead"])}
+              </p>
+              <p className="text-[15px] text-[#999] leading-[1.7] mb-[14px]">
+                {locale === "fr"
+                  ? (settings.aboutCollabP1Fr || t["about.collabP1"])
+                  : locale === "uk"
+                  ? (settings.aboutCollabP1Uk || t["about.collabP1"])
+                  : (settings.aboutCollabP1En || t["about.collabP1"])}
+              </p>
+              <p className="text-[15px] text-[#999] leading-[1.7]">
+                {locale === "fr"
+                  ? (settings.aboutCollabP2Fr || t["about.collabP2"])
+                  : locale === "uk"
+                  ? (settings.aboutCollabP2Uk || t["about.collabP2"])
+                  : (settings.aboutCollabP2En || t["about.collabP2"])}
+              </p>
+            </div>
           </div>
         </div>
       </section>

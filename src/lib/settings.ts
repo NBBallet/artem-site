@@ -94,15 +94,30 @@ export interface SiteSettings {
   aboutRoleEn: string;
   aboutRoleUk: string;
   aboutRoleFr: string;
-  aboutManifestoEn: string;
-  aboutManifestoUk: string;
-  aboutManifestoFr: string;
   aboutBioEn: string;
   aboutBioUk: string;
   aboutBioFr: string;
   aboutNbbEn: string;
   aboutNbbUk: string;
   aboutNbbFr: string;
+  aboutCollabLabelEn: string;
+  aboutCollabLabelUk: string;
+  aboutCollabLabelFr: string;
+  aboutCollabNamesEn: string;
+  aboutCollabNamesUk: string;
+  aboutCollabNamesFr: string;
+  aboutCollabSubtitleEn: string;
+  aboutCollabSubtitleUk: string;
+  aboutCollabSubtitleFr: string;
+  aboutCollabLeadEn: string;
+  aboutCollabLeadUk: string;
+  aboutCollabLeadFr: string;
+  aboutCollabP1En: string;
+  aboutCollabP1Uk: string;
+  aboutCollabP1Fr: string;
+  aboutCollabP2En: string;
+  aboutCollabP2Uk: string;
+  aboutCollabP2Fr: string;
   /** CV / Résumé CTA section */
   cvCtaLabelEn: string;
   cvCtaLabelUk: string;
@@ -467,15 +482,30 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   aboutRoleEn: "",
   aboutRoleUk: "",
   aboutRoleFr: "",
-  aboutManifestoEn: "",
-  aboutManifestoUk: "",
-  aboutManifestoFr: "",
   aboutBioEn: "",
   aboutBioUk: "",
   aboutBioFr: "",
   aboutNbbEn: "",
   aboutNbbUk: "",
   aboutNbbFr: "",
+  aboutCollabLabelEn: "",
+  aboutCollabLabelUk: "",
+  aboutCollabLabelFr: "",
+  aboutCollabNamesEn: "",
+  aboutCollabNamesUk: "",
+  aboutCollabNamesFr: "",
+  aboutCollabSubtitleEn: "",
+  aboutCollabSubtitleUk: "",
+  aboutCollabSubtitleFr: "",
+  aboutCollabLeadEn: "",
+  aboutCollabLeadUk: "",
+  aboutCollabLeadFr: "",
+  aboutCollabP1En: "",
+  aboutCollabP1Uk: "",
+  aboutCollabP1Fr: "",
+  aboutCollabP2En: "",
+  aboutCollabP2Uk: "",
+  aboutCollabP2Fr: "",
   cvCtaLabelEn: "",
   cvCtaLabelUk: "",
   cvCtaLabelFr: "",
@@ -921,10 +951,6 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueEn) settings.aboutRoleEn = valueEn;
         if (valueUk) settings.aboutRoleUk = valueUk; if (valueFr) settings.aboutRoleFr = valueFr;
       }
-      if (key === "about_manifesto") {
-        if (valueEn) settings.aboutManifestoEn = valueEn;
-        if (valueUk) settings.aboutManifestoUk = valueUk; if (valueFr) settings.aboutManifestoFr = valueFr;
-      }
       if (key === "about_bio") {
         if (valueEn) settings.aboutBioEn = valueEn;
         if (valueUk) settings.aboutBioUk = valueUk; if (valueFr) settings.aboutBioFr = valueFr;
@@ -932,6 +958,30 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       if (key === "about_nbb") {
         if (valueEn) settings.aboutNbbEn = valueEn;
         if (valueUk) settings.aboutNbbUk = valueUk; if (valueFr) settings.aboutNbbFr = valueFr;
+      }
+      if (key === "about_collab_label") {
+        if (valueEn) settings.aboutCollabLabelEn = valueEn;
+        if (valueUk) settings.aboutCollabLabelUk = valueUk; if (valueFr) settings.aboutCollabLabelFr = valueFr;
+      }
+      if (key === "about_collab_names") {
+        if (valueEn) settings.aboutCollabNamesEn = valueEn;
+        if (valueUk) settings.aboutCollabNamesUk = valueUk; if (valueFr) settings.aboutCollabNamesFr = valueFr;
+      }
+      if (key === "about_collab_subtitle") {
+        if (valueEn) settings.aboutCollabSubtitleEn = valueEn;
+        if (valueUk) settings.aboutCollabSubtitleUk = valueUk; if (valueFr) settings.aboutCollabSubtitleFr = valueFr;
+      }
+      if (key === "about_collab_lead") {
+        if (valueEn) settings.aboutCollabLeadEn = valueEn;
+        if (valueUk) settings.aboutCollabLeadUk = valueUk; if (valueFr) settings.aboutCollabLeadFr = valueFr;
+      }
+      if (key === "about_collab_p1") {
+        if (valueEn) settings.aboutCollabP1En = valueEn;
+        if (valueUk) settings.aboutCollabP1Uk = valueUk; if (valueFr) settings.aboutCollabP1Fr = valueFr;
+      }
+      if (key === "about_collab_p2") {
+        if (valueEn) settings.aboutCollabP2En = valueEn;
+        if (valueUk) settings.aboutCollabP2Uk = valueUk; if (valueFr) settings.aboutCollabP2Fr = valueFr;
       }
       // CV CTA section
       if (key === "cv_cta_label") {
