@@ -1,37 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# hordieiev.art
 
-## Getting Started
+Сайт хореографа Артема Гордєєва. Next.js (App Router) + Tailwind,
+контент редагується в Notion, деплой — Vercel із гілки `main`.
 
-First, run the development server:
+| | |
+|---|---|
+| Прод | https://hordieiev.art |
+| Репозиторій | `NBBallet/artem-site` |
+| Мови | `en` / `uk` / `fr` — маршрут `/[lang]` |
+| Хостинг | Vercel, автодеплой на push у `main` |
+
+## Запуск
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Потрібен `.env.local` із `NOTION_API_KEY` і `NOTION_*_DB_ID` — без них
+сторінки віддадуть дефолтні тексти замість нотіонівських.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> **Тримай цю теку поза iCloud.** На Desktop (він синхронізується) iCloud
+> вивантажує файли з `node_modules` у хмару, і dev-сервер зависає на
+> компіляції по 20+ хвилин, а eslint падає з `ETIMEDOUT`. Тому проєкт
+> живе в `/Users/mac/Ballet/`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Структура
 
-## Learn More
+| Шлях | Що там |
+|---|---|
+| `src/app/[lang]/page.tsx` | головна: hero, роботи, About, CV CTA, контакти |
+| `src/app/[lang]/works/[slug]/` | сторінка окремої постановки |
+| `src/lib/settings.ts` | усі тексти й картинки з Notion + дефолти |
+| `src/lib/notion.ts`, `anima-notion.ts` | читання з Notion, обгорнуте у `withRetry()` |
+| `src/dictionaries/*.json` | статичні переклади (фолбек, коли Notion мовчить) |
+| `public/fonts/` | NAMU-1400 і NAMU-Pro — фірмові шрифти |
+| `design/` | дизайн-джерела секцій (див. README всередині) |
+| `docs/` | бренд-матеріали |
 
-To learn more about Next.js, take a look at the following resources:
+## Контент
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Тексти живуть у Notion Site Settings — таблиця «ключ → Value EN / UK / FR».
+Кожне поле в коді читається як `settings.<field><Lang> || t["<ключ>"]`:
+Notion перекриває словник, словник рятує, коли Notion недоступний.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# artem-site
+**Перед правкою контенту читай [AGENTS.md](AGENTS.md)** — там описана пастка
+з порожніми дефолтами, через яку картинки й тексти зникали на проді.

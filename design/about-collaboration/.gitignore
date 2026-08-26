@@ -1,0 +1,3 @@
+# згенеровані артборди (шрифти зашиті в base64, ~200 КБ кожен) — робить gen.py
+*.dc.html
+about-collaboration-americaine.html
