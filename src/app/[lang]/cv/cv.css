@@ -142,7 +142,11 @@
   /* the site's chrome and the on-screen controls are not part of the document */
   nav, .site-footer, .cv-screen-only { display: none !important; }
 
-  .cv { font-size: 11pt; }
+  /* Paper is finite and the reading distance is short: the whole document is
+     set a step down so that each section fits a sheet whole — with room to
+     spare for Safari, which prints its own header and footer inside the page
+     and so has less height to give than Chrome. */
+  .cv { font-size: 11pt; zoom: 0.92; }
   .cv-h1 { font-size: 40pt; }
   .cv-h2 { font-size: 19pt; }
   .cv-p { font-size: 10.5pt; line-height: 1.6; }
@@ -164,6 +168,11 @@
    The print viewport is roughly A4 minus margins (~710 px), i.e. below the
    `md`/`lg` breakpoints — so every responsive column would collapse to one in
    the PDF. These rules restore the intended A4 grid explicitly. */
+
+/* The profile is two sections in the markup so that paper can move them
+   separately (see the print rules); on screen they read as one block. */
+.cv-profile-a { padding-bottom: 0 !important; }
+.cv-profile-b { border-top: none !important; padding-top: 0 !important; }
 
 /* the seam between the two schools: a rule above on phones, beside on wide */
 .cv-seam { border-top: 1px solid var(--cv-seam); }
@@ -202,8 +211,16 @@
   .cv-graph-scroll { overflow: visible !important; }
   .cv-graph-scroll > div { min-width: 0 !important; }
 
-  /* the argument sections should start clean rather than straddle a fold */
-  .cv-section { break-inside: auto; }
+  /* A section is one argument: its label, its title and the block they
+     introduce belong on the same sheet. Chrome could be asked for that with a
+     `break-after: avoid` chain on the headings; WebKit ignores that chain and
+     prints a label alone at the foot of a page. Both engines honour
+     `break-inside: avoid`, so the section itself is the unit that moves — and
+     the print type below is sized so that each one fits a sheet. */
+  .cv-section { break-inside: avoid; page-break-inside: avoid; }
+  /* the sub-blocks of the profile, the one section too tall to stay whole */
+  .cv-school-block,
+  .cv-langs-block { break-inside: avoid; page-break-inside: avoid; }
 
   /* Tailwind's md:/lg: utilities never fire at the print width (~710 px), so
      anything that leans on them has to be restated here or it silently loses
@@ -285,6 +302,7 @@
   .cv-two-cols { margin-bottom: 16px !important; }
   /* the closing section carries the contact details — never split those, and
      the two footer lines are one line of the document, not two blocks */
+  .cv-tail,
   .cv-section:last-of-type,
   .cv-doc-foot { break-inside: avoid; page-break-inside: avoid; }
   .cv-meet { padding-top: 18px !important; padding-bottom: 18px !important;

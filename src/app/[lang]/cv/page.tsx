@@ -76,16 +76,18 @@ function Section({
   panel = false,
   first = false,
   id,
+  className = "",
 }: {
   children: React.ReactNode;
   panel?: boolean;
   first?: boolean;
   id?: string;
+  className?: string;
 }) {
   return (
     <section
       id={id}
-      className="cv-section py-12 md:py-16"
+      className={`cv-section py-12 md:py-16 ${className}`}
       style={{
         borderTop: first ? "none" : "1px solid var(--cv-line)",
         background: panel ? "var(--cv-panel)" : undefined,
@@ -421,7 +423,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
         </Section>
 
         {/* ── 08 · profile ── */}
-        <Section>
+        <Section className="cv-profile-a">
           <Label className="mb-5">{d.s08.label}</Label>
           <div className="cv-facts grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 mb-11">
             {[
@@ -442,6 +444,14 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               ),
             )}
           </div>
+        </Section>
+
+        {/* ── 08b · school and languages ──
+           A section of its own, not a tail of the profile: on paper each
+           section moves as one block, and profile + school + languages
+           together are taller than a sheet. On screen the seam is invisible:
+           the pair keeps the spacing it had as one section. */}
+        <Section className="cv-profile-b">
           {/* Where the body comes from — the first thing a company director looks for. */}
           <div className="cv-school-block mb-11">
             <Label tone="meta" className="mb-4">{d.s08.schoolLabel}</Label>
@@ -473,6 +483,9 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
           </div>
         </Section>
 
+        {/* The tail of the document: the ask, the contacts and the last line
+           travel together — a footer alone on a sheet is not a page. */}
+        <div className="cv-tail">
         {/* ── 09 · open for · contact ── */}
         <Section panel>
           <Label className="mb-5">{d.s09.label}</Label>
@@ -536,6 +549,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
             </Link>
           </span>
         </footer>
+        </div>
       </div>
     </div>
   );
