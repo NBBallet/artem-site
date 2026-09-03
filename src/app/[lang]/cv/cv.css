@@ -156,6 +156,8 @@
   .cv-keep { break-inside: avoid; page-break-inside: avoid; }
   .cv-break { break-before: page; page-break-before: always; }
   .cv-h2, .cv-h3 { break-after: avoid; page-break-after: avoid; }
+  /* a section label alone at the foot of a page is worse than a shorter page */
+  .cv-label { break-after: avoid; page-break-after: avoid; }
 }
 
 /* ── layout that Tailwind's breakpoints cannot own ───────────────────────────
@@ -202,4 +204,31 @@
 
   /* the argument sections should start clean rather than straddle a fold */
   .cv-section { break-inside: auto; }
+
+  /* Tailwind's md:/lg: utilities never fire at the print width (~710 px), so
+     anything that leans on them has to be restated here or it silently loses
+     its spacing in the PDF while looking right on screen. */
+  .cv-two-cols > :first-child { padding-right: 36px !important; padding-bottom: 0 !important; }
+  .cv-two-cols > .cv-seam { padding-left: 36px !important; padding-top: 0 !important; }
+  .cv-facts-spacer { display: block !important; }
+  .cv-langs-block { padding-left: 56px !important; }
+  .cv-contact-block { padding-left: 28px !important; }
+
+  /* Five trajectory columns on A4 are ~105 px wide. At the screen sizes the
+     display face does not break and the titles run into — and past — the next
+     column, so print gets its own scale and is allowed to hyphenate. */
+  .cv-traj-grid > div { overflow-wrap: break-word; }
+  .cv-traj-grid .cv-h3 { font-size: 10pt !important; line-height: 1.15 !important;
+    overflow-wrap: break-word; hyphens: auto; }
+  .cv-traj-grid > div > div:last-child { font-size: 8.5pt !important; line-height: 1.45 !important; }
+
+  /* the status column was running off the right edge ("INTERNATIONA") */
+  .cv-rep-head,
+  .cv-rep-row { grid-template-columns: 104px 58px 1fr 1fr 122px !important; }
+  .cv-rep-head > div:last-child,
+  .cv-rep-row > div:last-child { letter-spacing: 0.5px !important; overflow-wrap: break-word; }
+  .cv-rep-head { break-after: avoid; page-break-after: avoid; }
+
+  /* a shorter curve buys back a page break */
+  .cv-graph { height: 172px !important; }
 }

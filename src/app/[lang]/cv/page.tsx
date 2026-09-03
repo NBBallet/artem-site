@@ -173,7 +173,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
   };
 
   return (
-    <div className="cv">
+    <div className="cv" lang={locale}>
       <div className="cv-wrap max-w-[1312px] mx-auto px-5 md:px-10 lg:px-16 pb-10">
         {/* ── masthead ── */}
         <header className="cv-masthead pt-24 md:pt-28 pb-12 md:pb-14">
@@ -433,7 +433,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               [d.s08.producer, f.producer],
             ].map(([k, v], i) =>
               k === "" ? (
-                <div key={`spacer-${i}`} className="hidden lg:block" aria-hidden />
+                <div key={`spacer-${i}`} className="cv-facts-spacer hidden lg:block" aria-hidden />
               ) : (
               <div key={k} className="cv-keep pt-3" style={{ borderTop: "1px solid var(--cv-line)" }}>
                 <div className="cv-mono text-[12px] tracking-[1.8px] uppercase cv-meta mb-2">{k}</div>
@@ -460,7 +460,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
           </div>
 
           {/* «Напрями» знято; «Мови» стоять на його місці, горизонтально */}
-          <div className="lg:pl-14">
+          <div className="cv-langs-block lg:pl-14">
             <Label tone="meta" className="mb-4">{d.s08.languagesLabel}</Label>
             <div className="cv-langs grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-6">
               {d.s08.languages.map((x) => (
@@ -492,7 +492,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
                 </div>
               ))}
             </div>
-            <div className="lg:pl-7">
+            <div className="cv-contact-block lg:pl-7">
               <Label tone="red" small className="mb-5">{d.s09.contactLabel}</Label>
               <div className="flex flex-col gap-3.5 items-start">
                 {[
