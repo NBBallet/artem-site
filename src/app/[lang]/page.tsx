@@ -56,10 +56,10 @@ export default async function HomePage({
           <br />
           <span className="text-brand-red">HORDIEIEV</span>
         </h1>
-        <p className="text-sm tracking-[6px] text-brand-grey uppercase font-light mb-12">
+        <p className="t-body-c text-[15px] tracking-[6px] uppercase font-light mb-12">
           {(locale === "fr" ? settings.heroTaglineFr : locale === "uk" ? settings.heroTaglineUk : settings.heroTaglineEn) || t["hero.tagline"]}
         </p>
-        <p className="text-[11px] tracking-[3px] text-brand-dark-grey uppercase">
+        <p className="t-mono t-meta-c text-[13px] tracking-[3px] uppercase">
           {(locale === "fr" ? settings.heroRoleFr : locale === "uk" ? settings.heroRoleUk : settings.heroRoleEn) || t["hero.role"]}
         </p>
         <div className="absolute bottom-8 animate-bounce">
@@ -71,10 +71,10 @@ export default async function HomePage({
 
       {/* ===== WORKS ===== */}
       <section id="works" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <h2 className="text-4xl text-brand-white mb-4" style={{ fontFamily: "NAMU-1400, serif" }}>
+        <h2 className="t-h2 mb-4">
           {t["works.title"]}
         </h2>
-        <p className="text-[15px] text-[#999] max-w-[700px] mb-12 leading-[1.7]">
+        <p className="t-p max-w-[640px] mb-12">
           {t["works.subtitle"]}
         </p>
 
@@ -125,7 +125,7 @@ export default async function HomePage({
                       >
                         {work.title[locale]}
                       </h3>
-                      <p className="text-[10px] text-brand-red uppercase tracking-[3px] mt-1 font-semibold">
+                      <p className="t-mono text-[12px] text-brand-red uppercase tracking-[2px] mt-1.5">
                         {work.year}
                       </p>
                     </div>
@@ -141,18 +141,18 @@ export default async function HomePage({
                     >
                       {work.title[locale]}
                     </span>
-                    <span className="text-[9px] tracking-[3px] uppercase font-semibold" style={{ color: cardAccent + "CC" }}>
+                    <span className="t-mono text-[12px] tracking-[2px] uppercase" style={{ color: cardAccent + "CC" }}>
                       {work.year}
                     </span>
                   </div>
                 )}
               </div>
               <div className="p-5">
-                <p className="text-[12px] text-brand-dark-grey uppercase tracking-[2px] mb-2">
+                <p className="t-body-c text-[14px] leading-[1.5] mb-2">
                   {work.subtitle[locale]}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-[12px] text-brand-grey">{work.music}</span>
+                  <span className="t-meta-c text-[13.5px] leading-[1.5]">{work.music}</span>
                 </div>
               </div>
             </Link>
@@ -166,17 +166,14 @@ export default async function HomePage({
       {/* ===== ABOUT =====
            All texts editable in Notion Site Settings → keys: about_* */}
       <section id="about" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <h2
-          className="text-4xl text-brand-white mb-4"
-          style={{ fontFamily: "NAMU-1400, serif" }}
-        >
+        <h2 className="t-h2 mb-4">
           {locale === "fr"
             ? (settings.aboutNameFr || t["about.title"])
             : locale === "uk"
             ? (settings.aboutNameUk || t["about.title"])
             : (settings.aboutNameEn || t["about.title"])}
         </h2>
-        <p className="text-[15px] text-brand-grey mb-8 max-w-[700px]">
+        <p className="t-lead mb-10 max-w-[720px]">
           {locale === "fr"
             ? (settings.aboutRoleFr || t["about.role"])
             : locale === "uk"
@@ -186,7 +183,7 @@ export default async function HomePage({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div>
-            <p className="text-[15px] text-[#999] leading-[1.7]">
+            <p className="t-p">
               {locale === "fr"
                 ? (settings.aboutBioFr || t["about.bio"])
                 : locale === "uk"
@@ -195,7 +192,7 @@ export default async function HomePage({
             </p>
           </div>
           <div>
-            <p className="text-[15px] text-[#999] leading-[1.7]">
+            <p className="t-p">
               {locale === "fr"
                 ? (settings.aboutNbbFr || t["about.nbb"])
                 : locale === "uk"
@@ -211,27 +208,21 @@ export default async function HomePage({
         <div className="mt-16 md:mt-[72px] pt-11 border-t border-[#1a1a1a]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="text-[14px] font-semibold tracking-[4.5px] uppercase text-brand-red mb-[22px]">
+              <p className="t-label mb-[22px]">
                 {locale === "fr"
                   ? (settings.aboutCollabLabelFr || t["about.collabLabel"])
                   : locale === "uk"
                   ? (settings.aboutCollabLabelUk || t["about.collabLabel"])
                   : (settings.aboutCollabLabelEn || t["about.collabLabel"])}
               </p>
-              <p
-                className="text-[26px] md:text-[30px] leading-[1.2] text-brand-white mb-3"
-                style={{ fontFamily: "NAMU-1400, serif" }}
-              >
+              <p className="t-h3 text-[26px] md:text-[30px] leading-[1.2] mb-3">
                 {locale === "fr"
                   ? (settings.aboutCollabNamesFr || t["about.collabNames"])
                   : locale === "uk"
                   ? (settings.aboutCollabNamesUk || t["about.collabNames"])
                   : (settings.aboutCollabNamesEn || t["about.collabNames"])}
               </p>
-              <p
-                className="text-[15px] md:text-[17px] leading-[1.45] text-brand-grey"
-                style={{ fontFamily: "NAMU-1400, serif" }}
-              >
+              <p className="t-p max-w-[440px]">
                 {locale === "fr"
                   ? (settings.aboutCollabSubtitleFr || t["about.collabSubtitle"])
                   : locale === "uk"
@@ -240,21 +231,21 @@ export default async function HomePage({
               </p>
             </div>
             <div>
-              <p className="text-[16px] md:text-[17px] text-brand-white leading-[1.6] mb-[18px]">
+              <p className="t-lead mb-[18px]">
                 {locale === "fr"
                   ? (settings.aboutCollabLeadFr || t["about.collabLead"])
                   : locale === "uk"
                   ? (settings.aboutCollabLeadUk || t["about.collabLead"])
                   : (settings.aboutCollabLeadEn || t["about.collabLead"])}
               </p>
-              <p className="text-[15px] text-[#999] leading-[1.7] mb-[14px]">
+              <p className="t-p mb-[14px]">
                 {locale === "fr"
                   ? (settings.aboutCollabP1Fr || t["about.collabP1"])
                   : locale === "uk"
                   ? (settings.aboutCollabP1Uk || t["about.collabP1"])
                   : (settings.aboutCollabP1En || t["about.collabP1"])}
               </p>
-              <p className="text-[15px] text-[#999] leading-[1.7]">
+              <p className="t-p">
                 {locale === "fr"
                   ? (settings.aboutCollabP2Fr || t["about.collabP2"])
                   : locale === "uk"
@@ -273,17 +264,14 @@ export default async function HomePage({
           <div className="flex flex-col items-center gap-10">
             {/* Text */}
             <div className="w-full max-w-[700px] text-center">
-              <h2
-                className="text-[clamp(32px,5vw,56px)] leading-[1.05] text-brand-white mb-5"
-                style={{ fontFamily: "NAMU-1400, serif" }}
-              >
+              <h2 className="t-h3 text-[clamp(28px,4vw,44px)] leading-[1.08] mb-5">
                 {locale === "fr"
                   ? (settings.cvCtaTitleFr || "CV numérique")
                   : locale === "uk"
                   ? (settings.cvCtaTitleUk || "Цифрове CV")
                   : (settings.cvCtaTitleEn || "Digital CV")}
               </h2>
-              <p className="text-[15px] text-[#777] leading-[1.7]">
+              <p className="t-p mx-auto max-w-[620px]">
                 {locale === "fr"
                   ? (settings.cvCtaTextFr || "Vous souhaitez en savoir plus sur mon parcours artistique, mon répertoire et mes conditions de collaboration ? Tout ce qu'il faut pour la programmation et la diffusion se trouve ici.")
                   : locale === "uk"
@@ -298,10 +286,9 @@ export default async function HomePage({
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <Link
                 href={`/${lang}/cv`}
-                className="group inline-flex items-center justify-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm text-base"
-                style={{ fontFamily: "NAMU-1400, serif" }}
+                className="group inline-flex items-center justify-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm"
               >
-                <span className="text-[14px] tracking-[4px] uppercase whitespace-nowrap font-semibold">
+                <span className="t-mono text-[14px] tracking-[2.8px] uppercase whitespace-nowrap">
                   {locale === "fr"
                     ? (settings.cvCtaBtnFr || "Consulter le CV")
                     : locale === "uk"
@@ -319,9 +306,8 @@ export default async function HomePage({
               <Link
                 href={`/${lang}/cv?print=1`}
                 className="group inline-flex items-center justify-center gap-4 px-10 py-6 border border-[#2b2b2b] hover:border-brand-red text-[#999] hover:text-brand-white transition-all duration-300 rounded-sm"
-                style={{ fontFamily: "NAMU-1400, serif" }}
               >
-                <span className="text-[13px] tracking-[3px] uppercase whitespace-nowrap">
+                <span className="t-mono text-[13px] tracking-[2.8px] uppercase whitespace-nowrap">
                   {cvData[locale].downloadBtn}
                 </span>
                 <svg
@@ -341,17 +327,14 @@ export default async function HomePage({
            2-column: Write button (WhatsApp) · Social links
            Editable in Notion Site Settings → keys: contact_*, social_* */}
       <section id="contact" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto">
-        <h2
-          className="text-4xl text-brand-white mb-4"
-          style={{ fontFamily: "NAMU-1400, serif" }}
-        >
+        <h2 className="t-h2 mb-4">
           {locale === "fr"
             ? (settings.contactTitleFr || t["contact.title"])
             : locale === "uk"
             ? (settings.contactTitleUk || t["contact.title"])
             : (settings.contactTitleEn || t["contact.title"])}
         </h2>
-        <p className="text-[15px] text-[#999] max-w-[700px] mb-12 leading-[1.7]">
+        <p className="t-p max-w-[640px] mb-12">
           {locale === "fr"
             ? (settings.contactSubtitleFr || t["contact.subtitle"])
             : locale === "uk"

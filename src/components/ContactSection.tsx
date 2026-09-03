@@ -50,10 +50,10 @@ export default function ContactSection({
           </svg>
         </div>
         <div className="text-center">
-          <p className="text-[13px] tracking-[2px] uppercase text-brand-white font-semibold" style={{ fontFamily: "NAMU-1400, serif" }}>
+          <p className="t-mono text-[13px] tracking-[2px] uppercase text-brand-white">
             WhatsApp
           </p>
-          <p className="text-[11px] text-[#555] mt-1">
+          <p className="t-meta-c text-[13px] mt-1.5">
             {fr ? "Écrire" : uk ? "Написати" : "Message"}
           </p>
         </div>
@@ -73,10 +73,10 @@ export default function ContactSection({
           </svg>
         </div>
         <div className="text-center">
-          <p className="text-[13px] tracking-[2px] uppercase text-brand-white font-semibold" style={{ fontFamily: "NAMU-1400, serif" }}>
+          <p className="t-mono text-[13px] tracking-[2px] uppercase text-brand-white">
             Instagram
           </p>
-          <p className="text-[11px] text-[#555] mt-1">@{igHandle}</p>
+          <p className="t-meta-c text-[13px] mt-1.5">@{igHandle}</p>
         </div>
       </a>
 
@@ -93,10 +93,10 @@ export default function ContactSection({
           </svg>
         </div>
         <div className="text-center">
-          <p className="text-[13px] tracking-[2px] uppercase text-brand-white font-semibold" style={{ fontFamily: "NAMU-1400, serif" }}>
+          <p className="t-mono text-[13px] tracking-[2px] uppercase text-brand-white">
             Facebook
           </p>
-          <p className="text-[11px] text-[#555] mt-1">{handle(facebook)}</p>
+          <p className="t-meta-c text-[13px] mt-1.5">{handle(facebook)}</p>
         </div>
       </a>
 
@@ -113,10 +113,10 @@ export default function ContactSection({
           </svg>
         </div>
         <div className="text-center">
-          <p className="text-[13px] tracking-[2px] uppercase text-brand-white font-semibold" style={{ fontFamily: "NAMU-1400, serif" }}>
+          <p className="t-mono text-[13px] tracking-[2px] uppercase text-brand-white">
             Threads
           </p>
-          <p className="text-[11px] text-[#555] mt-1">@{thHandle}</p>
+          <p className="t-meta-c text-[13px] mt-1.5">@{thHandle}</p>
         </div>
       </a>
 

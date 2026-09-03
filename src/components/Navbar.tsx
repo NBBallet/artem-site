@@ -15,17 +15,18 @@ const LANG_ORDER: Locale[] = ["en", "fr", "uk"];
 
 export default function Navbar({ lang, t }: NavbarProps) {
   const pathname = usePathname();
+  const onCv = pathname.startsWith(`/${lang}/cv`);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/92 backdrop-blur-[12px] border-b border-[#222] px-6 md:px-10 py-3 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/92 backdrop-blur-[12px] border-b border-[#222] px-4 sm:px-6 md:px-10 py-3 flex items-center justify-between">
       <Link
         href={`/${lang}`}
-        className="font-[NAMU-1400] text-sm tracking-[4px] text-brand-grey hover:text-brand-red transition-colors"
+        className="font-[NAMU-1400] text-sm tracking-[2px] sm:tracking-[4px] text-brand-grey hover:text-brand-red transition-colors"
         style={{ fontFamily: "NAMU-1400, serif" }}
       >
         ARTEM HORDIEIEV
       </Link>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-3 sm:gap-6">
         <a
           href={`/${lang}#works`}
           className="text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors hidden sm:block"
@@ -38,9 +39,19 @@ export default function Navbar({ lang, t }: NavbarProps) {
         >
           {t["nav.about"]}
         </a>
+        {/* CV — головна дія в навігації, тому єдиний тут суцільний фірмовий
+            червоний. На наведенні інвертується так само, як кнопка «Завантажити
+            PDF» на самій сторінці резюме, а коли ти вже на ній — стає контурним,
+            щоб не тиснути на дію, яку вже зроблено. Видима й на телефоні:
+            решта пунктів там ховається, а цей веде до головного документа. */}
         <Link
           href={`/${lang}/cv`}
-          className="text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors hidden sm:block"
+          aria-current={onCv ? "page" : undefined}
+          className={`text-[11px] tracking-[2px] uppercase px-2.5 sm:px-3.5 py-1.5 rounded-sm transition-colors ${
+            onCv
+              ? "border border-brand-red text-brand-red"
+              : "bg-brand-red text-brand-white hover:bg-brand-white hover:text-brand-red"
+          }`}
         >
           {t["nav.cv"]}
         </Link>

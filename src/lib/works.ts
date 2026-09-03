@@ -152,9 +152,9 @@ export const works: Work[] = [
     slug: "adios",
     title: { en: "Adios", uk: "Адьос", fr: "Adios" },
     subtitle: {
-      en: "Contemporary piece · 1st Place, National Choreographers’ Competition, Lviv",
-      uk: "Сучасна постановка · 1 місце, Національний конкурс балетмейстерів, Львів",
-      fr: "Pièce contemporaine · 1re place, Concours national de chorégraphie, Lviv",
+      en: "Contemporary piece · 1st Place, International Choreographers’ Competition, Lviv",
+      uk: "Сучасна постановка · 1 місце, Міжнародний конкурс балетмейстерів, Львів",
+      fr: "Pièce contemporaine · 1re place, Concours international de chorégraphie, Lviv",
     },
     year: "2016",
     music: "Benjamin Clementine",
@@ -189,9 +189,9 @@ export const works: Work[] = [
       {
         id: "m24yjydh5sg",
         title: {
-          en: "1st Place · National Choreographers’ Competition, Lviv, 2015 · Theatre recording",
-          uk: "1 місце · Національний конкурс балетмейстерів, Львів, 2015 · Запис із театру",
-          fr: "1re place · Concours national de chorégraphie, Lviv, 2015 · Captation au théâtre",
+          en: "1st Place · International Choreographers’ Competition, Lviv, 2015 · Theatre recording",
+          uk: "1 місце · Міжнародний конкурс балетмейстерів, Львів, 2015 · Запис із театру",
+          fr: "1re place · Concours international de chorégraphie, Lviv, 2015 · Captation au théâtre",
         },
       },
       {
@@ -215,9 +215,9 @@ export const works: Work[] = [
     year: "2019",
     music: "Georges Bizet / Rodion Shchedrin",
     description: {
-      en: "Bizet's immortal opera reborn through Rodion Shchedrin's radical 1967 orchestration for strings and percussion — a Carmen of raw passion and modern psychological depth. Presented at the Lviv Opera choreographers competition, this staging strips the story to its essential conflict: freedom against possession, fire against submission.",
+      en: "Bizet's immortal opera reborn through Rodion Shchedrin's radical 1967 orchestration for strings and percussion — a Carmen of raw passion and modern psychological depth. Presented at the Lviv Opera choreographers’ competition, this staging strips the story to its essential conflict: freedom against possession, fire against submission.",
       uk: "Безсмертна опера Бізе, переосмислена крізь радикальну оркестровку Родіона Щедріна для смичкових та ударних (1967). Представлена на конкурсі балетмейстерів у Львівській опері, постановка зводить сюжет до сутнісного конфлікту: свобода проти власництва, вогонь проти підкорення.",
-      fr: "L'opéra immortel de Bizet renaît à travers l'orchestration radicale de Rodion Chtchedrine pour cordes et percussions (1967) — une Carmen de passion brute et de profondeur psychologique moderne. Présentée au concours de chorégraphes de l'Opéra de Lviv, cette mise en scène réduit l'histoire à son conflit essentiel : la liberté contre la possession, le feu contre la soumission.",
+      fr: "L'opéra immortel de Bizet renaît à travers l'orchestration radicale de Rodion Chtchedrine pour cordes et percussions (1967) — une Carmen de passion brute et de profondeur psychologique moderne. Présentée au concours de chorégraphie de l'Opéra de Lviv, cette mise en scène réduit l'histoire à son conflit essentiel : la liberté contre la possession, le feu contre la soumission.",
     },
     image: "https://i.ytimg.com/vi/t8pL0hzb2i0/hqdefault.jpg",
     gallery: [

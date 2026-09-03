@@ -365,7 +365,7 @@ export const cvData = {
         "tv": "Television — head choreographer and director of the shows"
       },
       "awards": {
-        "lviv": "1st Place — international choreographers' competition, Lviv National Opera, 17 July 2015",
+        "lviv": "1st Place — International Choreographers’ Competition, Lviv National Opera, 17 July 2015",
         "sytycd": "Top 8 of the season — So You Think You Can Dance, Ukraine",
         "cup": "Bronze at the World Cup in DanceSport, Latin programme · Master of Sport of Ukraine"
       }
@@ -629,7 +629,7 @@ export const cvData = {
         "tv": "Télévision — chorégraphe principal et metteur en scène des émissions"
       },
       "awards": {
-        "lviv": "1re place — concours international de chorégraphes, Opéra national de Lviv, 17 juillet 2015",
+        "lviv": "1re place — Concours international de chorégraphie, Opéra national de Lviv, 17 juillet 2015",
         "sytycd": "Top 8 de la saison — So You Think You Can Dance, Ukraine",
         "cup": "Bronze à la Coupe du monde de danse sportive, programme latin · maître des sports d'Ukraine"
       }
@@ -893,7 +893,7 @@ export const cvData = {
         "tv": "Телебачення — головний хореограф і режисер проєктів"
       },
       "awards": {
-        "lviv": "1 місце — міжнародний конкурс балетмейстерів, Львівська національна опера, 17 липня 2015",
+        "lviv": "1 місце — Міжнародний конкурс балетмейстерів, Львівська національна опера, 17 липня 2015",
         "sytycd": "Топ-8 сезону — So You Think You Can Dance, Україна",
         "cup": "Бронза Кубка світу з бальних танців, латиноамериканська програма · майстер спорту України"
       }

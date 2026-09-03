@@ -25,6 +25,11 @@
   --red: #c8102e;
   --white: #f5f5f5;
   --grey: #888888;
+  /* текстові токени, спільні з резюме (--cv-body / --cv-meta) */
+  --body-fg: #9a9a9a;
+  --meta-fg: #616161;
+  --mono-font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --display-font: "NAMU-1400", Georgia, serif;
   --gold: #d4af37;
   --dark-grey: #555555;
 }
@@ -55,6 +60,55 @@ body {
 ::selection {
   background: var(--red);
   color: var(--white);
+}
+
+/* ── Спільна текстова шкала ────────────────────────────────────────────────
+   Стандарт задає цифрове резюме (src/app/[lang]/cv/cv.css): текст 17px на
+   ритмі 1.72, NAMU — лише в заголовках і трекованих мітках, моноширинний шар
+   несе дати, статуси й цифри. Головна сторінка йде за ним, щоб сайт читався
+   як один документ, а не як дві різні роботи.
+
+   Головне правило: NAMU НІКОЛИ не ставимо на бігучий текст. Це дисплейна
+   гарнітура — дрібніше ~20px вона перестає читатися, і саме через це блок
+   співпраці на головній був нечитабельним.
+
+   Класи живуть у шарі components, тож утиліти Tailwind (text-[26px] тощо)
+   як і раніше перекривають їх у поодиноких випадках. */
+@layer components {
+  .t-mono   { font-family: var(--mono-font); }
+  .t-fg     { color: var(--white); }
+  .t-body-c { color: var(--body-fg); }
+  .t-meta-c { color: var(--meta-fg); }
+
+  /* мітка розділу: моноширинний, трекований, червоний — як .cv-label */
+  .t-label {
+    font-family: var(--mono-font);
+    font-size: 15px;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .t-label-sm { font-size: 13px; letter-spacing: 1.8px; }
+
+  .t-h2 {
+    font-family: var(--display-font);
+    font-weight: normal;
+    font-size: clamp(26px, 3.2vw, 34px);
+    line-height: 1.12;
+    color: var(--white);
+    text-wrap: balance;
+  }
+  .t-h3 {
+    font-family: var(--display-font);
+    font-weight: normal;
+    line-height: 1.15;
+    color: var(--white);
+    text-wrap: balance;
+  }
+
+  /* бігучий текст і провідний абзац */
+  .t-p    { font-size: 17px; line-height: 1.72; color: var(--body-fg); text-wrap: pretty; }
+  .t-lead { font-size: 18px; line-height: 1.6;  color: var(--white);   text-wrap: pretty; }
 }
 
 @keyframes marquee {
