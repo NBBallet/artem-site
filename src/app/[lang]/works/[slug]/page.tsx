@@ -652,7 +652,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   );
 }
 
-/* ─── ICARE pitch page — world premiere of Markevich's L'Envol d'Icare ─── */
+/* ─── ICARE pitch page — world premiere of Markevitch's L'Envol d'Icare ─── */
 async function IcarePage({
   work,
   locale,
@@ -668,7 +668,7 @@ async function IcarePage({
   const settings = await getSiteSettings();
 
   // ICARE brand palette
-  const ULTRA = "#1B45B5"; // Paris cerulean — Markevich composed ICARE in Paris, 1932
+  const ULTRA = "#1B45B5"; // Paris cerulean — Markevitch composed ICARE in Paris, 1932
   const RED   = "#C8102E"; // Heart Red
   const OCHRE = "#D4A017"; // Ochre Star
 
