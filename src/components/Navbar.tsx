@@ -38,6 +38,12 @@ export default function Navbar({ lang, t }: NavbarProps) {
         >
           {t["nav.about"]}
         </a>
+        <Link
+          href={`/${lang}/cv`}
+          className="text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors hidden sm:block"
+        >
+          {t["nav.cv"]}
+        </Link>
         <a
           href={`/${lang}#contact`}
           className="text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors hidden sm:block"
