@@ -239,7 +239,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
         </Section>
 
         {/* ── 02 · trajectory ── */}
-        <Section>
+        <Section id="trajectory">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-10 mb-6">
             <div>
               <Label className="mb-4">{d.s02.label}</Label>
@@ -345,7 +345,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
         </Section>
 
         {/* ── 06 · repertoire ── */}
-        <Section>
+        <Section id="repertoire">
           <Label className="mb-4">{d.s06.label}</Label>
           <h2 className="cv-h2 mb-7" style={{ fontSize: "clamp(24px,2.8vw,30px)" }}>{d.s06.title}</h2>
 
@@ -523,7 +523,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
         {/* ── document footer (also the last line of the PDF) ── */}
         <footer
-          className="flex flex-wrap justify-between gap-4 pt-7 pb-2"
+          className="cv-doc-foot flex flex-wrap justify-between gap-4 pt-7 pb-2"
           style={{ borderTop: "1px solid var(--cv-line)" }}
         >
           <span className="cv-mono text-[12px] tracking-[2px] uppercase cv-meta">

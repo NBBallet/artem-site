@@ -219,7 +219,7 @@
      column, so print gets its own scale and is allowed to hyphenate. */
   .cv-traj-grid > div { overflow-wrap: break-word; }
   .cv-traj-grid .cv-h3 { font-size: 10pt !important; line-height: 1.15 !important;
-    overflow-wrap: break-word; hyphens: auto; }
+    overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; }
   .cv-traj-grid > div > div:last-child { font-size: 8.5pt !important; line-height: 1.45 !important; }
 
   /* the status column was running off the right edge ("INTERNATIONA") */
@@ -233,6 +233,19 @@
   .cv-collab-row .cv-h3,
   .cv-traj-grid .cv-h3 { break-after: auto !important; page-break-after: auto !important; }
 
+  /* Two sections open with a label, a title and then either a pair of column
+     labels or a table head — and only then the content they belong to. Chrome
+     keeps that opening with its content through the `break-after: avoid`
+     chain; WebKit ignores the chain and prints the opening at the foot of one
+     page with its content overleaf, leaving a half-page hole (Safari, FR/UK).
+     Every engine honours an explicit break, so each of them starts its own
+     page and the opening is never orphaned. The trajectory is here for a
+     different reason: the curve and the cards that name its peaks are one
+     figure, and the fold was running between them. */
+  #trajectory,
+  #ukraine-usa,
+  #repertoire { break-before: page; page-break-before: always; }
+
   /* a shorter curve buys back a page break */
   .cv-graph { height: 172px !important; }
 
@@ -242,6 +255,7 @@
   .cv-facts,
   .cv-traj-grid,
   .cv-payoff,
+  .cv-two-cols,
   .cv-langs { break-inside: avoid; page-break-inside: avoid; }
 
   /* The school list is the one grid long enough that keeping it whole pushes
@@ -269,8 +283,10 @@
   .cv-school-block { margin-bottom: 16px !important; }
   .cv-rep-row { padding-top: 10px !important; padding-bottom: 10px !important; }
   .cv-two-cols { margin-bottom: 16px !important; }
-  /* the closing section carries the contact details — never split those */
-  .cv-section:last-of-type { break-inside: avoid; page-break-inside: avoid; }
+  /* the closing section carries the contact details — never split those, and
+     the two footer lines are one line of the document, not two blocks */
+  .cv-section:last-of-type,
+  .cv-doc-foot { break-inside: avoid; page-break-inside: avoid; }
   .cv-meet { padding-top: 18px !important; padding-bottom: 18px !important;
     margin-bottom: 14px !important; }
   .cv-note { margin-top: 14px !important; }
