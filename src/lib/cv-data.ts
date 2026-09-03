@@ -177,7 +177,7 @@ export const cvData = {
       },
       {
         "label": "Based in",
-        "value": "France, since May 2026"
+        "value": "France, since 2026"
       },
       {
         "label": "Active since",
@@ -441,7 +441,7 @@ export const cvData = {
       },
       {
         "label": "Basé en",
-        "value": "France, depuis mai 2026"
+        "value": "France, depuis 2026"
       },
       {
         "label": "En activité depuis",
@@ -705,7 +705,7 @@ export const cvData = {
       },
       {
         "label": "Базування",
-        "value": "Франція, з 05.2026"
+        "value": "Франція, з 2026 року"
       },
       {
         "label": "У професії з",
