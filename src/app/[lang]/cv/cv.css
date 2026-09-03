@@ -228,7 +228,50 @@
   .cv-rep-head > div:last-child,
   .cv-rep-row > div:last-child { letter-spacing: 0.5px !important; overflow-wrap: break-word; }
   .cv-rep-head { break-after: avoid; page-break-after: avoid; }
+  /* a work title is not a heading that must drag the next block along */
+  .cv-rep-row .cv-h3,
+  .cv-collab-row .cv-h3,
+  .cv-traj-grid .cv-h3 { break-after: auto !important; page-break-after: auto !important; }
 
   /* a shorter curve buys back a page break */
   .cv-graph { height: 172px !important; }
+
+  /* Chrome does not honour break-inside on grid ITEMS, so a row of a grid can
+     be sliced through the middle of a line however much `.cv-keep` asks not to
+     be. These blocks all fit inside one page, so they move as a whole. */
+  .cv-facts,
+  .cv-traj-grid,
+  .cv-payoff,
+  .cv-langs { break-inside: avoid; page-break-inside: avoid; }
+
+  /* The school list is the one grid long enough that keeping it whole pushes
+     the languages onto a page of their own. Columns fragment properly, so it
+     can break between entries instead. */
+  .cv-school { display: block !important; column-count: 2; column-gap: 40px; }
+  .cv-school > div { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Paper is not a screen: the reading distance is shorter and the page is
+     finite. A CV a producer will actually read is four or five pages, so the
+     print type comes down a step and the air between blocks with it. */
+  .cv-section { padding: 11px 0 !important; }
+  .cv .text-\[17\.5px\],
+  .cv .text-\[17px\],
+  .cv .text-\[16px\],
+  .cv .text-\[15\.5px\],
+  .cv .text-\[15px\] { font-size: 11pt !important; line-height: 1.48 !important; }
+  .cv .text-\[14\.5px\],
+  .cv .text-\[14px\] { font-size: 10pt !important; line-height: 1.42 !important; }
+  .cv-h2 { font-size: 17pt !important; margin-bottom: 9px !important; }
+  .cv-section .cv-h3 { font-size: 11.5pt !important; }
+  .cv-label { margin-bottom: 8px !important; }
+  .cv-p { margin-bottom: 9px !important; }
+  .cv-facts { margin-bottom: 16px !important; }
+  .cv-school-block { margin-bottom: 16px !important; }
+  .cv-rep-row { padding-top: 10px !important; padding-bottom: 10px !important; }
+  .cv-two-cols { margin-bottom: 16px !important; }
+  /* the closing section carries the contact details — never split those */
+  .cv-section:last-of-type { break-inside: avoid; page-break-inside: avoid; }
+  .cv-meet { padding-top: 18px !important; padding-bottom: 18px !important;
+    margin-bottom: 14px !important; }
+  .cv-note { margin-top: 14px !important; }
 }

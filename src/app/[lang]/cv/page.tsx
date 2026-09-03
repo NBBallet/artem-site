@@ -305,7 +305,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
           </div>
 
           <div
-            className="cv-keep px-6 md:px-8 py-7 mb-5"
+            className="cv-meet cv-keep px-6 md:px-8 py-7 mb-5"
             style={{ background: "var(--cv-red-soft)", borderLeft: "2px solid var(--cv-red)" }}
           >
             <Label tone="red" small className="mb-3.5">{d.s03.meetLabel}</Label>
@@ -378,11 +378,11 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               </div>
             );
           })}
-          <div className="mt-6 pl-5 max-w-[900px]" style={{ borderLeft: "2px solid var(--cv-red)" }}>
+          <div className="cv-note mt-6 pl-5 max-w-[900px]" style={{ borderLeft: "2px solid var(--cv-red)" }}>
             <Label tone="red" small className="mb-2.5">{icareHead}</Label>
             <p className="text-[17px] leading-[1.7] cv-body-c">{icareBody}</p>
           </div>
-          <div className="mt-4 pl-5 max-w-[900px]" style={{ borderLeft: "2px solid var(--cv-gold)" }}>
+          <div className="cv-note mt-4 pl-5 max-w-[900px]" style={{ borderLeft: "2px solid var(--cv-gold)" }}>
             <p className="text-[17px] leading-[1.7] cv-body-c">{d.s06.tourNote}</p>
           </div>
           {/* straight into the works section of the site, not the home page top */}
@@ -443,7 +443,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
             )}
           </div>
           {/* Where the body comes from — the first thing a company director looks for. */}
-          <div className="mb-11">
+          <div className="cv-school-block mb-11">
             <Label tone="meta" className="mb-4">{d.s08.schoolLabel}</Label>
             <div className="cv-school grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {d.s08.school.map((x) => (
