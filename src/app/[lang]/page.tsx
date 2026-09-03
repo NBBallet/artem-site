@@ -285,10 +285,10 @@ export default async function HomePage({
               </h2>
               <p className="text-[15px] text-[#777] leading-[1.7]">
                 {locale === "fr"
-                  ? (settings.cvCtaTextFr || "Vous souhaitez en savoir plus sur mon parcours artistique, mon répertoire et mes conditions de collaboration ? Vous trouverez ici tout ce qu'il faut pour la programmation et les réservations.")
+                  ? (settings.cvCtaTextFr || "Vous souhaitez en savoir plus sur mon parcours artistique, mon répertoire et mes conditions de collaboration ? Tout ce qu'il faut pour la programmation et la diffusion se trouve ici.")
                   : locale === "uk"
                   ? (settings.cvCtaTextUk || "Хочеш дізнатися більше про мій творчий шлях, репертуар та умови співпраці? Тут — усе необхідне для програмування та бронювання.")
-                  : (settings.cvCtaTextEn || "Want to learn more about my creative journey, repertoire and collaboration terms? Here is everything you need for programming and booking.")}
+                  : (settings.cvCtaTextEn || "Want to know more about my artistic path, my repertoire and how we could work together? Everything you need for programming and booking is here.")}
               </p>
             </div>
 

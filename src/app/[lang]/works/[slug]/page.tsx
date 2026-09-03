@@ -91,7 +91,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             {/* Credits — all editable in Notion Site Settings DB */}
             <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
               <dt className="text-brand-dark-grey uppercase tracking-[2px] text-[11px]">
-                {locale === "fr" ? "Producteur" : locale === "uk" ? "Продюсер" : "Producer"}
+                {locale === "fr" ? "Productrice" : locale === "uk" ? "Продюсер" : "Producer"}
               </dt>
               <dd className="text-brand-grey">
                 {locale === "fr"
@@ -196,10 +196,10 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           </h2>
           <p className="text-[15px] text-brand-grey max-w-[520px] mb-8">
             {locale === "fr"
-              ? (settings.animaScenesDescriptionFr || "Chaque scène correspond à un Arcane majeur du Tarot — une étape de l'ascension spirituelle du Héros.")
+              ? (settings.animaScenesDescriptionFr || "Chaque scène correspond à un arcane majeur du Tarot — une étape de l'ascension spirituelle du Héros.")
               : locale === "uk"
               ? (settings.animaScenesDescriptionUk || "Кожна сцена вистави відповідає Старшому Аркану Таро — етапу духовного сходження Героя.")
-              : (settings.animaScenesDescriptionEn || "Each scene corresponds to a Major Arcana of Tarot — a stage in the Hero's spiritual ascent.")}
+              : (settings.animaScenesDescriptionEn || "Each scene corresponds to one of the Major Arcana of the Tarot — a stage in the Hero's spiritual ascent.")}
           </p>
           {/* Libretto PDF — prominent standalone button */}
           {settings.animaLibrettoPdf && (
@@ -485,10 +485,10 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           </h2>
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[540px] mx-auto">
             {locale === "fr"
-              ? (settings.animaCtaTextFr || "ANIMA est disponible pour des tournées internationales, une programmation en festival et des coproductions. Producteurs, directeurs de programmation et organisateurs de festivals sont invités à entamer un dialogue.")
+              ? (settings.animaCtaTextFr || "ANIMA est disponible pour des tournées internationales, une programmation en festival et des coproductions. Producteurs, programmateurs et directeurs de festivals sont invités à entamer le dialogue.")
               : locale === "uk"
               ? (settings.animaCtaTextUk || "ANIMA доступна для міжнародних гастролей, фестивального програмування та копродукції. Запрошуємо продюсерів, програмних директорів та організаторів фестивалів до діалогу.")
-              : (settings.animaCtaTextEn || "ANIMA is available for international touring, festival programming and co-production. Producers, programming directors and festival organisers are welcome to begin a conversation.")}
+              : (settings.animaCtaTextEn || "ANIMA is available for international touring, festival programming and co-production. Producers, programmers and festival directors are welcome to start a conversation.")}
           </p>
           <a
             href="https://wa.me/33743791841"
@@ -502,7 +502,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                 ? (settings.animaCtaBtnFr || "Contacter le chorégraphe")
                 : locale === "uk"
                 ? (settings.animaCtaBtnUk || "Написати хореографу")
-                : (settings.animaCtaBtnEn || "Contact Choreographer")}
+                : (settings.animaCtaBtnEn || "Contact the choreographer")}
             </span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
               className="flex-none transition-transform duration-200 group-hover:translate-x-0.5">
@@ -792,7 +792,7 @@ async function IcarePage({
                 {([
                   { en: "27 min",          uk: "27 хвилин",       fr: "27 min" },
                   { en: "One act",         uk: "Одна дія",        fr: "Un acte" },
-                  { en: "Ensemble of Five",uk: "Ensemble of Five",fr: "Ensemble de cinq" },
+                  { en: "Ensemble of Five",uk: "Ensemble of Five",fr: "Ensemble of Five" },
                   { en: "Chamber music",   uk: "Камерна музика",  fr: "Musique de chambre" },
                 ] as { en: string; uk: string; fr: string }[]).map((chip) => (
                   <span
@@ -833,7 +833,7 @@ async function IcarePage({
       <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {fr ? "La Mission inaccomplie" : uk ? "Нездійснена місія" : "The Unfinished Mission"}
+            {fr ? "La mission inaccomplie" : uk ? "Нездійснена місія" : "The Unfinished Mission"}
           </div>
           <h2
             className="text-[clamp(28px,4vw,52px)] text-white mb-12 max-w-[720px]"
@@ -934,7 +934,7 @@ async function IcarePage({
       <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {fr ? "La Partition" : uk ? "Партитура" : "The Score"}
+            {fr ? "La partition" : uk ? "Партитура" : "The Score"}
           </div>
           <h2
             className="text-[clamp(28px,4vw,52px)] text-white mb-4"
@@ -956,10 +956,10 @@ async function IcarePage({
                   src={`https://www.youtube.com/embed/${scoreVideoId}`}
                   title={
                     fr
-                      ? "Ensemble de cinq — Igor Markevitch, L'Envol d'Icare"
+                      ? "Ensemble of Five — Igor Markevitch, L'Envol d'Icare"
                       : uk
                       ? "Ensemble of Five — Ігор Маркевич, Політ Ікара"
-                      : "Ensemble of Five — Igor Markevich, L'Envol d'Icare"
+                      : "Ensemble of Five — Igor Markevitch, L'Envol d'Icare"
                   }
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -998,7 +998,7 @@ async function IcarePage({
       >
         <div className="max-w-[800px] mx-auto text-center">
           <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
-            {fr ? "Réservation" : uk ? "Бронювання" : "Booking"}
+            {fr ? "Diffusion" : uk ? "Бронювання" : "Booking"}
           </div>
           <h2
             className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
@@ -1179,7 +1179,7 @@ async function MercyPage({
       <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
         <div className="max-w-[800px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
-            {fr ? "L'Histoire" : uk ? "Передісторія" : "The Story"}
+            {fr ? "L'histoire" : uk ? "Передісторія" : "The Story"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1] break-words"
             style={{ fontFamily: "NAMU-1400, serif" }}>
@@ -1213,7 +1213,7 @@ async function MercyPage({
         style={{ background: `linear-gradient(135deg, #0A0608 0%, ${ROSE}12 100%)` }}>
         <div className="max-w-[800px] mx-auto text-center">
           <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
-            {fr ? "Demande" : uk ? "Запит" : "Inquiry"}
+            {fr ? "Contact" : uk ? "Запит" : "Enquiries"}
           </div>
           <h2 className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
             style={{ fontFamily: "NAMU-1400, serif" }}>
@@ -1393,7 +1393,7 @@ async function HumansPage({
         style={{ background: `${INDIGO}08` }}>
         <div className="max-w-[800px] mx-auto">
           <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
-            {fr ? "Le Mythe" : uk ? "Міф" : "The Myth"}
+            {fr ? "Le mythe" : uk ? "Міф" : "The Myth"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
             style={{ fontFamily: "NAMU-1400, serif" }}>
@@ -1410,7 +1410,7 @@ async function HumansPage({
         style={{ background: `linear-gradient(135deg, #080612 0%, ${INDIGO}22 100%)` }}>
         <div className="max-w-[800px] mx-auto text-center">
           <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
-            {fr ? "Demande" : uk ? "Запит" : "Inquiry"}
+            {fr ? "Contact" : uk ? "Запит" : "Enquiries"}
           </div>
           <h2 className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
             style={{ fontFamily: "NAMU-1400, serif" }}>
@@ -1649,7 +1649,7 @@ async function GenericWorkPage({
           <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]" style={{ background: `${theme.bg}` }}>
             <div className="max-w-[800px] mx-auto text-center">
               <div className="mb-4 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: theme.accent }}>
-                {fr ? "Réservation" : uk ? "Бронювання" : "Booking"}
+                {fr ? "Diffusion" : uk ? "Бронювання" : "Booking"}
               </div>
               <h2
                 className="text-[clamp(32px,5vw,60px)] text-brand-white mb-6 leading-[1.05]"

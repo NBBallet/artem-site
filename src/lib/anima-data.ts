@@ -79,9 +79,9 @@ export const animaData = {
       arcanaFr: "La Justice",
       image: "/images/works/anima/justice.jpg",
       description: {
-        en: "A Man realizes the cause and effect law, understanding that duality is an illusion, as there is no difference between \"good\" and \"bad\" but merely the Supreme law of the Universe. A Man asks God to show him his path.",
+        en: "The Man comes to understand the law of cause and effect: duality is an illusion, there is no difference between “good” and “bad”, only the Supreme Law of the Universe. He asks God to show him his path.",
         uk: "Людина усвідомлює закон причини та наслідку, розуміючи, що двоїстість — це ілюзія, бо немає різниці між «добрим» і «поганим», а є лише Вищий закон Всесвіту. Людина просить Бога показати їй свій шлях.",
-        fr: "Un Homme prend conscience de la loi de cause à effet, comprenant que la dualité est une illusion, car il n'existe pas de différence entre le « bien » et le « mal », mais seulement la Loi suprême de l'Univers. Un Homme demande à Dieu de lui montrer son chemin.",
+        fr: "L'Homme prend conscience de la loi de cause à effet : la dualité est une illusion, il n'y a pas de différence entre le « bien » et le « mal », seulement la Loi suprême de l'Univers. Il demande à Dieu de lui montrer son chemin.",
       },
     },
     {
@@ -91,9 +91,9 @@ export const animaData = {
       arcanaFr: "L'Ermite",
       image: "/images/works/anima/the-hermit.jpg",
       description: {
-        en: "Step by step a Man learns to trust in God, illuminating his own path as he goes along, while his Soul struggles with challenges.",
+        en: "Step by step, the Man learns to trust in God, lighting his own path as he goes, while his Soul struggles with its trials.",
         uk: "Крок за кроком Людина вчиться довіряти Богу, освітлюючи свій власний шлях, поки її Душа бореться з випробуваннями.",
-        fr: "Pas à pas, un Homme apprend à faire confiance en Dieu, éclairant son propre chemin au fil de son avancée, tandis que son Âme lutte contre les épreuves.",
+        fr: "Pas à pas, l'Homme apprend à faire confiance à Dieu et éclaire lui-même son chemin, tandis que son Âme se débat dans les épreuves.",
       },
     },
     {
@@ -103,9 +103,9 @@ export const animaData = {
       arcanaFr: "La Roue",
       image: "/images/works/anima/the-wheel.jpg",
       description: {
-        en: "A Man undergoes the stages of ignorance, self-depreciation, passion and, finally, goodness, as a Man finds himself at the center of the wheel, watching what is happening around.",
+        en: "The Man passes through the stages of ignorance, self-abasement, passion and, at last, goodness, and finds himself at the centre of the wheel, watching what happens around him.",
         uk: "Людина проходить етапи невігластва, самоприниження, пристрасті і, нарешті, добра, опиняючись у центрі колеса та спостерігаючи за тим, що відбувається навколо.",
-        fr: "Un Homme traverse les étapes de l'ignorance, de la dépréciation de soi, de la passion et, enfin, de la bonté, se retrouvant au centre de la roue, observant ce qui se passe autour de lui.",
+        fr: "L'Homme traverse l'ignorance, l'abaissement de soi, la passion et, enfin, la bonté, et se retrouve au centre de la roue, à observer ce qui se passe autour de lui.",
       },
     },
     {
@@ -115,9 +115,9 @@ export const animaData = {
       arcanaFr: "La Force",
       image: "/images/works/anima/strength.jpg",
       description: {
-        en: "A Man can do anything if he realizes the immensity of his inner power, tames it and becomes its Master.",
+        en: "The Man can do anything once he grasps the boundlessness of his inner strength, tames it and becomes its Master.",
         uk: "Людина може все, якщо усвідомить безмежність своєї внутрішньої сили, приборкає її і стане її Майстром.",
-        fr: "Un Homme peut tout accomplir s'il prend conscience de l'immensité de sa force intérieure, l'apprivoise et en devient le Maître.",
+        fr: "L'Homme peut tout, s'il prend conscience de l'infini de sa force intérieure, l'apprivoise et en devient le Maître.",
       },
     },
     {
@@ -127,9 +127,9 @@ export const animaData = {
       arcanaFr: "Le Pendu",
       image: "/images/works/anima/the-hanged-man.jpg",
       description: {
-        en: "A Man begins to see the world and himself differently and realizes his Genius. He enters another stage of challenges through escaping from reality, ignorance, passion and ego.",
+        en: "The Man begins to see the world and himself differently and recognises his Genius. He enters a new stage of trials: escape from reality, ignorance, passion and ego.",
         uk: "Людина починає бачити світ і себе інакше та усвідомлює свій Геній. Вона входить у новий етап випробувань через втечу від реальності, невігластво, пристрасть та его.",
-        fr: "Un Homme commence à voir le monde et lui-même différemment et prend conscience de son Génie. Il entre dans une nouvelle étape d'épreuves à travers la fuite de la réalité, l'ignorance, la passion et l'ego.",
+        fr: "L'Homme commence à voir le monde et lui-même autrement et prend conscience de son Génie. Il entre dans une nouvelle étape d'épreuves : la fuite hors de la réalité, l'ignorance, la passion et l'ego.",
       },
     },
     {
@@ -161,11 +161,11 @@ export const animaData = {
   videos: {
     showreel: {
       id: "ATM9z-LrIA0",
-      title: { en: "ANIMA — Showreel (6 min)", uk: "АНІМА — Шоуріл (6 хв)", fr: "ANIMA — Bande-annonce (6 min)" },
+      title: { en: "ANIMA — Showreel (6 min)", uk: "АНІМА — Шоуріл (6 хв)", fr: "ANIMA — Showreel (6 min)" },
     },
     premiere: {
       id: "OtBzaz8hSGM",
-      title: { en: "ANIMA — Full Premiere Recording", uk: "АНІМА — Повний запис прем'єри", fr: "ANIMA — Enregistrement intégral de la Première" },
+      title: { en: "ANIMA — Full recording of the premiere", uk: "АНІМА — Повний запис прем'єри", fr: "ANIMA — Captation intégrale de la création" },
     },
     rehearsal: {
       id: "ks-RzvaKsNQ",
@@ -176,9 +176,9 @@ export const animaData = {
   festival: {
     name: "КМАТОБ-ФЕСТ 2014",
     fullName: {
-      en: "KMATOB-FEST 2014 — International Festival of Choreographic Art",
+      en: "KMATOB-FEST 2014 — Festival of Choreographic Art",
       uk: "КМАТОБ-ФЕСТ 2014 — Фестиваль хореографічного мистецтва",
-      fr: "KMATOB-FEST 2014 — Festival international d'art chorégraphique",
+      fr: "KMATOB-FEST 2014 — Festival d'art chorégraphique",
     },
     dates: {
       en: "April 7–12, 2014",
@@ -197,9 +197,9 @@ export const animaData = {
     },
     programImage: "/images/works/anima/festival-program.jpg",
     description: {
-      en: "The first edition of the International Festival of Choreographic Art at KMATOB brought together leading Ukrainian choreographers and dance companies for a week of masterclasses, laboratories, and premieres. LITSO Dance Company participated with masterclasses led by Artem Hordieiev and Olena Dovhikh (\"Perception of space, movement and body\" and \"Creating dance based on previous training\"), and premiered ANIMA as the opening of the closing gala on April 12.",
+      en: "The first Festival of Choreographic Art at KMATOB brought together leading Ukrainian choreographers and dance companies for a week of masterclasses, laboratories and premieres. LITSO Dance Company took part with masterclasses led by Artem Hordieiev and Olena Dovhikh (“Perception of space, movement and body” and “Creating dance from the previous training”), and premiered ANIMA as the opening of the closing gala on 12 April.",
       uk: "Перший фестиваль хореографічного мистецтва в КМАТОБ зібрав провідних українських хореографів та танцювальні компанії на тиждень майстер-класів, лабораторій та прем'єр. LITSO Dance Company взяла участь із майстер-класами Артема Гордєєва та Олени Довгіх («Сприйняття простору, руху і тіла» та «Створення танцю на основі попередніх тренінгів»), а прем'єра ANIMA стала відкриттям гала-закриття фестивалю 12 квітня.",
-      fr: "La première édition du Festival international d'art chorégraphique au KMATOB a réuni les principaux chorégraphes et compagnies de danse ukrainiens pour une semaine de masterclasses, de laboratoires et de créations. LITSO Dance Company a participé avec des masterclasses dirigées par Artem Hordieiev et Olena Dovhikh (« Perception de l'espace, du mouvement et du corps » et « Créer la danse à partir d'un entraînement antérieur »), et a présenté la première d'ANIMA en ouverture du gala de clôture, le 12 avril.",
+      fr: "La première édition du Festival d'art chorégraphique au KMATOB a réuni les principaux chorégraphes et compagnies de danse d'Ukraine pour une semaine de masterclasses, de laboratoires et de créations. LITSO Dance Company y a participé avec des masterclasses menées par Artem Hordieiev et Olena Dovhikh (« Perception de l'espace, du mouvement et du corps » et « Créer la danse à partir des trainings précédents »), et a présenté la création d'ANIMA en ouverture du gala de clôture, le 12 avril.",
     },
     masterclasses: {
       en: [
@@ -218,8 +218,8 @@ export const animaData = {
   },
 
   litsoCompany: {
-    en: "LITSO Dance Company was founded in 2013 by students of the Karpenko-Karyi Kyiv National University of Theatre, Film and Television. The name \"LITSO\" (Ukrainian for \"face\") reflected the company's core mission: to explore the theatre as a space where the true face of humanity is revealed through dance and dramaturgy. LITSO served as a creative laboratory — a place for research at the intersection of contemporary dance, physical theatre, and choreographic storytelling. Newspaper Birds Production is its natural professional evolution: from an experimental student laboratory into a fully-fledged contemporary ballet company operating on the European stage.",
-    uk: "LITSO Dance Company була заснована у 2013 році студентами Київського національного університету театру, кіно і телебачення імені Карпенка-Карого. Назва «ЛІТСО» (обличчя) відображала головну місію компанії: досліджувати театр як простір, де через танець та драматургію розкривається справжнє обличчя людства. LITSO була творчою лабораторією — місцем для досліджень на перетині сучасного танцю, фізичного театру та хореографічної оповіді. Newspaper Birds Production — це її природне професійне продовження: від експериментальної студентської лабораторії до повноцінної сучасної балетної компанії, що працює на європейській сцені.",
-    fr: "LITSO Dance Company a été fondée en 2013 par des étudiants de l'Université nationale du théâtre, du cinéma et de la télévision Karpenko-Kary de Kyiv. Le nom « LITSO » (qui signifie « visage » en ukrainien) reflétait la mission fondatrice de la compagnie : explorer le théâtre comme un espace où le vrai visage de l'humanité se révèle par la danse et la dramaturgie. LITSO fonctionnait comme un laboratoire créatif — un lieu de recherche à la croisée de la danse contemporaine, du théâtre physique et de la narration chorégraphique. Newspaper Birds Production en est le prolongement professionnel naturel : d'un laboratoire expérimental étudiant à une compagnie de ballet contemporain à part entière, active sur la scène européenne.",
+    en: "LITSO Dance Company was founded in 2013 by students of the Karpenko-Kary Kyiv National University of Theatre, Film and Television. The name LITSO carried the company's core mission: to explore theatre as a space where the true face of a human being is revealed through dance and dramaturgy. LITSO was a creative laboratory — a place for research at the crossroads of contemporary dance, physical theatre and choreographic storytelling. Newspaper Birds Production is its natural professional continuation: from an experimental student laboratory to a fully fledged contemporary ballet company working on the European stage.",
+    uk: "LITSO Dance Company була заснована у 2013 році студентами Київського національного університету театру, кіно і телебачення імені Карпенка-Карого. У назві LITSO закладена головна місія компанії: досліджувати театр як простір, де через танець та драматургію розкривається справжнє обличчя людини. LITSO була творчою лабораторією — місцем для досліджень на перетині сучасного танцю, фізичного театру та хореографічної оповіді. Newspaper Birds Production — це її природне професійне продовження: від експериментальної студентської лабораторії до повноцінної сучасної балетної компанії, що працює на європейській сцені.",
+    fr: "LITSO Dance Company a été fondée en 2013 par des étudiants de l'Université nationale du théâtre, du cinéma et de la télévision Karpenko-Kary de Kyiv. Le nom LITSO portait la mission première de la compagnie : explorer le théâtre comme un espace où le vrai visage de l'être humain se révèle par la danse et la dramaturgie. LITSO était un laboratoire de création — un lieu de recherche à la croisée de la danse contemporaine, du théâtre physique et de la narration chorégraphique. Newspaper Birds Production en est le prolongement professionnel naturel : d'un laboratoire expérimental étudiant à une compagnie de ballet contemporain à part entière, active sur la scène européenne.",
   },
 };

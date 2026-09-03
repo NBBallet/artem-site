@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Artem Hordieiev — Choreographer",
   description:
-    "Ukrainian choreographer and ballet director. Dance about who we truly are.",
+    "Ukrainian choreographer, founder of Newspaper Birds Production. Dance about who we truly are.",
   openGraph: {
     title: "Artem Hordieiev — Choreographer",
     description:
-      "Ukrainian choreographer and ballet director. Founder of Newspaper Birds Production.",
+      "Ukrainian choreographer, founder of Newspaper Birds Production. Dance about who we truly are.",
     images: ["/images/website-og-1200x630.png"],
     type: "website",
   },

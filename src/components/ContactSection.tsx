@@ -54,7 +54,7 @@ export default function ContactSection({
             WhatsApp
           </p>
           <p className="text-[11px] text-[#555] mt-1">
-            {fr ? "Écrire" : uk ? "Написати" : "Write"}
+            {fr ? "Écrire" : uk ? "Написати" : "Message"}
           </p>
         </div>
       </button>

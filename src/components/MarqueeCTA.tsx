@@ -8,7 +8,7 @@ const DEFAULT_EN =
 const DEFAULT_UK =
   "ПРИЄДНУЙТЕСЬ · Станьте частиною артистичної родини Newspaper Birds · Замовте виставу · Співпрацюйте з нами ·";
 const DEFAULT_FR =
-  "REJOIGNEZ LA COMMUNAUTÉ · Faites partie de la famille artistique de Newspaper Birds · Réservez un spectacle · Collaborez avec nous ·";
+  "REJOIGNEZ LA COMMUNAUTÉ · Faites partie de la famille artistique de Newspaper Birds · Programmez un spectacle · Collaborez avec nous ·";
 
 interface MarqueeCTAProps {
   locale: Locale;

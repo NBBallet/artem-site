@@ -22,7 +22,7 @@ export const works: Work[] = [
     subtitle: {
       en: "Full-length ballet in two acts",
       uk: "Повнометражний балет у двох діях",
-      fr: "Ballet intégral en deux actes",
+      fr: "Ballet en deux actes",
     },
     year: "2018–2024",
     music: "Antonio Vivaldi / Max Richter / J.S. Bach",
@@ -54,7 +54,7 @@ export const works: Work[] = [
       {
         id: "lkeQ3z5rlro",
         title: {
-          en: "Part 1. Awakening of life in the anthill. Dance of the Queen, the secret service, princesses and ordinary workers.",
+          en: "Part 1. Life awakens in the anthill. Dance of the Queen, the secret service, the princesses and the ordinary workers.",
           uk: "Частина 1. Пробудження життя в мурашнику. Танок Королеви, секретної служби, принцес та звичайних робітників.",
           fr: "Partie 1. L'éveil de la vie dans la fourmilière. Danse de la Reine, des services secrets, des princesses et des ouvrières ordinaires.",
         },
@@ -62,9 +62,9 @@ export const works: Work[] = [
       {
         id: "2YyjSLilMi4",
         title: {
-          en: "Part 2. Solo of the Prince, the main hero of the performance.",
+          en: "Part 2. The Prince’s solo — the central character of the ballet.",
           uk: "Частина 2. Соло принца, головного героя вистави.",
-          fr: "Partie 2. Solo du Prince, héros principal du spectacle.",
+          fr: "Partie 2. Solo du Prince, personnage principal du spectacle.",
         },
       },
     ],
@@ -80,26 +80,26 @@ export const works: Work[] = [
     year: "2019–2025",
     music: "Wolfgang Amadeus Mozart",
     description: {
-      en: "An immersion into the complex, contradictory inner world of the great composer. We witness the forces that drove his artistic visions and demanded that Amadeus move ceaselessly upward along the staircase of his musical path — not counting even the Archbishop of Salzburg.",
+      en: "An immersion into the complex, contradictory inner world of the great composer. We see with our own eyes the forces that drove his artistic visions and demanded that Amadeus keep climbing, ever upward, the staircase of his musical path — without deferring even to the Archbishop of Salzburg.",
       uk: "Занурення у складний та суперечливий внутрішній світ великого композитора. Ми бачимо на власні очі, які сили спонукали мистецькі візії та вимагали від великого Амадея рухатися безупинно вверх і вгору сходами свого музичного шляху, не рахуючись навіть з Архієпископом Зальцбурзьким.",
-      fr: "Une immersion dans le monde intérieur complexe et contradictoire du grand compositeur. Nous assistons aux forces qui ont nourri ses visions artistiques et qui exigeaient qu'Amadeus s'élève sans cesse sur l'escalier de son parcours musical — sans même compter l'archevêque de Salzbourg.",
+      fr: "Une immersion dans le monde intérieur, complexe et contradictoire, du grand compositeur. Nous voyons de nos propres yeux les forces qui ont nourri ses visions et qui exigeaient d'Amadeus qu'il monte sans cesse, toujours plus haut, les marches de son chemin musical — sans s'incliner même devant l'archevêque de Salzbourg.",
     },
     image: "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332563/IMG_3263_fcvu8m.jpg",
     videos: [
       {
         id: "nEAiHrquJ74",
         title: {
-          en: "Stage choreographic development of the ballet. First act. Teaser.",
+          en: "Stage workshop of the ballet’s choreography. Act One. Teaser.",
           uk: "Сценічна хореографічна розробка балету. Перший акт. Тизер.",
-          fr: "Développement chorégraphique scénique du ballet. Premier acte. Teaser.",
+          fr: "Esquisse chorégraphique du ballet, sur scène. Premier acte. Teaser.",
         },
       },
       {
         id: "H5CGX13LNlY",
         title: {
-          en: "A more extensive, full version of the choreographic text.",
+          en: "A longer, fuller version of the choreographic text.",
           uk: "Більш розлога, повна версія хореографічного тексту.",
-          fr: "Une version plus complète et développée du texte chorégraphique.",
+          fr: "Une version plus longue et plus complète du texte chorégraphique.",
         },
       },
     ],
@@ -135,33 +135,33 @@ export const works: Work[] = [
     slug: "anima",
     title: { en: "Anima", uk: "Аніма", fr: "Anima" },
     subtitle: {
-      en: "One-act ballet · Rising of the Soul",
+      en: "One-act ballet · The Ascent of the Soul",
       uk: "Одноактний балет · Душа зростає",
       fr: "Ballet en un acte · L'Ascension de l'âme",
     },
     year: "2014",
     music: "L'Orchestre de Contrebasses (Marseille, France)",
     description: {
-      en: "The Soul encounters challenges beyond time and space. The Hero discovers the depth of his inner world, creating his own self by ascending the Major Arcana of Tarot. Through Justice, the Hermit, the Wheel, Strength, the Hanged Man, Death, and Temperance — the Soul rises according to the law of the Universe.",
+      en: "The Soul meets its trials beyond time and space. The Hero discovers the depth of his inner world and creates his own self by passing through the Major Arcana of the Tarot. Through Justice, the Hermit, the Wheel, Strength, the Hanged Man, Death and Temperance, the Soul rises according to the law of the Universe.",
       uk: "Душа зустрічає випробування поза часом і простором. Герой відкриває глибину свого внутрішнього світу, створюючи себе через проходження Старших Арканів Таро. Крізь Справедливість, Відлюдника, Колесо, Силу, Повішеного, Смерть і Поміркованість — Душа зростає згідно із законом Всесвіту.",
-      fr: "L'Âme rencontre des épreuves hors du temps et de l'espace. Le Héros découvre la profondeur de son monde intérieur, se créant lui-même en gravissant les Arcanes majeurs du Tarot. À travers la Justice, l'Ermite, la Roue, la Force, le Pendu, la Mort et la Tempérance — l'Âme s'élève selon la loi de l'Univers.",
+      fr: "L'Âme rencontre ses épreuves hors du temps et de l'espace. Le Héros découvre la profondeur de son monde intérieur et se crée lui-même en traversant les arcanes majeurs du Tarot. À travers la Justice, l'Ermite, la Roue, la Force, le Pendu, la Mort et la Tempérance, l'Âme s'élève selon la loi de l'Univers.",
     },
     image: "/images/works/anima/poster-v3.jpg",
   },
   {
     slug: "adios",
-    title: { en: "Adios", uk: "Адіос", fr: "Adios" },
+    title: { en: "Adios", uk: "Адьос", fr: "Adios" },
     subtitle: {
-      en: "Contemporary ballet · 1st Place, National Choreographers' Competition, Lviv",
-      uk: "Сучасний балет · 1 місце, Національний конкурс балетмейстерів, Львів",
-      fr: "Pièce contemporaine · 1re place, Concours national des chorégraphes, Lviv",
+      en: "Contemporary piece · 1st Place, National Choreographers’ Competition, Lviv",
+      uk: "Сучасна постановка · 1 місце, Національний конкурс балетмейстерів, Львів",
+      fr: "Pièce contemporaine · 1re place, Concours national de chorégraphie, Lviv",
     },
     year: "2016",
     music: "Benjamin Clementine",
     description: {
-      en: "A contemporary solo charged with longing and departure — set to Benjamin Clementine's iconic song from his Mercury Prize-winning debut album At Least for Now. Sparse piano, strings, and the artist's unmistakable voice create a landscape of intimate grief that choreography translates into pure physical poetry.",
-      uk: "Сучасне соло, насичене тугою та прощанням — на однойменну пісню Бенджаміна Клементайна з його дебютного альбому At Least for Now, що отримав Mercury Prize. Стриманий діалог фортепіано, смичкових та неповторного голосу художника перетворюється на ліричний монолог тіла.",
-      fr: "Un solo contemporain chargé de nostalgie et de départ — sur la chanson emblématique de Benjamin Clementine tirée de son premier album At Least for Now, lauréat du Mercury Prize. Un piano épuré, des cordes et la voix inimitable de l'artiste créent un paysage de deuil intime que la chorégraphie traduit en pure poésie physique.",
+      en: "A ballet quartet steeped in longing and farewell, set to the song of the same name by Benjamin Clementine from his Mercury Prize-winning debut album At Least for Now. The restrained dialogue of piano, strings and the artist's inimitable voice becomes a lyrical monologue of the body.",
+      uk: "Балетний квартет, насичений тугою та прощанням, — на однойменну пісню Бенджаміна Клементайна з дебютного альбому At Least for Now, що отримав Mercury Prize. Стриманий діалог фортепіано, смичкових і неповторного голосу артиста стає ліричним монологом тіла.",
+      fr: "Un quatuor de ballet empreint de nostalgie et d'adieu, sur la chanson éponyme de Benjamin Clementine, tirée de son premier album At Least for Now, lauréat du Mercury Prize. Le dialogue retenu du piano, des cordes et de la voix inimitable de l'artiste devient un monologue lyrique du corps.",
     },
     image: "https://i.ytimg.com/vi/m24yjydh5sg/hqdefault.jpg",
     gallery: [
@@ -189,16 +189,16 @@ export const works: Work[] = [
       {
         id: "m24yjydh5sg",
         title: {
-          en: "1st Place · National Choreographers’ Competition, Lviv, 2015 · Theatre Recording",
+          en: "1st Place · National Choreographers’ Competition, Lviv, 2015 · Theatre recording",
           uk: "1 місце · Національний конкурс балетмейстерів, Львів, 2015 · Запис із театру",
-          fr: "1re place · Concours national des chorégraphes, Lviv, 2015 · Captation au théâtre",
+          fr: "1re place · Concours national de chorégraphie, Lviv, 2015 · Captation au théâtre",
         },
       },
       {
         id: "3dIw8OuNJLY",
         title: {
           en: "Adios · Re-filmed in the studio, better quality",
-          uk: "Адіос · Перезйомка в залі, краща якість",
+          uk: "Адьос · Перезйомка в залі, краща якість",
           fr: "Adios · Nouvelle captation en studio, meilleure qualité",
         },
       },
@@ -241,7 +241,7 @@ export const works: Work[] = [
     subtitle: {
       en: "Original Staging Concept",
       uk: "Авторська постановочна концепція",
-      fr: "Concept de mise en scène original",
+      fr: "Conception scénique originale",
     },
     year: "2026",
     music: "Igor Stravinsky",
@@ -258,21 +258,21 @@ export const works: Work[] = [
     subtitle: {
       en: "World Premiere · One-act ballet",
       uk: "Світова прем'єра · Одноактний балет",
-      fr: "Première mondiale · Ballet en un acte",
+      fr: "Création mondiale · Ballet en un acte",
     },
     year: "2026",
-    music: "Igor Markevich — L'Envol d'Icare (1932)",
+    music: "Igor Markevitch — L'Envol d'Icare (1932)",
     description: {
-      en: "The world's first staging of Igor Markevich's L'Envol d'Icare — composed in Paris in 1932, unperformed for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
+      en: "The world's first staging of Igor Markevitch's L'Envol d'Icare — composed in Paris in 1932, unstaged for 93 years. Not a cautionary tale. A celebration of the conscious choice to fly.",
       uk: "Перша в світі постановка «Польоту Ікара» Ігоря Маркевича — написаного в Парижі 1932 року, 93 роки без прем'єри. Не притча-застереження. Гімн усвідомленому вибору летіти.",
-      fr: "La première mise en scène mondiale de L'Envol d'Icare d'Igor Markevitch — composé à Paris en 1932, resté inédit pendant 93 ans. Non pas une mise en garde. Une célébration du choix conscient de voler.",
+      fr: "La toute première création scénique de L'Envol d'Icare d'Igor Markevitch — composé à Paris en 1932, resté sans chorégraphie pendant 93 ans. Non pas une mise en garde : une célébration du choix conscient de voler.",
     },
     image: "/images/matisse-icare.jpg",
     videos: [
       {
         id: "BOpf7s2eqVs",
         title: {
-          en: "L'Envol d'Icare — Igor Markevich conducting the Belgian National Orchestra (complete)",
+          en: "L'Envol d'Icare — Igor Markevitch conducting the Belgian National Orchestra (complete)",
           uk: "«Політ Ікара» — Ігор Маркевич диригує Бельгійським національним оркестром (повна версія)",
           fr: "L'Envol d'Icare — Igor Markevitch dirige l'Orchestre national de Belgique (intégrale)",
         },
@@ -285,14 +285,14 @@ export const works: Work[] = [
     subtitle: {
       en: "Dance Film · Vocal-Choreographic Piece",
       uk: "Танцювальний фільм · Вокально-хореографічна п'єса",
-      fr: "Film de danse · Pièce vocale-chorégraphique",
+      fr: "Film de danse · Pièce vocale et chorégraphique",
     },
     year: "2021",
     music: "Max Richter — Voices",
     description: {
       en: "Born in lockdown. A meditation on mercy, freedom, and what persists when everything is taken away. Set to Max Richter's Voices — a work grounded in the Universal Declaration of Human Rights and the Roerich Pact.",
       uk: "Народжена у локдауні. Медитація про милосердя, свободу та те, що лишається, коли все відібрано. На музику Макса Ріхтера Voices — твір, вкорінений у Загальній декларації прав людини та Пакті Реріха.",
-      fr: "Née en confinement. Une méditation sur la clémence, la liberté, et ce qui subsiste lorsque tout est retiré. Sur la musique de Voices de Max Richter — une œuvre ancrée dans la Déclaration universelle des droits de l'homme et le Pacte Roerich.",
+      fr: "Née du confinement. Une méditation sur la miséricorde, la liberté et ce qui subsiste lorsque tout a été retiré. Sur Voices de Max Richter — une œuvre ancrée dans la Déclaration universelle des droits de l'homme et le Pacte Roerich.",
     },
     image: "",
   },
