@@ -62,7 +62,7 @@ export interface SiteSettings {
   animaFestivalOrganizersEn: string;
   animaFestivalOrganizersUk: string;
   animaFestivalOrganizersFr: string;
-  /** LITSO → NBB section */
+  /** LITSO → Newspaper Birds section */
   animaLitsoTitleEn: string;
   animaLitsoTitleUk: string;
   animaLitsoTitleFr: string;
@@ -131,8 +131,6 @@ export interface SiteSettings {
   cvCtaBtnEn: string;
   cvCtaBtnUk: string;
   cvCtaBtnFr: string;
-  /** CV URL — language-agnostic, stored in Value EN */
-  cvUrl: string;
   /** Firebird page */
   firebirdImage: string;
   firebirdUrl: string;
@@ -518,7 +516,6 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   cvCtaBtnEn: "",
   cvCtaBtnUk: "",
   cvCtaBtnFr: "",
-  cvUrl: "",
   firebirdImage: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Nicholas_Roerich_-_Mother_of_the_World%2C_1924_-_warmer_colours.jpg",
   firebirdUrl: "https://firebird-hordieiev.surge.sh/",
   firebirdBtnEn: "View full concept",
@@ -564,12 +561,12 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   adiosTitleEn: "Adios",
   adiosTitleUk: "Адіос",
   adiosTitleFr: "Adios",
-  adiosSubtitleEn: "Contemporary ballet · БАЛЕТ-FEST 1st Place",
-  adiosSubtitleUk: "Сучасний балет · БАЛЕТ-FEST 1 місце",
-  adiosSubtitleFr: "Pièce contemporaine · Opéra de Lviv · 1re place",
-  adiosDescriptionEn: "A contemporary solo charged with longing and departure — set to Benjamin Clementine's iconic song from his Mercury Prize-winning debut album At Least for Now.",
-  adiosDescriptionUk: "Сучасне соло, насичене тугою та прощанням — на однойменну пісню Бенджаміна Клементайна з його дебютного альбому At Least for Now, що отримав Mercury Prize.",
-  adiosDescriptionFr: "Un quatuor de ballet empreint de nostalgie et d'adieu, sur la chanson éponyme de Benjamin Clementine tirée de son album At Least for Now, lauréat du Mercury Prize.\n\nLauréat du concours de chorégraphes de l'Opéra de Lviv, Ukraine, 2015.",
+  adiosSubtitleEn: "Contemporary ballet · 1st Place, National Choreographers' Competition, Lviv",
+  adiosSubtitleUk: "Сучасний балет · 1 місце, Національний конкурс балетмейстерів, Львів",
+  adiosSubtitleFr: "Pièce contemporaine · 1re place, Concours national des chorégraphes, Lviv",
+  adiosDescriptionEn: "A contemporary solo charged with longing and departure — set to Benjamin Clementine's iconic song from his Mercury Prize-winning debut album At Least for Now.\n\n1st Place at the National Choreographers’ Competition, Lviv, Ukraine, 2015.",
+  adiosDescriptionUk: "Сучасне соло, насичене тугою та прощанням — на однойменну пісню Бенджаміна Клементайна з його дебютного альбому At Least for Now, що отримав Mercury Prize.\n\n1 місце на Національному конкурсі балетмейстерів, Львів, Україна, 2015.",
+  adiosDescriptionFr: "Un quatuor de ballet empreint de nostalgie et d'adieu, sur la chanson éponyme de Benjamin Clementine tirée de son album At Least for Now, lauréat du Mercury Prize.\n\n1re place au Concours national des chorégraphes, Lviv, Ukraine, 2015.",
   adiosYear: "2016",
   adiosMusic: "Benjamin Clementine",
   carmenTitleEn: "Carmen",
@@ -595,12 +592,12 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   mozart25Video2En: "A more extensive, full version of the choreographic text.",
   mozart25Video2Uk: "Більш розлога, повна версія хореографічного тексту.",
   mozart25Video2Fr: "Une version plus complète et développée du texte chorégraphique.",
-  adiosVideo1En: "БАЛЕТ-FEST · 1st Place · Theatrical Recording",
-  adiosVideo1Uk: "БАЛЕТ-FEST · 1 місце · Театральний запис",
-  adiosVideo1Fr: "BALLET-FEST · 1re place · Captation théâtrale",
-  adiosVideo2En: "Adios — staging tease",
-  adiosVideo2Uk: "Адіос — постановочний тизер",
-  adiosVideo2Fr: "Adios · aperçu de la mise en scène",
+  adiosVideo1En: "1st Place · National Choreographers’ Competition, Lviv, 2015 · Theatre Recording",
+  adiosVideo1Uk: "1 місце · Національний конкурс балетмейстерів, Львів, 2015 · Запис із театру",
+  adiosVideo1Fr: "1re place · Concours national des chorégraphes, Lviv, 2015 · Captation au théâtre",
+  adiosVideo2En: "Adios · Re-filmed in the studio, better quality",
+  adiosVideo2Uk: "Адіос · Перезйомка в залі, краща якість",
+  adiosVideo2Fr: "Adios · Nouvelle captation en studio, meilleure qualité",
   carmenVideo1En: "Teaser · Scene 6",
   carmenVideo1Uk: "Тизер · Сцена 6",
   carmenVideo1Fr: "Teaser · Scène 6",
@@ -660,8 +657,8 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   icareDramaturgyDescFr: "From silence to flight to illumination. Each movement — a distinct state of body and soul.",
   icareSpecsTitleEn: "Production Requirements", icareSpecsTitleUk: "Умови постановки",
   icareSpecsTitleFr: "Production Requirements",
-  icareBioEn: "Artem Hordieiev is a choreographer and founder of Newspaper Ballet Bureau (NBB). His works have been recognised at international competitions and presented on stages across Ukraine and Europe. Productions include The Ants (after Bernard Werber), Anima, Mozart 25, and Carmen (Bizet–Shchedrin).", icareBioUk: "Артем Гордієв — хореограф і засновник Newspaper Ballet Bureau (NBB). Його роботи відзначені на міжнародних конкурсах і представлені на сценах України та Європи. Серед постановок — «Мурахи» (за Бернаром Вербером), «Аніма», «Моцарт 25», «Кармен» (Бізе–Щедрін).",
-  icareBioFr: "Artem Hordieiev is a choreographer and founder of Newspaper Ballet Bureau (NBB). His works have been recognised at international competitions and presented on stages across Ukraine and Europe. Productions include The Ants (after Bernard Werber), Anima, Mozart 25, and Carmen (Bizet–Shchedrin).",
+  icareBioEn: "Artem Hordieiev is a choreographer and founder of Newspaper Birds Production. His works have been recognised at international competitions and presented on stages across Ukraine and Europe. Productions include The Ants (after Bernard Werber), Anima, Mozart 25, and Carmen (Bizet–Shchedrin).", icareBioUk: "Артем Гордієв — хореограф і засновник Newspaper Birds Production. Його роботи відзначені на міжнародних конкурсах і представлені на сценах України та Європи. Серед постановок — «Мурахи» (за Бернаром Вербером), «Аніма», «Моцарт 25», «Кармен» (Бізе–Щедрін).",
+  icareBioFr: "Artem Hordieiev is a choreographer and founder of Newspaper Birds Production. His works have been recognised at international competitions and presented on stages across Ukraine and Europe. Productions include The Ants (after Bernard Werber), Anima, Mozart 25, and Carmen (Bizet–Shchedrin).",
   icareBio2En: "ICARE — the world's first choreographic staging of Markevich's L'Envol d'Icare — will be the centrepiece of his 2026 Paris season.", icareBio2Uk: "ICARE — перша в світі хореографічна постановка «Польоту Ікара» Маркевича — стане центральним проєктом його паризького сезону 2026 року.",
   icareBio2Fr: "ICARE — the world's first choreographic staging of Markevich's L'Envol d'Icare — will be the centrepiece of his 2026 Paris season.",
   icareCtaTitleEn: "Available for World Premiere", icareCtaTitleUk: "Доступна для прем'єри",
@@ -912,7 +909,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueEn) settings.animaFestivalOrganizersEn = valueEn;
         if (valueUk) settings.animaFestivalOrganizersUk = valueUk; if (valueFr) settings.animaFestivalOrganizersFr = valueFr;
       }
-      // LITSO → NBB section
+      // LITSO → Newspaper Birds section
       if (key === "anima_litso_title") {
         if (valueEn) settings.animaLitsoTitleEn = valueEn;
         if (valueUk) settings.animaLitsoTitleUk = valueUk; if (valueFr) settings.animaLitsoTitleFr = valueFr;
@@ -1000,7 +997,6 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         if (valueEn) settings.cvCtaBtnEn = valueEn;
         if (valueUk) settings.cvCtaBtnUk = valueUk; if (valueFr) settings.cvCtaBtnFr = valueFr;
       }
-      if (key === "cv_url" && valueEn) settings.cvUrl = valueEn;
       // Contact section
       if (key === "contact_title") {
         if (valueEn) settings.contactTitleEn = valueEn;

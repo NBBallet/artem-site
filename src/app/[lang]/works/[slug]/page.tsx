@@ -402,11 +402,11 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       </section>
 
-      {/* ===== 7. ABOUT LITSO → NBB ===== */}
+      {/* ===== 7. ABOUT LITSO → NEWSPAPER BIRDS ===== */}
       {/* All texts editable in Notion Site Settings → keys: anima_litso_* */}
       <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          LITSO → NBB
+          LITSO → NEWSPAPER BIRDS
         </div>
         <h2
           className="text-3xl text-brand-white mb-8"

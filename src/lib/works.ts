@@ -152,9 +152,9 @@ export const works: Work[] = [
     slug: "adios",
     title: { en: "Adios", uk: "Адіос", fr: "Adios" },
     subtitle: {
-      en: "Contemporary ballet · БАЛЕТ-FEST 1st Place",
-      uk: "Сучасний балет · БАЛЕТ-FEST 1 місце",
-      fr: "Ballet contemporain · BALLET-FEST 1re place",
+      en: "Contemporary ballet · 1st Place, National Choreographers' Competition, Lviv",
+      uk: "Сучасний балет · 1 місце, Національний конкурс балетмейстерів, Львів",
+      fr: "Pièce contemporaine · 1re place, Concours national des chorégraphes, Lviv",
     },
     year: "2016",
     music: "Benjamin Clementine",
@@ -189,17 +189,17 @@ export const works: Work[] = [
       {
         id: "m24yjydh5sg",
         title: {
-          en: "БАЛЕТ-FEST · 1st Place · Theatrical Recording",
-          uk: "БАЛЕТ-FEST · 1 місце · Театральний запис",
-          fr: "BALLET-FEST · 1re place · Captation théâtrale",
+          en: "1st Place · National Choreographers’ Competition, Lviv, 2015 · Theatre Recording",
+          uk: "1 місце · Національний конкурс балетмейстерів, Львів, 2015 · Запис із театру",
+          fr: "1re place · Concours national des chorégraphes, Lviv, 2015 · Captation au théâtre",
         },
       },
       {
         id: "3dIw8OuNJLY",
         title: {
-          en: "Adios — staging tease",
-          uk: "Адіос — постановочний тизер",
-          fr: "Adios — aperçu de la mise en scène",
+          en: "Adios · Re-filmed in the studio, better quality",
+          uk: "Адіос · Перезйомка в залі, краща якість",
+          fr: "Adios · Nouvelle captation en studio, meilleure qualité",
         },
       },
     ],
