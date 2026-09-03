@@ -31,11 +31,12 @@ npm run dev
 |---|---|
 | `src/app/[lang]/page.tsx` | головна: hero, роботи, About, CV CTA, контакти |
 | `src/app/[lang]/works/[slug]/` | сторінка окремої постановки |
+| `src/app/[lang]/cv/` | цифрове резюме — всередині сайту, PDF через друк сторінки |
 | `src/lib/settings.ts` | усі тексти й картинки з Notion + дефолти |
 | `src/lib/notion.ts`, `anima-notion.ts` | читання з Notion, обгорнуте у `withRetry()` |
 | `src/dictionaries/*.json` | статичні переклади (фолбек, коли Notion мовчить) |
 | `public/fonts/` | NAMU-1400 і NAMU-Pro — фірмові шрифти |
-| `design/` | дизайн-джерела секцій (див. README всередині) |
+| `design/` | дизайн-джерела секцій та резюме (див. README всередині) |
 | `docs/` | бренд-матеріали |
 
 ## Контент
@@ -46,3 +47,8 @@ Notion перекриває словник, словник рятує, коли 
 
 **Перед правкою контенту читай [AGENTS.md](AGENTS.md)** — там описана пастка
 з порожніми дефолтами, через яку картинки й тексти зникали на проді.
+
+Виняток — **резюме**. Його текст не в Notion, а в `design/cv/copy.json`, звідки
+`python3 design/cv/gen.py` генерує `src/lib/cv-data.ts` (і дизайн-артборди).
+Сторінка `/[lang]/cv` через це статична: жодного запиту в Notion, отже й нічого
+не може зникнути на проді. Деталі — в [design/cv/README.md](design/cv/README.md).

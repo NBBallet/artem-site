@@ -1,0 +1,205 @@
+/* ── Digital CV ──────────────────────────────────────────────────────────────
+   Screen and PDF are the SAME document: every colour is a custom property,
+   and `@media print` redefines the properties rather than the rules. A dark
+   A4 drinks ink and reads badly, so print flips to bone paper — same grid,
+   same type, same hierarchy.
+
+   Kin to the site (black, #c8102e, NAMU-1400), deliberately not identical:
+   NAMU works small here in tracked labels instead of as a display face, a
+   monospace layer carries dates/statuses/numbers, and the brand's gold token
+   — declared in globals.css, unused anywhere else on the site — marks the
+   Ukrainian axis against the red American one. */
+
+.cv {
+  --cv-bg: #070707;
+  --cv-panel: #0d0d0d;
+  --cv-line: #1c1c1c;
+  --cv-line2: #2b2b2b;
+  --cv-fg: #f5f5f5;
+  --cv-body: #9a9a9a;
+  --cv-meta: #616161;
+  --cv-red: #c8102e;
+  --cv-red-soft: rgba(200, 16, 46, 0.1);
+  --cv-gold: #d4af37;
+  --cv-gold-soft: rgba(212, 175, 55, 0.09);
+  --cv-seam: #f5f5f5;
+
+  --cv-display: "NAMU-1400", Georgia, serif;
+  --cv-quote: "NAMU-Pro", "NAMU-1400", Georgia, serif;
+  --cv-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  background: var(--cv-bg);
+  color: var(--cv-body);
+}
+
+/* ── typography ── */
+.cv-label {
+  font-family: var(--cv-mono);
+  font-size: 15px;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: var(--cv-red);
+}
+.cv-label-sm { font-size: 13px; letter-spacing: 1.8px; }
+.cv-h1 {
+  font-family: var(--cv-display);
+  font-weight: normal;
+  letter-spacing: 1px;
+  line-height: 0.98;
+  font-size: clamp(38px, 6.4vw, 78px);
+}
+.cv-h2 {
+  font-family: var(--cv-display);
+  font-weight: normal;
+  line-height: 1.12;
+  color: var(--cv-fg);
+  font-size: clamp(26px, 3.2vw, 34px);
+}
+.cv-h3 { font-family: var(--cv-display); font-weight: normal; line-height: 1.15; color: var(--cv-fg); }
+.cv-quote { font-family: var(--cv-quote); line-height: 1.38; font-size: clamp(18px, 2.2vw, 23px); }
+.cv-mono { font-family: var(--cv-mono); }
+.cv-p { font-size: 17px; line-height: 1.72; color: var(--cv-body); text-wrap: pretty; }
+
+.cv-fg { color: var(--cv-fg); }
+.cv-body-c { color: var(--cv-body); }
+.cv-meta { color: var(--cv-meta); }
+.cv-red { color: var(--cv-red); }
+.cv-gold { color: var(--cv-gold); }
+.cv-bd { border-color: var(--cv-line); }
+.cv-bd2 { border-color: var(--cv-line2); }
+.cv-panel { background: var(--cv-panel); }
+
+.cv a { color: var(--cv-fg); text-decoration: none; }
+.cv a:hover { color: var(--cv-red); }
+.cv ::selection { background: var(--cv-red); color: #f5f5f5; }
+
+/* the two on-screen actions */
+.cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--cv-mono);
+  font-size: 15px;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  padding: 21px 42px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.cv-btn-primary {
+  background: var(--cv-red);
+  color: #f5f5f5;
+  border: 1px solid var(--cv-red);
+}
+.cv-btn-primary:hover { background: #f5f5f5; color: var(--cv-red); }
+.cv .cv-btn-ghost {
+  border: 1px solid var(--cv-line2);
+  color: var(--cv-fg);
+}
+.cv .cv-btn-ghost:hover { border-color: var(--cv-red); color: var(--cv-fg); }
+
+/* the diamond bullet of section 03 */
+.cv-dot {
+  flex: 0 0 auto;
+  width: 5px;
+  height: 5px;
+  margin-top: 8px;
+  transform: rotate(45deg);
+}
+
+/* ── the trajectory graph ── */
+.cv-graph { display: block; overflow: visible; width: 100%; }
+
+/* ── print / PDF ─────────────────────────────────────────────────────────── */
+@page {
+  size: A4 portrait;
+  margin: 12mm 11mm 13mm;
+}
+
+@media print {
+  .cv {
+    --cv-bg: #ffffff;
+    --cv-panel: #f3eee6;
+    --cv-line: #ded5c7;
+    --cv-line2: #c6bcab;
+    --cv-fg: #111111;
+    --cv-body: #3f3f3f;
+    --cv-meta: #6f6a62;
+    --cv-red: #a80c24;
+    --cv-red-soft: rgba(168, 12, 36, 0.07);
+    --cv-gold: #806413;
+    --cv-gold-soft: rgba(128, 100, 19, 0.1);
+    --cv-seam: #111111;
+  }
+
+  /* fills and rules must survive the printer */
+  html, body, .cv, .cv * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  html, body { background: #ffffff !important; }
+
+  /* the site's chrome and the on-screen controls are not part of the document */
+  nav, .site-footer, .cv-screen-only { display: none !important; }
+
+  .cv { font-size: 11pt; }
+  .cv-h1 { font-size: 40pt; }
+  .cv-h2 { font-size: 19pt; }
+  .cv-p { font-size: 10.5pt; line-height: 1.6; }
+  .cv-quote { font-size: 13pt; }
+  .cv-wrap { padding: 0 !important; max-width: none !important; }
+  .cv-section { padding: 20px 0 !important; }
+  /* @page supplies the margins; the screen's masthead air is wasted paper */
+  .cv-masthead { padding-top: 0 !important; padding-bottom: 22px !important; }
+
+  /* keep a row, a card or a heading from being sliced across the fold */
+  .cv-keep { break-inside: avoid; page-break-inside: avoid; }
+  .cv-break { break-before: page; page-break-before: always; }
+  .cv-h2, .cv-h3 { break-after: avoid; page-break-after: avoid; }
+}
+
+/* ── layout that Tailwind's breakpoints cannot own ───────────────────────────
+   The print viewport is roughly A4 minus margins (~710 px), i.e. below the
+   `md`/`lg` breakpoints — so every responsive column would collapse to one in
+   the PDF. These rules restore the intended A4 grid explicitly. */
+
+/* the seam between the two schools: a rule above on phones, beside on wide */
+.cv-seam { border-top: 1px solid var(--cv-seam); }
+
+/* repertoire table */
+.cv-rep-head,
+.cv-rep-row { grid-template-columns: none; }
+
+@media (min-width: 768px) {
+  .cv-seam { border-top: none; border-left: 1px solid var(--cv-seam); }
+}
+
+@media (min-width: 1024px) {
+  .cv-rep-head,
+  .cv-rep-row { grid-template-columns: 230px 108px 1fr 1fr 200px; }
+}
+
+@media print {
+  .cv-seam { border-top: none; border-left: 1px solid var(--cv-seam); }
+  .cv-two-cols { grid-template-columns: 1fr 1fr !important; }
+  .cv-stats { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  .cv-traj-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; gap: 14px 12px !important; }
+  .cv-payoff { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 18px 26px !important; }
+  .cv-facts { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .cv-split { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr) !important; gap: 30px !important; }
+  .cv-school { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .cv-langs { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  .cv-collab-row { flex-direction: row !important; align-items: baseline !important; gap: 16px !important; }
+  .cv-collab-row > .cv-h3 { flex: 0 0 150px !important; }
+
+  .cv-rep-head { display: grid !important; grid-template-columns: 118px 64px 1fr 1fr 104px !important; }
+  .cv-rep-row { grid-template-columns: 118px 64px 1fr 1fr 104px !important; gap: 10px !important; }
+  .cv-rep-row .cv-h3 { font-size: 11.5pt !important; }
+
+  /* the graph is a wide vector — let it use the full measure, no scroller */
+  .cv-graph-scroll { overflow: visible !important; }
+  .cv-graph-scroll > div { min-width: 0 !important; }
+
+  /* the argument sections should start clean rather than straddle a fold */
+  .cv-section { break-inside: auto; }
+}

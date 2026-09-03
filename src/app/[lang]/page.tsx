@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { getWorks } from "@/lib/works";
 import { getSiteSettings } from "@/lib/settings";
+import { cvData } from "@/lib/cv-data";
 import Tryzub from "@/components/Tryzub";
 import ContactSection from "@/components/ContactSection";
 
@@ -291,13 +292,13 @@ export default async function HomePage({
               </p>
             </div>
 
-            {/* CTA button — visible only when cv_url is set in Notion */}
-            {settings.cvUrl ? (
-              <a
-                href={settings.cvUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm text-base"
+            {/* Two ways in, both inside the site: read the CV at /[lang]/cv,
+                 or land on it with the print dialog already open (?print=1).
+                 No external host — the CV is a page of this site. */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <Link
+                href={`/${lang}/cv`}
+                className="group inline-flex items-center justify-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm text-base"
                 style={{ fontFamily: "NAMU-1400, serif" }}
               >
                 <span className="text-[14px] tracking-[4px] uppercase whitespace-nowrap font-semibold">
@@ -310,12 +311,28 @@ export default async function HomePage({
                 <svg
                   width="22" height="22" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" strokeWidth="1.5"
-                  className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  className="transition-transform duration-200 group-hover:translate-x-1"
                 >
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                  <path d="M4 12h15M13 6l6 6-6 6"/>
                 </svg>
-              </a>
-            ) : null}
+              </Link>
+              <Link
+                href={`/${lang}/cv?print=1`}
+                className="group inline-flex items-center justify-center gap-4 px-10 py-6 border border-[#2b2b2b] hover:border-brand-red text-[#999] hover:text-brand-white transition-all duration-300 rounded-sm"
+                style={{ fontFamily: "NAMU-1400, serif" }}
+              >
+                <span className="text-[13px] tracking-[3px] uppercase whitespace-nowrap">
+                  {cvData[locale].downloadBtn}
+                </span>
+                <svg
+                  width="20" height="20" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="1.5"
+                  className="transition-transform duration-200 group-hover:translate-y-0.5"
+                >
+                  <path d="M12 3v13m0 0l-5-5m5 5l5-5M4 20h16"/>
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

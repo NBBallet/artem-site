@@ -22,7 +22,7 @@ export default async function LangLayout({
     <>
       <Navbar lang={lang as Locale} t={t} />
       <main className="flex-1">{children}</main>
-      <footer className="border-t border-[#222] py-12 px-6 text-center">
+      <footer className="site-footer border-t border-[#222] py-12 px-6 text-center">
         <p className="text-[13px] text-brand-dark-grey">
           &copy; {new Date().getFullYear()} {t["footer.copyright"]}
         </p>
