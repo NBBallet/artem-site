@@ -143,9 +143,9 @@
   nav, .site-footer, .cv-screen-only { display: none !important; }
 
   /* Paper is finite and the reading distance is short: the whole document is
-     set a step down so that each section fits a sheet whole — with room to
-     spare for Safari, which prints its own header and footer inside the page
-     and so has less height to give than Chrome. */
+     set a step down so that every section fits a sheet whole. The value is
+     measured, not derived — the fold moves with the way the type rewraps, so
+     changing it means re-printing all three languages and counting pages. */
   .cv { font-size: 11pt; zoom: 0.92; }
   .cv-h1 { font-size: 40pt; }
   .cv-h2 { font-size: 19pt; }
@@ -284,7 +284,7 @@
   /* Paper is not a screen: the reading distance is shorter and the page is
      finite. A CV a producer will actually read is four or five pages, so the
      print type comes down a step and the air between blocks with it. */
-  .cv-section { padding: 11px 0 !important; }
+  .cv-section { padding: 22px 0 !important; }
   .cv .text-\[17\.5px\],
   .cv .text-\[17px\],
   .cv .text-\[16px\],
@@ -292,9 +292,9 @@
   .cv .text-\[15px\] { font-size: 11pt !important; line-height: 1.48 !important; }
   .cv .text-\[14\.5px\],
   .cv .text-\[14px\] { font-size: 10pt !important; line-height: 1.42 !important; }
-  .cv-h2 { font-size: 17pt !important; margin-bottom: 9px !important; }
+  .cv-h2 { font-size: 17pt !important; margin-bottom: 11px !important; }
   .cv-section .cv-h3 { font-size: 11.5pt !important; }
-  .cv-label { margin-bottom: 8px !important; }
+  .cv-label { margin-bottom: 11px !important; }
   .cv-p { margin-bottom: 9px !important; }
   .cv-facts { margin-bottom: 16px !important; }
   .cv-school-block { margin-bottom: 16px !important; }
@@ -307,5 +307,8 @@
   .cv-doc-foot { break-inside: avoid; page-break-inside: avoid; }
   .cv-meet { padding-top: 18px !important; padding-bottom: 18px !important;
     margin-bottom: 14px !important; }
+  /* The tail is the one block that has to buy its air back: it shares the
+     last sheet with the school and the languages. */
+  .cv-tail .cv-keep { padding-top: 7px !important; padding-bottom: 7px !important; }
   .cv-note { margin-top: 14px !important; }
 }
