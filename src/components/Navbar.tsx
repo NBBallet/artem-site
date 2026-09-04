@@ -16,6 +16,7 @@ const LANG_ORDER: Locale[] = ["en", "fr", "uk"];
 export default function Navbar({ lang, t }: NavbarProps) {
   const pathname = usePathname();
   const onCv = pathname.startsWith(`/${lang}/cv`);
+  const onPro = pathname.startsWith(`/${lang}/programmer`);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/92 backdrop-blur-[12px] border-b border-[#222] px-4 sm:px-6 md:px-10 py-3 flex items-center justify-between">
@@ -39,6 +40,18 @@ export default function Navbar({ lang, t }: NavbarProps) {
         >
           {t["nav.about"]}
         </a>
+        {/* Espace pro — професійний розділ для програматорів. Ховається на
+            телефоні, як «Роботи» і «Про мене»: продюсер відкриває сайт із
+            комп'ютера, а на 375 px нав уже впритул (див. коментар нижче). */}
+        <Link
+          href={`/${lang}/programmer`}
+          aria-current={onPro ? "page" : undefined}
+          className={`text-[11px] tracking-[2px] uppercase transition-colors hidden sm:block ${
+            onPro ? "text-brand-red" : "text-brand-grey hover:text-brand-red"
+          }`}
+        >
+          {t["nav.pro"]}
+        </Link>
         {/* CV — головна дія в навігації, тому єдиний тут суцільний фірмовий
             червоний. На наведенні інвертується так само, як кнопка «Завантажити
             PDF» на самій сторінці резюме, а коли ти вже на ній — стає контурним,
