@@ -50,12 +50,12 @@ COMPANY = "Complexions Contemporary Ballet — New York"
 # ================== copy per locale ==================
 FR = dict(
     name = "Artem Hordieiev",
-    role = "Chorégraphe ukrainien, fondateur de Newspaper Birds Production.",
+    role = "Chorégraphe ukrainien, fondateur de la compagnie Les Oiseaux des Journaux.",
     bio = ("Crée des spectacles contemporains où la structure musicale rencontre la vérité du corps "
            "humain, du corps du danseur. Il travaille à la croisée de la puissante école "
            "chorégraphique ukrainienne et de la scène européenne, proposant un langage visuel "
            "audacieux."),
-    nbb = ("Fondateur de Newspaper Birds Production — une structure de production de ballet contemporain "
+    nbb = ("Fondateur de la compagnie Les Oiseaux des Journaux — une structure de production de ballet contemporain "
            "basée en France, qui associe artistes et organisations internationales en collaboration et "
            "en coproduction."),
     eyebrow = "COLLABORATION UKRAINE - ÉTATS-UNIS",

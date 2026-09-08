@@ -398,7 +398,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   ctaTextUk:
     "ПРИЄДНУЙТЕСЬ · Станьте частиною артистичної родини Newspaper Birds · Замовте виставу · Співпрацюйте з нами ·",
   ctaTextFr:
-    "REJOIGNEZ LA COMMUNAUTÉ · Faites partie de la famille artistique de Newspaper Birds · Programmez un spectacle · Collaborez avec nous ·",
+    "REJOIGNEZ LA COMMUNAUTÉ · Faites partie de la famille artistique des Oiseaux des Journaux · Programmez un spectacle · Collaborez avec nous ·",
   animaBlockquoteEn:
     "The Hero brings himself into harmony through the Major Arcana of the Tarot. The Hero's Soul is a separate character, who appears in the penultimate scene as the result of all the transformations.",
   animaBlockquoteUk:
@@ -658,7 +658,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   icareSpecsTitleEn: "Production Requirements", icareSpecsTitleUk: "Умови постановки",
   icareSpecsTitleFr: "Conditions de production",
   icareBioEn: "Artem Hordieiev is a choreographer and founder of Newspaper Birds Production. His works have been recognised at international competitions and presented on stages across Ukraine and Europe. Productions include The Ants (after Bernard Werber), Anima, Mozart 25, and Carmen (Bizet–Shchedrin).", icareBioUk: "Артем Гордієв — хореограф і засновник Newspaper Birds Production. Його роботи відзначені на міжнародних конкурсах і представлені на сценах України та Європи. Серед постановок — «Мурахи» (за Бернаром Вербером), «Аніма», «Моцарт 25», «Кармен» (Бізе–Щедрін).",
-  icareBioFr: "Artem Hordieiev est chorégraphe et fondateur de Newspaper Birds Production. Ses œuvres ont été distinguées dans des concours internationaux et présentées sur les scènes d'Ukraine et d'Europe. Parmi ses créations : Les Fourmis (d'après Bernard Werber), Anima, Mozart 25 et Carmen (Bizet–Chtchedrine).",
+  icareBioFr: "Artem Hordieiev est chorégraphe et fondateur de la compagnie Les Oiseaux des Journaux. Ses œuvres ont été distinguées dans des concours internationaux et présentées sur les scènes d'Ukraine et d'Europe. Parmi ses créations : Les Fourmis (d'après Bernard Werber), Anima, Mozart 25 et Carmen (Bizet–Chtchedrine).",
   icareBio2En: "ICARE — the world's first choreographic staging of Markevitch's L'Envol d'Icare — will be the centrepiece of his 2026 Paris season.", icareBio2Uk: "ICARE — перша в світі хореографічна постановка «Польоту Ікара» Маркевича — стане центральним проєктом його паризького сезону 2026 року.",
   icareBio2Fr: "ICARE — la toute première création chorégraphique de L'Envol d'Icare de Markevitch — sera la pièce maîtresse de sa saison parisienne 2026.",
   icareCtaTitleEn: "Available for World Premiere", icareCtaTitleUk: "Доступна для прем'єри",

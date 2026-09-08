@@ -449,7 +449,7 @@ export const cvData = {
       },
       {
         "label": "Compagnie",
-        "value": "Newspaper Birds Production"
+        "value": "Les Oiseaux des Journaux"
       }
     ],
     "s01": {
@@ -501,7 +501,7 @@ export const cvData = {
         },
         "france": {
           "title": "FRANCE",
-          "meta": "Newspaper Birds Production · création mondiale du ballet ICARE prévue pour la saison 2027–2028."
+          "meta": "Les Oiseaux des Journaux · création mondiale du ballet ICARE prévue pour la saison 2027–2028."
         }
       }
     },

@@ -234,7 +234,7 @@ export const proCopy: Record<Locale, Record<string, string>> = {
     cond4: "Série de trois dates dans un rayon de 150 km : conditions ajustées à la logistique partagée.",
     mentionsTitle: "Mentions",
     mentions:
-      "Compagnie Les Oiseaux de Journal, dite Newspaper Birds. Artem Hordieiev, chorégraphe et direction artistique. Tetiana Hordieieva, production. Base : Tarbes (65), Occitanie — mobilité France entière. SIRET et licence d'entrepreneur de spectacles : en cours d'obtention.",
+      "Compagnie Les Oiseaux des Journaux, dite Newspaper Birds. Artem Hordieiev, chorégraphe et direction artistique. Tetiana Hordieieva, production. Base : Tarbes (65), Occitanie — mobilité France entière. SIRET et licence d'entrepreneur de spectacles : en cours d'obtention.",
     contactTitle: "Écrire",
     contactLede: "Une question précise reçoit une réponse précise, sous deux jours ouvrés.",
     cvLink: "CV artistique",
@@ -261,7 +261,7 @@ export const proCopy: Record<Locale, Record<string, string>> = {
     cond4: "Three dates within 150 km: terms adjusted to the shared logistics.",
     mentionsTitle: "Details",
     mentions:
-      "Compagnie Les Oiseaux de Journal, known as Newspaper Birds. Artem Hordieiev, choreographer and artistic direction. Tetiana Hordieieva, production. Based in Tarbes (65), Occitanie — available across France. French company registration and performing-arts licence: in progress.",
+      "Compagnie Les Oiseaux des Journaux, known as Newspaper Birds. Artem Hordieiev, choreographer and artistic direction. Tetiana Hordieieva, production. Based in Tarbes (65), Occitanie — available across France. French company registration and performing-arts licence: in progress.",
     contactTitle: "Write",
     contactLede: "A precise question gets a precise answer within two working days.",
     cvLink: "Artistic CV",
@@ -288,7 +288,7 @@ export const proCopy: Record<Locale, Record<string, string>> = {
     cond4: "Три дати в радіусі 150 км: умови під спільну логістику.",
     mentionsTitle: "Реквізити",
     mentions:
-      "Compagnie Les Oiseaux de Journal, вона ж Newspaper Birds. Артем Гордєєв — хореограф і художній керівник. Тетяна Гордєєва — продюсерка. База: Тарб (65), Окситанія; мобільність по всій Франції. SIRET і ліцензія антрепренера вистав — в оформленні.",
+      "Compagnie Les Oiseaux des Journaux, вона ж Newspaper Birds. Артем Гордєєв — хореограф і художній керівник. Тетяна Гордєєва — продюсерка. База: Тарб (65), Окситанія; мобільність по всій Франції. SIRET і ліцензія антрепренера вистав — в оформленні.",
     contactTitle: "Написати",
     contactLede: "На конкретне питання приходить конкретна відповідь протягом двох робочих днів.",
     cvLink: "Творче резюме",

@@ -413,7 +413,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
           {locale === "fr"
-            ? (settings.animaLitsoTitleFr || "De LITSO à Newspaper Birds")
+            ? (settings.animaLitsoTitleFr || "De LITSO aux Oiseaux des Journaux")
             : locale === "uk"
             ? (settings.animaLitsoTitleUk || "Від LITSO до Newspaper Birds")
             : (settings.animaLitsoTitleEn || "From LITSO to Newspaper Birds")}
