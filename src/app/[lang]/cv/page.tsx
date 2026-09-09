@@ -4,6 +4,18 @@ import { notFound } from "next/navigation";
 import { hasLocale, locales, type Locale } from "@/lib/i18n";
 import { cvData, cvShared } from "@/lib/cv-data";
 import CvActions from "@/components/CvActions";
+
+/**
+ * The one-page CV, as sent to French institutions. Only FR and UK exist;
+ * English visitors get the French file — it is the version that circulates.
+ * Files live in public/cv/ and are rebuilt from
+ * ФІНАНСИ/06 Guides - Довідники/CV France Travail — редактор/build.py
+ */
+const ONE_PAGER: Record<string, string> = {
+  en: "/cv/Artem-Hordieiev-CV-FR.pdf",
+  fr: "/cv/Artem-Hordieiev-CV-FR.pdf",
+  uk: "/cv/Artem-Hordieiev-CV-UK.pdf",
+};
 import "./cv.css";
 
 /* The CV is repo-local structured content (src/lib/cv-data.ts, generated from
@@ -225,6 +237,8 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
         <CvActions
           downloadLabel={d.downloadBtn}
+          onePagerLabel={d.onePagerBtn}
+          onePagerHref={ONE_PAGER[locale]}
           backLabel={d.backBtn}
           backHref={`/${locale}`}
         />

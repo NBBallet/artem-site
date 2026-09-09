@@ -161,6 +161,7 @@
     "base": "",
     "claim": "A flawless path would tell you nothing.\nMine has been a roller coaster. That is exactly where the craft and the style were forged.",
     "downloadBtn": "Download PDF",
+    "onePagerBtn": "One-page CV · PDF",
     "backBtn": "Back to the site",
     "printedFrom": "Portfolio, videos and production files:",
     "headStats": [
@@ -251,7 +252,7 @@
       ],
       "meetLabel": "WHERE THE TWO MET",
       "meetTitle": "THE GREAT GATSBY",
-      "meetBody": "A cast where three schools met: the Complexions stars from New York, the Mariinsky principals led by Denis Matvienko, and independent artists from Ukraine, each one hand-picked. Original music by Konstantin Meladze. The production became the most successful ballet in Ukrainian history and is still touring.",
+      "meetBody": "A cast where three schools met: the Complexions stars from New York, the principals of the classical school led by Denis Matvienko, and independent artists from Ukraine, each one hand-picked. Original music by Konstantin Meladze. The production became the most successful ballet in Ukrainian history and is still touring.",
       "europeLabel": "AND ON THE EUROPEAN SIDE",
       "europeTitle": "EDWARD CLUG · SLOVENE NATIONAL THEATRE MARIBOR",
       "europeBody": "Dancer in Denis Matvienko's touring productions — a world ballet star and the only dancer in the world to hold four Grands Prix from international ballet competitions: Radio & Juliet (music by Radiohead), Quatro (Golden Mask nominee, 2010), Stabat Mater (Pergolesi). Touring Ukraine and Europe, 2014–2018: Germany, Switzerland, France, Belgium, Great Britain, Croatia, Slovakia, Slovenia."
@@ -351,9 +352,9 @@
       "collabsTitle": "Selected collaborations",
       "awardsTitle": "Recognition",
       "collabs": {
-        "matv": "Principal, Mariinsky / La Scala / ABT — artistic director of Gatsby, daily work 2014–2018",
-        "afan": "Grammy-winning producer — direction and choreography for a television production",
-        "ddb": "Jazz legend — choreography and concept for a gala in Kyiv",
+        "matv": "Guest principal, Paris Opera and La Scala — artistic director of Gatsby, daily work 2014–2018",
+        "afan": "Producer, two Grammy Awards — direction and choreography for a television production",
+        "ddb": "Jazz legend, three Grammy Awards and a Tony — choreography and concept for a gala in Kyiv",
         "meladze": "Composer and producer — choreography and direction for large-scale Live+TV projects",
         "tv": "Television — head choreographer and director of the shows"
       },
@@ -425,6 +426,7 @@
     "base": "",
     "claim": "Un parcours sans faille ne vous apprendrait rien.\nLe mien a ses sommets et ses chutes. C'est là que le métier et le style se sont forgés.",
     "downloadBtn": "Télécharger le PDF",
+    "onePagerBtn": "CV d'une page · PDF",
     "backBtn": "Retour au site",
     "printedFrom": "Portfolio, vidéos et dossiers de production :",
     "headStats": [
@@ -505,7 +507,7 @@
       "left": [
         "L'école classique — Vaganova, 2007–2012, classe quotidienne avec Ihor Taranouchtchenko, élève de Boris Bregvadze ; puis la classe des premiers danseurs de l'Opéra national avec Serhii Bondour.",
         "La mise en scène de ballet — Karpenko-Kary, 2011–2015. Livrets originaux, conceptions de mise en scène, et une plateforme de recherche chorégraphique déclinée en versions scénique, cinématographique et télévisuelle.",
-        "L'échelle — cérémonies d'État et arenas : jusqu'à 10 000 spectateurs, 282 athlètes de 30 pays, des délégués de plus de 70 États."
+        "L'échelle — cérémonies d'État et grandes salles : jusqu'à 10 000 spectateurs, 282 athlètes de 30 pays, des délégués de plus de 70 États."
       ],
       "rightLabel": "CE QUE L'ÉCOLE AMÉRICAINE A APPORTÉ",
       "right": [
@@ -515,7 +517,7 @@
       ],
       "meetLabel": "LÀ OÙ LES DEUX SE SONT RENCONTRÉES",
       "meetTitle": "GATSBY LE MAGNIFIQUE",
-      "meetBody": "Une distribution où trois écoles se sont rencontrées : les stars du Complexions de New York, les premiers danseurs du Mariinsky menés par Denis Matvienko, et des artistes indépendants d'Ukraine, choisis un à un. Musique originale de Konstantin Meladze. Le spectacle est devenu le plus grand succès de ballet de l'histoire de l'Ukraine et tourne encore aujourd'hui.",
+      "meetBody": "Une distribution où trois écoles se sont rencontrées : les stars du Complexions de New York, les premiers danseurs de l'école classique menés par Denis Matvienko, et des artistes indépendants d'Ukraine, choisis un à un. Musique originale de Konstantin Meladze. Le spectacle est devenu le plus grand succès de ballet de l'histoire de l'Ukraine et tourne encore aujourd'hui.",
       "europeLabel": "ET DU CÔTÉ EUROPÉEN",
       "europeTitle": "EDWARD CLUG · THÉÂTRE NATIONAL SLOVÈNE DE MARIBOR",
       "europeBody": "Danseur dans les productions en tournée de Denis Matvienko — étoile mondiale et seul danseur au monde à détenir quatre Grands Prix de concours internationaux de ballet : Radio & Juliet (musique de Radiohead), Quatro (nommé au Masque d'Or, 2010), Stabat Mater (Pergolèse). Tournées en Ukraine et en Europe, 2014–2018 : Allemagne, Suisse, France, Belgique, Grande-Bretagne, Croatie, Slovaquie, Slovénie."
@@ -535,7 +537,7 @@
         {
           "n": "",
           "title": "La verticale",
-          "body": "Dix-neuf ans dans la verticale la plus dure : le direct, la cérémonie d'État, des arenas de dix mille spectateurs et plus, et des dizaines de millions devant les écrans de télévision."
+          "body": "Dix-neuf ans dans la verticale la plus dure : le direct, la cérémonie d'État, des salles de dix mille spectateurs et plus, et des dizaines de millions devant les écrans de télévision."
         },
         {
           "n": "",
@@ -615,9 +617,9 @@
       "collabsTitle": "Collaborations choisies",
       "awardsTitle": "Distinctions",
       "collabs": {
-        "matv": "Étoile du Mariinsky / La Scala / ABT — direction artistique de Gatsby, travail quotidien 2014–2018",
-        "afan": "Producteur lauréat d'un Grammy — mise en scène et chorégraphie pour une production télévisée",
-        "ddb": "Légende du jazz — chorégraphie et conception pour un gala à Kyiv",
+        "matv": "Étoile invité de l'Opéra de Paris et de La Scala — direction artistique de Gatsby, travail quotidien 2014–2018",
+        "afan": "Producteur, deux Grammy Awards — mise en scène et chorégraphie pour une production télévisée",
+        "ddb": "Légende du jazz, trois Grammy Awards et un Tony — chorégraphie et conception pour un gala à Kyiv",
         "meladze": "Compositeur et producteur — chorégraphie et mise en scène pour de grands projets Live+TV",
         "tv": "Télévision — chorégraphe principal et metteur en scène des émissions"
       },
@@ -689,6 +691,7 @@
     "base": "",
     "claim": "Бездоганний шлях не сказав би вам нічого.\nУ моєму є американські гірки. Саме так і викарбувалося ремесло та стиль.",
     "downloadBtn": "Завантажити PDF",
+    "onePagerBtn": "CV на одну сторінку · PDF",
     "backBtn": "Повернутись на сайт",
     "printedFrom": "Портфоліо робіт, відео та постановочні файли:",
     "headStats": [
@@ -779,7 +782,7 @@
       ],
       "meetLabel": "ДЕ ЦІ ДВІ ШКОЛИ ЗУСТРІЛИСЬ",
       "meetTitle": "ВЕЛИКИЙ ГЕТСБІ",
-      "meetBody": "Склад, у якому зустрілися три школи: зірки Complexions із Нью-Йорка, прем'єри Маріїнського театру на чолі з Денисом Матвієнком і незалежні, ретельно відібрані артисти з України. Оригінальна музика Костянтина Меладзе. Вистава стала найуспішнішим балетом в історії України й гастролює донині.",
+      "meetBody": "Склад, у якому зустрілися три школи: зірки Complexions із Нью-Йорка, прем'єри класичної школи на чолі з Денисом Матвієнком і незалежні, ретельно відібрані артисти з України. Оригінальна музика Костянтина Меладзе. Вистава стала найуспішнішим балетом в історії України й гастролює донині.",
       "europeLabel": "І З ЄВРОПЕЙСЬКОГО БОКУ",
       "europeTitle": "ЕДВАРД КЛУГ · СЛОВЕНСЬКИЙ НАЦІОНАЛЬНИЙ ТЕАТР МАРИБОР",
       "europeBody": "Артист гастрольного продакшену Дениса Матвієнка — зірки світового балету та єдиного у світі володаря чотирьох Гран-прі міжнародних балетних конкурсів: «Radio & Juliet» (музика Radiohead), «Quatro» (номінант «Золотої маски», 2010), «Stabat Mater» (Перґолезі). Гастролі Україною та Європою, 2014–2018: Німеччина, Швейцарія, Франція, Бельгія, Велика Британія, Хорватія, Словаччина, Словенія."
@@ -879,9 +882,9 @@
       "collabsTitle": "Вибрані співпраці",
       "awardsTitle": "Відзнаки",
       "collabs": {
-        "matv": "Прем'єр Маріїнського / La Scala / ABT — художній керівник «Гетсбі», щоденна робота 2014–2018",
-        "afan": "Продюсер, лауреат Grammy — режисура і хореографія для телевізійної постановки",
-        "ddb": "Легенда джазу — хореографія та концепція для гала-концерту в Києві",
+        "matv": "Запрошений прем'єр Паризької опери і La Scala — художній керівник «Гетсбі», щоденна робота 2014–2018",
+        "afan": "Продюсер, дві премії Grammy — режисура і хореографія для телевізійної постановки",
+        "ddb": "Легенда джазу, три «Ґреммі» і «Тоні» — хореографія та концепція для гала-концерту в Києві",
         "meladze": "Композитор і продюсер — хореографія та режисура для масштабних Live+TV проєктів",
         "tv": "Телебачення — головний хореограф і режисер проєктів"
       },

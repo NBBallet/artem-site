@@ -1,0 +1,21 @@
+{
+  "pages": [
+    { "id": "page-1", "name": "Система" },
+    { "id": "page-2", "name": "Як це виглядає" }
+  ],
+  "artboards": [
+    { "file": "Main.dc.html",      "page": "page-1", "x": 0,    "y": 0,    "w": 1300, "h": 3000, "title": "Когорти" },
+    { "file": "Kits.dc.html",      "page": "page-1", "x": 1420, "y": 0,    "w": 1300, "h": 1520, "title": "Матриця файлів" },
+    { "file": "Screening.dc.html", "page": "page-1", "x": 1420, "y": 1660, "w": 1300, "h": 1340, "title": "Скринінг" },
+    { "file": "Etapes.dc.html",    "page": "page-1", "x": 2840, "y": 0,    "w": 1300, "h": 1040, "title": "Етапи" },
+    { "file": "Espace.dc.html",    "page": "page-2", "x": 0,    "y": 0,    "w": 1200, "h": 1180, "title": "/fr/pro — вибір" },
+    { "file": "Kit.dc.html",       "page": "page-2", "x": 1320, "y": 0,    "w": 1200, "h": 1260, "title": "/fr/pro/direction" }
+  ],
+  "annotations": [
+    { "id": "note-brief", "page": "page-1", "x": 0, "y": -150, "w": 620,
+      "text": "Чернетка, нічого не зачіпає в коді сайту.\nПравки пиши просто тут, у дужках — як на канвасі резюме." },
+    { "id": "note-ui", "page": "page-2", "x": 0, "y": -150, "w": 620,
+      "text": "Два макети французькою — вибір когорти і набір «Direction».\nСтиль узятий із живого сайту: NAMU, JetBrains Mono, червоний C8102E." }
+  ],
+  "launch": { "view": "canvas", "page": "page-1" }
+}

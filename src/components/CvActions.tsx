@@ -7,17 +7,25 @@ import { useEffect } from "react";
  * The two things a visitor needs in their first five seconds on the CV:
  * take it away as a PDF, or go back to the site.
  *
- * "Download PDF" prints this very page — the print stylesheet flips the CV's
+ * "Download PDF" prints this very page; the second button hands over the
+ * ready-made one-page CV — the recruiter's format, the same file sent to
+ * French institutions, kept in public/cv/.
+ *
+ * The print button — the print stylesheet flips the CV's
  * colour variables to paper, so the file is the document itself, never a
  * separate export that can drift out of date. Arriving at /cv?print=1 (the
  * download link on the home page) opens that dialog straight away.
  */
 export default function CvActions({
   downloadLabel,
+  onePagerLabel,
+  onePagerHref,
   backLabel,
   backHref,
 }: {
   downloadLabel: string;
+  onePagerLabel: string;
+  onePagerHref: string;
   backLabel: string;
   backHref: string;
 }) {
@@ -52,6 +60,16 @@ export default function CvActions({
           <path d="M12 3v13m0 0l-5-5m5 5l5-5M4 20h16" />
         </svg>
       </button>
+      <a
+        href={onePagerHref}
+        download
+        className="cv-btn cv-btn-ghost"
+      >
+        {onePagerLabel}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+          <path d="M12 3v13m0 0l-5-5m5 5l5-5M4 20h16" />
+        </svg>
+      </a>
       <Link
         href={backHref}
         className="cv-btn cv-btn-ghost"
