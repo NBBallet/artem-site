@@ -22,6 +22,10 @@
   --cv-red-soft: rgba(200, 16, 46, 0.1);
   --cv-gold: #d4af37;
   --cv-gold-soft: rgba(212, 175, 55, 0.09);
+  /* firebird's own identity (FB_BLUE on its work page) — matched exactly,
+     not reinvented, per 10.09.2026 */
+  --cv-navy: #3a5fb0;
+  --cv-navy-soft: rgba(15, 39, 96, 0.28);
   --cv-seam: #f5f5f5;
 
   --cv-display: "NAMU-1400", Georgia, serif;
@@ -129,6 +133,8 @@
     --cv-red-soft: rgba(168, 12, 36, 0.07);
     --cv-gold: #806413;
     --cv-gold-soft: rgba(128, 100, 19, 0.1);
+    --cv-navy: #0f2760;
+    --cv-navy-soft: rgba(15, 39, 96, 0.09);
     --cv-seam: #111111;
   }
 
@@ -177,9 +183,41 @@
 /* the seam between the two schools: a rule above on phones, beside on wide */
 .cv-seam { border-top: 1px solid var(--cv-seam); }
 
-/* repertoire table */
+/* repertoire table — each row is a link to the work's page on the site.
+   The status cell doubles as the affordance: a coloured pill that only
+   shows its background and arrow on hover/focus, so the row reads as plain
+   text until the visitor's cursor says otherwise. --row-tone/-soft are set
+   inline per row (src/app/[lang]/cv/page.tsx statusTone()). */
 .cv-rep-head,
 .cv-rep-row { grid-template-columns: none; }
+
+.cv-rep-row { text-decoration: none; transition: background 0.2s ease; }
+.cv-rep-row:hover,
+.cv-rep-row:focus-visible { background: var(--cv-panel); }
+
+.cv-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin: -4px -9px;
+  padding: 4px 9px;
+  border-radius: 3px;
+  color: var(--row-tone);
+  background: transparent;
+  transition: background 0.2s ease;
+}
+.cv-rep-row:hover .cv-status-pill,
+.cv-rep-row:focus-visible .cv-status-pill { background: var(--row-tone-soft); }
+
+.cv-status-pill svg {
+  flex: none;
+  opacity: 0;
+  transform: translateX(-3px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.cv-rep-row:hover .cv-status-pill svg,
+.cv-rep-row:focus-visible .cv-status-pill svg { opacity: 1; transform: translateX(0); }
 
 @media (min-width: 768px) {
   .cv-seam { border-top: none; border-left: 1px solid var(--cv-seam); }

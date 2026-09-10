@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, locales, type Locale } from "@/lib/i18n";
@@ -11,10 +12,13 @@ import CvActions from "@/components/CvActions";
  * Files live in public/cv/ and are rebuilt from
  * ФІНАНСИ/06 Guides - Довідники/CV France Travail — редактор/build.py
  */
-const ONE_PAGER: Record<string, string> = {
-  en: "/cv/Artem-Hordieiev-CV-FR.pdf",
-  fr: "/cv/Artem-Hordieiev-CV-FR.pdf",
-  uk: "/cv/Artem-Hordieiev-CV-UK.pdf",
+// FR-only, decided 10.09.2026 — en/uk keep the original two-button layout.
+// Points at the forced-download API route (Content-Disposition: attachment),
+// not the static /cv/… path, so it also works on iOS Safari — see
+// src/app/api/cv-download/[file]/route.ts for why the static link alone
+// isn't enough there.
+const ONE_PAGER: Partial<Record<Locale, string>> = {
+  fr: "/api/cv-download/Artem-Hordieiev-CV-FR.pdf",
 };
 import "./cv.css";
 
@@ -174,16 +178,34 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
   const [icareHead, ...icareRest] = d.s06.icareNote.split("\n");
   const icareBody = icareRest.join(" ");
 
-  const statusTone = (status: string) => {
+  // repertoire key → the work's page on the site (src/lib/works.ts). All
+  // seven have a page; "ants"/"mozart" are the two whose CV key differs
+  // from its slug.
+  const WORK_SLUG: Record<string, string> = {
+    ants: "the-ants",
+    icare: "icare",
+    mozart: "mozart25",
+    carmen: "carmen",
+    anima: "anima",
+    adios: "adios",
+    firebird: "firebird",
+  };
+
+  const statusTone = (key: string, status: string): { color: string; soft: string } => {
+    // Firebird carries the site's own midnight-blue identity (matches
+    // FB_BLUE on its work page) rather than the generic "in development"
+    // grey — decided 10.09.2026.
+    if (key === "firebird") return { color: "var(--cv-navy)", soft: "var(--cv-navy-soft)" };
     const s = status.toLowerCase();
-    if (s.includes("develop") || s.includes("розроб") || s.includes("développ")) return "var(--cv-meta)";
+    if (s.includes("develop") || s.includes("розроб") || s.includes("développ"))
+      return { color: "var(--cv-meta)", soft: "var(--cv-line2)" };
     if (s.includes("готов") || s.includes("prêt") || s.includes("prête") || s.includes("ready") || s.includes("finished"))
-      return "var(--cv-gold)";
+      return { color: "var(--cv-gold)", soft: "var(--cv-gold-soft)" };
     if (
       s.includes("repertoire") || s.includes("репертуар") || s.includes("répertoire") ||
       s.includes("у роботі") || s.includes("en cours") || s.includes("work in progress")
-    ) return "var(--cv-gold)";
-    return "var(--cv-red)";
+    ) return { color: "var(--cv-gold)", soft: "var(--cv-gold-soft)" };
+    return { color: "var(--cv-red)", soft: "var(--cv-red-soft)" };
   };
 
   return (
@@ -237,7 +259,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
         <CvActions
           downloadLabel={d.downloadBtn}
-          onePagerLabel={d.onePagerBtn}
+          onePagerLabel={ONE_PAGER[locale] ? d.onePagerBtn : undefined}
           onePagerHref={ONE_PAGER[locale]}
           backLabel={d.backBtn}
           backHref={`/${locale}`}
@@ -375,23 +397,34 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
           </div>
           {cvShared.repertoire.map((w) => {
             const wd = workCopy[w.key];
+            const tone = statusTone(w.key, wd.status);
+            const slug = WORK_SLUG[w.key];
             return (
-              <div
+              <Link
                 key={w.key}
+                href={`/${locale}/works/${slug}`}
                 className="cv-rep-row cv-keep grid grid-cols-1 lg:items-baseline gap-2 lg:gap-5 py-4"
-                style={{ borderBottom: "1px solid var(--cv-line)" }}
+                style={{
+                  borderBottom: "1px solid var(--cv-line)",
+                  ["--row-tone" as string]: tone.color,
+                  ["--row-tone-soft" as string]: tone.soft,
+                } as CSSProperties}
               >
                 <div className="cv-h3 text-[19px] tracking-[0.5px]">{wd.title ?? w.title}</div>
                 <div className="cv-mono text-[13.5px] cv-meta">{w.year}</div>
                 <div className="text-[14.5px] leading-[1.5] cv-body-c">{wd.format}</div>
                 <div className="text-[14.5px] leading-[1.5] cv-meta">{wd.music ?? w.music}</div>
-                <div
-                  className="cv-mono text-[12px] tracking-[1.4px] uppercase"
-                  style={{ color: statusTone(wd.status) }}
-                >
+                <div className="cv-status-pill cv-mono text-[12px] tracking-[1.4px] uppercase">
                   {wd.status}
+                  <svg
+                    className="cv-screen-only"
+                    width="11" height="11" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" strokeWidth="2.2" aria-hidden
+                  >
+                    <path d="M5 12h14m0 0l-6-6m6 6l-6 6" />
+                  </svg>
                 </div>
-              </div>
+              </Link>
             );
           })}
           <div className="cv-note mt-6 pl-5 max-w-[900px]" style={{ borderLeft: "2px solid var(--cv-red)" }}>
