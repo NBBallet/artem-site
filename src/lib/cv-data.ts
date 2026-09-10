@@ -432,7 +432,7 @@ export const cvData = {
     "role": "Chorégraphe",
     "base": "",
     "claim": "Un parcours sans faille ne vous apprendrait rien.\nLe mien a ses sommets et ses chutes. C'est là que le métier et le style se sont forgés.",
-    "downloadBtn": "Imprimer le CV en PDF",
+    "downloadBtn": "Imprimer le CV",
     "onePagerBtn": "Télécharger le CV en PDF",
     "backBtn": "Retour au site",
     "printedFrom": "Portfolio, vidéos et dossiers de production :",
