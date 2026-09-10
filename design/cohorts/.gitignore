@@ -1,0 +1,4 @@
+# Артборди важкі: у кожному NAMU у base64. Джерело — gen.py.
+*.dc.html
+client-cohorts.html
+.preview/
