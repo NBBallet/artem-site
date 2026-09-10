@@ -20,6 +20,15 @@ import CvActions from "@/components/CvActions";
 const ONE_PAGER: Partial<Record<Locale, string>> = {
   fr: "/api/cv-download/Artem-Hordieiev-CV-FR.pdf",
 };
+
+// "Imprimer le CV" prints this same one-pager, not the long digital page —
+// decided 10.09.2026. Has to be the plain static path, never the API route
+// above: that route sends `Content-Disposition: attachment`, which makes a
+// browser download the file inside the print iframe instead of rendering it,
+// so nothing appears in the print dialog.
+const PRINT_ONE_PAGER: Partial<Record<Locale, string>> = {
+  fr: "/cv/Artem-Hordieiev-CV-FR.pdf",
+};
 import "./cv.css";
 
 /* The CV is repo-local structured content (src/lib/cv-data.ts, generated from
@@ -259,6 +268,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
         <CvActions
           downloadLabel={d.downloadBtn}
+          printHref={PRINT_ONE_PAGER[locale]}
           onePagerLabel={ONE_PAGER[locale] ? d.onePagerBtn : undefined}
           onePagerHref={ONE_PAGER[locale]}
           backLabel={d.backBtn}
