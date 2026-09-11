@@ -18,6 +18,7 @@ import path from "node:path";
 const ALLOWED: Record<string, string> = {
   "Artem-Hordieiev-CV-FR.pdf": "Artem-Hordieiev-CV-FR.pdf",
   "Artem-Hordieiev-CV-UK.pdf": "Artem-Hordieiev-CV-UK.pdf",
+  "Artem-Hordieiev-CV-EN.pdf": "Artem-Hordieiev-CV-EN.pdf",
 };
 
 export const runtime = "nodejs";

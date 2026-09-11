@@ -6,29 +6,7 @@ import { hasLocale, locales, type Locale } from "@/lib/i18n";
 import { cvData, cvShared } from "@/lib/cv-data";
 import CvActions from "@/components/CvActions";
 
-/**
- * The one-page CV, as sent to French institutions. Only FR and UK exist;
- * English visitors get the French file — it is the version that circulates.
- * Files live in public/cv/ and are rebuilt from
- * ФІНАНСИ/06 Guides - Довідники/CV France Travail — редактор/build.py
- */
-// FR-only, decided 10.09.2026 — en/uk keep the original two-button layout.
-// Points at the forced-download API route (Content-Disposition: attachment),
-// not the static /cv/… path, so it also works on iOS Safari — see
-// src/app/api/cv-download/[file]/route.ts for why the static link alone
-// isn't enough there.
-const ONE_PAGER: Partial<Record<Locale, string>> = {
-  fr: "/api/cv-download/Artem-Hordieiev-CV-FR.pdf",
-};
-
-// "Imprimer le CV" prints this same one-pager, not the long digital page —
-// decided 10.09.2026. Has to be the plain static path, never the API route
-// above: that route sends `Content-Disposition: attachment`, which makes a
-// browser download the file inside the print iframe instead of rendering it,
-// so nothing appears in the print dialog.
-const PRINT_ONE_PAGER: Partial<Record<Locale, string>> = {
-  fr: "/cv/Artem-Hordieiev-CV-FR.pdf",
-};
+import { CV_DOWNLOAD, CV_PRINT } from "@/lib/cv-files";
 import "./cv.css";
 
 /* The CV is repo-local structured content (src/lib/cv-data.ts, generated from
@@ -266,11 +244,15 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
           </div>
         </header>
 
+        {/* FR keeps the pair — print the one-pager, or download it — so its
+            download button takes the longer `onePagerBtn` label to stand apart
+            from the print one. en/uk have the single direct download, under
+            the plain "Download PDF" label they have always carried. */}
         <CvActions
-          downloadLabel={d.downloadBtn}
-          printHref={PRINT_ONE_PAGER[locale]}
-          onePagerLabel={ONE_PAGER[locale] ? d.onePagerBtn : undefined}
-          onePagerHref={ONE_PAGER[locale]}
+          downloadLabel={CV_PRINT[locale] ? d.onePagerBtn : d.downloadBtn}
+          downloadHref={CV_DOWNLOAD[locale]}
+          printLabel={CV_PRINT[locale] ? d.downloadBtn : undefined}
+          printHref={CV_PRINT[locale]}
           backLabel={d.backBtn}
           backHref={`/${locale}`}
         />

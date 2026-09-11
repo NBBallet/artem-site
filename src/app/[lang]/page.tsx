@@ -4,6 +4,7 @@ import { getDictionary, type Locale } from "@/lib/i18n";
 import { getWorks } from "@/lib/works";
 import { getSiteSettings } from "@/lib/settings";
 import { cvData } from "@/lib/cv-data";
+import { CV_DOWNLOAD } from "@/lib/cv-files";
 import Tryzub from "@/components/Tryzub";
 import ContactSection from "@/components/ContactSection";
 
@@ -281,8 +282,8 @@ export default async function HomePage({
             </div>
 
             {/* Two ways in, both inside the site: read the CV at /[lang]/cv,
-                 or land on it with the print dialog already open (?print=1).
-                 No external host — the CV is a page of this site. */}
+                 or take the one-page PDF away. No external host — the CV is a
+                 page of this site. */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <Link
                 href={`/${lang}/cv`}
@@ -303,8 +304,12 @@ export default async function HomePage({
                   <path d="M4 12h15M13 6l6 6-6 6"/>
                 </svg>
               </Link>
-              <Link
-                href={`/${lang}/cv?print=1`}
+              {/* FR lands on the CV with the print dialog already open
+                   (?print=1); en/uk hand the one-page PDF straight to the
+                   visitor's device instead — 11.09.2026. */}
+              <a
+                href={locale === "fr" ? `/${lang}/cv?print=1` : CV_DOWNLOAD[locale]}
+                download={locale !== "fr"}
                 className="group inline-flex items-center justify-center gap-4 px-10 py-6 border border-[#2b2b2b] hover:border-brand-red text-[#999] hover:text-brand-white transition-all duration-300 rounded-sm"
               >
                 <span className="t-mono text-[13px] tracking-[2.8px] uppercase whitespace-nowrap">
@@ -317,7 +322,7 @@ export default async function HomePage({
                 >
                   <path d="M12 3v13m0 0l-5-5m5 5l5-5M4 20h16"/>
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
