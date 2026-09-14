@@ -1,0 +1,60 @@
+{
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Замовити"
+    }
+  ],
+  "artboards": [
+    {
+      "file": "Questions.dc.html",
+      "page": "page-1",
+      "x": 0,
+      "y": 0,
+      "w": 1000,
+      "h": 1400,
+      "title": "Що вирішити"
+    },
+    {
+      "file": "Main.dc.html",
+      "page": "page-1",
+      "x": 1120,
+      "y": 0,
+      "w": 1100,
+      "h": 3350,
+      "title": "/fr/programmer"
+    },
+    {
+      "file": "English.dc.html",
+      "page": "page-1",
+      "x": 2340,
+      "y": 0,
+      "w": 1100,
+      "h": 3270,
+      "title": "/en/programmer"
+    },
+    {
+      "file": "Ukrainian.dc.html",
+      "page": "page-1",
+      "x": 3560,
+      "y": 0,
+      "w": 1100,
+      "h": 3260,
+      "title": "/uk/programmer"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "note-brief",
+      "page": "page-1",
+      "x": 0,
+      "y": -170,
+      "w": 700,
+      "text": "Чернетка. У продакшені розділу немає: маршрут віддає 404, пункт у навігації не рендериться (src/lib/drafts.ts).\nТри артборди — те, що побачить продюсер, слово в слово з коду сайту. Правки пиши в дужках поряд із текстом."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "page-1"
+  }
+}

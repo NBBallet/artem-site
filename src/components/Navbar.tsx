@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type Locale } from "@/lib/i18n";
+import { DRAFT_PROGRAMMER } from "@/lib/drafts";
 
 interface NavbarProps {
   lang: Locale;
@@ -40,18 +41,22 @@ export default function Navbar({ lang, t }: NavbarProps) {
         >
           {t["nav.about"]}
         </a>
-        {/* Espace pro — професійний розділ для програматорів. Ховається на
-            телефоні, як «Роботи» і «Про мене»: продюсер відкриває сайт із
-            комп'ютера, а на 375 px нав уже впритул (див. коментар нижче). */}
-        <Link
-          href={`/${lang}/programmer`}
-          aria-current={onPro ? "page" : undefined}
-          className={`text-[11px] tracking-[2px] uppercase transition-colors hidden sm:block ${
-            onPro ? "text-brand-red" : "text-brand-grey hover:text-brand-red"
-          }`}
-        >
-          {t["nav.pro"]}
-        </Link>
+        {/* Espace pro — професійний розділ для програматорів. ЧЕРНЕТКА: розділ
+            ще не затверджений на канвасі, тому в продакшені пункт не рендериться
+            і сам маршрут віддає 404 (@/lib/drafts). Ховається на телефоні, як
+            «Роботи» і «Про мене»: продюсер відкриває сайт із комп'ютера, а на
+            375 px нав уже впритул (див. коментар нижче). */}
+        {DRAFT_PROGRAMMER && (
+          <Link
+            href={`/${lang}/programmer`}
+            aria-current={onPro ? "page" : undefined}
+            className={`text-[11px] tracking-[2px] uppercase transition-colors hidden sm:block ${
+              onPro ? "text-brand-red" : "text-brand-grey hover:text-brand-red"
+            }`}
+          >
+            {t["nav.pro"]}
+          </Link>
+        )}
         {/* CV — головна дія в навігації, тому єдиний тут суцільний фірмовий
             червоний. На наведенні інвертується так само, як кнопка «Завантажити
             PDF» на самій сторінці резюме, а коли ти вже на ній — стає контурним,

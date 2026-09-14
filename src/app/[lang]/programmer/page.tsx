@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, locales, type Locale } from "@/lib/i18n";
 import { offers, proCopy, type Offer } from "@/lib/offers-data";
+import { DRAFT_PROGRAMMER } from "@/lib/drafts";
 
 /* Repo-local structured content, like the CV — no Notion fetch, so nothing on
    this page can blank out on a rate-limited request (see AGENTS.md). */
@@ -36,7 +37,14 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return META[hasLocale(lang) ? lang : "fr"];
+  /* Поки розділ — чернетка, назовні не йде навіть його title/description:
+     generateMetadata виконується і для 404-сторінки, тож текст осідав би
+     у payload. А відкритий локально — все одно без індексації. */
+  if (!DRAFT_PROGRAMMER) return { robots: { index: false, follow: false } };
+  return {
+    ...META[hasLocale(lang) ? lang : "fr"],
+    robots: { index: false, follow: false },
+  };
 }
 
 function availabilityText(o: Offer, c: Record<string, string>) {
@@ -52,6 +60,8 @@ export default async function ProgrammerPage({
 }) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
+  /* Розділ не затверджений на канвасі — у продакшені його немає (@/lib/drafts). */
+  if (!DRAFT_PROGRAMMER) notFound();
   const locale = lang as Locale;
   const c = proCopy[locale];
 

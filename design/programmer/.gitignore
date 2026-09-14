@@ -1,0 +1,4 @@
+# Артборди важкі: у кожному NAMU у base64. Джерело — gen.py.
+*.dc.html
+.preview/
+zamovyty-chernetka.html
