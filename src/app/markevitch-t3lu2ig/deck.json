@@ -102,21 +102,28 @@
   "06": [],
   "07": [
    {
-    "href": "#08",
-    "x": 84,
-    "y": 380,
-    "w": 92,
-    "h": 24
+    "href": "https://www.hordieiev.art/imprimer/icare",
+    "x": 64,
+    "y": 262,
+    "w": 368,
+    "h": 158
    },
    {
-    "href": "#09",
-    "x": 468,
-    "y": 380,
-    "w": 92,
-    "h": 24
+    "href": "https://www.hordieiev.art/imprimer/lorenzo",
+    "x": 448,
+    "y": 262,
+    "w": 368,
+    "h": 158
    },
    {
-    "href": "https://www.hordieiev.art/api/cv-download/Artem-Hordieiev-CV-FR.pdf",
+    "href": "https://www.hordieiev.art/fr/cv",
+    "x": 64,
+    "y": 436,
+    "w": 368,
+    "h": 158
+   },
+   {
+    "href": "https://www.hordieiev.art/fr/cv?print=1",
     "x": 84,
     "y": 554,
     "w": 72,
@@ -130,11 +137,11 @@
     "h": 24
    },
    {
-    "href": "#10",
-    "x": 468,
-    "y": 554,
-    "w": 92,
-    "h": 24
+    "href": "https://www.hordieiev.art/imprimer/note",
+    "x": 448,
+    "y": 436,
+    "w": 368,
+    "h": 158
    },
    {
     "href": "https://hordieiev.art/",
