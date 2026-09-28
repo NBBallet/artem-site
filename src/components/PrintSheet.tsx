@@ -11,6 +11,15 @@ import { useEffect, useRef, useState } from "react";
 export default function PrintSheet({ html, title, pdf }: { html: string; title: string; pdf: string }) {
   const stage = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
+  // iOS Safari ignores window.print() from a page (checked on an iPhone,
+  // 28.09.2026): there the button opens the PDF itself, and a line under the
+  // bar says where Safari keeps its own Print.
+  const [ios, setIos] = useState(false);
+
+  useEffect(() => {
+    const ua = navigator.userAgent;
+    setIos(/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1));
+  }, []);
 
   useEffect(() => {
     const fit = () => {
@@ -39,14 +48,29 @@ export default function PrintSheet({ html, title, pdf }: { html: string; title: 
       <div className="imp-bar">
         <span className="imp-bar-title">{title}</span>
         <span className="imp-bar-actions">
-          <button type="button" onClick={() => window.print()} className="imp-btn imp-btn-primary">
-            Imprimer
-          </button>
+          {ios ? (
+            <a href={pdf} className="imp-btn imp-btn-primary">
+              Imprimer
+            </a>
+          ) : (
+            <button type="button" onClick={() => window.print()} className="imp-btn imp-btn-primary">
+              Imprimer
+            </button>
+          )}
           <a href={pdf} download className="imp-btn">
             PDF
           </a>
         </span>
       </div>
+      {ios && (
+        <p className="imp-hint">
+          Sur iPhone : touchez <b>Imprimer</b>, puis{" "}
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-label="Partager">
+            <path d="M12 3v12m0-12l-4 4m4-4l4 4M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" />
+          </svg>
+          <b>Partager</b> → <b>Imprimer</b>.
+        </p>
+      )}
       <div className="imp-stage" ref={stage}>
         <div className="imp-frame" style={{ width: 792 * scale, height: 1120 * scale }}>
           <div
