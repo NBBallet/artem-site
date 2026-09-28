@@ -1,0 +1,41 @@
+/* The canvas sheets name their display face "NAMU"; the site serves it as a file. */
+@font-face {
+  font-family: "NAMU";
+  src: url("/fonts/NAMU-1400.woff2") format("woff2"), url("/fonts/NAMU-1400.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+.imp { min-height: 100vh; background: #0a0a0a; }
+.imp-bar {
+  position: sticky; top: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 16px; background: #0a0a0a;
+  font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #EDE9E3;
+}
+.imp-bar-title { color: #E8455E; }
+.imp-bar-actions { display: flex; gap: 10px; flex: none; }
+.imp-btn {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px;
+  border: 1px solid #4a4540; color: #EDE9E3; background: transparent;
+  font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer;
+}
+.imp-btn-primary { background: #C8102E; border-color: #C8102E; }
+
+/* the sheet is a fixed 792×1120 artboard: scale it to the screen, keep it whole */
+.imp-stage { padding: 8px 16px 32px; }
+.imp-frame { margin: 0 auto; overflow: hidden; box-shadow: 0 2px 24px rgba(0, 0, 0, 0.5); }
+.imp-sheet { width: 792px; height: 1120px; transform-origin: 0 0; }
+.imp-sheet a { color: #C8102E; text-decoration: none; }
+
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body, .imp { background: #fff !important; min-height: 0; }
+  .imp-bar { display: none; }
+  .imp-stage { padding: 0; }
+  .imp-frame { width: auto !important; height: auto !important; box-shadow: none; overflow: visible; }
+  .imp-sheet { transform: none !important; zoom: 1.0021; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
