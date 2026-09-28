@@ -175,7 +175,7 @@ function Who() {
         built from scratch.
       </p>
       <p className="mk-p">
-        We have worked with clients and budgets at every scale: from projects of <span style={{ whiteSpace: "nowrap" }}>€10&nbsp;000–20&nbsp;000</span> to major
+        We have worked with clients and budgets at every scale: from projects of <span style={{ whiteSpace: "nowrap" }}>€10&nbsp;000–20&nbsp;000</span>{" "}to major
         commissions for national television and state events of €1&nbsp;000&nbsp;000 and more. Whatever the budget, we
         know how to make a stage project compelling — strong, rewarding for every partner involved, and effective.
       </p>
