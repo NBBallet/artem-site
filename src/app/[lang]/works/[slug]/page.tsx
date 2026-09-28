@@ -14,8 +14,7 @@ import IcareImage from "@/components/IcareImage";
 import { getSiteSettings } from "@/lib/settings";
 import { firebirdData } from "@/lib/firebird-data";
 
-// Always render fresh from Notion — no stale-while-revalidate confusion
-export const dynamic = "force-dynamic";
+// Тексти — у src/content (з 28.09.2026); сторінка збирається статично на кожен деплой.
 
 export function generateStaticParams() {
   return locales.flatMap((lang) =>

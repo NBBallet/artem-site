@@ -8,8 +8,7 @@ import { CV_DOWNLOAD } from "@/lib/cv-files";
 import Tryzub from "@/components/Tryzub";
 import ContactSection from "@/components/ContactSection";
 
-// Always render fresh from Notion — no stale-while-revalidate confusion
-export const dynamic = "force-dynamic";
+// Тексти — у src/content (з 28.09.2026); сторінка збирається статично на кожен деплой.
 
 export default async function HomePage({
   params,

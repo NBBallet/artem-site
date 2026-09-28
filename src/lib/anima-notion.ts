@@ -1,8 +1,6 @@
-import { Client } from "@notionhq/client";
-import { animaData } from "./anima-data";
-import { withRetry } from "./notion-retry";
-
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+// Склад і сцени ANIMA — src/content/anima-*.json (з 28.09.2026; раніше Notion).
+import castData from "@/content/anima-cast.json";
+import scenesData from "@/content/anima-scenes.json";
 
 export interface AnimaCastMember {
   roleEn: string;
@@ -22,86 +20,10 @@ export interface AnimaScene {
   image: string;
 }
 
-function rt(prop: unknown): string {
-  const p = prop as { rich_text?: Array<{plain_text:string}>; title?: Array<{plain_text:string}>; url?: string | null } | null;
-  if (!p) return "";
-  if (p.title) return p.title.map(t => t.plain_text).join("");
-  if (p.rich_text) return p.rich_text.map(t => t.plain_text).join("");
-  if (p.url !== undefined) return p.url ?? "";
-  return "";
-}
-
-function num(prop: unknown): number {
-  const p = prop as { number?: number | null } | null;
-  return p?.number ?? 999;
-}
-
-// Cast
 export async function getAnimaCast(): Promise<AnimaCastMember[]> {
-  const dbId = process.env.NOTION_ANIMA_CAST_DB_ID;
-  if (!process.env.NOTION_API_KEY || !dbId) return getStaticCast();
-  try {
-    const res = await withRetry(() => notion.databases.query({
-      database_id: dbId,
-      sorts: [{ property: "Sort Order", direction: "ascending" }],
-    }));
-    if (res.results.length === 0) return getStaticCast();
-    return res.results.map((page) => {
-      const p = (page as unknown as Record<string, unknown>).properties as Record<string, unknown>;
-      return {
-        roleEn: rt(p["Role EN"]),
-        roleUk: rt(p["Role UK"]),
-        nameEn: rt(p["Performer EN"]),
-        nameUk: rt(p["Performer UK"]),
-        photo: rt(p["Photo"]),
-      };
-    });
-  } catch { return getStaticCast(); }
+  return castData as AnimaCastMember[];
 }
 
-function getStaticCast(): AnimaCastMember[] {
-  return animaData.cast.map(m => ({
-    roleEn: m.role.en,
-    roleUk: m.role.uk,
-    nameEn: m.name.en,
-    nameUk: m.name.uk,
-    photo: "",
-  }));
-}
-
-// Scenes
 export async function getAnimaScenes(): Promise<AnimaScene[]> {
-  const dbId = process.env.NOTION_ANIMA_SCENES_DB_ID;
-  if (!process.env.NOTION_API_KEY || !dbId) return getStaticScenes();
-  try {
-    const res = await withRetry(() => notion.databases.query({
-      database_id: dbId,
-      sorts: [{ property: "Sort Order", direction: "ascending" }],
-    }));
-    if (res.results.length === 0) return getStaticScenes();
-    return res.results.map((page) => {
-      const p = (page as unknown as Record<string, unknown>).properties as Record<string, unknown>;
-      return {
-        arcana: rt(p["Arcana"]),
-        arcanaUk: rt(p["Arcana UK"]),
-        arcanaFr: rt(p["Arcana FR"]) || rt(p["Arcana"]),
-        descriptionEn: rt(p["Description EN"]),
-        descriptionUk: rt(p["Description UK"]),
-        descriptionFr: rt(p["Description FR"]) || rt(p["Description EN"]),
-        image: rt(p["Image URL"]),
-      };
-    });
-  } catch { return getStaticScenes(); }
-}
-
-function getStaticScenes(): AnimaScene[] {
-  return animaData.scenes.map(s => ({
-    arcana: s.arcana,
-    arcanaUk: s.arcanaUk,
-    arcanaFr: s.arcanaFr,
-    descriptionEn: s.description.en,
-    descriptionUk: s.description.uk,
-    descriptionFr: s.description.fr,
-    image: s.image,
-  }));
+  return scenesData as AnimaScene[];
 }

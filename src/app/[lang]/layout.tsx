@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { hasLocale, getDictionary, locales, type Locale } from "@/lib/i18n";
 import Navbar from "@/components/Navbar";
+import SiteEditor from "@/components/SiteEditor";
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -27,6 +28,7 @@ export default async function LangLayout({
           &copy; {new Date().getFullYear()} {t["footer.copyright"]}
         </p>
       </footer>
+      <SiteEditor lang={lang as Locale} />
     </>
   );
 }

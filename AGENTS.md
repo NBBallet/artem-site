@@ -4,38 +4,24 @@
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
-# Known pitfalls — read before touching Notion-backed content
+# Тексти сайту — у `src/content/`, Notion відключено (з 28.09.2026)
 
-## Every field sourced from Notion MUST have a real, non-empty fallback default
+Раніше сторінки були `force-dynamic` і на кожен запит робили ~10 запитів у
+Notion. При rate-limit `queryDb()` мовчки повертав `[]`, і відвідувач бачив
+стару версію тексту із запасних значень. 28.09.2026 порівняння продакшну з
+Notion двічі поспіль дало різні набори «старих» сторінок: 14 і 16 із 33.
 
-Pages are `dynamic = "force-dynamic"`, so **every request** (plus Next's
-prefetch of linked pages) re-fetches from Notion. `getSiteSettings()` fires
-~10 DB queries in parallel; `queryDb()` **silently returns `[]` on any failure**
-(rate-limit / network blip), and each field then falls back to its value in
-`DEFAULT_SETTINGS`. Notion's API rate-limits easily under this fan-out, and the
-DBs queried **last** in the `Promise.all` array are the first to be dropped.
+Тепер:
 
-**Therefore: never default a Notion-sourced field to `""`.** An empty default
-means one transient fetch failure blanks that content in the live UI — and it
-will keep happening intermittently, hardest to reproduce, on whichever fields
-sit late in the query order.
-
-Real bug this caused (2026-07): `mercyImage` / `humansImage` were the only two
-image defaults set to `""` (their DBs are #9 and #10 in the query array). Their
-covers kept vanishing to grey placeholders in production while `firebirdImage` /
-`icareImage` — which have real URL defaults — never broke. Fix was to give the
-two a real Cloudinary URL default, exactly like the others.
-
-Rules when adding/editing settings:
-- Give text fields a sensible English default; give image/URL fields a real
-  working URL (or a local `/public` asset) — mirror `firebirdImage` /
-  `icareImage` in `src/lib/settings.ts`. `""` is only acceptable when the
-  consuming component **intentionally** hides the element when empty AND that
-  blank state is acceptable to ship on a fetch failure.
-- Notion overrides the default when it loads, so a real default does not reduce
-  editability — it only guarantees the page never renders blank.
-- Reads in `settings.ts` / `notion.ts` / `anima-notion.ts` are wrapped in
-  `withRetry()` (`src/lib/notion-retry.ts`); keep new Notion reads wrapped too.
+- `src/content/settings.json`, `works.json`, `anima-cast.json`,
+  `anima-scenes.json` — знімок Notion від 28.09.2026, єдине джерело. Сторінки
+  збираються статично на кожен деплой.
+- Notion як архів лишився, але сайт його не читає. `@notionhq/client` видалено.
+- Тексти правляться **редактором на самому сайті** (`/edit`, див.
+  `docs/site-editor.md`). Він комітить у гілку деплою, Vercel перебудовує сайт.
+- `design/cv/copy.json` → `src/lib/cv-data.ts` (генерується `gen.py`). Редактор
+  правит обидва однаковими рядками. Якщо в звіті є «CV-дані не синхронізовано»,
+  запусти `python3 design/cv/gen.py`.
 
 # Нова публічна сторінка не йде в `main` без канваса
 
@@ -47,6 +33,10 @@ Rules when adding/editing settings:
 в `main`. Він десять днів стояв у продакшені трьома мовами, хоч Артем його
 не читав і не затверджував. Тексти там — його слово про власну роботу, не
 технічна деталь.
+
+Редактор на сайті (`/edit`) міняє тексти вже опублікованих сторінок, і це
+свідомий реліз Артема: він сам натискає «Опублікувати». Нова сторінка чи
+розділ, як і раніше, йдуть через канвас.
 
 Порядок для будь-якої нової публічної сторінки — той самий, що вже діяв
 для резюме (`design/cv/`):
