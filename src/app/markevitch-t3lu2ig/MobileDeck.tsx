@@ -632,7 +632,7 @@ export default function MobileDeck() {
       ))}
 
       <footer className="mk-foot mk-label dim">
-        <span>Compagnie Les Oiseaux de Journal · Tarbes</span>
+        <span>Artem Hordieiev · Tarbes</span>
         <a href="https://hordieiev.art/fr" className="red">hordieiev.art</a>
       </footer>
     </div>
