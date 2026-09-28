@@ -1,0 +1,174 @@
+{
+ "sizes": {
+  "01": [
+   1280,
+   720
+  ],
+  "02": [
+   1280,
+   720
+  ],
+  "03": [
+   1280,
+   720
+  ],
+  "04": [
+   1280,
+   720
+  ],
+  "05": [
+   1280,
+   720
+  ],
+  "06": [
+   1280,
+   720
+  ],
+  "07": [
+   1280,
+   720
+  ],
+  "08": [
+   792,
+   1120
+  ],
+  "09": [
+   792,
+   1120
+  ],
+  "10": [
+   792,
+   1120
+  ]
+ },
+ "links": {
+  "01": [],
+  "02": [
+   {
+    "href": "https://www.hordieiev.art/fr/works/mozart25",
+    "x": 64,
+    "y": 525,
+    "w": 835,
+    "h": 144
+   },
+   {
+    "href": "https://www.hordieiev.art/fr",
+    "x": 922,
+    "y": 530,
+    "w": 292,
+    "h": 134
+   }
+  ],
+  "03": [],
+  "04": [
+   {
+    "href": "https://www.youtube.com/watch?v=mCAXXyfZjOU&t=385s",
+    "x": 848,
+    "y": 80,
+    "w": 368,
+    "h": 184
+   },
+   {
+    "href": "https://www.hordieiev.art/fr/works/mozart25",
+    "x": 812,
+    "y": 430,
+    "w": 468,
+    "h": 186
+   },
+   {
+    "href": "https://www.youtube.com/watch?v=7lOgQJm1vaU&t=195s",
+    "x": 848,
+    "y": 632,
+    "w": 368,
+    "h": 56
+   }
+  ],
+  "05": [
+   {
+    "href": "https://www.youtube.com/watch?v=bcqsh95bR5g",
+    "x": 182,
+    "y": 298,
+    "w": 224,
+    "h": 224
+   },
+   {
+    "href": "https://www.youtube.com/watch?v=bcqsh95bR5g",
+    "x": 64,
+    "y": 644,
+    "w": 460,
+    "h": 32
+   }
+  ],
+  "06": [],
+  "07": [
+   {
+    "href": "#08",
+    "x": 84,
+    "y": 380,
+    "w": 92,
+    "h": 24
+   },
+   {
+    "href": "#09",
+    "x": 468,
+    "y": 380,
+    "w": 92,
+    "h": 24
+   },
+   {
+    "href": "https://www.hordieiev.art/api/cv-download/Artem-Hordieiev-CV-FR.pdf",
+    "x": 84,
+    "y": 554,
+    "w": 72,
+    "h": 24
+   },
+   {
+    "href": "https://www.hordieiev.art/fr/cv",
+    "x": 164,
+    "y": 554,
+    "w": 92,
+    "h": 24
+   },
+   {
+    "href": "#10",
+    "x": 468,
+    "y": 554,
+    "w": 92,
+    "h": 24
+   },
+   {
+    "href": "https://hordieiev.art/",
+    "x": 1059.0,
+    "y": 639.3,
+    "w": 79.4,
+    "h": 16
+   },
+   {
+    "href": "https://wa.me/33743791841",
+    "x": 1149.9,
+    "y": 639.3,
+    "w": 66.1,
+    "h": 16
+   }
+  ],
+  "08": [
+   {
+    "href": "https://hordieiev.art/",
+    "x": 572.9,
+    "y": 1096.2,
+    "w": 67.6,
+    "h": 14
+   }
+  ],
+  "09": [
+   {
+    "href": "https://hordieiev.art/",
+    "x": 674.4,
+    "y": 1075.8,
+    "w": 67.6,
+    "h": 14
+   }
+  ],
+  "10": []
+ }
+}
