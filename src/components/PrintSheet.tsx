@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * A4 sheets shown on screen and printed with the browser's own
- * window.print(), one printed page per sheet (recto, verso) — the one print call iOS Safari and Android Chrome honour.
+ * window.print(), one printed page per sheet (recto, verso).
  * On a computer the dialog opens by itself once the fonts are in, as the
  * French CV's print link does; on a phone the visitor taps «Imprimer».
  */
