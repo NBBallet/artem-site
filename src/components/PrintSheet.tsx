@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * One A4 sheet shown on screen and printed with the browser's own
- * window.print() — the one print call iOS Safari and Android Chrome honour.
+ * A4 sheets shown on screen and printed with the browser's own
+ * window.print(), one printed page per sheet (recto, verso) — the one print call iOS Safari and Android Chrome honour.
  * On a computer the dialog opens by itself once the fonts are in, as the
  * French CV's print link does; on a phone the visitor taps «Imprimer».
  */
-export default function PrintSheet({ html, title, pdf }: { html: string; title: string; pdf: string }) {
+export default function PrintSheet({ sheets, title, pdf }: { sheets: string[]; title: string; pdf: string }) {
   const stage = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
   // iOS Safari ignores window.print() from a page (checked on an iPhone,
@@ -72,13 +72,15 @@ export default function PrintSheet({ html, title, pdf }: { html: string; title: 
         </p>
       )}
       <div className="imp-stage" ref={stage}>
-        <div className="imp-frame" style={{ width: 792 * scale, height: 1120 * scale }}>
-          <div
-            className="imp-sheet"
-            style={{ transform: `scale(${scale})` }}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        </div>
+        {sheets.map((html, i) => (
+          <div key={i} className="imp-frame" style={{ width: 792 * scale, height: 1120 * scale }}>
+            <div
+              className="imp-sheet"
+              style={{ transform: `scale(${scale})` }}
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

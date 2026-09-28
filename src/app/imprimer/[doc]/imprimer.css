@@ -32,7 +32,7 @@
 
 /* the sheet is a fixed 792×1120 artboard: scale it to the screen, keep it whole */
 .imp-stage { padding: 8px 16px 32px; }
-.imp-frame { margin: 0 auto; overflow: hidden; box-shadow: 0 2px 24px rgba(0, 0, 0, 0.5); }
+.imp-frame { margin: 0 auto 16px; overflow: hidden; box-shadow: 0 2px 24px rgba(0, 0, 0, 0.5); }
 .imp-sheet { width: 792px; height: 1120px; transform-origin: 0 0; }
 .imp-sheet a { color: #C8102E; text-decoration: none; }
 
@@ -41,7 +41,8 @@
   html, body, .imp { background: #fff !important; min-height: 0; }
   .imp-bar, .imp-hint { display: none; }
   .imp-stage { padding: 0; }
-  .imp-frame { width: auto !important; height: auto !important; box-shadow: none; overflow: visible; }
+  .imp-frame { width: auto !important; height: auto !important; margin: 0; box-shadow: none; overflow: hidden; break-after: page; }
+  .imp-frame:last-child { break-after: auto; }
   .imp-sheet { transform: none !important; zoom: 1.0021; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }

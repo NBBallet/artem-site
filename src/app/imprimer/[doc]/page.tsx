@@ -13,16 +13,19 @@ import "./imprimer.css";
    The sheet is rendered as HTML and printed with window.print(): phones
    (iOS Safari, Android Chrome) won't let a script print a PDF inside an
    iframe, but they all print the page itself. The PDF stays as a download.
-   Both come from the canvas artboards FR-01…03 via
+   Both come from the canvas artboards FR-01…04 via
    CHORÉGRAPHE/_інструменти/канва/pdf_аркушів.py (src/content/imprimer/*.html
    and public/imprimer/*.pdf). */
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
+/* Each document is one sheet printed on both sides: the two dossiers share a
+   sheet (Icare recto, Lorenzo verso), so both buttons print the same pair; the
+   note's verso carries the QR code to the online presentation. */
 const DOCS: Record<string, string> = {
-  icare: "L'Envol d'Icare — dossier",
-  lorenzo: "Lorenzo il Magnifico — dossier",
-  note: "Note d'accompagnement",
+  icare: "L'Envol d'Icare · Lorenzo il Magnifico — recto verso",
+  lorenzo: "L'Envol d'Icare · Lorenzo il Magnifico — recto verso",
+  note: "Note d'accompagnement — recto verso",
 };
 
 export function generateStaticParams() {
@@ -46,5 +49,6 @@ export default async function ImprimerPage({ params }: { params: Promise<{ doc: 
   const title = DOCS[doc];
   if (!title) notFound();
   const html = fs.readFileSync(path.join(process.cwd(), "src/content/imprimer", `${doc}.html`), "utf8");
-  return <PrintSheet html={html} title={title} pdf={`/imprimer/Le-retour-de-Markevitch-${doc}.pdf`} />;
+  const sheets = html.split("<!--sheet-->").map((s) => s.trim());
+  return <PrintSheet sheets={sheets} title={title} pdf={`/imprimer/Le-retour-de-Markevitch-${doc}.pdf`} />;
 }
