@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/cv-recto-verso.mjs",
     "dev": "next dev -H 127.0.0.1",
+    "prebuild": "node scripts/cv-recto-verso.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -11,6 +13,7 @@
   "dependencies": {
     "@notionhq/client": "^2.3.0",
     "next": "16.2.1",
+    "pdf-lib": "^1.17.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },

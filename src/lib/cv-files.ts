@@ -31,9 +31,9 @@ export const CV_DOWNLOAD: Record<Locale, string> = {
  * nothing appears in the print dialog.
  *
  * The printed file is the one-pager plus a verso with a QR code to /fr/cv
- * (28.09.2026) — built by CHORÉGRAPHE/_інструменти/канва/cv_зворот.py from the
- * one-pager above; rerun it after every rebuild of Artem-Hordieiev-CV-FR.pdf.
- * The download stays one page.
+ * (28.09.2026), assembled on every build by scripts/cv-recto-verso.mjs from
+ * public/cv/Artem-Hordieiev-CV-FR.pdf and design/cv/verso-FR.pdf — replacing
+ * the one-pager is enough. The download stays one page.
  */
 export const CV_PRINT: Partial<Record<Locale, string>> = {
   fr: "/cv/Artem-Hordieiev-CV-FR-recto-verso.pdf",

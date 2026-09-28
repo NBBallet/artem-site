@@ -43,3 +43,6 @@ next-env.d.ts
 # claude code (локальне)
 .claude/worktrees/
 .claude/settings.local.json
+
+# assembled on every build by scripts/cv-recto-verso.mjs
+/public/cv/Artem-Hordieiev-CV-FR-recto-verso.pdf
