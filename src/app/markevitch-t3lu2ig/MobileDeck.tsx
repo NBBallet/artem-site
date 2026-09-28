@@ -375,7 +375,7 @@ function Lorenzo() {
         <img src={`${M}/urbain.webp`} alt="" loading="lazy" />
       </div>
       <div style={{ position: "relative" }}>
-        <Head label="A project with a vocal part" num="04" id="l-h" />
+        <Head label="Ballet with voice and orchestra" num="04" id="l-h" />
         <Title fit={FIT.lorenzo}>
           <span>Lorenzo</span>
           <span className="red">il Magnifico</span>
@@ -393,13 +393,6 @@ function Lorenzo() {
             (t, i) => <Fragment key={t}>{i > 0 && " "}<span>{i > 0 && <em aria-hidden="true">→ </em>}{t}</span></Fragment>,
           )}
         </p>
-        <a className="mk-listen" href={YT_LORENZO} {...out}>
-          <span className="mk-play s redbg"><Tri /></span>
-          <span className="t">
-            <span className="mk-label" style={{ display: "block", color: "var(--fg)" }}>Listen · the whole work, 28′</span>
-            <span className="l" style={{ display: "block" }}>Lucy Shelton · Arnhem Philharmonic · Christopher Lyndon-Gee</span>
-          </span>
-        </a>
 
         <div className="mk-gap" />
         <p className="mk-p">
@@ -427,6 +420,14 @@ function Lorenzo() {
           conductors of the twentieth century.
         </p>
 
+        <a className="mk-listen" href={YT_LORENZO} {...out}>
+          <span className="mk-play s redbg"><Tri /></span>
+          <span className="t">
+            <span className="mk-label" style={{ display: "block", color: "var(--fg)" }}>Listen · the whole work, 28′</span>
+            <span className="l" style={{ display: "block" }}>Lucy Shelton · Arnhem Philharmonic · Christopher Lyndon-Gee</span>
+          </span>
+        </a>
+
         <p className="mk-credit">
           Circle after Galileo Galilei, <i>Sidereus Nuncius</i>, 1610 — the Moon and the four moons of Jupiter he named
           the Medicean Stars · Lorenzo: Benozzo Gozzoli, Palazzo Medici Riccardi · Benjamin-Constant,{" "}
@@ -446,7 +447,7 @@ function Proposal() {
         <img src={`${M}/muraille.webp`} alt="" loading="lazy" />
       </div>
       <div style={{ position: "relative" }}>
-        <Head label="How we could work together" num="05" id="p-h" />
+        <Head label="The partnership" num="05" id="p-h" />
         <Title fit={FIT.proposal}>
           <span>What we propose,</span>
           <span>and what</span>
