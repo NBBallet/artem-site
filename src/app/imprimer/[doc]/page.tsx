@@ -10,21 +10,19 @@ import "./imprimer.css";
    nothing on the site links here; only the pitch deck and its PDF do. The
    pages carry noindex, and next.config sends X-Robots-Tag for the files.
 
-   The sheet is rendered as HTML and printed with window.print(): phones
-   (iOS Safari, Android Chrome) won't let a script print a PDF inside an
-   iframe, but they all print the page itself. The PDF stays as a download.
-   Both come from the canvas artboards FR-01…04 via
-   CHORÉGRAPHE/_інструменти/канва/pdf_аркушів.py (src/content/imprimer/*.html
+   The sheet is shown as HTML; «Imprimer» opens its PDF, which every browser
+   prints exactly A4 (the page itself printed too large in Safari on a Mac,
+   28.09.2026 — see PrintSheet). Both come from the canvas artboards FR-01…04
+   via CHORÉGRAPHE/_інструменти/канва/pdf_аркушів.py (src/content/imprimer/*.html
    and public/imprimer/*.pdf). */
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
-/* Each document is one sheet printed on both sides: the two dossiers share a
-   sheet (Icare recto, Lorenzo verso), so both buttons print the same pair; the
-   note's verso carries the QR code to the online presentation. */
+/* Each button prints its own sheet, recto verso: the document on the front,
+   the QR code to the online presentation (FR-04) on the back (28.09.2026). */
 const DOCS: Record<string, string> = {
-  icare: "L'Envol d'Icare · Lorenzo il Magnifico — recto verso",
-  lorenzo: "L'Envol d'Icare · Lorenzo il Magnifico — recto verso",
+  icare: "L'Envol d'Icare — recto verso",
+  lorenzo: "Lorenzo il Magnifico — recto verso",
   note: "Note d'accompagnement — recto verso",
 };
 

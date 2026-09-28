@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+
+const isIos = () => {
+  const ua = navigator.userAgent;
+  return /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+};
 
 /**
  * Loads the PDF in a hidden iframe and calls print() on it once loaded, so
@@ -9,6 +14,12 @@ import { useEffect } from "react";
  * visitor to close.
  */
 const printOnePager = (href: string) => {
+  // iOS Safari won't print a PDF from a script — it opens the file instead,
+  // and the hint under the buttons says where Safari keeps Print.
+  if (isIos()) {
+    window.location.href = href;
+    return;
+  }
   const iframe = document.createElement("iframe");
   iframe.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden;";
   iframe.src = href;
@@ -59,6 +70,8 @@ export default function CvActions({
   backLabel: string;
   backHref: string;
 }) {
+  const ios = useSyncExternalStore(() => () => {}, isIos, () => false);
+
   useEffect(() => {
     if (!printHref) return;
     if (new URLSearchParams(window.location.search).get("print") !== "1") return;
@@ -66,7 +79,8 @@ export default function CvActions({
   }, [printHref]);
 
   return (
-    <div className="cv-screen-only flex flex-wrap justify-center gap-4 pt-3 pb-6">
+    <div className="cv-screen-only pt-3 pb-6">
+    <div className="flex flex-wrap justify-center gap-4">
       {printLabel && printHref && (
         <button
           type="button"
@@ -93,6 +107,15 @@ export default function CvActions({
       <Link href={backHref} className="cv-btn cv-btn-ghost">
         ← {backLabel}
       </Link>
+    </div>
+    {/* French only, like the print button: the printed CV is recto verso,
+        the QR code to the online CV is on the back (28.09.2026). */}
+    {printLabel && printHref && (
+      <p className="mt-4 text-center text-[13.5px] leading-[1.5] cv-meta">
+        {ios ? "Sur iPhone : touchez le bouton, puis Partager → Imprimer. " : ""}
+        Imprimez en recto verso : le code QR au dos renvoie à ce CV en ligne.
+      </p>
+    )}
     </div>
   );
 }

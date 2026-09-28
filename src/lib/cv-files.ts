@@ -29,7 +29,12 @@ export const CV_DOWNLOAD: Record<Locale, string> = {
  * that route sends `Content-Disposition: attachment`, which makes a browser
  * download the file inside the print iframe instead of rendering it, so
  * nothing appears in the print dialog.
+ *
+ * The printed file is the one-pager plus a verso with a QR code to /fr/cv
+ * (28.09.2026) — built by CHORÉGRAPHE/_інструменти/канва/cv_зворот.py from the
+ * one-pager above; rerun it after every rebuild of Artem-Hordieiev-CV-FR.pdf.
+ * The download stays one page.
  */
 export const CV_PRINT: Partial<Record<Locale, string>> = {
-  fr: "/cv/Artem-Hordieiev-CV-FR.pdf",
+  fr: "/cv/Artem-Hordieiev-CV-FR-recto-verso.pdf",
 };
