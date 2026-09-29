@@ -8,6 +8,12 @@ type PublishResult = { ok: boolean; sha?: string; issue?: string; results: Chang
 const inline = new Set(["SPAN", "EM", "STRONG", "B", "I", "U", "SMALL", "SUP", "SUB", "MARK", "ABBR"]);
 const excluded = "script,style,svg,noscript,iframe,video,input,textarea,select,button[data-editor],[data-no-edit]";
 
+// CSS text-transform (uppercase labels) changes innerText but not the source text,
+// so read and restore the real characters there; elsewhere innerText keeps <br> as \n.
+const transformed = (el: HTMLElement) => getComputedStyle(el).textTransform !== "none";
+const readText = (el: HTMLElement): string => (transformed(el) ? el.textContent ?? "" : el.innerText);
+const writeText = (el: HTMLElement, text: string) => { if (transformed(el)) el.textContent = text; else el.innerText = text; };
+
 export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
   const [enabled, setEnabled] = useState(false), [editing, setEditing] = useState(false);
   const [count, setCount] = useState(0), [modal, setModal] = useState(false), [requestText, setRequestText] = useState("");
@@ -33,7 +39,7 @@ export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
     const set = new Set(candidates);
     elements.current = candidates.filter(el => { for (let p = el.parentElement; p; p = p.parentElement) if (set.has(p)) return false; return true; });
     for (const el of elements.current) {
-      originals.current.set(el, el.innerText);
+      originals.current.set(el, readText(el));
       el.contentEditable = "plaintext-only";
       if (el.contentEditable !== "plaintext-only") el.contentEditable = "true";
       el.spellcheck = false; el.classList.add("nb-editable");
@@ -44,15 +50,15 @@ export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
     }
     function onFocus(this: HTMLElement) { lastFocused.current = this; }
     function update() {
-      setCount(elements.current.filter(el => el.innerText.trim() !== (originals.current.get(el) ?? "").trim()).length);
-      for (const el of elements.current) el.classList.toggle("nb-changed", el.innerText.trim() !== (originals.current.get(el) ?? "").trim());
+      setCount(elements.current.filter(el => readText(el).trim() !== (originals.current.get(el) ?? "").trim()).length);
+      for (const el of elements.current) el.classList.toggle("nb-changed", readText(el).trim() !== (originals.current.get(el) ?? "").trim());
     }
     function onKey(this: HTMLElement, ev: KeyboardEvent) {
-      if (ev.key === "Escape") { this.innerText = originals.current.get(this) ?? ""; this.blur(); update(); }
+      if (ev.key === "Escape") { writeText(this, originals.current.get(this) ?? ""); this.blur(); update(); }
       else if (ev.key === "Enter" && !(originals.current.get(this) ?? "").includes("\n")) { ev.preventDefault(); this.blur(); }
     }
     const blockLinks = (ev: MouseEvent) => { const target = ev.target as Element | null; if (target?.closest("a") && elements.current.some(el => el.contains(target))) ev.preventDefault(); };
-    const beforeUnload = (ev: BeforeUnloadEvent) => { if (elements.current.some(el => el.innerText.trim() !== (originals.current.get(el) ?? "").trim())) { ev.preventDefault(); ev.returnValue = ""; } };
+    const beforeUnload = (ev: BeforeUnloadEvent) => { if (elements.current.some(el => readText(el).trim() !== (originals.current.get(el) ?? "").trim())) { ev.preventDefault(); ev.returnValue = ""; } };
     document.addEventListener("click", blockLinks, true);
     window.addEventListener("beforeunload", beforeUnload);
     return () => {
@@ -63,18 +69,18 @@ export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
   }, [editing]);
 
   if (!enabled) return null;
-  const changed = () => elements.current.filter(el => el.innerText.trim() !== (originals.current.get(el) ?? "").trim());
-  const exitAndRestore = () => { for (const el of elements.current) el.innerText = originals.current.get(el) ?? ""; setCount(0); setEditing(false); };
+  const changed = () => elements.current.filter(el => readText(el).trim() !== (originals.current.get(el) ?? "").trim());
+  const exitAndRestore = () => { for (const el of elements.current) writeText(el, originals.current.get(el) ?? ""); setCount(0); setEditing(false); };
   const logout = async () => { await fetch("/api/edit/logout", { method: "POST" }); location.reload(); };
   const sendRequest = async () => {
     setRequestStatus("");
-    try { const r = await fetch("/api/edit/request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lang, path: location.pathname, text: requestText, selection: lastFocused.current?.innerText ?? "" }) }); if (!r.ok) throw new Error(await r.text()); setRequestStatus("Надіслано — Claude внесе на наступній сесії"); }
+    try { const r = await fetch("/api/edit/request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lang, path: location.pathname, text: requestText, selection: (lastFocused.current ? readText(lastFocused.current) : "") }) }); if (!r.ok) throw new Error(await r.text()); setRequestStatus("Надіслано — Claude внесе на наступній сесії"); }
     catch (e) { setRequestStatus(e instanceof Error ? e.message : "Помилка надсилання"); }
   };
   const publish = async (mode: "translate" | "direct") => {
     setPublishing(mode); setError(""); setDeploy("");
     try {
-      const changes = changed().map(el => ({ old: (originals.current.get(el) ?? "").trim(), new: el.innerText.trim() }));
+      const changes = changed().map(el => ({ old: (originals.current.get(el) ?? "").trim(), new: readText(el).trim() }));
       const r = await fetch("/api/edit/publish", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lang, path: location.pathname, changes, mode }) });
       const data = await r.json() as PublishResult;
       if (!r.ok) throw new Error(data.error || "Помилка публікації");
