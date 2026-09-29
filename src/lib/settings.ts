@@ -63,7 +63,7 @@ export interface SiteSettings {
   animaFestivalOrganizersEn: string;
   animaFestivalOrganizersUk: string;
   animaFestivalOrganizersFr: string;
-  /** LITSO → Newspaper Birds section */
+  /** LITSO section */
   animaLitsoTitleEn: string;
   animaLitsoTitleUk: string;
   animaLitsoTitleFr: string;

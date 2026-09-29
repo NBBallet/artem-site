@@ -50,14 +50,12 @@ COMPANY = "Complexions Contemporary Ballet — New York"
 # ================== copy per locale ==================
 FR = dict(
     name = "Artem Hordieiev",
-    role = "Chorégraphe ukrainien, fondateur de la compagnie Les Oiseaux des Journaux.",
+    role = "Chorégraphe ukrainien, installé en France depuis 2026.",
     bio = ("Crée des spectacles contemporains où la structure musicale rencontre la vérité du corps "
            "humain, du corps du danseur. Il travaille à la croisée de la puissante école "
            "chorégraphique ukrainienne et de la scène européenne, proposant un langage visuel "
            "audacieux."),
-    nbb = ("Fondateur de la compagnie Les Oiseaux des Journaux — une structure de production de ballet contemporain "
-           "basée en France, qui associe artistes et organisations internationales en collaboration et "
-           "en coproduction."),
+    nbb = "",  # блок компанії прибрано 29.09.2026: назва не визначена
     eyebrow = "COLLABORATION UKRAINE - ÉTATS-UNIS",
     bar = False,
     names = NAMES,
@@ -79,13 +77,11 @@ FR = dict(
 
 EN = dict(
     name = "Artem Hordieiev",
-    role = "Ukrainian choreographer, founder of Newspaper Birds Production.",
+    role = "Ukrainian choreographer, based in France since 2026.",
     bio = ("Creates contemporary productions where musical structure meets the truth of the human, "
            "ballet body. Works at the intersection of the powerful Ukrainian choreographic school and "
            "the European stage, offering a bold visual language."),
-    nbb = ("Founder of Newspaper Birds Production — a contemporary ballet production group based in "
-           "France, bringing international artists and organisations into collaboration and "
-           "co-production."),
+    nbb = "",  # блок компанії прибрано 29.09.2026: назва не визначена
     eyebrow = "UKRAINE - UNITED STATES COLLABORATION",
     bar = False,
     names = NAMES,
@@ -105,12 +101,11 @@ EN = dict(
 
 UK = dict(
     name = "Артем Гордєєв",
-    role = "Український хореограф, засновник Newspaper Birds Production.",
+    role = "Український хореограф, з 2026 року працює у Франції.",
     bio = ("Створює сучасні вистави, де музикальна структура зустрічається з правдою людського, "
            "балетного тіла. Працює на перетині потужної української хореографічної школи та "
            "європейської сцени, пропонуючи сміливу візуальну мову."),
-    nbb = ("Засновник Newspaper Birds Production — сучасної балетної виробничої групи, що базується у "
-           "Франції та залучає міжнародних артистів та організації до співпраці, ко-продукції."),
+    nbb = "",  # блок компанії прибрано 29.09.2026: назва не визначена
     eyebrow = "СПІВПРАЦЯ УКРАЇНА - США",
     bar = False,
     names = "Дуайт Роден &middot; Дезмонд Річардсон",

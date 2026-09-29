@@ -401,8 +401,8 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       </section>
 
-      {/* ===== 7. ABOUT LITSO → NEWSPAPER BIRDS ===== */}
-      {/* All texts editable in Notion Site Settings → keys: anima_litso_* */}
+      {/* ===== 7. ABOUT LITSO → NEWSPAPER BIRDS (історія, лишається) ===== */}
+      {/* Тексти: src/content/settings.json → animaLitso* (правка через /edit) */}
       <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
           LITSO → NEWSPAPER BIRDS
@@ -412,7 +412,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
           {locale === "fr"
-            ? (settings.animaLitsoTitleFr || "De LITSO aux Oiseaux des Journaux")
+            ? (settings.animaLitsoTitleFr || "De LITSO à Newspaper Birds")
             : locale === "uk"
             ? (settings.animaLitsoTitleUk || "Від LITSO до Newspaper Birds")
             : (settings.animaLitsoTitleEn || "From LITSO to Newspaper Birds")}

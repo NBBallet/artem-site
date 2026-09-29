@@ -181,26 +181,13 @@ export default async function HomePage({
             : (settings.aboutRoleEn || t["about.role"])}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div>
-            <p className="t-p">
-              {locale === "fr"
-                ? (settings.aboutBioFr || t["about.bio"])
-                : locale === "uk"
-                ? (settings.aboutBioUk || t["about.bio"])
-                : (settings.aboutBioEn || t["about.bio"])}
-            </p>
-          </div>
-          <div>
-            <p className="t-p">
-              {locale === "fr"
-                ? (settings.aboutNbbFr || t["about.nbb"])
-                : locale === "uk"
-                ? (settings.aboutNbbUk || t["about.nbb"])
-                : (settings.aboutNbbEn || t["about.nbb"])}
-            </p>
-          </div>
-        </div>
+        <p className="t-p max-w-[720px]">
+          {locale === "fr"
+            ? (settings.aboutBioFr || t["about.bio"])
+            : locale === "uk"
+            ? (settings.aboutBioUk || t["about.bio"])
+            : (settings.aboutBioEn || t["about.bio"])}
+        </p>
 
         {/* ===== COLLABORATION UKRAINE — USA =====
              Rhoden / Richardson, Complexions, The Great Gatsby.
