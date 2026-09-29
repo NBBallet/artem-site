@@ -175,33 +175,17 @@ export default async function HomePage({
             : (settings.aboutNameEn || t["about.title"])}
         </h2>
         <p className="t-lead mb-10 max-w-[720px]">
-          {locale === "fr"
-            ? (settings.aboutRoleFr || t["about.role"])
-            : locale === "uk"
-            ? (settings.aboutRoleUk || t["about.role"])
-            : (settings.aboutRoleEn || t["about.role"])}
+          {/* Notion about_role ще несе назву компанії — назва не визначена (28.09.2026) */}
+          {t["about.role"]}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div>
-            <p className="t-p">
-              {locale === "fr"
-                ? (settings.aboutBioFr || t["about.bio"])
-                : locale === "uk"
-                ? (settings.aboutBioUk || t["about.bio"])
-                : (settings.aboutBioEn || t["about.bio"])}
-            </p>
-          </div>
-          <div>
-            <p className="t-p">
-              {locale === "fr"
-                ? (settings.aboutNbbFr || t["about.nbb"])
-                : locale === "uk"
-                ? (settings.aboutNbbUk || t["about.nbb"])
-                : (settings.aboutNbbEn || t["about.nbb"])}
-            </p>
-          </div>
-        </div>
+        <p className="t-p max-w-[720px]">
+          {locale === "fr"
+            ? (settings.aboutBioFr || t["about.bio"])
+            : locale === "uk"
+            ? (settings.aboutBioUk || t["about.bio"])
+            : (settings.aboutBioEn || t["about.bio"])}
+        </p>
 
         {/* ===== COLLABORATION UKRAINE — USA =====
              Rhoden / Richardson, Complexions, The Great Gatsby.

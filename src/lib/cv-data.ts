@@ -21,7 +21,6 @@ export const cvData = {
       "activeSince": "2007",
       "productions": "50+",
       "countries": "14+",
-      "company": "Newspaper Birds Production",
       "producer": "Tetiana Hordieieva"
     },
     "trajectory": [
@@ -183,10 +182,6 @@ export const cvData = {
       {
         "label": "Active since",
         "value": "2007"
-      },
-      {
-        "label": "Company",
-        "value": "Newspaper Birds Production"
       }
     ],
     "s01": {
@@ -238,7 +233,7 @@ export const cvData = {
         },
         "france": {
           "title": "FRANCE",
-          "meta": "Newspaper Birds Production · world premiere of the ballet ICARE planned for the 2027–2028 season."
+          "meta": "World premiere of the ballet ICARE planned for the 2027–2028 season."
         }
       }
     },
@@ -448,10 +443,6 @@ export const cvData = {
       {
         "label": "En activité depuis",
         "value": "2007"
-      },
-      {
-        "label": "Compagnie",
-        "value": "Les Oiseaux des Journaux"
       }
     ],
     "s01": {
@@ -503,7 +494,7 @@ export const cvData = {
         },
         "france": {
           "title": "FRANCE",
-          "meta": "Les Oiseaux des Journaux · création mondiale du ballet ICARE prévue pour la saison 2027–2028."
+          "meta": "Création mondiale du ballet ICARE prévue pour la saison 2027–2028."
         }
       }
     },
@@ -713,10 +704,6 @@ export const cvData = {
       {
         "label": "У професії з",
         "value": "2007"
-      },
-      {
-        "label": "Компанія",
-        "value": "Newspaper Birds Production"
       }
     ],
     "s01": {
@@ -768,7 +755,7 @@ export const cvData = {
         },
         "france": {
           "title": "ФРАНЦІЯ",
-          "meta": "Newspaper Birds Production · запланована світова прем'єра балету ICARE в сезоні 2027–2028."
+          "meta": "Запланована світова прем'єра балету ICARE в сезоні 2027–2028."
         }
       }
     },

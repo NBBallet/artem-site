@@ -4,11 +4,11 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 
 const DEFAULT_EN =
-  "JOIN THE COMMUNITY · Become part of the Newspaper Birds artistic family · Book a performance · Collaborate with us ·";
+  "JOIN THE COMMUNITY · Become part of our artistic family · Book a performance · Collaborate with us ·";
 const DEFAULT_UK =
-  "ПРИЄДНУЙТЕСЬ · Станьте частиною артистичної родини Newspaper Birds · Замовте виставу · Співпрацюйте з нами ·";
+  "ПРИЄДНУЙТЕСЬ · Станьте частиною нашої артистичної родини · Замовте виставу · Співпрацюйте з нами ·";
 const DEFAULT_FR =
-  "REJOIGNEZ LA COMMUNAUTÉ · Faites partie de la famille artistique des Oiseaux des Journaux · Programmez un spectacle · Collaborez avec nous ·";
+  "REJOIGNEZ LA COMMUNAUTÉ · Faites partie de notre famille artistique · Programmez un spectacle · Collaborez avec nous ·";
 
 interface MarqueeCTAProps {
   locale: Locale;

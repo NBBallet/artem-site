@@ -402,28 +402,28 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       </section>
 
-      {/* ===== 7. ABOUT LITSO → NEWSPAPER BIRDS ===== */}
-      {/* All texts editable in Notion Site Settings → keys: anima_litso_* */}
+      {/* ===== 7. ABOUT LITSO ===== */}
+      {/* Тексти локальні: Notion anima_litso_* ще несе назву компанії (прибрано 29.09.2026) */}
       <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          LITSO → NEWSPAPER BIRDS
+          LITSO DANCE COMPANY · 2013
         </div>
         <h2
           className="text-3xl text-brand-white mb-8"
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
           {locale === "fr"
-            ? (settings.animaLitsoTitleFr || "De LITSO aux Oiseaux des Journaux")
+            ? "Là où tout a commencé"
             : locale === "uk"
-            ? (settings.animaLitsoTitleUk || "Від LITSO до Newspaper Birds")
-            : (settings.animaLitsoTitleEn || "From LITSO to Newspaper Birds")}
+            ? "Звідки все почалося"
+            : "Where it began"}
         </h2>
         <p className="text-[15px] text-[#999] leading-[1.8]">
           {locale === "fr"
-            ? (settings.animaLitsoBodyFr || d.litsoCompany.fr)
+            ? d.litsoCompany.fr
             : locale === "uk"
-            ? (settings.animaLitsoBodyUk || d.litsoCompany.uk)
-            : (settings.animaLitsoBodyEn || d.litsoCompany.en)}
+            ? d.litsoCompany.uk
+            : d.litsoCompany.en}
         </p>
       </section>
 
