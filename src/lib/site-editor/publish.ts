@@ -1,4 +1,4 @@
-import { applyEdits, type Edit } from "./apply";
+import { applyEdits, directEdit, type Edit } from "./apply";
 import { contextWindow, locate, type SourceFile } from "./locate";
 import { makeGitHub } from "./github";
 import { planPatch, type Excerpt, type Lang } from "./translate";
@@ -104,11 +104,15 @@ export function excerptsFor(oldText: string, files: SourceFile[]) {
   return { matches, excerpts: unique };
 }
 
+export type Mode = "translate" | "direct";
+
 export async function publishChanges(params: {
   lang: Lang;
   pagePath: string;
   changes: Change[];
-}): Promise<{ ok: boolean; sha?: string; results: ChangeResult[]; error?: string }> {
+  mode?: Mode;
+}): Promise<{ ok: boolean; sha?: string; issue?: string; results: ChangeResult[]; error?: string }> {
+  const mode: Mode = params.mode ?? "translate";
   const gh = makeGitHub({
     token: process.env.GITHUB_TOKEN ?? "",
     owner: "NBBallet",
@@ -126,8 +130,14 @@ export async function publishChanges(params: {
     Object.entries(files).filter(([p]) => isCopyFile(p)).map(([path, content]) => ({ path, content }));
 
   // Plan all changes in parallel against the same snapshot; apply sequentially.
+  // Free mode plans without a model: the edited language only, one exact place.
   const plans = await Promise.all(
     params.changes.map(async (c) => {
+      if (mode === "direct") {
+        const d = directEdit(locate(c.old, searchable()), c.new, files);
+        if (!d.ok) return d.reason === "not-found" ? { c, kind: "not-found" as const } : { c, kind: "ambiguous" as const, count: d.count };
+        return { c, kind: "plan" as const, plan: { edits: [d.edit], translated: [] as Lang[], note: "" } };
+      }
       const { matches, excerpts } = excerptsFor(c.old, searchable());
       if (matches.length === 0) return { c, kind: "not-found" as const };
       if (matches.length > MAX_MATCHES) return { c, kind: "ambiguous" as const, count: matches.length };
@@ -145,7 +155,12 @@ export async function publishChanges(params: {
   for (const p of plans) {
     const base = { old: p.c.old, new: p.c.new };
     if (p.kind === "not-found") { results.push({ ...base, status: "not-found", note: "Не знайшов цей текст у джерелах сайту — напиши Claude в чаті." }); continue; }
-    if (p.kind === "ambiguous") { results.push({ ...base, status: "ambiguous", note: `Такий текст стоїть у ${p.count} місцях — виправ довший фрагмент.` }); continue; }
+    if (p.kind === "ambiguous") {
+      results.push({ ...base, status: "ambiguous", note: mode === "direct"
+        ? `Такий текст стоїть у ${p.count} місцях — опублікуй з перекладом або виправ довший фрагмент.`
+        : `Такий текст стоїть у ${p.count} місцях — виправ довший фрагмент.` });
+      continue;
+    }
     if (p.kind === "error") { results.push({ ...base, status: "error", note: `Переклад не вдався: ${p.message.slice(0, 160)}` }); continue; }
 
     const edits: Edit[] = [...p.plan.edits];
@@ -180,10 +195,33 @@ export async function publishChanges(params: {
     message:
       `правка з сайту (${params.lang}, ${params.pagePath}): «${clip(first.old)}» → «${clip(first.new)}»` +
       (params.changes.length > 1 ? ` і ще ${params.changes.length - 1}` : "") +
+      (mode === "direct" ? "\n\nБез перекладу: інші мови — дорученням для Claude." : "") +
       "\n\nВнесено редактором на сайті (/edit).",
     author: { name: "Artem Hordieiev (редактор сайту)", email: "site-editor@hordieiev.art" },
   });
-  return { ok: true, sha, results };
+  // French edits stay French (language rule), so they need no translation task.
+  const applied = results.filter((r) => r.status === "applied");
+  const issue = mode === "direct" && params.lang !== "fr"
+    ? await gh.createIssue({
+        title: `Переклад: ${params.pagePath || "сайт"} — «${clip(first.new)}»`,
+        body: translationTask(params.lang, params.pagePath, applied, sha),
+        labels: ["правка-сайту"],
+      }).catch(() => undefined)
+    : undefined;
+  return { ok: true, sha, issue, results };
+}
+
+function translationTask(lang: Lang, pagePath: string, applied: ChangeResult[], sha: string): string {
+  const others = LANGS.filter((l) => l !== lang).join(", ");
+  const quote = (s: string) => "> " + s.replace(/\n/g, "\n> ");
+  return [
+    `**Сторінка:** https://hordieiev.art${pagePath}`,
+    `**Правка мовою:** ${lang} · **перенести в:** ${others}`,
+    `**Коміт:** ${sha}`,
+    "",
+    "Опубліковано з редактора без перекладу. Перенести зміст правки в інші мови за мовним правилом (FR — для французького програматора, винятки в src/content/fr-exceptions.json).",
+    ...applied.flatMap((r, i) => ["", `### ${i + 1}. ${(r.where ?? []).join(", ")}`, "**Було:**", quote(r.old), "**Стало:**", quote(r.new)]),
+  ].join("\n");
 }
 
 /** Production edits main; a preview deployment edits its own branch. */

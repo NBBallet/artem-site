@@ -1,3 +1,5 @@
+import type { Match } from "./locate";
+
 export interface Edit { path: string; find: string; replace: string }
 export interface ApplyResult { files: Record<string, string>; applied: Edit[]; rejected: { edit: Edit; reason: "not-found" | "ambiguous" | "no-op" | "unknown-file" }[] }
 
@@ -37,4 +39,22 @@ export function detectLiteralKind(content: string, start: number, path = ""): "j
   if (quote === "'") return "js-single";
   if (quote === "`") return "js-template";
   return "jsx-text";
+}
+
+/** Free mode: no model call. The edited text is replaced only where it literally
+ *  stands, in the edited language; the translation goes to Claude as an issue.
+ *  Only a single match is replaced — text that stands in several places (a shared
+ *  label, the same word in two languages) needs the translate mode. */
+export function directEdit(matches: Match[], newText: string, files: Record<string, string>):
+  | { ok: true; edit: Edit }
+  | { ok: false; reason: "not-found" | "ambiguous"; count: number } {
+  if (matches.length === 0) return { ok: false, reason: "not-found", count: 0 };
+  if (matches.length > 1) return { ok: false, reason: "ambiguous", count: matches.length };
+  const m = matches[0], content = files[m.path];
+  const kind = detectLiteralKind(content, m.start, m.path);
+  // A little context on both sides keeps the find string unique in the file.
+  const from = Math.max(0, m.start - 40), to = Math.min(content.length, m.end + 40);
+  const find = content.slice(from, to);
+  const replace = content.slice(from, m.start) + escapeForContext(newText, kind) + content.slice(m.end, to);
+  return { ok: true, edit: { path: m.path, find, replace } };
 }

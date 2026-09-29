@@ -42,6 +42,10 @@ export function makeGitHub(opts: Options) {
       await request(`${base}/git/refs/heads/${encodeURIComponent(opts.branch)}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sha: commit.sha, force: false }) });
       return commit.sha;
     },
+    async createIssue(params: { title: string; body: string; labels: string[] }): Promise<string> {
+      const issue = await (await request(`${base}/issues`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(params) })).json() as any;
+      return issue.html_url;
+    },
     async deploymentState(sha: string): Promise<"pending" | "success" | "failure" | "unknown"> {
       const data = await (await request(`${base}/deployments?sha=${encodeURIComponent(sha)}`)).json() as any[];
       if (!data.length) return "pending";

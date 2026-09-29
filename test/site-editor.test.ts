@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { checkPassword, signSession, verifySession } from "../src/lib/site-editor/auth.ts";
 import { locate } from "../src/lib/site-editor/locate.ts";
-import { applyEdits, detectLiteralKind, escapeForContext } from "../src/lib/site-editor/apply.ts";
+import { applyEdits, detectLiteralKind, directEdit, escapeForContext } from "../src/lib/site-editor/apply.ts";
 import { makeGitHub } from "../src/lib/site-editor/github.ts";
 
 test("session signing, expiry, tampering, and passwords", () => {
@@ -81,4 +81,24 @@ test("GitHub client reads head, creates commits in order, and maps deployment", 
   assert.equal(await gh.deploymentState("sha"), "success");
   patchStatus = 422;
   await assert.rejects(() => gh.commitFiles({ parentSha: "p", baseTreeSha: "b", files: {}, message: "m", author: { name: "n", email: "e" } }), (e: any) => e.code === "conflict");
+});
+
+test("free mode replaces one exact place and refuses shared text", async () => {
+  const files = [
+    { path: "src/content/a.json", content: '{"uk":"Старий \\"текст\\"","en":"Old text","fr":"Ancien texte"}' },
+    { path: "src/app/p.tsx", content: "<p>Балет\n        сьогодні</p>\n<p>ANIMA</p>" },
+    { path: "src/app/q.tsx", content: "<h1>ANIMA</h1>" },
+  ];
+  const map = Object.fromEntries(files.map(f => [f.path, f.content]));
+  const run = (o: string, n: string) => directEdit(locate(o, files), n, map);
+  const a = run('Старий "текст"', 'Новий "текст"');
+  assert.ok(a.ok);
+  const r = applyEdits(map, [a.edit]);
+  assert.equal(JSON.parse(r.files["src/content/a.json"]).uk, 'Новий "текст"');
+  assert.equal(JSON.parse(r.files["src/content/a.json"]).en, "Old text");
+  const b = run("Балет сьогодні", "Балет завтра");
+  assert.ok(b.ok);
+  assert.equal(applyEdits({ "src/app/p.tsx": files[1].content }, [b.edit]).files["src/app/p.tsx"], "<p>Балет завтра</p>\n<p>ANIMA</p>");
+  assert.deepEqual(run("ANIMA", "Anima"), { ok: false, reason: "ambiguous", count: 2 });
+  assert.deepEqual(run("немає", "x"), { ok: false, reason: "not-found", count: 0 });
 });

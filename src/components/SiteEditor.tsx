@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 
 type ChangeResult = { old: string; new: string; status: "applied" | "not-found" | "ambiguous" | "error"; where?: string[]; translated?: string[]; note?: string };
-type PublishResult = { ok: boolean; sha?: string; results: ChangeResult[]; error?: string };
+type PublishResult = { ok: boolean; sha?: string; issue?: string; results: ChangeResult[]; error?: string };
 const inline = new Set(["SPAN", "EM", "STRONG", "B", "I", "U", "SMALL", "SUP", "SUB", "MARK", "ABBR"]);
 const excluded = "script,style,svg,noscript,iframe,video,input,textarea,select,button[data-editor],[data-no-edit]";
 
 export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
   const [enabled, setEnabled] = useState(false), [editing, setEditing] = useState(false);
   const [count, setCount] = useState(0), [modal, setModal] = useState(false), [requestText, setRequestText] = useState("");
-  const [requestStatus, setRequestStatus] = useState(""), [publishing, setPublishing] = useState(false);
+  const [requestStatus, setRequestStatus] = useState(""), [publishing, setPublishing] = useState<"" | "translate" | "direct">("");
   const [result, setResult] = useState<PublishResult | null>(null), [deploy, setDeploy] = useState("");
   const [error, setError] = useState("");
   const host = useRef<HTMLDivElement>(null), originals = useRef(new WeakMap<HTMLElement, string>()), elements = useRef<HTMLElement[]>([]), lastFocused = useRef<HTMLElement | null>(null);
@@ -70,11 +70,11 @@ export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
     try { const r = await fetch("/api/edit/request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lang, path: location.pathname, text: requestText, selection: lastFocused.current?.innerText ?? "" }) }); if (!r.ok) throw new Error(await r.text()); setRequestStatus("Надіслано — Claude внесе на наступній сесії"); }
     catch (e) { setRequestStatus(e instanceof Error ? e.message : "Помилка надсилання"); }
   };
-  const publish = async () => {
-    setPublishing(true); setError(""); setDeploy("");
+  const publish = async (mode: "translate" | "direct") => {
+    setPublishing(mode); setError(""); setDeploy("");
     try {
       const changes = changed().map(el => ({ old: (originals.current.get(el) ?? "").trim(), new: el.innerText.trim() }));
-      const r = await fetch("/api/edit/publish", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lang, path: location.pathname, changes }) });
+      const r = await fetch("/api/edit/publish", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ lang, path: location.pathname, changes, mode }) });
       const data = await r.json() as PublishResult;
       if (!r.ok) throw new Error(data.error || "Помилка публікації");
       setResult(data); setEditing(false);
@@ -83,7 +83,7 @@ export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
         while (Date.now() < until) { await new Promise(resolve => setTimeout(resolve, 5000)); const status = await fetch(`/api/edit/status?sha=${encodeURIComponent(data.sha!)}`); const body = await status.json() as { state: string }; if (body.state === "success") { setDeploy("✅ На сайті"); break; } if (body.state === "failure") { setDeploy("❌ Збірка не пройшла — зміни не на сайті, Claude подивиться"); break; } }
       }
     } catch (e) { setError(e instanceof Error ? e.message : "Помилка публікації"); }
-    finally { setPublishing(false); }
+    finally { setPublishing(""); }
   };
 
   const button: React.CSSProperties = { minHeight: 44, background: "#C8102E", color: "white", border: 0, borderRadius: 5, padding: "8px 12px", font: "inherit" };
@@ -93,12 +93,13 @@ export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
       {!editing ? <button data-editor="" style={button} onClick={() => { setResult(null); setEditing(true); }}>✎ Правка</button> : <>
         <strong>Змін: {count}</strong><button data-editor="" style={button} onClick={exitAndRestore}>Скасувати</button>
         <button data-editor="" style={button} onClick={() => { setModal(true); setRequestStatus(""); }}>💬 Доручення</button>
-        <button data-editor="" style={{ ...button, opacity: count ? 1 : .5 }} disabled={!count || publishing} onClick={publish}>{publishing ? "Публікую… (переклад і збереження, до хвилини)" : "Опублікувати"}</button>
+        <button data-editor="" style={{ ...button, opacity: count ? 1 : .5 }} disabled={!count || !!publishing} onClick={() => publish("translate")}>{publishing === "translate" ? "Публікую… (переклад і збереження, до хвилини)" : "Опублікувати з перекладом"}</button>
+        <button data-editor="" title="Безкоштовно: змінюється тільки ця мова, переклад іде дорученням Claude" style={{ ...button, background: "#333", opacity: count ? 1 : .5 }} disabled={!count || !!publishing} onClick={() => publish("direct")}>{publishing === "direct" ? "Публікую…" : "Лише цією мовою"}</button>
       </>}
       <button data-editor="" style={{ ...button, background: "transparent", textDecoration: "underline" }} onClick={logout}>Вийти</button>
     </div>
     {error && <p role="alert">{error}</p>}
-    {result && <section style={{ marginTop: 10, maxHeight: "40vh", overflow: "auto" }}><button data-editor="" style={button} onClick={() => { setResult(null); setDeploy(""); }}>Закрити результати</button>{result.results.map((r, i) => <p key={i}>{r.status === "applied" ? "✅" : "⚠️"} {r.old} → {r.new}{r.where?.length ? ` · ${r.where.join(", ")}` : ""}{r.translated?.length ? ` · ${r.translated.join(", ")}` : ""}{r.note ? ` · ${r.note}` : ""}</p>)}{result.error && <p>{result.error}</p>}{deploy && <p>{deploy}</p>}{deploy === "✅ На сайті" && <button data-editor="" style={button} onClick={() => location.reload()}>Оновити сторінку</button>}</section>}
+    {result && <section style={{ marginTop: 10, maxHeight: "40vh", overflow: "auto" }}><button data-editor="" style={button} onClick={() => { setResult(null); setDeploy(""); }}>Закрити результати</button>{result.results.map((r, i) => <p key={i}>{r.status === "applied" ? "✅" : "⚠️"} {r.old} → {r.new}{r.where?.length ? ` · ${r.where.join(", ")}` : ""}{r.translated?.length ? ` · ${r.translated.join(", ")}` : ""}{r.note ? ` · ${r.note}` : ""}</p>)}{result.issue && <p>📝 Переклад в інші мови — дорученням для Claude: <a href={result.issue} target="_blank" rel="noreferrer" style={{ color: "white" }}>{result.issue.split("/").pop()}</a></p>}{result.error && <p>{result.error}</p>}{deploy && <p>{deploy}</p>}{deploy === "✅ На сайті" && <button data-editor="" style={button} onClick={() => location.reload()}>Оновити сторінку</button>}</section>}
     {modal && <div role="dialog" aria-modal="true" style={{ position: "fixed", inset: 0, background: "#0009", display: "grid", placeItems: "center", padding: 16 }}><div style={{ background: "#0a0a0a", padding: 16, width: "min(100%, 480px)", borderRadius: 8 }}><label style={{ display: "block", marginBottom: 8 }}>Що змінити в дизайні чи верстці на цій сторінці?</label><textarea value={requestText} onChange={e => setRequestText(e.target.value)} style={{ width: "100%", minHeight: 120, boxSizing: "border-box", font: "inherit" }} />{requestStatus && <p>{requestStatus}</p>}<div style={{ display: "flex", gap: 8, marginTop: 8 }}><button data-editor="" style={button} onClick={sendRequest}>Надіслати</button><button data-editor="" style={button} onClick={() => setModal(false)}>Закрити</button></div></div></div>}
   </div>;
 }
