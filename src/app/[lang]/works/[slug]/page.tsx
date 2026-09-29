@@ -402,21 +402,21 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       </section>
 
-      {/* ===== 7. ABOUT LITSO ===== */}
+      {/* ===== 7. ABOUT LITSO → NEWSPAPER BIRDS (історія, лишається) ===== */}
       {/* Тексти локальні: Notion anima_litso_* ще несе назву компанії (прибрано 29.09.2026) */}
       <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
         <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
-          LITSO DANCE COMPANY · 2013
+          LITSO → NEWSPAPER BIRDS
         </div>
         <h2
           className="text-3xl text-brand-white mb-8"
           style={{ fontFamily: "NAMU-1400, serif" }}
         >
           {locale === "fr"
-            ? "Là où tout a commencé"
+            ? "De LITSO à Newspaper Birds"
             : locale === "uk"
-            ? "Звідки все почалося"
-            : "Where it began"}
+            ? "Від LITSO до Newspaper Birds"
+            : "From LITSO to Newspaper Birds"}
         </h2>
         <p className="text-[15px] text-[#999] leading-[1.8]">
           {locale === "fr"
