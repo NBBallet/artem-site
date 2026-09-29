@@ -93,7 +93,7 @@ export default function MarkevitchCapitole() {
         </div>
 
         <footer className={`${label} mt-6 flex flex-wrap justify-between gap-2 text-[#6f6a64]`}>
-          <span>Artem Hordieiev · Tarbes</span>
+          <span>Artem Hordieiev · Toulouse</span>
           <a href="https://hordieiev.art/fr" className="text-[#E8455E]">hordieiev.art</a>
         </footer>
       </div>

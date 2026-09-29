@@ -587,7 +587,7 @@ function NextStep() {
           <a href="https://hordieiev.art/" {...out}><span className="red">hordieiev.art</span><Arrow /></a>
         </div>
         <p className="mk-sign">
-          Tarbes, Hautes-Pyrénées<br />Artem Hordieiev, concept &amp; choreography<br />Tetiana Hordieieva, production
+          Toulouse, Haute-Garonne<br />Artem Hordieiev, concept &amp; choreography<br />Tetiana Hordieieva, production
         </p>
         <p className="mk-credit">Ground: Henri Matisse, <i>Icare</i>, <i>Jazz</i>, 1947</p>
       </div>
@@ -632,7 +632,7 @@ export default function MobileDeck() {
       ))}
 
       <footer className="mk-foot mk-label dim">
-        <span>Artem Hordieiev · Tarbes</span>
+        <span>Artem Hordieiev · Toulouse</span>
         <a href="https://hordieiev.art/fr" className="red">hordieiev.art</a>
       </footer>
     </div>
