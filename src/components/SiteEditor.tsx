@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 type ChangeResult = { old: string; new: string; status: "applied" | "not-found" | "ambiguous" | "error"; where?: string[]; translated?: string[]; note?: string };
 type PublishResult = { ok: boolean; sha?: string; issue?: string; results: ChangeResult[]; error?: string };
@@ -100,6 +101,7 @@ export default function SiteEditor({ lang }: { lang: "uk" | "en" | "fr" }) {
     </div>
     {error && <p role="alert">{error}</p>}
     {result && <section style={{ marginTop: 10, maxHeight: "40vh", overflow: "auto" }}><button data-editor="" style={button} onClick={() => { setResult(null); setDeploy(""); }}>Закрити результати</button>{result.results.map((r, i) => <p key={i}>{r.status === "applied" ? "✅" : "⚠️"} {r.old} → {r.new}{r.where?.length ? ` · ${r.where.join(", ")}` : ""}{r.translated?.length ? ` · ${r.translated.join(", ")}` : ""}{r.note ? ` · ${r.note}` : ""}</p>)}{result.issue && <p>📝 Переклад в інші мови — дорученням для Claude: <a href={result.issue} target="_blank" rel="noreferrer" style={{ color: "white" }}>{result.issue.split("/").pop()}</a></p>}{result.error && <p>{result.error}</p>}{deploy && <p>{deploy}</p>}{deploy === "✅ На сайті" && <button data-editor="" style={button} onClick={() => location.reload()}>Оновити сторінку</button>}</section>}
-    {modal && <div role="dialog" aria-modal="true" style={{ position: "fixed", inset: 0, background: "#0009", display: "grid", placeItems: "center", padding: 16 }}><div style={{ background: "#0a0a0a", padding: 16, width: "min(100%, 480px)", borderRadius: 8 }}><label style={{ display: "block", marginBottom: 8 }}>Що змінити в дизайні чи верстці на цій сторінці?</label><textarea value={requestText} onChange={e => setRequestText(e.target.value)} style={{ width: "100%", minHeight: 120, boxSizing: "border-box", font: "inherit" }} />{requestStatus && <p>{requestStatus}</p>}<div style={{ display: "flex", gap: 8, marginTop: 8 }}><button data-editor="" style={button} onClick={sendRequest}>Надіслати</button><button data-editor="" style={button} onClick={() => setModal(false)}>Закрити</button></div></div></div>}
+    {/* Portal: the panel is transformed, which would make a fixed child fill the panel, not the screen. */}
+    {modal && createPortal(<div data-no-edit="" role="dialog" aria-modal="true" style={{ position: "fixed", inset: 0, zIndex: 100000, background: "#0009", display: "grid", placeItems: "center", padding: 16, color: "white", font: "14px Inter, system-ui, sans-serif" }}><div style={{ background: "#0a0a0a", padding: 16, width: "min(100%, 480px)", borderRadius: 8 }}><label style={{ display: "block", marginBottom: 8 }}>Що змінити в дизайні чи верстці на цій сторінці?</label><textarea value={requestText} onChange={e => setRequestText(e.target.value)} style={{ width: "100%", minHeight: 120, boxSizing: "border-box", font: "inherit" }} />{requestStatus && <p>{requestStatus}</p>}<div style={{ display: "flex", gap: 8, marginTop: 8 }}><button data-editor="" style={button} onClick={sendRequest}>Надіслати</button><button data-editor="" style={button} onClick={() => setModal(false)}>Закрити</button></div></div></div>, document.body)}
   </div>;
 }
