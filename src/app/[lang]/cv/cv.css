@@ -16,8 +16,8 @@
   --cv-line: #1c1c1c;
   --cv-line2: #2b2b2b;
   --cv-fg: #f5f5f5;
-  --cv-body: #9a9a9a;
-  --cv-meta: #616161;
+  --cv-body: #a6a6a6;
+  --cv-meta: #7d7d7d;
   --cv-red: #c8102e;
   --cv-red-soft: rgba(200, 16, 46, 0.1);
   --cv-gold: #d4af37;
@@ -101,6 +101,64 @@
   color: var(--cv-fg);
 }
 .cv .cv-btn-ghost:hover { border-color: var(--cv-red); color: var(--cv-fg); }
+/* phone: one full-width target per action, centred label */
+@media (max-width: 639px) {
+  .cv-btn { width: 100%; justify-content: center; padding: 19px 20px; font-size: 13.5px; letter-spacing: 2.2px; }
+}
+
+/* ── reading grid (29.09.2026) ───────────────────────────────────────────────
+   Body copy sits in the centred 680 px column (.r-col, globals.css); these set
+   its size. The three head facts are a centred row on wide screens and
+   label → value lines on a phone. */
+/* Opening of a section centred (.r-head); body in a centred 680 px column
+   (.r-col), text inside it flush left; .r-flow spaces the paragraphs that
+   toParas (src/lib/paras.ts) cuts; .r-accent — one short closing line.
+   Scoped to .cv: the rest of the site keeps its own layout. */
+.cv .r-head { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.cv .r-head > * { margin-left: auto; margin-right: auto; }
+.cv .r-col  { width: 100%; max-width: 680px; margin-left: auto; margin-right: auto; text-align: left; }
+.cv .r-flow > * + * { margin-top: 1.15em; }
+.cv .r-accent {
+  font-family: "NAMU-Pro", "NAMU-1400", Georgia, serif;
+  font-size: clamp(19px, 2.2vw, 24px);
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cv .r-rule { width: 48px; height: 1px; margin-left: auto; margin-right: auto; }
+
+.cv-read    { font-size: 17px; line-height: 1.72; }
+.cv-read-sm { font-size: 16px; line-height: 1.72; }
+@media (min-width: 768px) {
+  .cv-read    { font-size: 18.5px; }
+  .cv-read-sm { font-size: 17.5px; }
+}
+.cv-quote { text-align: center; }
+
+.cv-stats { display: grid; grid-template-columns: 1fr; border-bottom: 1px solid var(--cv-line); }
+.cv-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--cv-line);
+  text-align: right;
+}
+@media (min-width: 640px) {
+  .cv-stats { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); border-bottom: none; }
+  .cv-stat {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 12px 0;
+    text-align: center;
+  }
+  .cv-stat + .cv-stat { border-left: 1px solid var(--cv-line); }
+}
 
 /* the diamond bullet of section 03 */
 .cv-dot {
@@ -158,6 +216,11 @@
   .cv-p { font-size: 10.5pt; line-height: 1.6; }
   .cv-quote { font-size: 13pt; }
   .cv-wrap { padding: 0 !important; max-width: none !important; }
+  /* paper has its own measure: the reading column opens to the full sheet */
+  .cv .r-col { max-width: none !important; }
+  .cv .cv-read, .cv .cv-read-sm { font-size: 10.5pt !important; line-height: 1.6 !important; }
+  .cv .r-flow > * + * { margin-top: 0.7em !important; }
+  .cv-stats { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)) !important; }
   .cv-section { padding: 20px 0 !important; }
   /* @page supplies the margins; the screen's masthead air is wasted paper */
   .cv-masthead { padding-top: 0 !important; padding-bottom: 22px !important; }
@@ -231,7 +294,7 @@
 @media print {
   .cv-seam { border-top: none; border-left: 1px solid var(--cv-seam); }
   .cv-two-cols { grid-template-columns: 1fr 1fr !important; }
-  .cv-stats { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  .cv-stats { grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)) !important; }
   .cv-traj-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; gap: 14px 12px !important; }
   .cv-payoff { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 18px 26px !important; }
   .cv-facts { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
@@ -266,7 +329,7 @@
   .cv-two-cols > :first-child { padding-right: 36px !important; padding-bottom: 0 !important; }
   .cv-two-cols > .cv-seam { padding-left: 36px !important; padding-top: 0 !important; }
   .cv-facts-spacer { display: block !important; }
-  .cv-langs-block { padding-left: 56px !important; }
+  .cv-langs-block { padding-left: 0 !important; }
   .cv-contact-block { padding-left: 28px !important; }
 
   /* Five trajectory columns on A4 are ~105 px wide. At the screen sizes the
@@ -349,4 +412,16 @@
      last sheet with the school and the languages. */
   .cv-tail .cv-keep { padding-top: 7px !important; padding-bottom: 7px !important; }
   .cv-note { margin-top: 14px !important; }
+
+  /* reading grid (29.09.2026) on paper: the screen's air between a section's
+     opening and its body, and the new body sizes, come back down to the
+     measured print scale, so the document keeps its sheet count */
+  .cv-section .r-head { margin-bottom: 12px !important; }
+  .cv .r-rule { margin-top: 12px !important; margin-bottom: 10px !important; }
+  .cv .r-accent { font-size: 12.5pt !important; }
+  .cv .text-\[16\.5px\] { font-size: 11pt !important; line-height: 1.48 !important; }
+  .cv-europe { padding-top: 14px !important; padding-bottom: 6px !important; }
+  .cv-meet .r-head, .cv-europe .r-head { margin-bottom: 8px !important; }
+  .cv-note { padding-top: 10px !important; }
+  .cv-two-cols { margin-bottom: 12px !important; }
 }

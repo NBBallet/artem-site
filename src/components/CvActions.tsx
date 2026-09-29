@@ -79,7 +79,7 @@ export default function CvActions({
   }, [printHref]);
 
   return (
-    <div className="cv-screen-only pt-3 pb-6">
+    <div className="cv-screen-only pt-3 pb-12 md:pb-16">
     <div className="flex flex-wrap justify-center gap-4">
       {printLabel && printHref && (
         <button
