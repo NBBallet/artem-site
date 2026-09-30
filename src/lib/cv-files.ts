@@ -31,8 +31,10 @@ export const CV_DOWNLOAD: Record<Locale, string> = {
  * nothing appears in the print dialog.
  *
  * The printed file is the one-pager plus a verso with a QR code to /fr/cv
- * (28.09.2026) — built by CHORÉGRAPHE/_інструменти/канва/cv_зворот.py from the
- * one-pager above; rerun it after every rebuild of Artem-Hordieiev-CV-FR.pdf.
+ * (28.09.2026, verso by CHORÉGRAPHE/_інструменти/канва/cv_зворот.py). Since
+ * 30.09.2026 the one-pager itself is the branded one: both files come from
+ * CHORÉGRAPHE/_інструменти/канва/cv_фірмовий.py (same data.json as the neutral
+ * France Travail CV) — rerun it after every change of the CV text.
  * The download stays one page.
  */
 export const CV_PRINT: Partial<Record<Locale, string>> = {
