@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { hasLocale, locales, type Locale } from "@/lib/i18n";
 import { cvData, cvShared } from "@/lib/cv-data";
 import CvActions from "@/components/CvActions";
+import Paras from "@/components/Paras";
+import { toParas } from "@/lib/paras";
 
 import { CV_DOWNLOAD, CV_PRINT } from "@/lib/cv-files";
 import "./cv.css";
@@ -90,7 +92,7 @@ function Section({
   return (
     <section
       id={id}
-      className={`cv-section py-12 md:py-16 ${className}`}
+      className={`cv-section py-16 md:py-24 ${className}`}
       style={{
         borderTop: first ? "none" : "1px solid var(--cv-line)",
         background: panel ? "var(--cv-panel)" : undefined,
@@ -101,6 +103,11 @@ function Section({
       {children}
     </section>
   );
+}
+
+/** Відкриття розділу по центру — мітка, заголовок і (за потреби) вступ. */
+function Head({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <div className={`r-head ${className}`}>{children}</div>;
 }
 
 // ── 02 · the trajectory graph ──────────────────────────────────────────────
@@ -197,11 +204,11 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
   return (
     <div className="cv" lang={locale}>
-      <div className="cv-wrap max-w-[1312px] mx-auto px-5 md:px-10 lg:px-16 pb-10">
+      <div className="cv-wrap max-w-[1120px] mx-auto px-5 md:px-10 pb-10">
         {/* ── masthead ── */}
-        <header className="cv-masthead pt-24 md:pt-28 pb-12 md:pb-14">
+        <header className="cv-masthead r-head pt-24 md:pt-28 pb-14 md:pb-16">
           <div
-            className="flex items-center justify-between gap-4 pb-5 mb-10 md:mb-12"
+            className="w-full flex items-center justify-between gap-4 pb-5 mb-14 md:mb-20"
             style={{ borderBottom: "1px solid var(--cv-line2)" }}
           >
             <span className="cv-mono text-[14px] tracking-[3px] uppercase" style={{ color: "var(--cv-red)" }}>
@@ -212,21 +219,19 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
             </Link>
           </div>
 
-          <h1 className="cv-h1 mb-5">
+          <h1 className="cv-h1 mb-5 md:mb-6">
             <span className="cv-fg">ARTEM</span> <span className="cv-red">HORDIEIEV</span>
           </h1>
           <div
             className="cv-role cv-mono text-[17px] md:text-[21px] tracking-[4.5px] uppercase cv-fg"
-            style={{ marginBottom: d.base ? "10px" : "40px" }}
+            style={{ marginBottom: d.base ? "10px" : "48px" }}
           >
             {d.role}
           </div>
           {d.base ? <div className="text-[15.5px] cv-meta mb-10 md:mb-11">{d.base}</div> : null}
 
-          <div
-            className="pl-6 md:pl-7 mb-10 md:mb-12 max-w-[720px]"
-            style={{ borderLeft: "2px solid var(--cv-gold)" }}
-          >
+          <div className="r-rule mb-6" style={{ height: "2px", background: "var(--cv-gold)" }} />
+          <div className="cv-claim mb-12 md:mb-16 max-w-[680px]" style={{ textWrap: "balance" }}>
             {claimLines.map((line, i) => (
               <div key={i} className="cv-quote" style={{ color: i === 0 ? "var(--cv-fg)" : "var(--cv-gold)" }}>
                 {line}
@@ -234,11 +239,14 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
             ))}
           </div>
 
-          <div className="cv-stats grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div
+            className="cv-stats w-full max-w-[820px]"
+            style={{ ["--n" as string]: d.headStats.length } as CSSProperties}
+          >
             {d.headStats.map((s) => (
-              <div key={s.label} className="pt-3" style={{ borderTop: "1px solid var(--cv-line)" }}>
-                <div className="cv-mono text-[13px] tracking-[2px] uppercase cv-meta mb-2">{s.label}</div>
-                <div className="text-[19px] leading-[1.3] cv-fg">{s.value}</div>
+              <div key={s.label} className="cv-stat">
+                <div className="cv-mono text-[13px] tracking-[2px] uppercase cv-meta">{s.label}</div>
+                <div className="text-[17px] sm:text-[20px] leading-[1.3] cv-fg">{s.value}</div>
               </div>
             ))}
           </div>
@@ -259,26 +267,43 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
         {/* ── 01 · position ── */}
         <Section>
-          <Label className="mb-4">{d.s01.label}</Label>
-          <h2 className="cv-h2 mb-6">{d.s01.title}</h2>
-          {d.s01.body.split("\n").map((para) => (
-            <p key={para.slice(0, 24)} className="cv-p text-[17.5px] leading-[1.72] cv-fg mb-4.5 max-w-[980px]">
-              {para}
-            </p>
-          ))}
+          <Head>
+            <Label className="mb-4">{d.s01.label}</Label>
+            <h2 className="cv-h2 mb-10 md:mb-12">{d.s01.title}</h2>
+          </Head>
+          {(() => {
+            // the last line of the body is the one-line summary — it stands apart
+            const lines = d.s01.body.split("\n");
+            const tail = lines.length > 1 ? lines.pop()! : "";
+            return (
+              <>
+                <div className="r-col r-flow">
+                  {toParas(lines.join("\n")).map((para, i) => (
+                    <p key={i} className="cv-p cv-read" style={i === 0 ? { color: "var(--cv-fg)" } : undefined}>
+                      {para}
+                    </p>
+                  ))}
+                </div>
+                {tail ? (
+                  <>
+                    <div className="r-rule mt-12 mb-6" style={{ background: "var(--cv-red)" }} />
+                    <p className="r-accent cv-fg">{tail}</p>
+                  </>
+                ) : null}
+              </>
+            );
+          })()}
         </Section>
 
         {/* ── 02 · trajectory ── */}
         <Section id="trajectory">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-10 mb-6">
-            <div>
-              <Label className="mb-4">{d.s02.label}</Label>
-              <h2 className="cv-h2">{d.s02.title}</h2>
-            </div>
+          <Head className="mb-10 md:mb-12">
+            <Label className="mb-4">{d.s02.label}</Label>
+            <h2 className="cv-h2">{d.s02.title}</h2>
             {d.s02.note ? (
-              <p className="text-[14.5px] leading-[1.6] cv-meta max-w-[430px]">{d.s02.note}</p>
+              <p className="text-[16px] leading-[1.65] cv-meta max-w-[560px] mt-5">{d.s02.note}</p>
             ) : null}
-          </div>
+          </Head>
           {d.s02.axis ? (
             <div className="cv-mono text-[12px] tracking-[1.8px] uppercase cv-meta mb-4">↑ {d.s02.axis}</div>
           ) : null}
@@ -287,7 +312,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               <TrajectoryGraph />
             </div>
           </div>
-          <div className="cv-traj-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-6 mt-8">
+          <div className="cv-traj-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-7 gap-y-10 mt-10">
             {cvShared.trajectory.map((pt) => {
               const p = pointCopy[pt.key];
               const tone = "peak" in pt && pt.peak ? "var(--cv-red)" : "var(--cv-meta)";
@@ -296,8 +321,8 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
                   <div className="cv-mono text-[14px] tracking-[1.4px] mb-2" style={{ color: tone }}>
                     {pt.year}
                   </div>
-                  <div className="cv-h3 text-[18px] mb-1.5">{p.title}</div>
-                  <div className="text-[16px] leading-[1.55] cv-body-c">{p.meta}</div>
+                  <div className="cv-h3 text-[18px] mb-2.5">{p.title}</div>
+                  <div className="text-[15.5px] leading-[1.62] cv-body-c">{p.meta}</div>
                 </div>
               );
             })}
@@ -306,17 +331,19 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
         {/* ── 03 · Ukraine × United States ── */}
         <Section id="ukraine-usa">
-          <Label className="mb-4">{d.s03.label}</Label>
-          <h2 className="cv-h2 mb-8">{d.s03.title}</h2>
+          <Head className="mb-10 md:mb-14">
+            <Label className="mb-4">{d.s03.label}</Label>
+            <h2 className="cv-h2">{d.s03.title}</h2>
+          </Head>
 
-          <div className="cv-two-cols grid grid-cols-1 md:grid-cols-2 mb-11">
+          <div className="cv-two-cols grid grid-cols-1 md:grid-cols-2 mb-16">
             <div className="md:pr-9 pb-7 md:pb-0">
               <Label tone="gold" small className="mb-5">{d.s03.leftLabel}</Label>
               <ul className="list-none m-0 p-0">
                 {d.s03.left.map((x) => (
                   <li key={x} className="flex gap-3 items-start mb-4 cv-keep">
                     <span className="cv-dot" style={{ background: "var(--cv-gold)" }} />
-                    <span className="text-[15.5px] leading-[1.65] cv-body-c" style={{ textWrap: "pretty" }}>{x}</span>
+                    <span className="text-[16.5px] leading-[1.68] cv-body-c" style={{ textWrap: "pretty" }}>{x}</span>
                   </li>
                 ))}
               </ul>
@@ -327,7 +354,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
                 {d.s03.right.map((x) => (
                   <li key={x} className="flex gap-3 items-start mb-4 cv-keep">
                     <span className="cv-dot" style={{ background: "var(--cv-red)" }} />
-                    <span className="text-[15.5px] leading-[1.65] cv-body-c" style={{ textWrap: "pretty" }}>{x}</span>
+                    <span className="text-[16.5px] leading-[1.68] cv-body-c" style={{ textWrap: "pretty" }}>{x}</span>
                   </li>
                 ))}
               </ul>
@@ -335,40 +362,48 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
           </div>
 
           <div
-            className="cv-meet cv-keep px-6 md:px-8 py-7 mb-5"
-            style={{ background: "var(--cv-red-soft)", borderLeft: "2px solid var(--cv-red)" }}
+            className="cv-meet cv-keep max-w-[880px] mx-auto px-5 md:px-12 py-10 md:py-14 mb-6"
+            style={{ background: "var(--cv-red-soft)", borderTop: "2px solid var(--cv-red)" }}
           >
-            <Label tone="red" small className="mb-3.5">{d.s03.meetLabel}</Label>
-            <div className="cv-h3 text-[24px] md:text-[27px] mb-3">{d.s03.meetTitle}</div>
-            <p className="cv-p text-[16px] max-w-[780px]">{d.s03.meetBody}</p>
+            <Head className="mb-6 md:mb-8">
+              <Label tone="red" small className="mb-4">{d.s03.meetLabel}</Label>
+              <div className="cv-h3 text-[26px] md:text-[34px]">{d.s03.meetTitle}</div>
+            </Head>
+            <Paras text={d.s03.meetBody} className="r-col" pClassName="cv-p cv-read" />
           </div>
-          <div className="cv-keep px-6 md:px-8 py-6" style={{ borderLeft: "2px solid var(--cv-line2)" }}>
-            <Label tone="meta" small className="mb-3">{d.s03.europeLabel}</Label>
-            <div className="cv-h3 text-[19px] mb-2">{d.s03.europeTitle}</div>
-            <p className="text-[15px] leading-[1.7] cv-meta max-w-[780px]">{d.s03.europeBody}</p>
+          <div
+            className="cv-europe cv-keep max-w-[880px] mx-auto px-5 md:px-12 py-10 md:py-12"
+            style={{ borderTop: "1px solid var(--cv-line2)" }}
+          >
+            <Head className="mb-6">
+              <Label tone="meta" small className="mb-4">{d.s03.europeLabel}</Label>
+              <div className="cv-h3 text-[20px] md:text-[24px] leading-[1.3]">{d.s03.europeTitle}</div>
+            </Head>
+            <Paras text={d.s03.europeBody} className="r-col" pClassName="cv-p cv-read-sm" />
           </div>
         </Section>
 
         {/* ── 04 · what this CV does not hide ── */}
         <Section panel>
-          <div className="pl-6 md:pl-9 max-w-[900px]" style={{ borderLeft: "2px solid var(--cv-gold)" }}>
+          <Head className="mb-10 md:mb-12">
+            <div className="r-rule mb-6" style={{ height: "2px", background: "var(--cv-gold)" }} />
             <Label tone="gold" className="mb-4">{d.s04.label}</Label>
-            <h2 className="cv-h2 mb-7" style={{ fontSize: "clamp(28px,3.6vw,38px)" }}>{d.s04.title}</h2>
-            {d.s04.paras.map((x) => (
-              <p key={x.slice(0, 24)} className="cv-p text-[17px] leading-[1.78] mb-5">{x}</p>
-            ))}
-          </div>
+            <h2 className="cv-h2" style={{ fontSize: "clamp(28px,3.6vw,38px)" }}>{d.s04.title}</h2>
+          </Head>
+          <Paras text={d.s04.paras.join("\n")} className="r-col" pClassName="cv-p cv-read" />
         </Section>
 
         {/* ── 05 · what the detour built ── */}
         <Section>
-          <Label className="mb-5">{d.s05.label}</Label>
-          <div className="cv-payoff grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+          <Head className="mb-10 md:mb-12">
+            <Label>{d.s05.label}</Label>
+          </Head>
+          <div className="cv-payoff grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-10">
             {d.s05.items.map((it) => (
               <div key={it.title} className="cv-keep pt-4" style={{ borderTop: "2px solid var(--cv-red)" }}>
                 {it.n && <div className="cv-mono text-[13px] tracking-[2px] cv-red mb-3">{it.n}</div>}
                 <div className="cv-h3 text-[21px] mb-2.5">{it.title}</div>
-                <p className="text-[17px] leading-[1.65] cv-body-c">{it.body}</p>
+                <p className="text-[16px] leading-[1.65] cv-body-c" style={{ textWrap: "pretty" }}>{it.body}</p>
               </div>
             ))}
           </div>
@@ -376,8 +411,10 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
         {/* ── 06 · repertoire ── */}
         <Section id="repertoire">
-          <Label className="mb-4">{d.s06.label}</Label>
-          <h2 className="cv-h2 mb-7" style={{ fontSize: "clamp(24px,2.8vw,30px)" }}>{d.s06.title}</h2>
+          <Head className="mb-10 md:mb-12">
+            <Label className="mb-4">{d.s06.label}</Label>
+            <h2 className="cv-h2" style={{ fontSize: "clamp(26px,3vw,34px)" }}>{d.s06.title}</h2>
+          </Head>
 
           <div
             className="cv-rep-head hidden lg:grid gap-5 pb-3"
@@ -419,33 +456,37 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               </Link>
             );
           })}
-          <div className="cv-note mt-6 pl-5 max-w-[900px]" style={{ borderLeft: "2px solid var(--cv-red)" }}>
-            <Label tone="red" small className="mb-2.5">{icareHead}</Label>
-            <p className="text-[17px] leading-[1.7] cv-body-c">{icareBody}</p>
+          <div className="cv-note r-col mt-12 pt-6" style={{ borderTop: "2px solid var(--cv-red)" }}>
+            <Label tone="red" small className="mb-3">{icareHead}</Label>
+            <Paras text={icareBody} pClassName="cv-p cv-read" />
           </div>
-          <div className="cv-note mt-4 pl-5 max-w-[900px]" style={{ borderLeft: "2px solid var(--cv-gold)" }}>
-            <p className="text-[17px] leading-[1.7] cv-body-c">{d.s06.tourNote}</p>
+          <div className="cv-note r-col mt-8 pt-6" style={{ borderTop: "2px solid var(--cv-gold)" }}>
+            <Paras text={d.s06.tourNote} pClassName="cv-p cv-read" />
           </div>
           {/* straight into the works section of the site, not the home page top */}
-          <Link href={`/${locale}#works`} className="cv-btn cv-btn-ghost cv-screen-only mt-7">
-            {d.s06.worksBtn}
-          </Link>
+          <div className="cv-screen-only flex justify-center mt-10">
+            <Link href={`/${locale}#works`} className="cv-btn cv-btn-ghost">
+              {d.s06.worksBtn}
+            </Link>
+          </div>
         </Section>
 
         {/* ── 07 · collaborations · recognition ── */}
         <Section>
-          <Label className="mb-5">{d.s07.label}</Label>
-          <div className="cv-split grid grid-cols-1 lg:grid-cols-[minmax(0,1.9fr)_minmax(0,1fr)] gap-10 lg:gap-14">
+          <Head className="mb-10 md:mb-12">
+            <Label>{d.s07.label}</Label>
+          </Head>
+          <div className="cv-split grid grid-cols-1 lg:grid-cols-[minmax(0,1.9fr)_minmax(0,1fr)] gap-12 lg:gap-14">
             <div>
               <Label tone="meta" small className="mb-4">{d.s07.collabsTitle}</Label>
               {cvShared.collabs.map((x) => (
                 <div
                   key={x.key}
-                  className="cv-collab-row cv-keep flex flex-col md:flex-row md:items-baseline gap-1.5 md:gap-5 py-3"
+                  className="cv-collab-row cv-keep flex flex-col md:flex-row md:items-baseline gap-1.5 md:gap-5 py-4"
                   style={{ borderTop: "1px solid var(--cv-line)" }}
                 >
                   <div className="cv-h3 text-[17px] md:flex-[0_0_200px]">{x.name}</div>
-                  <div className="flex-1 text-[14.5px] leading-[1.55] cv-meta">{collabCopy[x.key]}</div>
+                  <div className="flex-1 text-[15.5px] leading-[1.6] cv-body-c">{collabCopy[x.key]}</div>
                 </div>
               ))}
             </div>
@@ -454,7 +495,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               {cvShared.awards.map((a) => (
                 <div key={a.key} className="cv-keep py-4" style={{ borderTop: "1px solid var(--cv-line)" }}>
                   <div className="cv-mono text-[13px] tracking-[1.6px] cv-gold mb-2">{a.year}</div>
-                  <div className="text-[15px] leading-[1.55] cv-fg">{awardCopy[a.key]}</div>
+                  <div className="text-[16px] leading-[1.58] cv-fg">{awardCopy[a.key]}</div>
                 </div>
               ))}
             </div>
@@ -463,8 +504,10 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
 
         {/* ── 08 · profile ── */}
         <Section className="cv-profile-a">
-          <Label className="mb-5">{d.s08.label}</Label>
-          <div className="cv-facts grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 mb-11">
+          <Head className="mb-10 md:mb-12">
+            <Label>{d.s08.label}</Label>
+          </Head>
+          <div className="cv-facts grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-7 mb-11">
             {[
               [d.s08.education, d.s08.educationValue],
               [d.s08.specialty, d.s08.specialtyValue],
@@ -478,7 +521,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               ) : (
               <div key={k} className="cv-keep pt-3" style={{ borderTop: "1px solid var(--cv-line)" }}>
                 <div className="cv-mono text-[12px] tracking-[1.8px] uppercase cv-meta mb-2">{k}</div>
-                <div className="text-[15px] leading-[1.5] cv-fg">{v}</div>
+                <div className="text-[16px] leading-[1.5] cv-fg">{v}</div>
               </div>
               ),
             )}
@@ -493,7 +536,9 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
         <Section className="cv-profile-b">
           {/* Where the body comes from — the first thing a company director looks for. */}
           <div className="cv-school-block mb-11">
-            <Label tone="meta" className="mb-4">{d.s08.schoolLabel}</Label>
+            <Head className="mb-6">
+              <Label tone="meta">{d.s08.schoolLabel}</Label>
+            </Head>
             <div className="cv-school grid grid-cols-1 md:grid-cols-2 gap-x-10">
               {d.s08.school.map((x) => (
                 <div
@@ -509,8 +554,10 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
           </div>
 
           {/* «Напрями» знято; «Мови» стоять на його місці, горизонтально */}
-          <div className="cv-langs-block lg:pl-14">
-            <Label tone="meta" className="mb-4">{d.s08.languagesLabel}</Label>
+          <div className="cv-langs-block">
+            <Head className="mb-6">
+              <Label tone="meta">{d.s08.languagesLabel}</Label>
+            </Head>
             <div className="cv-langs grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-6">
               {d.s08.languages.map((x) => (
                 <div key={x.name} className="cv-keep pt-3.5" style={{ borderTop: "1px solid var(--cv-line)" }}>
@@ -527,8 +574,10 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
         <div className="cv-tail">
         {/* ── 09 · open for · contact ── */}
         <Section panel>
-          <Label className="mb-5">{d.s09.label}</Label>
-          <div className="cv-split grid grid-cols-1 lg:grid-cols-[minmax(0,1.75fr)_minmax(0,1fr)] gap-10 lg:gap-14 items-start">
+          <Head className="mb-10 md:mb-12">
+            <Label>{d.s09.label}</Label>
+          </Head>
+          <div className="cv-split grid grid-cols-1 lg:grid-cols-[minmax(0,1.75fr)_minmax(0,1fr)] gap-12 lg:gap-14 items-start">
             <div>
               <h2 className="cv-h2 mb-6" style={{ fontSize: "clamp(24px,3vw,32px)" }}>{d.s09.title}</h2>
               {d.s09.items.map((x, i) => (
