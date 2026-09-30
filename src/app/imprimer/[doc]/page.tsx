@@ -6,7 +6,7 @@ import PrintSheet from "@/components/PrintSheet";
 import "./imprimer.css";
 
 /* The sheets left on the table after a pitch (Capitole, 02.10.2026): the two
-   one-page dossiers and the accompanying note, in French. Unlisted on purpose —
+   one-page dossiers, in French (the accompanying note was dropped 30.09.2026). Unlisted on purpose —
    nothing on the site links here; only the pitch deck and its PDF do. The
    pages carry noindex, and next.config sends X-Robots-Tag for the files.
 
@@ -23,7 +23,6 @@ export const dynamicParams = false;
 const DOCS: Record<string, string> = {
   icare: "L'Envol d'Icare — recto verso",
   lorenzo: "Lorenzo il Magnifico — recto verso",
-  note: "Note d'accompagnement — recto verso",
 };
 
 export function generateStaticParams() {

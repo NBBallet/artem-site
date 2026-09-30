@@ -233,7 +233,7 @@ export const cvData = {
         },
         "france": {
           "title": "FRANCE",
-          "meta": "World premiere of the ballet ICARE planned for the 2027–2028 season."
+          "meta": "The ballet ICARE in development, offered for co-production from 2027."
         }
       }
     },
@@ -494,7 +494,7 @@ export const cvData = {
         },
         "france": {
           "title": "FRANCE",
-          "meta": "Création mondiale du ballet ICARE prévue pour la saison 2027–2028."
+          "meta": "Le ballet ICARE en développement, proposé en coproduction à partir de 2027."
         }
       }
     },
@@ -755,7 +755,7 @@ export const cvData = {
         },
         "france": {
           "title": "ФРАНЦІЯ",
-          "meta": "Запланована світова прем'єра балету ICARE в сезоні 2027–2028."
+          "meta": "Балет ICARE у розробці, пропонується для спільного виробництва з 2027 року."
         }
       }
     },

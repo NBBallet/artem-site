@@ -35,10 +35,6 @@
   "09": [
    792,
    1120
-  ],
-  "10": [
-   792,
-   1120
   ]
  },
  "links": {
@@ -86,8 +82,8 @@
   "05": [
    {
     "href": "https://www.youtube.com/watch?v=bcqsh95bR5g",
-    "x": 182,
-    "y": 298,
+    "x": 181,
+    "y": 283,
     "w": 224,
     "h": 224
    },
@@ -103,79 +99,78 @@
   "07": [
    {
     "href": "https://www.hordieiev.art/imprimer/icare",
-    "x": 64,
-    "y": 262,
+    "x": 60,
+    "y": 243,
     "w": 368,
     "h": 158
    },
    {
     "href": "https://www.hordieiev.art/imprimer/lorenzo",
-    "x": 448,
-    "y": 262,
-    "w": 368,
-    "h": 158
-   },
-   {
-    "href": "https://www.hordieiev.art/fr/cv",
-    "x": 64,
-    "y": 436,
+    "x": 456,
+    "y": 248,
     "w": 368,
     "h": 158
    },
    {
     "href": "https://www.hordieiev.art/fr/cv?print=1",
-    "x": 84,
-    "y": 554,
-    "w": 72,
-    "h": 24
-   },
-   {
-    "href": "https://www.hordieiev.art/fr/cv",
-    "x": 164,
-    "y": 554,
-    "w": 92,
-    "h": 24
-   },
-   {
-    "href": "https://www.hordieiev.art/imprimer/note",
-    "x": 448,
-    "y": 436,
+    "x": 852,
+    "y": 248,
     "w": 368,
     "h": 158
    },
    {
+    "href": "https://www.hordieiev.art/markevitch-t3lu2ig",
+    "x": 62,
+    "y": 436,
+    "w": 619,
+    "h": 158
+   },
+   {
     "href": "https://hordieiev.art/",
-    "x": 1059.0,
+    "x": 1051.2,
     "y": 639.3,
-    "w": 79.4,
+    "w": 84.2,
     "h": 16
    },
    {
     "href": "https://wa.me/33743791841",
-    "x": 1149.9,
+    "x": 1146.2,
     "y": 639.3,
-    "w": 66.1,
+    "w": 69.8,
     "h": 16
    }
   ],
   "08": [
    {
-    "href": "https://hordieiev.art/",
-    "x": 572.9,
-    "y": 1075.8,
-    "w": 67.6,
+    "href": "https://www.youtube.com/watch?v=mCAXXyfZjOU",
+    "x": 486.6,
+    "y": 754.2,
+    "w": 241.8,
+    "h": 36.1
+   },
+   {
+    "href": "https://www.hordieiev.art/fr",
+    "x": 560.2,
+    "y": 1094.5,
+    "w": 80.4,
     "h": 14
    }
   ],
   "09": [
    {
-    "href": "https://hordieiev.art/",
-    "x": 674.4,
+    "href": "https://www.youtube.com/watch?v=bcqsh95bR5g",
+    "x": 416,
+    "y": 811.0,
+    "w": 317.1,
+    "h": 38.9
+   },
+   {
+    "href": "https://www.hordieiev.art/fr",
+    "x": 661.6,
     "y": 1075.8,
-    "w": 67.6,
+    "w": 80.4,
     "h": 14
    }
-  ],
-  "10": []
+  ]
  }
 }

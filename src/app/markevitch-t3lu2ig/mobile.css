@@ -51,6 +51,7 @@
 
 .mk-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
 .mk-head .mk-label { white-space: nowrap; }
+@media (max-width: 359px) { .mk-head .mk-label { white-space: normal; } } /* «Ballet with voice and orchestra» на 320 px */
 .mk-head .mk-nerve { flex: 1 1 0; min-width: 20px; width: auto; }
 .mk-head .num { font-family: "JetBrains Mono", monospace; font-size: 11.5px; letter-spacing: 0.16em; color: var(--dim); }
 
@@ -243,6 +244,10 @@
 .mk-fr-sheet div[style*="justify-content: space-between"] > div > br:first-child { display: none; }
 .mk-fr-sheet div[style*="border-left: 2px solid #d4af37"] { font-size: 15px !important; line-height: 1.5 !important; }
 .mk-fr-sheet a { color: #c8102e; }
+/* QR на запис (FR-01 «À écouter», FR-02 «04»): на телефоні код не потрібен — посилання поруч */
+.mk-fr-sheet div[style*="height: 64px"] { height: auto !important; }
+.mk-fr-sheet div[style*="height: 64px"] > svg, .mk-fr-sheet svg[width="96"] { display: none !important; }
+.mk-fr-sheet div[style*="height: 64px"] > p { position: static !important; width: auto !important; }
 .mk-fr-sheet > div > div:first-child { align-items: flex-start !important; line-height: 1.55; }
 .mk-fr-sheet > div > div:first-child > span:first-child { flex: none; margin-top: 7.5px; }
 

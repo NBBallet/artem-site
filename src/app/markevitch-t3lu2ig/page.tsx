@@ -4,7 +4,7 @@ import MobileDeck from "./MobileDeck";
 
 /* Прихована сторінка пітчу «Le retour de Markevitch» для Балету Капітолію
    (RDV 02.10.2026). Не в навігації, не в пошуку: на неї веде тільки QR-код
-   на друкованих аркушах FR-02 і на звороті note d'accompagnement.
+   на звороті обох досьє (FR-04) і на слайді 06.
 
    Слайди — знімки канви (CHORÉGRAPHE/_інструменти/канва/веб_колоди.py):
    картинка + прозорі посилання поверх, координати з links.json. Оновити =
@@ -27,7 +27,6 @@ const SLIDES = ["01", "02", "03", "04", "05", "06", "07"];
 const SHEETS = [
   ["08", "L'Envol d'Icare · recto"],
   ["09", "Lorenzo il Magnifico · verso"],
-  ["10", "Note d'accompagnement"],
 ] as const;
 
 const sizes: Record<string, number[]> = deck.sizes;
@@ -86,7 +85,7 @@ export default function MarkevitchCapitole() {
         <h2 className={`${label} mt-8 border-t border-[#2a2622] pt-6 text-[#E8455E]`}>
           Les documents · en français
         </h2>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="mx-auto grid max-w-[852px] grid-cols-2 gap-6">
           {SHEETS.map(([id, alt]) => (
             <Board key={id} id={id} alt={alt} />
           ))}

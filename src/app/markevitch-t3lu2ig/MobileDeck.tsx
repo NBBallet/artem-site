@@ -35,7 +35,7 @@ const FIT = {
   proposal: { em: 12.0 },
   next: { em: 10.45 },
 } satisfies Record<string, Fit>;
-const FIT_FR = { icare: 9.05, lorenzo: 12.81, note: 15.5 };
+const FIT_FR = { icare: 9.05, lorenzo: 12.81 };
 
 /* ширина найдовшого рядка кожного заголовка в em шрифту NAMU (з letter-spacing),
    виміряна в браузері; заголовок = (екран − поля) / em */
@@ -175,8 +175,8 @@ function Who() {
         built from scratch.
       </p>
       <p className="mk-p">
-        We have worked with clients and budgets at every scale: from projects of <span style={{ whiteSpace: "nowrap" }}>€10&nbsp;000–20&nbsp;000</span>{" "}to major
-        commissions for national television and state events of €1&nbsp;000&nbsp;000 and more. Whatever the budget, we
+        We have worked with clients and budgets at every scale: from projects of <span style={{ whiteSpace: "nowrap" }}>€10,000–20,000</span>{" "}to major
+        commissions for national television and state events of €1,000,000 and more. Whatever the budget, we
         know how to make a stage project compelling — strong, rewarding for every partner involved, and effective.
       </p>
       <p className="mk-p">
@@ -236,12 +236,12 @@ const ERAS: { y: string; img?: string; imgStyle?: CSSProperties; alt?: string; t
   },
   {
     y: "2026", kind: "blue", dot: "#E8455E",
-    text: <>Can we give <i>L&apos;Envol d&apos;Icare</i>{" "}back its rightful place on the French stage?</>,
+    text: <>Can we give <i>L&apos;Envol d&apos;Icare</i>{" "}the place on the French stage it was written for?</>,
   },
   {
-    y: "2027–2032", kind: "cap", img: "tl-2027", dot: "#ede9e3",
+    y: "2028–2030", kind: "cap", img: "tl-2027", dot: "#ede9e3",
     alt: "The Capitole de Toulouse at night, central pavilion with the word CAPITOLIUM", imgStyle: { opacity: 0.46 },
-    text: <>The window of opportunity for this story. Markevitch, as a composer, reclaims his place on the stage.</>,
+    text: <>Premiere in 2028–29. In 2029–30, a hundred years on, Markevitch the composer reclaims his place on the stage.</>,
   },
 ];
 
@@ -318,8 +318,8 @@ function Icare() {
 
       <div className="mk-gap" />
       <p className="mk-p">
-        The myth warns: do not fly too high — the sun will melt your wings. Our Icarus already carries everything
-        within himself — the flight, the sun, the master and the fall.
+        The myth warns: do not fly too high — the sun will melt your wings. Our Icarus holds the whole universe in
+        his heart — the flight, the sun, the father and the fall are one.
       </p>
       <p className="mk-p">
         This line of thought interests me all the more because Matisse has already given it form in his modern
@@ -328,8 +328,8 @@ function Icare() {
 
       <div className="mk-quote">
         <Title as="p" fit={FIT.quote}>
-          <span>« The work still awaits</span>
-          <span>its <span className="red">dance premiere</span>. »</span>
+          <span>“The work still awaits</span>
+          <span>its <span className="red">dance premiere</span>.”</span>
         </Title>
         <div className="mk-label grey">Boosey &amp; Hawkes, dance catalogue</div>
       </div>
@@ -382,7 +382,7 @@ function Lorenzo() {
         </Title>
 
         <a className="mk-circle" href={YT_LORENZO} {...out}
-           aria-label="Listen to Lorenzo il Magnifico — the whole work, 28 minutes — opens YouTube">
+           aria-label="Listen to Lorenzo il Magnifico — the whole work, 29 minutes — opens YouTube">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`${M}/lorenzo-circle.webp`} alt="Lorenzo de' Medici by Benozzo Gozzoli, in a circle after Galileo's drawings of the Moon" width={608} height={608} loading="lazy" />
           <span className="mk-play"><Tri /></span>
@@ -409,7 +409,7 @@ function Lorenzo() {
           <Nerve id="l-t" vertical className="edge" />
           <dl>
             <dt>Form</dt><dd>sinfonia concertante for soprano and orchestra, in five movements, 29 minutes</dd>
-            <dt>Premiere</dt><dd>1 December 1941, Teatro Comunale, Florence — the composer conducting</dd>
+            <dt>Premiere</dt><dd>Florence, 1941, the composer conducting</dd>
             <dt>Text</dt><dd>poems by Lorenzo de&apos; Medici — public domain, no separate rights holder for the text</dd>
           </dl>
         </div>
@@ -423,7 +423,7 @@ function Lorenzo() {
         <a className="mk-listen" href={YT_LORENZO} {...out}>
           <span className="mk-play s redbg"><Tri /></span>
           <span className="t">
-            <span className="mk-label" style={{ display: "block", color: "var(--fg)" }}>Listen · the whole work, 28′</span>
+            <span className="mk-label" style={{ display: "block", color: "var(--fg)" }}>Listen · the whole work, 29′</span>
             <span className="l" style={{ display: "block" }}>Lucy Shelton · Arnhem Philharmonic · Christopher Lyndon-Gee</span>
           </span>
         </a>
@@ -431,7 +431,7 @@ function Lorenzo() {
         <p className="mk-credit">
           Circle after Galileo Galilei, <i>Sidereus Nuncius</i>, 1610 — the Moon and the four moons of Jupiter he named
           the Medicean Stars · Lorenzo: Benozzo Gozzoli, Palazzo Medici Riccardi · Benjamin-Constant,{" "}
-          <i>L&apos;entrée d&apos;Urbain II à Toulouse en 1096</i>, Salle des Illustres, Capitole · public domain
+          <i>L&apos;entrée à Toulouse du pape Urbain II en 1096</i>, Salle des Illustres, Capitole · public domain
         </p>
       </div>
     </section>
@@ -455,10 +455,10 @@ function Proposal() {
         </Title>
 
         <div className="mk-block">
-          <div className="mk-label">The centenary · 2032</div>
+          <div className="mk-label">The centenary · 2029–30</div>
           <p className="mk-p">
-            In <b>2032</b>{" "}the score turns one hundred — the anchor date of the project. Its prehistory is{" "}
-            <i>1929–1930</i>: Lifar arrives at the Paris Opera, and Diaghilev commissions a seventeen-year-old Markevitch.
+            <b>2029–30</b>{" "}marks one hundred years since the turning point: Diaghilev dies, the Ballets Russes break
+            up, and Lifar arrives at the Paris Opera. It is the anchor of the project.
           </p>
         </div>
         <div className="mk-block">
@@ -472,13 +472,14 @@ function Proposal() {
         <div className="mk-block">
           <div className="mk-label">When</div>
           <p className="mk-p">
-            We propose a premiere in the 2027–28 or 2028–29 season, depending on the house&apos;s programming.
+            We propose the world premiere in the 2028–29 season. From the centenary season, 2029–30, a tour and a Paris
+            premiere may follow.
           </p>
         </div>
         <div className="mk-block">
           <div className="mk-label">The team</div>
           <p className="mk-p">
-            Over <b>15 years</b>{" "}of joint production experience, plus Artem&apos;s experience as founder and
+            <b>15 years</b>{" "}of joint production experience, plus Artem&apos;s experience as founder and
             choreographer of his own dance company, on projects of every scale.
           </p>
         </div>
@@ -506,10 +507,11 @@ function Proposal() {
         </div>
         <div className="mk-offer">
           <Nerve id="p-o2" vertical className="edge" />
-          <div className="mk-label gold">What we bring</div>
+          <div className="mk-label gold">Open dates · what we bring</div>
           <p className="mk-p">
-            <b>Co-production</b>{" "}by our company, with patronage and public funding we raise ourselves. After the
-            premiere, a possible tour of the <b>chamber version</b>{" "}across Occitanie, under the Capitole&apos;s banner.
+            The premiere dates we propose are open and depend entirely on your programming and season. On our side:{" "}
+            <b>production skills</b>{" "}built over years as a team — professional broadcast and filming, promotion and
+            touring support, international contacts, sponsor partnerships, marketing strategy and brand integration.
           </p>
         </div>
 
@@ -554,28 +556,27 @@ function NextStep() {
           <div className="mk-doc">
             <div className="mk-label">02 · Dossier · one page</div>
             <div className="ttl">Lorenzo il Magnifico</div>
-            <p className="d">Ballet for soprano and orchestra · 1940 · 29 minutes. The second act.</p>
+            <p className="d">Ballet with voice and orchestra · 1940 · 29 minutes. The second act.</p>
             <div className="mk-btns">
               <a className="mk-btn" href="#fr-lorenzo">Lire ↓</a>
               <a className="mk-btn" href="https://www.hordieiev.art/imprimer/lorenzo" {...out}>Imprimer <Arrow /></a>
             </div>
           </div>
           <div className="mk-doc">
-            <div className="mk-label">03 · CV</div>
+            <div className="mk-label">03 · CV · recto verso</div>
             <div className="ttl">Artem Hordieiev</div>
-            <p className="d">Choreographer. His career on one page.</p>
+            <p className="d">Choreographer. On the back, a code to the full CV online.</p>
             <div className="mk-btns">
-              <a className="mk-btn" href="https://www.hordieiev.art/fr/cv?print=1" {...out}>PDF <Arrow /></a>
+              <a className="mk-btn" href="https://www.hordieiev.art/fr/cv?print=1" {...out}>Imprimer <Arrow /></a>
               <a className="mk-btn" href="https://www.hordieiev.art/fr/cv" {...out}>En ligne <Arrow /></a>
             </div>
           </div>
           <div className="mk-doc">
-            <div className="mk-label">04 · Note d&apos;accompagnement</div>
-            <div className="ttl">Five questions</div>
-            <p className="d">Short answers to the questions this project raises. Can be read on its own, without the slides.</p>
+            <div className="mk-label">04 · The presentation · online</div>
+            <div className="ttl">On your phone</div>
+            <p className="d">Today&apos;s slides — you are reading them now. The link to share:</p>
             <div className="mk-btns">
-              <a className="mk-btn" href="#fr-note">Lire ↓</a>
-              <a className="mk-btn" href="https://www.hordieiev.art/imprimer/note" {...out}>Imprimer <Arrow /></a>
+              <a className="mk-btn" href="https://www.hordieiev.art/markevitch-t3lu2ig">hordieiev.art/markevitch-t3lu2ig</a>
             </div>
           </div>
         </div>
@@ -599,7 +600,6 @@ function NextStep() {
 const DOCS = [
   { id: "icare", title: "L'Envol d'Icare · dossier", em: FIT_FR.icare },
   { id: "lorenzo", title: "Lorenzo il Magnifico · dossier", em: FIT_FR.lorenzo },
-  { id: "note", title: "Note d'accompagnement", em: FIT_FR.note },
 ];
 function frontSheet(id: string) {
   const html = fs.readFileSync(path.join(process.cwd(), "src/content/imprimer", `${id}.html`), "utf8");
