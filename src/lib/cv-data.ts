@@ -283,11 +283,6 @@ export const cvData = {
         },
         {
           "n": "",
-          "title": "The method",
-          "body": "Systemic constellations after Bert Hellinger, since 2013, learned from the inside — to adapt them into a choreographic and dramaturgical tool. My graduation thesis is on it."
-        },
-        {
-          "n": "",
           "title": "Together",
           "body": "The ICARE project holds both strategies in one evening: part one is a fixed, composed structure. Part two is born of the city, its people and its artistic milieu. On top of the finished concept of the ballet, we develop exactly what wants to be born in your city."
         }
@@ -404,8 +399,7 @@ export const cvData = {
         "Italian and French schools — Kostiantyn Zubach, 2018–2021",
         "Gaga — Erez Zohar and Liliia Burdynska, dancers of Batsheva, 2012",
         "Body and meditative practice — Kyiv and Senegal, 2013–2019",
-        "Contemporary dance and physical theatre — Totem Dance Group, Khrystyna Shyshkarova, 2009–2012",
-        "Systemic constellations after Hellinger — since 2013"
+        "Contemporary dance and physical theatre — Totem Dance Group, Khrystyna Shyshkarova, 2009–2012"
       ]
     },
     "s09": {
@@ -524,7 +518,7 @@ export const cvData = {
       "label": "UNE BIOGRAPHIE, SANS CICATRICES CACHÉES",
       "title": "2013–2022 : ce qui a été construit",
       "paras": [
-        "Depuis 2013, la productrice Tetiana Hordieieva et moi construisons notre propre compagnie. Aucun soutien public ne permettait à un chorégraphe de travailler durablement en Ukraine ; nous gagnions donc l'argent là où il était, sur le marché post-soviétique : grandes productions télévisées et événements d'État, auprès des plus grands producteurs de télé-crochets, dont StarLightMedia. En parallèle, je n'ai jamais lâché la pratique — classe quotidienne, pratiques corporelles, méditatives et dansées, technique Gaga, à Kyiv et au Sénégal.",
+        "Depuis 2013, Tetiana Hordieieva, chargée de production et de diffusion, et moi construisons notre propre compagnie. Aucun soutien public ne permettait à un chorégraphe de travailler durablement en Ukraine ; nous gagnions donc l'argent là où il était, sur le marché post-soviétique : grandes productions télévisées et événements d'État, auprès des plus grands producteurs de télé-crochets, dont StarLightMedia. En parallèle, je n'ai jamais lâché la pratique — classe quotidienne, pratiques corporelles, méditatives et dansées, technique Gaga, à Kyiv et au Sénégal.",
         "De ce processus est né le spectacle ANIMA — création à l'Opéra de Kyiv, et mon spectacle de fin d'études. En 2019 nous avions réuni une grande équipe : à Kyiv, la préproduction de la tournée internationale de MOZART 25 et des FOURMIS était achevée. La création et la tournée étaient prêtes à partir.",
         "Le projet a été reporté deux fois. D'abord la pandémie. Puis l'invasion russe à grande échelle. Tetiana, ce qui restait de l'équipe — cinq à huit danseurs — et moi nous sommes retrouvés en Asie centrale, où nous avons travaillé de 2022 à 2026. En mai 2026, nous nous sommes installés en France pour ne plus faire que du ballet et de la production théâtrale."
       ]
@@ -541,11 +535,6 @@ export const cvData = {
           "n": "",
           "title": "Le champ",
           "body": "Un travail constant, en parallèle, avec ma propre méthode. La phénoménologie du champ de travail et de la dramaturgie théâtrale. Mon travail : porter le savoir phénoménologique du groupe sur le plateau, sous les projecteurs."
-        },
-        {
-          "n": "",
-          "title": "La méthode",
-          "body": "Constellations systémiques d'après Bert Hellinger, depuis 2013, apprises de l'intérieur — pour les adapter en outil chorégraphique et dramaturgique. Mon mémoire de fin d'études porte là-dessus."
         },
         {
           "n": "",
@@ -636,7 +625,7 @@ export const cvData = {
       "productions": "Créations",
       "countries": "Tournées",
       "countriesValue": "14+ pays",
-      "producer": "Productrice",
+      "producer": "Production et diffusion",
       "languagesLabel": "Langues",
       "languages": [
         {
@@ -665,8 +654,7 @@ export const cvData = {
         "Écoles italienne et française — Kostiantyn Zoubatch, 2018–2021",
         "Gaga — Erez Zohar et Liliia Bourdynska, danseurs de la Batsheva, 2012",
         "Pratiques corporelles et méditatives — Kyiv et Sénégal, 2013–2019",
-        "Danse contemporaine et théâtre physique — Totem Dance Group, Khrystyna Chychkarova, 2009–2012",
-        "Constellations systémiques d'après Hellinger — depuis 2013"
+        "Danse contemporaine et théâtre physique — Totem Dance Group, Khrystyna Chychkarova, 2009–2012"
       ]
     },
     "s09": {
@@ -680,7 +668,7 @@ export const cvData = {
         "Une résidence ou un laboratoire où la méthode du champ puisse être étendue et éprouvée."
       ],
       "contactLabel": "CONTACT",
-      "producerLabel": "Productrice"
+      "producerLabel": "Production et diffusion"
     }
   },
   "uk": {
@@ -805,11 +793,6 @@ export const cvData = {
         },
         {
           "n": "",
-          "title": "Метод",
-          "body": "Системні розстановки за Бертом Гелінгером, з 2013, вивчені зсередини — щоб адаптувати їх у хореографічний і драматургічний інструмент. Про це написана дипломна робота."
-        },
-        {
-          "n": "",
           "title": "Разом",
           "body": "Проєкт ICARE тримає обидві стратегії в одному вечорі: перша частина — задана композиційна структура. Друга народжується з міста, його людей і артистичного середовища. Ми розробляємо поверх готової концепції балету саме те, що хоче бути народженим у вашому місті."
         }
@@ -926,8 +909,7 @@ export const cvData = {
         "Італійська та французька школи — Костянтин Зубач, 2018–2021",
         "Gaga — Ерез Зогар і Лілія Бурдинська, танцівники Batsheva, 2012",
         "Тілесні й медитативні практики — Київ і Сенегал, 2013–2019",
-        "Contemporary й фізичний театр — Totem Dance Group, Христина Шишкарьова, 2009–2012",
-        "Системні констеляції за Гелінгером — з 2013"
+        "Contemporary й фізичний театр — Totem Dance Group, Христина Шишкарьова, 2009–2012"
       ]
     },
     "s09": {
