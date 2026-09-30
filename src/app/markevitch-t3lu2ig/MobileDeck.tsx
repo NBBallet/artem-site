@@ -563,20 +563,19 @@ function NextStep() {
             </div>
           </div>
           <div className="mk-doc">
-            <div className="mk-label">03 · CV · recto verso</div>
-            <div className="ttl">Artem Hordieiev</div>
-            <p className="d">Choreographer. On the back, a code to the full CV online.</p>
-            <div className="mk-btns">
-              <a className="mk-btn" href="https://www.hordieiev.art/fr/cv?print=1" {...out}>Imprimer <Arrow /></a>
-              <a className="mk-btn" href="https://www.hordieiev.art/fr/cv" {...out}>En ligne <Arrow /></a>
-            </div>
-          </div>
-          <div className="mk-doc">
-            <div className="mk-label">04 · The presentation · online</div>
+            <div className="mk-label">03 · The presentation · online</div>
             <div className="ttl">On your phone</div>
             <p className="d">Today&apos;s slides — you are reading them now. The link to share:</p>
             <div className="mk-btns">
               <a className="mk-btn" href="https://www.hordieiev.art/markevitch-t3lu2ig">hordieiev.art/markevitch-t3lu2ig</a>
+            </div>
+          </div>
+          <div className="mk-doc">
+            <div className="mk-label">04 · CV · one page</div>
+            <div className="ttl">Artem Hordieiev</div>
+            <div className="mk-btns">
+              <a className="mk-btn" href="https://www.hordieiev.art/fr/cv?print=1" {...out}>Imprimer <Arrow /></a>
+              <a className="mk-btn" href="https://www.hordieiev.art/fr/cv" {...out}>En ligne <Arrow /></a>
             </div>
           </div>
         </div>
