@@ -560,8 +560,7 @@ function NextStep() {
           <div className="mk-doc">
             <div className="mk-label">03 · The presentation · online</div>
             <div className="ttl">On your phone</div>
-            <div className="mk-label dim mk-hint">Tap and hold the link to copy or share it</div>
-            <p className="d">The link to share:</p>
+            <p className="d">Tap and hold the link to copy or share it. The link to share:</p>
             <div className="mk-btns">
               <a className="mk-btn" href="https://www.hordieiev.art/markevitch-t3lu2ig">hordieiev.art/markevitch-t3lu2ig</a>
             </div>

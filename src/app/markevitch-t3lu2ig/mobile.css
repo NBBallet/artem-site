@@ -222,6 +222,5 @@
 .mk-contact { margin-top: 28px; display: grid; gap: 10px; }
 .mk-contact a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 0 16px; background: var(--card); font-size: 16px; }
 .mk-contact a .k { font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey); }
-.mk-hint { margin-top: 10px; line-height: 1.6; }
 .mk-sign { margin-top: 22px; font-size: 14.5px; line-height: 1.6; color: var(--muted); }
 
