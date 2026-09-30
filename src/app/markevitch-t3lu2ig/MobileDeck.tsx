@@ -560,11 +560,11 @@ function NextStep() {
           <div className="mk-doc">
             <div className="mk-label">03 · The presentation · online</div>
             <div className="ttl">On your phone</div>
-            <p className="d">Today&apos;s slides — you are reading them now. The link to share:</p>
+            <div className="mk-label dim mk-hint">Tap and hold the link to copy or share it</div>
+            <p className="d">The link to share:</p>
             <div className="mk-btns">
               <a className="mk-btn" href="https://www.hordieiev.art/markevitch-t3lu2ig">hordieiev.art/markevitch-t3lu2ig</a>
             </div>
-            <div className="mk-label dim mk-hint">Tap and hold the link to copy or share it</div>
           </div>
           <div className="mk-doc">
             <div className="mk-label">04 · CV · one page</div>
