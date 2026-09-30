@@ -222,33 +222,6 @@
 .mk-contact { margin-top: 28px; display: grid; gap: 10px; }
 .mk-contact a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 0 16px; background: var(--card); font-size: 16px; }
 .mk-contact a .k { font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey); }
+.mk-hint { margin-top: 10px; }
 .mk-sign { margin-top: 22px; font-size: 14.5px; line-height: 1.6; color: var(--muted); }
 
-/* ── французькі аркуші: той самий HTML, що друкується, перекладений у потік ─ */
-.mk-fr-head { padding: 40px var(--gutter) 0; border-top: 1px solid #1f1d1b; }
-.mk-fr { margin: 18px var(--gutter) 0; }
-.mk-fr + .mk-fr { margin-top: 28px; }
-.mk-fr-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
-.mk-fr-sheet { background: #fff; color: #0a0a0a; overflow: hidden; }
-.mk-fr-sheet > div { width: auto !important; height: auto !important; padding: 22px 18px 18px !important; }
-.mk-fr-sheet h1 { font-size: min(calc((100vw - 2 * var(--gutter) - 36px) / var(--em, 9)), 40px) !important; white-space: nowrap; }
-.mk-fr-sheet p { font-size: 16px !important; line-height: 1.55 !important; }
-.mk-fr-sheet h1 + div, .mk-fr-sheet h2 { line-height: 1.55 !important; }
-.mk-fr-sheet h2 { margin-top: 22px !important; }
-.mk-fr-sheet div[style*="gap: 36px"] { display: block !important; margin-top: 0 !important; }
-.mk-fr-sheet div[style*="gap: 36px"] > div:first-child > h2:first-child { margin-top: 22px !important; }
-.mk-fr-sheet div[style*="height: 104px"] { display: none !important; }            /* QR на цю ж сторінку */
-.mk-fr-sheet div[style*="gap: 13px"] { flex-direction: column; gap: 2px !important; margin-bottom: 12px !important; font-size: 15px !important; }
-.mk-fr-sheet div[style*="justify-content: space-between"] { flex-direction: column; gap: 10px !important; font-size: 13.5px !important; }
-.mk-fr-sheet div[style*="justify-content: space-between"] > div { text-align: left !important; }
-.mk-fr-sheet div[style*="justify-content: space-between"] > div > br:first-child { display: none; }
-.mk-fr-sheet div[style*="border-left: 2px solid #d4af37"] { font-size: 15px !important; line-height: 1.5 !important; }
-.mk-fr-sheet a { color: #c8102e; }
-/* QR на запис (FR-01 «À écouter», FR-02 «04»): на телефоні код не потрібен — посилання поруч */
-.mk-fr-sheet div[style*="height: 64px"] { height: auto !important; }
-.mk-fr-sheet div[style*="height: 64px"] > svg, .mk-fr-sheet svg[width="96"] { display: none !important; }
-.mk-fr-sheet div[style*="height: 64px"] > p { position: static !important; width: auto !important; }
-.mk-fr-sheet > div > div:first-child { align-items: flex-start !important; line-height: 1.55; }
-.mk-fr-sheet > div > div:first-child > span:first-child { flex: none; margin-top: 7.5px; }
-
-.mk-foot { margin: 40px var(--gutter) 0; padding: 18px 0 36px; border-top: 1px solid #1f1d1b; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }

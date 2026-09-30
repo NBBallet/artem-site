@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import { Fragment, type CSSProperties, type ReactNode } from "react";
 import "./mobile.css";
 
@@ -12,8 +10,8 @@ import "./mobile.css";
    й посиланнями, але в одну колонку.
 
    Змінився текст слайда на канві → поправити і знімки (веб_колоди.py), і цей
-   файл. Французькі аркуші беруться з src/content/imprimer/*.html — тих самих,
-   що друкуються, — тому їх оновлює pdf_аркушів.py без правок тут. */
+   файл. Нижче слайда 06 на телефоні нічого немає (30.09.2026, правка Артема):
+   французькі аркуші — тільки за кнопками «Imprimer». */
 
 const M = "/deck/t3lu2ig/m";
 const YT_ICARE = "https://www.youtube.com/watch?v=mCAXXyfZjOU&t=385s";
@@ -35,7 +33,6 @@ const FIT = {
   proposal: { em: 12.0 },
   next: { em: 10.45 },
 } satisfies Record<string, Fit>;
-const FIT_FR = { icare: 9.05, lorenzo: 12.81 };
 
 /* ширина найдовшого рядка кожного заголовка в em шрифту NAMU (з letter-spacing),
    виміряна в браузері; заголовок = (екран − поля) / em */
@@ -549,7 +546,6 @@ function NextStep() {
             <div className="ttl">L&apos;Envol d&apos;Icare</div>
             <p className="d">World premiere · Markevitch, 1932 · 27 minutes. The first act.</p>
             <div className="mk-btns">
-              <a className="mk-btn" href="#fr-icare">Lire ↓</a>
               <a className="mk-btn" href="https://www.hordieiev.art/imprimer/icare" {...out}>Imprimer <Arrow /></a>
             </div>
           </div>
@@ -558,7 +554,6 @@ function NextStep() {
             <div className="ttl">Lorenzo il Magnifico</div>
             <p className="d">Ballet with voice and orchestra · 1940 · 29 minutes. The second act.</p>
             <div className="mk-btns">
-              <a className="mk-btn" href="#fr-lorenzo">Lire ↓</a>
               <a className="mk-btn" href="https://www.hordieiev.art/imprimer/lorenzo" {...out}>Imprimer <Arrow /></a>
             </div>
           </div>
@@ -569,6 +564,7 @@ function NextStep() {
             <div className="mk-btns">
               <a className="mk-btn" href="https://www.hordieiev.art/markevitch-t3lu2ig">hordieiev.art/markevitch-t3lu2ig</a>
             </div>
+            <div className="mk-label dim mk-hint">Tap and hold the link to copy or share it</div>
           </div>
           <div className="mk-doc">
             <div className="mk-label">04 · CV · one page</div>
@@ -595,16 +591,6 @@ function NextStep() {
   );
 }
 
-/* ── французькі аркуші ───────────────────────────────────────────────────── */
-const DOCS = [
-  { id: "icare", title: "L'Envol d'Icare · dossier", em: FIT_FR.icare },
-  { id: "lorenzo", title: "Lorenzo il Magnifico · dossier", em: FIT_FR.lorenzo },
-];
-function frontSheet(id: string) {
-  const html = fs.readFileSync(path.join(process.cwd(), "src/content/imprimer", `${id}.html`), "utf8");
-  return html.split("<!--sheet-->")[0].trim(); // лицьовий бік; зворот — QR на цю ж сторінку
-}
-
 export default function MobileDeck() {
   return (
     <div className="mk">
@@ -615,25 +601,6 @@ export default function MobileDeck() {
       <Lorenzo />
       <Proposal />
       <NextStep />
-
-      <div className="mk-fr-head">
-        <div className="mk-label">Les documents · en français</div>
-      </div>
-      {DOCS.map((d) => (
-        <section key={d.id} className="mk-fr" id={`fr-${d.id}`}>
-          <div className="mk-fr-bar">
-            <span className="mk-label grey">{d.title}</span>
-            <a className="mk-btn" href={`/imprimer/${d.id}`}>Imprimer <Arrow /></a>
-          </div>
-          <div className="mk-fr-sheet" style={{ "--em": d.em } as CSSProperties}
-               dangerouslySetInnerHTML={{ __html: frontSheet(d.id) }} />
-        </section>
-      ))}
-
-      <footer className="mk-foot mk-label dim">
-        <span>Artem Hordieiev · Toulouse</span>
-        <a href="https://hordieiev.art/fr" className="red">hordieiev.art</a>
-      </footer>
     </div>
   );
 }
