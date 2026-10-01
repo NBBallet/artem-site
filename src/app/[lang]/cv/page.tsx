@@ -439,7 +439,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
           <Head className="mb-10 md:mb-12">
             <Label>{d.s05.label}</Label>
           </Head>
-          <div className="cv-payoff grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-10">
+          <div className="cv-payoff grid grid-cols-1 md:grid-cols-3 gap-x-10 lg:gap-x-14 gap-y-10">
             {d.s05.items.map((it) => (
               <div key={it.title} className="cv-keep pt-4" style={{ borderTop: "2px solid var(--cv-red)" }}>
                 {it.n && <div className="cv-mono text-[13px] tracking-[2px] cv-red mb-3">{it.n}</div>}

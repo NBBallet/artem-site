@@ -539,6 +539,37 @@
   .cv .cv-school .cv-dot { display: none; }
 }
 
+/* desktop: the frame of each work sits in a rectangle that runs from the
+   title to the year (columns 1–2 of the row); format, music and status stay
+   on the plain page to its right. */
+@media screen and (min-width: 1024px) {
+  .cv .cv-rep-row {
+    --rep-photo: calc(230px + 108px + 1.25rem);
+    position: relative;
+    isolation: isolate;
+    align-items: center;
+    min-height: 132px;
+  }
+  .cv .cv-rep-bg,
+  .cv .cv-rep-veil {
+    display: block; position: absolute; top: 0; bottom: 0; left: 0; z-index: 0;
+    width: var(--rep-photo);
+  }
+  .cv .cv-rep-bg { height: 100%; object-fit: cover; object-position: center 30%; }
+  .cv .cv-rep-veil {
+    background: linear-gradient(to right, rgba(10,10,10,.78) 0%, rgba(10,10,10,.5) 55%, rgba(10,10,10,.62) 100%);
+    transition: background 0.3s ease;
+  }
+  .cv .cv-rep-row:hover .cv-rep-veil,
+  .cv .cv-rep-row:focus-visible .cv-rep-veil {
+    background: linear-gradient(to right, rgba(10,10,10,.62) 0%, rgba(10,10,10,.3) 55%, rgba(10,10,10,.45) 100%);
+  }
+  .cv .cv-rep-row > div { position: relative; z-index: 1; }
+  .cv .cv-rep-title { padding-left: 22px; color: #f5f5f5; }
+  .cv .cv-rep-year { color: #d4d4d4 !important; }
+  .cv .cv-rep-head > div:first-child { padding-left: 22px; }
+}
+
 @media print {
   .cv .cv-award-link { background: none; border-left: none; padding: 16px 0; margin: 0; border-top: 1px solid var(--cv-line); border-radius: 0; }
 }
