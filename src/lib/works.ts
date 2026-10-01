@@ -107,8 +107,8 @@ export const works: Work[] = [
       // Alternating: odd = life / непарні = побутові, even = dance / парні = танцювальні
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332585/IMG_3274_mzoihf.jpg",   // 1 life
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332563/IMG_3263_fcvu8m.jpg",   // 2 dance
-      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332585/IMG_3275_rms0de.jpg",   // 3 life
-      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332561/IMG_3262_fo2ehs.jpg",   // 4 dance
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332558/IMG_3257_ujddyp.jpg",   // 3 dance — арабеск (був 12): більше танцю при вході
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332557/IMG_3254_ysqk10.jpg",   // 4 dance — куліси, трупа (був 16)
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332583/IMG_3277_xytwyo.jpg",   // 5 life
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332561/IMG_3260_vzz4h9.jpg",   // 6 dance
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332582/IMG_3273_gxqohq.jpg",   // 7 life
@@ -116,11 +116,11 @@ export const works: Work[] = [
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332581/IMG_3276_o5lo5o.jpg",   // 9 life
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332559/IMG_3258_lhjtn3.jpg",   // 10 dance
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332576/IMG_3272_xhp1jv.jpg",   // 11 life
-      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332558/IMG_3257_ujddyp.jpg",   // 12 dance
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332585/IMG_3275_rms0de.jpg",   // 12 life — лак (був 3)
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332573/IMG_3270_ioavy2.jpg",   // 13 life
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332557/IMG_3255_kqubva.jpg",   // 14 dance
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332575/IMG_3271_bcyyyq.jpg",   // 15 life
-      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332557/IMG_3254_ysqk10.jpg",   // 16 dance
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332561/IMG_3262_fo2ehs.jpg",   // 16 dance (був 4)
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332573/IMG_3267_sd4qcd.jpg",   // 17 life
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332557/IMG_3256_lrsqmc.jpg",   // 18 dance
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332573/IMG_3269_trvc2u.jpg",   // 19 life
