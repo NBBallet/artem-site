@@ -105,7 +105,7 @@ export const works: Work[] = [
     ],
     gallery: [
       // Alternating: odd = life / непарні = побутові, even = dance / парні = танцювальні
-      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332585/IMG_3274_mzoihf.jpg",   // 1 life
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332557/IMG_3256_lrsqmc.jpg",   // 1 dance — маса в русі (був 18)
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332563/IMG_3263_fcvu8m.jpg",   // 2 dance
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332558/IMG_3257_ujddyp.jpg",   // 3 dance — арабеск (був 12): більше танцю при вході
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332557/IMG_3254_ysqk10.jpg",   // 4 dance — куліси, трупа (був 16)
@@ -122,7 +122,7 @@ export const works: Work[] = [
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332575/IMG_3271_bcyyyq.jpg",   // 15 life
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332561/IMG_3262_fo2ehs.jpg",   // 16 dance (був 4)
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332573/IMG_3267_sd4qcd.jpg",   // 17 life
-      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332557/IMG_3256_lrsqmc.jpg",   // 18 dance
+      "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332585/IMG_3274_mzoihf.jpg",   // 18 life — сидячі (був 1)
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332573/IMG_3269_trvc2u.jpg",   // 19 life
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332551/55842758_350343045589600_2465565279514525696_n_r6u58f.jpg", // 20 dance
       "https://res.cloudinary.com/dklfgqi9f/image/upload/v1776332572/IMG_3268_q4nick.jpg",   // 21 life
