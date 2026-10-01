@@ -425,3 +425,120 @@
   .cv-note { padding-top: 10px !important; }
   .cv-two-cols { margin-bottom: 12px !important; }
 }
+
+/* ── 01.10.2026 · approved on the canvas «CV — мобільна версія» ──────────────
+   Brand rule: centred, three colours (white text, grey service, red only for
+   what is clickable), no stray dots or ▶. */
+
+/* award with something to watch: one card, red bar, one-line action */
+.cv .cv-award-link {
+  display: block;
+  margin: 4px 0 12px;
+  padding: 22px 20px;
+  background: var(--cv-panel);
+  border-left: 3px solid var(--cv-red);
+  border-radius: 2px;
+  transition: background 0.2s ease;
+}
+.cv .cv-award-link:hover,
+.cv .cv-award-link:focus-visible { background: #151515; color: var(--cv-fg); }
+.cv-award-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: #e8455e;
+}
+.cv-award-cta svg { transition: transform 0.2s ease; }
+.cv-award-link:hover .cv-award-cta svg { transform: translateX(3px); }
+
+/* the wave and the photo cards exist only on a phone */
+.cv-wave, .cv-rep-bg, .cv-rep-veil { display: none; }
+
+@media screen and (max-width: 767px) {
+  /* grey years instead of gold */
+  .cv .cv-award-year { color: var(--cv-meta) !important; }
+  .cv .cv-award, .cv .cv-award-link { text-align: center; }
+  .cv .cv-award-cta { justify-content: center; }
+
+  /* trajectory: no horizontal graph — one ribbon down a vertical wave */
+  .cv .cv-graph-scroll { display: none; }
+  .cv .cv-traj-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    row-gap: 0 !important;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .cv .cv-traj-item {
+    position: relative;
+    border-top: none !important;
+    padding: 46px 40px 58px !important;
+    text-align: center;
+    --wave: #333333;
+  }
+  .cv .cv-traj-item.is-peak { --wave: var(--cv-red); }
+  .cv .cv-wave { display: block; position: absolute; inset: 0; pointer-events: none; }
+  .cv .cv-wave svg { position: absolute; left: 0; width: 100%; height: 34px; overflow: visible; }
+  .cv .cv-wave path { fill: none; stroke: var(--wave); stroke-width: 1.6; }
+  .cv .cv-wave-top { top: 0; }
+  .cv .cv-wave-bot { bottom: 0; }
+  .cv .cv-wave-side { position: absolute; top: 34px; bottom: 34px; width: 1.6px; background: var(--wave); }
+  .cv .cv-wave--l .cv-wave-side { left: 4%; margin-left: -0.8px; }
+  .cv .cv-wave--r .cv-wave-side { right: 4%; margin-right: -0.8px; }
+  .cv .is-last .cv-wave-side { bottom: 0; background: linear-gradient(to bottom, var(--wave), transparent); }
+  .cv .cv-wave-node {
+    position: absolute; top: -4px; left: 50%; margin-left: -4px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--cv-red);
+  }
+
+  /* repertoire: each work a card on its own frame */
+  .cv .cv-rep-row {
+    --row-tone: #e8455e !important;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 340px;
+    margin-bottom: 16px;
+    padding: 24px 20px !important;
+    border-bottom: none !important;
+    border-radius: 3px;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 9px;
+    text-align: center;
+  }
+  .cv .cv-rep-row:hover, .cv .cv-rep-row:focus-visible { background: #111; }
+  .cv .cv-rep-bg {
+    display: block; position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+  }
+  .cv .cv-rep-veil {
+    display: block; position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(to top, rgba(10,10,10,.8) 0%, rgba(10,10,10,.8) 30%, rgba(10,10,10,.45) 65%, rgba(10,10,10,.2) 100%);
+  }
+  .cv .cv-rep-row > div { position: relative; z-index: 1; }
+  .cv .cv-rep-title { font-size: 32px !important; line-height: 1.05; color: #f5f5f5; }
+  .cv .cv-rep-year, .cv .cv-rep-music { color: #a3a3a3 !important; }
+  .cv .cv-rep-year { letter-spacing: 1.4px; }
+  .cv .cv-rep-format { font-size: 16px !important; color: #f5f5f5 !important; }
+  .cv .cv-rep-music { font-size: 15px !important; }
+  .cv .cv-rep-row .cv-status-pill { margin: 6px 0 0; padding: 0; gap: 12px; font-size: 12px; letter-spacing: 2.2px; background: none !important; }
+  .cv .cv-rep-row .cv-status-pill svg { opacity: 1; transform: none; width: 18px; height: 18px; }
+
+  /* everything else centred: collaborations, facts, school, languages */
+  .cv .cv-center-m { align-items: center; text-align: center; }
+  .cv .cv-split .cv-label { text-align: center; }
+  .cv .cv-facts > div, .cv .cv-langs > div { text-align: center; }
+  .cv .cv-school > div { justify-content: center; text-align: center; }
+  .cv .cv-school .cv-dot { display: none; }
+}
+
+@media print {
+  .cv .cv-award-link { background: none; border-left: none; padding: 16px 0; margin: 0; border-top: 1px solid var(--cv-line); border-radius: 0; }
+}

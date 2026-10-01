@@ -185,6 +185,24 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
     firebird: "firebird",
   };
 
+  // phone only (cv.css, < 768 px): each repertoire row becomes a card on the
+  // work's own frame — the covers approved on the canvas 01.10.2026.
+  const WORK_BG: Record<string, string> = {
+    ants: "/images/cv/the-ants.jpg",
+    icare: "/images/cv/icare.jpg",
+    mozart: "/images/cv/mozart25.jpg",
+    carmen: "/images/cv/carmen.jpg",
+    anima: "/images/cv/anima.jpg",
+    adios: "/images/cv/adios.jpg",
+    firebird: "/images/cv/firebird.jpg",
+  };
+
+  // an award becomes a link card only where there is something to watch;
+  // the others stay plain rows until their links exist (01.10.2026)
+  const AWARD_LINK: Record<string, { slug: string; label: Record<Locale, string> }> = {
+    lviv: { slug: "adios", label: { fr: "Voir Adios", en: "Watch Adios", uk: "Дивитися Adios" } },
+  };
+
   const statusTone = (key: string, status: string): { color: string; soft: string } => {
     // Firebird carries the site's own midnight-blue identity (matches
     // FB_BLUE on its work page) rather than the generic "in development"
@@ -313,11 +331,34 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
             </div>
           </div>
           <div className="cv-traj-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-7 gap-y-10 mt-10">
-            {cvShared.trajectory.map((pt) => {
+            {cvShared.trajectory.map((pt, i, all) => {
               const p = pointCopy[pt.key];
-              const tone = "peak" in pt && pt.peak ? "var(--cv-red)" : "var(--cv-meta)";
+              const peak = "peak" in pt && pt.peak;
+              const tone = peak ? "var(--cv-red)" : "var(--cv-meta)";
+              // phone: a vertical wave — from the node above each year it swings
+              // to one edge, runs down beside the text and comes back to the
+              // centre for the next year; sides alternate (cv.css .cv-wave)
+              const left = i % 2 === 0;
+              const ex = left ? 4 : 96;
+              const last = i === all.length - 1;
               return (
-                <div key={pt.key} className="cv-keep pt-3 pr-3" style={{ borderTop: "1px solid var(--cv-line)" }}>
+                <div
+                  key={pt.key}
+                  className={`cv-traj-item cv-keep pt-3 pr-3${peak ? " is-peak" : ""}${last ? " is-last" : ""}`}
+                  style={{ borderTop: "1px solid var(--cv-line)" }}
+                >
+                  <span className={`cv-wave ${left ? "cv-wave--l" : "cv-wave--r"}`} aria-hidden>
+                    <svg className="cv-wave-top" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      <path d={`M50 0 C50 70, ${ex} 30, ${ex} 100`} vectorEffect="non-scaling-stroke" />
+                    </svg>
+                    <span className="cv-wave-side" />
+                    {last ? null : (
+                      <svg className="cv-wave-bot" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d={`M${ex} 0 C${ex} 70, 50 30, 50 100`} vectorEffect="non-scaling-stroke" />
+                      </svg>
+                    )}
+                    {peak ? <span className="cv-wave-node" /> : null}
+                  </span>
                   <div className="cv-mono text-[14px] tracking-[1.4px] mb-2" style={{ color: tone }}>
                     {pt.year}
                   </div>
@@ -439,10 +480,15 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
                   ["--row-tone-soft" as string]: tone.soft,
                 } as CSSProperties}
               >
-                <div className="cv-h3 text-[19px] tracking-[0.5px]">{wd.title ?? w.title}</div>
-                <div className="cv-mono text-[13.5px] cv-meta">{w.year}</div>
-                <div className="text-[14.5px] leading-[1.5] cv-body-c">{wd.format}</div>
-                <div className="text-[14.5px] leading-[1.5] cv-meta">{wd.music ?? w.music}</div>
+                {WORK_BG[w.key] ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="cv-rep-bg" src={WORK_BG[w.key]} alt="" loading="lazy" decoding="async" />
+                ) : null}
+                <span className="cv-rep-veil" aria-hidden />
+                <div className="cv-h3 cv-rep-title text-[19px] tracking-[0.5px]">{wd.title ?? w.title}</div>
+                <div className="cv-mono cv-rep-year text-[13.5px] cv-meta">{w.year}</div>
+                <div className="cv-rep-format text-[14.5px] leading-[1.5] cv-body-c">{wd.format}</div>
+                <div className="cv-rep-music text-[14.5px] leading-[1.5] cv-meta">{wd.music ?? w.music}</div>
                 <div className="cv-status-pill cv-mono text-[12px] tracking-[1.4px] uppercase">
                   {wd.status}
                   <svg
@@ -482,7 +528,7 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
               {cvShared.collabs.map((x) => (
                 <div
                   key={x.key}
-                  className="cv-collab-row cv-keep flex flex-col md:flex-row md:items-baseline gap-1.5 md:gap-5 py-4"
+                  className="cv-collab-row cv-center-m cv-keep flex flex-col md:flex-row md:items-baseline gap-1.5 md:gap-5 py-4"
                   style={{ borderTop: "1px solid var(--cv-line)" }}
                 >
                   <div className="cv-h3 text-[17px] md:flex-[0_0_200px]">{x.name}</div>
@@ -492,12 +538,35 @@ export default async function CvPage({ params }: { params: Promise<{ lang: strin
             </div>
             <div>
               <Label tone="meta" small className="mb-4">{d.s07.awardsTitle}</Label>
-              {cvShared.awards.map((a) => (
-                <div key={a.key} className="cv-keep py-4" style={{ borderTop: "1px solid var(--cv-line)" }}>
-                  <div className="cv-mono text-[13px] tracking-[1.6px] cv-gold mb-2">{a.year}</div>
-                  <div className="text-[16px] leading-[1.58] cv-fg">{awardCopy[a.key]}</div>
-                </div>
-              ))}
+              {cvShared.awards.map((a) => {
+                const link = AWARD_LINK[a.key];
+                const body = (
+                  <>
+                    <div className="cv-mono cv-award-year text-[13px] tracking-[1.6px] cv-gold mb-2">{a.year}</div>
+                    <div className="text-[16px] leading-[1.58] cv-fg">{awardCopy[a.key]}</div>
+                  </>
+                );
+                return link ? (
+                  <Link
+                    key={a.key}
+                    href={`/${locale}/works/${link.slug}`}
+                    className="cv-award cv-award-link cv-keep"
+                  >
+                    {body}
+                    <span className="cv-award-cta cv-screen-only cv-mono">
+                      {link.label[locale]}
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    </span>
+                  </Link>
+                ) : (
+                  <div key={a.key} className="cv-award cv-keep py-4" style={{ borderTop: "1px solid var(--cv-line)" }}>
+                    {body}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </Section>
