@@ -13,6 +13,19 @@ const nextConfig: NextConfig = {
         source: "/imprimer/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      // The Russian CV is private too (22.10.2026): its page and its PDFs.
+      {
+        source: "/cv-mj9szja",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/cv/:file(Artem-Hordieiev-CV-RU.*)",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/api/cv-download/Artem-Hordieiev-CV-RU.pdf",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
 };

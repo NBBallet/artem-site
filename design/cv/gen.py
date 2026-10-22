@@ -692,14 +692,15 @@ def ts_literal(v, indent=2):
 
 
 def write_ts():
-    payload = {"shared": S, "en": COPY["en"], "fr": COPY["fr"], "uk": COPY["uk"]}
+    payload = {"shared": S, "en": COPY["en"], "fr": COPY["fr"], "uk": COPY["uk"],
+               "ru": COPY["ru"]}
     src = (
         "// GENERATED — do not edit by hand.\n"
         "// Source of truth: design/cv/copy.json · regenerate with `python3 design/cv/gen.py`.\n"
         "//\n"
         "// The CV is structured content, not editable site copy, so it lives in the repo\n"
         "// rather than in Notion — no fetch, no empty-default trap (see AGENTS.md).\n\n"
-        "export type CvLocale = \"en\" | \"uk\" | \"fr\";\n\n"
+        "export type CvLocale = \"en\" | \"uk\" | \"fr\" | \"ru\";\n\n"
         "export const cvData = " + ts_literal(payload, 0) + " as const;\n\n"
         "export const cvShared = cvData.shared;\n\n"
         "export function getCv(locale: CvLocale) {\n"
@@ -757,6 +758,26 @@ def main(ts_only=False):
     print(f"  {ts}")
 
 
+# ── RU: private CV, its own canvas (22.10.2026) ─────────────────────────────
+# Russian is not a site locale: the page lives at a secret address outside
+# /[lang] (src/app/cv-ru-*/), so its artboards go to a canvas of their own
+# rather than into the three-language canvas above.
+def main_ru(out):
+    global NARROW
+    out = pathlib.Path(out)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "Russian.dc.html").write_text(full_cv("ru", DARK), encoding="utf-8")
+    NARROW = True
+    (out / "RussianMobile.dc.html").write_text(
+        full_cv("ru", DARK, width=390, pad=20), encoding="utf-8")
+    NARROW = False
+    print(" ", out / "Russian.dc.html")
+    print(" ", out / "RussianMobile.dc.html")
+
+
 if __name__ == "__main__":
     import sys
-    main(ts_only="--ts-only" in sys.argv)
+    if "--ru" in sys.argv:
+        main_ru(sys.argv[sys.argv.index("--ru") + 1])
+    else:
+        main(ts_only="--ts-only" in sys.argv)

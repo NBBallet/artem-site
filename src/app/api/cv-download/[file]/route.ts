@@ -19,6 +19,7 @@ const ALLOWED: Record<string, string> = {
   "Artem-Hordieiev-CV-FR.pdf": "Artem-Hordieiev-CV-FR.pdf",
   "Artem-Hordieiev-CV-UK.pdf": "Artem-Hordieiev-CV-UK.pdf",
   "Artem-Hordieiev-CV-EN.pdf": "Artem-Hordieiev-CV-EN.pdf",
+  "Artem-Hordieiev-CV-RU.pdf": "Artem-Hordieiev-CV-RU.pdf",
 };
 
 export const runtime = "nodejs";

@@ -60,6 +60,7 @@ export default function CvActions({
   downloadHref,
   printLabel,
   printHref,
+  printNote,
   backLabel,
   backHref,
 }: {
@@ -67,6 +68,7 @@ export default function CvActions({
   downloadHref: string;
   printLabel?: string;
   printHref?: string;
+  printNote?: { note: string; ios: string };
   backLabel: string;
   backHref: string;
 }) {
@@ -108,12 +110,12 @@ export default function CvActions({
         ← {backLabel}
       </Link>
     </div>
-    {/* French only, like the print button: the printed CV is recto verso,
+    {/* Wherever there is a print button (fr, ru): the printed CV is recto verso,
         the QR code to the online CV is on the back (28.09.2026). */}
-    {printLabel && printHref && (
+    {printLabel && printHref && printNote && (
       <p className="mt-4 text-center text-[13.5px] leading-[1.5] cv-meta">
-        {ios ? "Sur iPhone : touchez le bouton, puis Partager → Imprimer. " : ""}
-        Imprimez en recto verso : le code QR au dos renvoie à ce CV en ligne.
+        {ios ? printNote.ios : ""}
+        {printNote.note}
       </p>
     )}
     </div>

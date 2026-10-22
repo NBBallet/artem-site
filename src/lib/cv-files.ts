@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/i18n";
+import type { CvLocale } from "@/lib/cv-data";
 
 /**
  * The one-page CV — the same short recruiter's format in all three
@@ -16,10 +16,11 @@ import type { Locale } from "@/lib/i18n";
  * also works on iOS Safari — see src/app/api/cv-download/[file]/route.ts for
  * why the HTML `download` attribute alone isn't enough there.
  */
-export const CV_DOWNLOAD: Record<Locale, string> = {
+export const CV_DOWNLOAD: Record<CvLocale, string> = {
   fr: "/api/cv-download/Artem-Hordieiev-CV-FR.pdf",
   en: "/api/cv-download/Artem-Hordieiev-CV-EN.pdf",
   uk: "/api/cv-download/Artem-Hordieiev-CV-UK.pdf",
+  ru: "/api/cv-download/Artem-Hordieiev-CV-RU.pdf",
 };
 
 /**
@@ -37,6 +38,23 @@ export const CV_DOWNLOAD: Record<Locale, string> = {
  * France Travail CV) — rerun it after every change of the CV text.
  * The download stays one page.
  */
-export const CV_PRINT: Partial<Record<Locale, string>> = {
+export const CV_PRINT: Partial<Record<CvLocale, string>> = {
   fr: "/cv/Artem-Hordieiev-CV-FR-recto-verso.pdf",
+  ru: "/cv/Artem-Hordieiev-CV-RU-recto-verso.pdf",
+};
+
+/**
+ * The line under the print button: print it double-sided, the QR is on the
+ * back. Russian (22.10.2026) has the same recto verso as French, its QR
+ * pointing at the private page — CHORÉGRAPHE/_інструменти/канва/cv_зворот.py --ru.
+ */
+export const CV_PRINT_NOTE: Partial<Record<CvLocale, { note: string; ios: string }>> = {
+  fr: {
+    note: "Imprimez en recto verso : le code QR au dos renvoie à ce CV en ligne.",
+    ios: "Sur iPhone : touchez le bouton, puis Partager → Imprimer. ",
+  },
+  ru: {
+    note: "Печатайте с двух сторон: QR-код на обороте ведёт на это резюме.",
+    ios: "На iPhone: нажмите кнопку, затем «Поделиться» → «Напечатать». ",
+  },
 };

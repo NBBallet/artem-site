@@ -4,7 +4,7 @@
 // The CV is structured content, not editable site copy, so it lives in the repo
 // rather than in Notion — no fetch, no empty-default trap (see AGENTS.md).
 
-export type CvLocale = "en" | "uk" | "fr";
+export type CvLocale = "en" | "uk" | "fr" | "ru";
 
 export const cvData = {
   "shared": {
@@ -233,7 +233,7 @@ export const cvData = {
         },
         "france": {
           "title": "FRANCE",
-          "meta": "The ballet ICARE in development, offered for co-production from 2027."
+          "meta": "World premiere of the ballet ICARE planned for the 2027–2028 season."
         }
       }
     },
@@ -280,6 +280,11 @@ export const cvData = {
           "n": "",
           "title": "The field",
           "body": "Constant, parallel work with a method of my own. The phenomenology of the working field and of theatre dramaturgy. My work is to bring the group's phenomenological knowledge onto the stage, into the light."
+        },
+        {
+          "n": "",
+          "title": "The method",
+          "body": "Systemic constellations after Bert Hellinger, since 2013, learned from the inside — to adapt them into a choreographic and dramaturgical tool. My graduation thesis is on it."
         },
         {
           "n": "",
@@ -399,7 +404,8 @@ export const cvData = {
         "Italian and French schools — Kostiantyn Zubach, 2018–2021",
         "Gaga — Erez Zohar and Liliia Burdynska, dancers of Batsheva, 2012",
         "Body and meditative practice — Kyiv and Senegal, 2013–2019",
-        "Contemporary dance and physical theatre — Totem Dance Group, Khrystyna Shyshkarova, 2009–2012"
+        "Contemporary dance and physical theatre — Totem Dance Group, Khrystyna Shyshkarova, 2009–2012",
+        "Systemic constellations after Hellinger — since 2013"
       ]
     },
     "s09": {
@@ -488,7 +494,7 @@ export const cvData = {
         },
         "france": {
           "title": "FRANCE",
-          "meta": "Le ballet ICARE en développement, proposé en coproduction à partir de 2027."
+          "meta": "Création mondiale du ballet ICARE prévue pour la saison 2027–2028."
         }
       }
     },
@@ -518,7 +524,7 @@ export const cvData = {
       "label": "UNE BIOGRAPHIE, SANS CICATRICES CACHÉES",
       "title": "2013–2022 : ce qui a été construit",
       "paras": [
-        "Depuis 2013, Tetiana Hordieieva, chargée de production et de diffusion, et moi construisons notre propre compagnie. Aucun soutien public ne permettait à un chorégraphe de travailler durablement en Ukraine ; nous gagnions donc l'argent là où il était, sur le marché post-soviétique : grandes productions télévisées et événements d'État, auprès des plus grands producteurs de télé-crochets, dont StarLightMedia. En parallèle, je n'ai jamais lâché la pratique — classe quotidienne, pratiques corporelles, méditatives et dansées, technique Gaga, à Kyiv et au Sénégal.",
+        "Depuis 2013, la productrice Tetiana Hordieieva et moi construisons notre propre compagnie. Aucun soutien public ne permettait à un chorégraphe de travailler durablement en Ukraine ; nous gagnions donc l'argent là où il était, sur le marché post-soviétique : grandes productions télévisées et événements d'État, auprès des plus grands producteurs de télé-crochets, dont StarLightMedia. En parallèle, je n'ai jamais lâché la pratique — classe quotidienne, pratiques corporelles, méditatives et dansées, technique Gaga, à Kyiv et au Sénégal.",
         "De ce processus est né le spectacle ANIMA — création à l'Opéra de Kyiv, et mon spectacle de fin d'études. En 2019 nous avions réuni une grande équipe : à Kyiv, la préproduction de la tournée internationale de MOZART 25 et des FOURMIS était achevée. La création et la tournée étaient prêtes à partir.",
         "Le projet a été reporté deux fois. D'abord la pandémie. Puis l'invasion russe à grande échelle. Tetiana, ce qui restait de l'équipe — cinq à huit danseurs — et moi nous sommes retrouvés en Asie centrale, où nous avons travaillé de 2022 à 2026. En mai 2026, nous nous sommes installés en France pour ne plus faire que du ballet et de la production théâtrale."
       ]
@@ -535,6 +541,11 @@ export const cvData = {
           "n": "",
           "title": "Le champ",
           "body": "Un travail constant, en parallèle, avec ma propre méthode. La phénoménologie du champ de travail et de la dramaturgie théâtrale. Mon travail : porter le savoir phénoménologique du groupe sur le plateau, sous les projecteurs."
+        },
+        {
+          "n": "",
+          "title": "La méthode",
+          "body": "Constellations systémiques d'après Bert Hellinger, depuis 2013, apprises de l'intérieur — pour les adapter en outil chorégraphique et dramaturgique. Mon mémoire de fin d'études porte là-dessus."
         },
         {
           "n": "",
@@ -625,7 +636,7 @@ export const cvData = {
       "productions": "Créations",
       "countries": "Tournées",
       "countriesValue": "14+ pays",
-      "producer": "Production et diffusion",
+      "producer": "Productrice",
       "languagesLabel": "Langues",
       "languages": [
         {
@@ -654,7 +665,8 @@ export const cvData = {
         "Écoles italienne et française — Kostiantyn Zoubatch, 2018–2021",
         "Gaga — Erez Zohar et Liliia Bourdynska, danseurs de la Batsheva, 2012",
         "Pratiques corporelles et méditatives — Kyiv et Sénégal, 2013–2019",
-        "Danse contemporaine et théâtre physique — Totem Dance Group, Khrystyna Chychkarova, 2009–2012"
+        "Danse contemporaine et théâtre physique — Totem Dance Group, Khrystyna Chychkarova, 2009–2012",
+        "Constellations systémiques d'après Hellinger — depuis 2013"
       ]
     },
     "s09": {
@@ -668,7 +680,7 @@ export const cvData = {
         "Une résidence ou un laboratoire où la méthode du champ puisse être étendue et éprouvée."
       ],
       "contactLabel": "CONTACT",
-      "producerLabel": "Production et diffusion"
+      "producerLabel": "Productrice"
     }
   },
   "uk": {
@@ -743,7 +755,7 @@ export const cvData = {
         },
         "france": {
           "title": "ФРАНЦІЯ",
-          "meta": "Балет ICARE у розробці, пропонується для спільного виробництва з 2027 року."
+          "meta": "Запланована світова прем'єра балету ICARE в сезоні 2027–2028."
         }
       }
     },
@@ -790,6 +802,11 @@ export const cvData = {
           "n": "",
           "title": "Поле",
           "body": "Постійна, паралельна робота із власним методом. Феноменологія робочого поля й театральної драматургії. Моя робота — витягти феноменологічне знання групи на сцену, під світло софітів."
+        },
+        {
+          "n": "",
+          "title": "Метод",
+          "body": "Системні розстановки за Бертом Гелінгером, з 2013, вивчені зсередини — щоб адаптувати їх у хореографічний і драматургічний інструмент. Про це написана дипломна робота."
         },
         {
           "n": "",
@@ -909,7 +926,8 @@ export const cvData = {
         "Італійська та французька школи — Костянтин Зубач, 2018–2021",
         "Gaga — Ерез Зогар і Лілія Бурдинська, танцівники Batsheva, 2012",
         "Тілесні й медитативні практики — Київ і Сенегал, 2013–2019",
-        "Contemporary й фізичний театр — Totem Dance Group, Христина Шишкарьова, 2009–2012"
+        "Contemporary й фізичний театр — Totem Dance Group, Христина Шишкарьова, 2009–2012",
+        "Системні констеляції за Гелінгером — з 2013"
       ]
     },
     "s09": {
@@ -921,6 +939,267 @@ export const cvData = {
         "Запрошеної хореографії для компанії або оперного театру.",
         "Побудови репертуарної лінії або компанії з нуля.",
         "Резиденцію або лабораторію, де метод робочого поля можна розширити й перевірити."
+      ],
+      "contactLabel": "КОНТАКТ",
+      "producerLabel": "Продюсер"
+    }
+  },
+  "ru": {
+    "docLabel": "ТВОРЧЕСКОЕ РЕЗЮМЕ · 2026",
+    "role": "Хореограф",
+    "base": "",
+    "claim": "Безупречный путь ничего бы вам не сказал.\nМой — американские горки. Именно на них выковались ремесло и стиль.",
+    "downloadBtn": "Распечатать резюме",
+    "onePagerBtn": "Резюме на одну страницу · PDF",
+    "backBtn": "Вернуться на сайт",
+    "printedFrom": "Портфолио работ, видео и постановочные материалы:",
+    "headStats": [
+      {
+        "label": "Гражданство",
+        "value": "Украина"
+      },
+      {
+        "label": "Живу и работаю",
+        "value": "Франция, с 2026 года"
+      },
+      {
+        "label": "В профессии с",
+        "value": "2007"
+      }
+    ],
+    "s01": {
+      "label": "ПОЗИЦИЯ",
+      "title": "Две школы, одно направление",
+      "body": "Меня сформировала украинская творческая школа: структура, сюжет, большие артистические составы, дисциплина масштабных проектов и продакшенов. Параллельно с работой я брал ежедневный класс по методу Вагановой. Остальному научился у нью-йоркских коллег: четыре года ежедневного класса в технике Complexions и Баланчина с педагогами компании Дуайта Родена и Десмонда Ричардсона и роль в «Великом Гэтсби» в хореографии Родена. Мой язык движения стоит на пересечении этих двух школ, и именно эту линию я привожу на французскую сцену: европейская глубина с американским мотором.\nС мая 2026 года я живу во Франции и занимаюсь только одним — балетом."
+    },
+    "s02": {
+      "label": "ТРАЕКТОРИЯ",
+      "title": "2007 → 2026",
+      "axis": "",
+      "note": "",
+      "points": {
+        "tvStart": {
+          "title": "Телевидение в 18",
+          "meta": "Прайм-тайм, прямые эфиры. Параллельно — ежедневный классический урок, Київ."
+        },
+        "munch": {
+          "title": "БАРОН МЮНХГАУЗЕН",
+          "meta": "Первое в Украине 3D-шоу, СТБ. Главная роль, лицо проекта. Премьера 3 декабря 2010 года, показ продлевали трижды, 90 аншлагов. Из того же цикла — топ-8 So You Think You Can Dance."
+        },
+        "litso": {
+          "title": "LITSO Dance Company",
+          "meta": "Основание собственной компании с Татьяной Гордеевой. Параллельно — работа с крупнейшими производителями развлекательных талант-шоу на постсоветском пространстве и телесно-медитативные практики: Київ и Сенегал."
+        },
+        "anima": {
+          "title": "АНИМА",
+          "meta": "Премьера 12 апреля, Київська опера. Дипломная работа, выросшая из исследований в Сенегале и Украине."
+        },
+        "gatsby": {
+          "title": "COMPLEXIONS · «ВЕЛИКИЙ ГЭТСБИ»",
+          "meta": "Четыре года ежедневного класса в технике Complexions и Alvin Ailey. Артист труппы в спектакле Дуайта Родена: Київ, 2014, далее Берлин, Франкфурт, Гамбург, Женева и Париж — Folies Bergère, октябрь 2017."
+        },
+        "tour": {
+          "title": "ПРЕПРОДАКШН МЕЖДУНАРОДНОГО ТУРНЕ",
+          "meta": "«МОЦАРТ 25» и «МУРАВЬИ». Київ, 2019. Всё готово к премьере и гастролям."
+        },
+        "stop": {
+          "title": "Турне оборвано",
+          "meta": "Сначала пандемия, затем полномасштабное вторжение рф."
+        },
+        "asia": {
+          "title": "Центральная Азия",
+          "meta": "Производственно-продюсерская группа с Татьяной Гордеевой и тем, что осталось от команды, — 5–8 танцовщиков."
+        },
+        "dushanbe": {
+          "title": "ДУШАНБЕ · ООН",
+          "meta": "Церемония открытия III Водного форума, 11 июня 2024 года. Правительство Таджикистана совместно с ООН, главы государств в зале."
+        },
+        "france": {
+          "title": "ФРАНЦИЯ",
+          "meta": "Мировая премьера балета ICARE запланирована на сезон 2027–2028."
+        }
+      }
+    },
+    "s03": {
+      "label": "УКРАИНА × США",
+      "title": "Роден · Ричардсон · Complexions",
+      "leftLabel": "ЧТО ЗАЛОЖЕНО В УКРАИНЕ",
+      "left": [
+        "Классическая школа — Ваганова, 2007–2012, ежедневный класс с Игорем Таранущенко, учеником Бориса Брегвадзе; затем класс ведущих солистов Национальной оперы с Сергеем Бондуром.",
+        "Режиссура балета — университет имени Карпенко-Карого, 2011–2015. Оригинальные либретто и постановочные концепции, платформа для хореографических исследований в театральных, кино- и телевизионных форматах.",
+        "Масштаб — государственные церемонии и арены: до 10 000 зрителей, 282 атлета из 30 стран, делегаты более чем из 70 государств."
+      ],
+      "rightLabel": "ЧТО ДАЛА АМЕРИКАНСКАЯ ШКОЛА",
+      "right": [
+        "Техника Complexions, техника Alvin Ailey и метод Баланчина — 2014–2018, ежедневно, с командой Complexions Contemporary Ballet, компании Дуайта Родена и Десмонда Ричардсона.",
+        "«Великий Гэтсби» в хореографии Родена: артист труппы, отобранный на просмотре, который вели Роден и Денис Матвиенко. Мировая премьера — Дворец «Украина», Київ, 2014; Париж, Folies Bergère — октябрь 2017.",
+        "Мышление компании — спектакль строится как самостоятельный продукт, который можно показывать по всему миру. Проект гастролирует до сих пор; свою работу в нём я завершил в 2018 году."
+      ],
+      "meetLabel": "ГДЕ ВСТРЕТИЛИСЬ ЭТИ ДВЕ ШКОЛЫ",
+      "meetTitle": "ВЕЛИКИЙ ГЭТСБИ",
+      "meetBody": "Состав, в котором встретились три школы: звёзды Complexions из Нью-Йорка, премьеры классической школы во главе с Денисом Матвиенко и независимые, тщательно отобранные артисты из Украины. Оригинальная музыка Константина Меладзе. Спектакль стал самым успешным балетом в истории Украины и гастролирует до сих пор.",
+      "europeLabel": "И С ЕВРОПЕЙСКОЙ СТОРОНЫ",
+      "europeTitle": "ЭДВАРД КЛУГ · СЛОВЕНСКИЙ НАЦИОНАЛЬНЫЙ ТЕАТР МАРИБОР",
+      "europeBody": "Артист гастрольных постановок Дениса Матвиенко — звезды мирового балета и единственного в мире обладателя четырёх Гран-при международных балетных конкурсов: «Radio & Juliet» (музыка Radiohead), «Quatro» (номинант «Золотой маски», 2010), «Stabat Mater» (Перголези). Гастроли по Украине и Европе, 2014–2018: Германия, Швейцария, Франция, Бельгия, Великобритания, Хорватия, Словакия, Словения."
+    },
+    "s04": {
+      "label": "БИОГРАФИЯ БЕЗ СКРЫТЫХ ШРАМОВ",
+      "title": "2013–2022: что было построено",
+      "paras": [
+        "С 2013 года мы с продюсером Татьяной Гордеевой строим собственную компанию. Государственной опоры для постоянной работы хореографа в Украине не было, поэтому деньги мы зарабатывали там, где они были на постсоветском рынке: большие телевизионные продакшены и государственные мероприятия, с крупнейшими производителями развлекательных талант-шоу, в том числе со StarLightMedia. Параллельно я не выходил из практики — ежедневный классический урок, телесные, медитативные и танцевальные практики, техника Gaga; Київ и Сенегал.",
+        "Из этого процесса вырос спектакль «АНИМА»: премьера — Київська опера, это моя дипломная работа. К 2019 году мы собрали большую команду и завершили препродакшн международного турне со спектаклями «МОЦАРТ 25» и «МУРАВЬИ» (Київ). Премьера и гастроли были готовы к выпуску.",
+        "Проект переносился дважды. Сначала пандемия. Затем полномасштабное вторжение рф. Мы с Татьяной и тем, что осталось от команды, — пятью-восемью танцовщиками — оказались в Центральной Азии и проработали там с 2022 по 2026 год. В мае 2026 года мы переехали во Францию, чтобы заниматься исключительно балетным и театральным производством."
+      ]
+    },
+    "s05": {
+      "label": "ДВЕ СТРАТЕГИИ И ОДНА ПРАКТИКА",
+      "items": [
+        {
+          "n": "",
+          "title": "Вертикаль",
+          "body": "Девятнадцать лет в самой жёсткой вертикали: прямой эфир, государственные церемонии, арены от десяти тысяч живых зрителей и десятки миллионов у телеэкранов."
+        },
+        {
+          "n": "",
+          "title": "Поле",
+          "body": "Постоянная параллельная работа с собственным методом. Феноменология рабочего поля и театральной драматургии. Моя работа — вывести феноменологическое знание группы на сцену, под свет софитов."
+        },
+        {
+          "n": "",
+          "title": "Метод",
+          "body": "Системные расстановки по Берту Хеллингеру, с 2013 года, изученные изнутри, — чтобы адаптировать их в хореографический и драматургический инструмент. Этому посвящена моя дипломная работа."
+        },
+        {
+          "n": "",
+          "title": "Вместе",
+          "body": "Проект ICARE держит обе стратегии в одном вечере: первая часть — заданная композиционная структура. Вторая рождается из города, его людей и художественной среды. Поверх готовой концепции балета мы разрабатываем именно то, что хочет родиться в вашем городе."
+        }
+      ]
+    },
+    "s06": {
+      "label": "ПРЕДЛАГАЕМЫЙ РЕПЕРТУАР",
+      "title": "Семь работ, прошедших препродакшн",
+      "colWork": "Работа",
+      "colYear": "ГОД НАЧАЛА",
+      "colFormat": "Формат",
+      "colMusic": "Музыка",
+      "colStatus": "Статус",
+      "works": {
+        "ants": {
+          "title": "МУРАВЬИ",
+          "music": "Вивальди · Макс Рихтер · И. С. Бах",
+          "format": "Полнометражный балет в двух действиях",
+          "status": "Доступен для копродукции"
+        },
+        "icare": {
+          "title": "ICARE",
+          "music": "Игорь Маркевич — «L'Envol d'Icare» (1932)",
+          "format": "Одноактный балет · мировая премьера",
+          "status": "Доступен для мировой премьеры"
+        },
+        "mozart": {
+          "title": "МОЦАРТ 25",
+          "music": "В. А. Моцарт",
+          "format": "Одноактный балет",
+          "status": "Доступен для международных сцен"
+        },
+        "carmen": {
+          "title": "КАРМЕН",
+          "music": "Бизе / Щедрин (1967)",
+          "format": "Одноактный балет",
+          "status": "Доступен для международных сцен"
+        },
+        "anima": {
+          "title": "АНИМА",
+          "music": "L'Orchestre de Contrebasses, Марсель",
+          "format": "Одноактный балет · дипломная работа",
+          "status": "Готов к гастролям"
+        },
+        "adios": {
+          "title": "АДЬОС",
+          "music": "Бенджамин Клементин",
+          "format": "Современный квартет",
+          "status": "Готов к показу"
+        },
+        "firebird": {
+          "title": "ЖАР-ПТИЦА",
+          "music": "Игорь Стравинский",
+          "format": "Полнометражный балет · авторская постановочная концепция",
+          "status": "В разработке"
+        }
+      },
+      "icareNote": "ICARE\nИгорь Маркевич написал «L'Envol d'Icare» в 1932 году для Сержа Лифаря. Лифарь отказался: он не смог согласовать собственный ритм с партитурой, а в 1935-м поставил своего «Икара» вовсе без музыки — под ритмы, которые задал сам; ударные дописали уже к готовой хореографии. Партитура Маркевича так и не была воплощена на сцене. Оба — и Маркевич, и Лифарь — родились в городе Київ. Авторская версия — для двух фортепиано и трёх ударных: семь частей, 27 минут. Барток её слышал; считается, что она повлияла на его Сонату для двух фортепиано и ударных.",
+      "tourNote": "«МОЦАРТ 25» и «МУРАВЬИ» прошли препродакшн — Київ, 2019. Премьеру и гастроли отложили пандемия, а затем полномасштабное вторжение рф. Работы остались готовыми к выпуску.",
+      "worksBtn": "Проекты представлены на сайте →"
+    },
+    "s07": {
+      "label": "СОТРУДНИЧЕСТВО · НАГРАДЫ",
+      "collabsTitle": "Избранное сотрудничество",
+      "awardsTitle": "Награды",
+      "collabs": {
+        "matv": "Приглашённый премьер Парижской оперы и Ла Скала — художественный руководитель «Гэтсби», ежедневная работа 2014–2018",
+        "afan": "Продюсер, две премии «Грэмми» — режиссура и хореография телевизионной постановки",
+        "ddb": "Легенда джаза, три «Грэмми» и «Тони» — хореография и концепция гала-концерта, Київ",
+        "meladze": "Композитор и продюсер — хореография и режиссура масштабных проектов Live+TV",
+        "tv": "Телевидение — главный хореограф и режиссёр проектов"
+      },
+      "awards": {
+        "lviv": "1-е место — Международный конкурс балетмейстеров, Львівська національна опера, 17 июля 2015",
+        "sytycd": "Топ-8 сезона — So You Think You Can Dance, Украина",
+        "cup": "Бронза Кубка мира по бальным танцам, латиноамериканская программа · мастер спорта Украины"
+      }
+    },
+    "s08": {
+      "label": "ПРОФИЛЬ",
+      "education": "Образование",
+      "educationValue": "Национальный университет театра, кино и телевидения имени И. К. Карпенко-Карого, Київ, 2011–2015 — бакалавр театрального искусства",
+      "specialty": "Специальность",
+      "specialtyValue": "Режиссура балета · хореография",
+      "productions": "Постановок",
+      "countries": "Гастроли",
+      "countriesValue": "14+ стран",
+      "producer": "Продюсер",
+      "languagesLabel": "Языки",
+      "languages": [
+        {
+          "name": "Украинский",
+          "level": "Родной"
+        },
+        {
+          "name": "Русский",
+          "level": "Свободно"
+        },
+        {
+          "name": "Английский",
+          "level": "Разговорный"
+        },
+        {
+          "name": "Французский",
+          "level": "Базовый — изучаю"
+        }
+      ],
+      "schoolLabel": "Школа",
+      "school": [
+        "Ваганова — Игорь Таранущенко, ученик Бориса Брегвадзе. Київ, 2007–2012",
+        "Класс ведущих солистов Национальной оперы Украины — Сергей Бондур",
+        "Ежедневный класс Дениса Матвиенко — 2014–2018",
+        "Complexions · Alvin Ailey · Баланчин — педагоги Complexions Contemporary Ballet, 2014–2018",
+        "Итальянская и французская школы — Константин Зубач, 2018–2021",
+        "Gaga — Эрез Зохар и Лилия Бурдинская, танцовщики Batsheva, 2012",
+        "Телесные и медитативные практики — Київ и Сенегал, 2013–2019",
+        "Contemporary и физический театр — Totem Dance Group, Кристина Шишкарёва, 2009–2012",
+        "Системные расстановки по Хеллингеру — с 2013 года"
+      ]
+    },
+    "s09": {
+      "label": "ОТКРЫТ К ПЕРЕГОВОРАМ",
+      "title": "Что я ищу во Франции",
+      "items": [
+        "Эксклюзивного партнёра мировой премьеры ICARE.",
+        "Копродукцию «МУРАВЬЁВ» — полнометражный балет в двух действиях.",
+        "Постановку в качестве приглашённого хореографа для компании или оперного театра.",
+        "Создание репертуарной линии или компании с нуля.",
+        "Резиденцию или лабораторию, где метод рабочего поля можно расширить и проверить."
       ],
       "contactLabel": "КОНТАКТ",
       "producerLabel": "Продюсер"
