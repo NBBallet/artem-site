@@ -134,6 +134,9 @@ export default function CvView({ locale }: { locale: CvLocale }) {
   const awardCopy = d.s07.awards as Record<string, string>;
   const claimLines = d.claim.split("\n");
   // the work's name sits on its own line above the note
+  // Sections, or single awards ("awards.<key>"), a locale leaves out —
+  // so far only the private Russian CV (cut on its canvas 22.10.2026).
+  const omit = new Set<string>("omit" in d ? d.omit : []);
   const [icareHead, ...icareRest] = d.s06.icareNote.split("\n");
   const icareBody = icareRest.join(" ");
 
@@ -391,6 +394,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
         </Section>
 
         {/* ── 04 · what this CV does not hide ── */}
+        {!omit.has("s04") && (
         <Section panel>
           <Head className="mb-10 md:mb-12">
             <div className="r-rule mb-6" style={{ height: "2px", background: "var(--cv-gold)" }} />
@@ -399,8 +403,10 @@ export default function CvView({ locale }: { locale: CvLocale }) {
           </Head>
           <Paras text={d.s04.paras.join("\n")} className="r-col" pClassName="cv-p cv-read" />
         </Section>
+        )}
 
         {/* ── 05 · what the detour built ── */}
+        {!omit.has("s05") && (
         <Section>
           <Head className="mb-10 md:mb-12">
             <Label>{d.s05.label}</Label>
@@ -415,6 +421,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
             ))}
           </div>
         </Section>
+        )}
 
         {/* ── 06 · repertoire ── */}
         <Section id="repertoire">
@@ -469,12 +476,18 @@ export default function CvView({ locale }: { locale: CvLocale }) {
             );
           })}
           <div className="cv-note r-col mt-12 pt-6" style={{ borderTop: "2px solid var(--cv-red)" }}>
-            <Label tone="red" small className="mb-3">{icareHead}</Label>
+            {"noteHead" in d.s06 && d.s06.noteHead === "display" ? (
+              <div className="cv-h3 text-[19px] mb-3">{icareHead}</div>
+            ) : (
+              <Label tone="red" small className="mb-3">{icareHead}</Label>
+            )}
             <Paras text={icareBody} pClassName="cv-p cv-read" />
           </div>
+          {d.s06.tourNote && (
           <div className="cv-note r-col mt-8 pt-6" style={{ borderTop: "2px solid var(--cv-gold)" }}>
             <Paras text={d.s06.tourNote} pClassName="cv-p cv-read" />
           </div>
+          )}
           {/* straight into the works section of the site, not the home page top */}
           <div className="cv-screen-only flex justify-center mt-10">
             <Link href={`/${site}#works`} className="cv-btn cv-btn-ghost">
@@ -504,7 +517,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
             </div>
             <div>
               <Label tone="meta" small className="mb-4">{d.s07.awardsTitle}</Label>
-              {cvShared.awards.map((a) => {
+              {cvShared.awards.filter((a) => !omit.has(`awards.${a.key}`)).map((a) => {
                 const link = AWARD_LINK[a.key];
                 const body = (
                   <>
@@ -608,6 +621,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
            travel together — a footer alone on a sheet is not a page. */}
         <div className="cv-tail">
         {/* ── 09 · open for · contact ── */}
+        {!omit.has("s09") && (
         <Section panel>
           <Head className="mb-10 md:mb-12">
             <Label>{d.s09.label}</Label>
@@ -656,6 +670,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
             </div>
           </div>
         </Section>
+        )}
 
         {/* ── document footer (also the last line of the PDF) ── */}
         <footer

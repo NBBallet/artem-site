@@ -264,11 +264,16 @@ def sec_repertoire(L, T):
             f'<div style="font-family:{MONO};font-size:12px;letter-spacing:1.4px;'
             f'text-transform:uppercase;color:{sc};">{e(wd["status"])}</div></div>')
     icare_head, _, icare_body = d["icareNote"].partition("\n")
+    # "noteHead": "display" — the note's title in NAMU, as Artem set it on the RU canvas
+    head_html = (f'<div style="font-family:{DISPLAY};font-size:19px;letter-spacing:0.5px;'
+                 f'color:{T["fg"]};margin-bottom:10px;">{e(icare_head)}</div>'
+                 if d.get("noteHead") == "display" else label(icare_head, T, T["red"], 13, 10))
     note = (f'<div style="margin-top:26px;border-left:2px solid {T["red"]};padding-left:22px;'
-            f'max-width:900px;">{label(icare_head, T, T["red"], 13, 10)}'
-            f'{p(icare_body, T, 17, T["body"], lh=1.7)}</div>'
-            f'<div style="margin-top:16px;border-left:2px solid {T["gold"]};padding-left:22px;'
-            f'max-width:900px;">{p(d["tourNote"], T, 17, T["body"], lh=1.7)}</div>')
+            f'max-width:900px;">{head_html}'
+            f'{p(icare_body, T, 17, T["body"], lh=1.7)}</div>')
+    if d["tourNote"]:
+        note += (f'<div style="margin-top:16px;border-left:2px solid {T["gold"]};padding-left:22px;'
+                 f'max-width:900px;">{p(d["tourNote"], T, 17, T["body"], lh=1.7)}</div>')
     works_link = (f'<a href="{e(S["contact"]["siteUrl"])}/uk#works" '
                   f'style="display:inline-flex;align-items:center;gap:12px;'
                   f'border:1px solid {T["line2"]};color:{T["fg"]};font-family:{MONO};'
@@ -297,6 +302,8 @@ def sec_collabs(L, T):
             f'color:{T["meta"]};">{e(d["collabs"][c["key"]])}</div></div>')
     awards = []
     for a in S["awards"]:
+        if f'awards.{a["key"]}' in L.get("omit", []):
+            continue
         awards.append(
             f'<div style="padding:15px 0;border-top:1px solid {T["line"]};">'
             f'<div style="font-family:{MONO};font-size:13px;letter-spacing:1.6px;'
@@ -510,7 +517,7 @@ SECTIONS = {
 
 def full_cv(loc, T, width=1440, pad=64, screen=True):
     L = COPY[loc]
-    ordered = "".join(SECTIONS[k](L, T) for k in SECTION_ORDER)
+    ordered = "".join(SECTIONS[k](L, T) for k in SECTION_ORDER if k not in L.get("omit", []))
     body = (masthead(L, T, screen)
             + (actions(L, T) if screen else "")
             + ordered + footer(L, T))
