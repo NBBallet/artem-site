@@ -573,3 +573,86 @@
 @media print {
   .cv .cv-award-link { background: none; border-left: none; padding: 16px 0; margin: 0; border-top: 1px solid var(--cv-line); border-radius: 0; }
 }
+
+/* Російська приватна сторінка (/cv-mj9szja) — крупніший кегль і світліший сірий,
+   за канвою 22.10.2026. Лише lang="ru" і лише екран: FR/UA і друк не зачеплено. */
+@media screen {
+  .cv[lang="ru"] { --cv-body: #c9c9c9; --cv-meta: #a6a6a6; }
+  .cv[lang="ru"] .cv-label { font-size: 17px; }
+  .cv[lang="ru"] .cv-label-sm { font-size: 15px; }
+  .cv[lang="ru"] .cv-p, .cv[lang="ru"] .cv-read { font-size: 19px; }
+  .cv[lang="ru"] .cv-read-sm { font-size: 18px; }
+  .cv[lang="ru"] .cv-quote { font-size: clamp(20px, 2.5vw, 26px); }
+  .cv[lang="ru"] .cv-h2 { font-size: clamp(28px, 3.6vw, 38px) !important; }
+  .cv[lang="ru"] .text-\[12px\] { font-size: 14px; }
+  .cv[lang="ru"] .text-\[12\.5px\] { font-size: 14.5px; }
+  .cv[lang="ru"] .text-\[13px\] { font-size: 15px; }
+  .cv[lang="ru"] .text-\[13\.5px\] { font-size: 15.5px; }
+  .cv[lang="ru"] .text-\[14px\] { font-size: 16px; }
+  .cv[lang="ru"] .text-\[14\.5px\] { font-size: 16.5px; }
+  .cv[lang="ru"] .text-\[15px\] { font-size: 17px; }
+  .cv[lang="ru"] .text-\[15\.5px\] { font-size: 17.5px; }
+  .cv[lang="ru"] .text-\[16px\] { font-size: 18px; }
+  .cv[lang="ru"] .text-\[16\.5px\] { font-size: 18.5px; }
+  .cv[lang="ru"] .text-\[17px\] { font-size: 18.5px; }
+  .cv[lang="ru"] .text-\[18px\] { font-size: 19.5px; }
+  .cv[lang="ru"] .text-\[19px\] { font-size: 20px; }
+  .cv[lang="ru"] .text-\[20px\] { font-size: 21px; }
+  .cv[lang="ru"] .text-\[21px\] { font-size: 22px; }
+  .cv[lang="ru"] .text-\[24px\] { font-size: 25px; }
+  .cv[lang="ru"] .text-\[26px\] { font-size: 27px; }
+  .cv[lang="ru"] .text-\[34px\] { font-size: 34px; }
+}
+@media screen and (min-width: 640px) {
+  .cv[lang="ru"] .sm\:text-\[20px\] { font-size: 23px; }
+}
+@media screen and (min-width: 768px) {
+  .cv[lang="ru"] .cv-p, .cv[lang="ru"] .cv-read { font-size: 21px; }
+  .cv[lang="ru"] .cv-read-sm { font-size: 20px; }
+  .cv[lang="ru"] .cv-h2 { font-size: clamp(30px, 3.8vw, 42px) !important; }
+  .cv[lang="ru"] .text-\[12px\] { font-size: 15px; }
+  .cv[lang="ru"] .text-\[12\.5px\] { font-size: 15.5px; }
+  .cv[lang="ru"] .text-\[13px\] { font-size: 16px; }
+  .cv[lang="ru"] .text-\[13\.5px\] { font-size: 16.5px; }
+  .cv[lang="ru"] .text-\[14px\] { font-size: 17px; }
+  .cv[lang="ru"] .text-\[14\.5px\] { font-size: 18px; }
+  .cv[lang="ru"] .text-\[15px\] { font-size: 18px; }
+  .cv[lang="ru"] .text-\[15\.5px\] { font-size: 19px; }
+  .cv[lang="ru"] .text-\[16px\] { font-size: 19px; }
+  .cv[lang="ru"] .text-\[16\.5px\] { font-size: 19.5px; }
+  .cv[lang="ru"] .text-\[17px\] { font-size: 20px; }
+  .cv[lang="ru"] .text-\[18px\] { font-size: 21px; }
+  .cv[lang="ru"] .text-\[19px\] { font-size: 22px; }
+  .cv[lang="ru"] .text-\[20px\] { font-size: 23px; }
+  .cv[lang="ru"] .text-\[21px\] { font-size: 24px; }
+  .cv[lang="ru"] .text-\[24px\] { font-size: 27px; }
+  .cv[lang="ru"] .text-\[26px\] { font-size: 29px; }
+  .cv[lang="ru"] .text-\[34px\] { font-size: 38px; }
+  .cv[lang="ru"] .sm\:text-\[20px\] { font-size: 23px; }
+  .cv[lang="ru"] .md\:text-\[21px\] { font-size: 24px; }
+  .cv[lang="ru"] .md\:text-\[24px\] { font-size: 27px; }
+  .cv[lang="ru"] .md\:text-\[34px\] { font-size: 38px; }
+}
+
+/* RU — рівновага верстки (22.10.2026): заголовки без «вдів», траєкторія без
+   наїзду назв, профіль без діри, шапка телефона в два рядки. Лише екран. */
+@media screen {
+  .cv[lang="ru"] .cv-h2, .cv[lang="ru"] .cv-h3 { text-wrap: balance; }
+  .cv[lang="ru"] .cv-traj-item .cv-h3 { hyphens: auto; overflow-wrap: break-word; }
+}
+@media screen and (max-width: 767px) {
+  .cv[lang="ru"] .cv-masthead > div:first-child > * { font-size: 12px; letter-spacing: 1.4px; white-space: nowrap; }
+  .cv[lang="ru"] .cv-stat > :first-child { font-size: 13px; letter-spacing: 1.5px; text-align: left; white-space: nowrap; }
+}
+@media screen and (min-width: 768px) {
+  .cv[lang="ru"] .cv-collab-row > :first-child { flex-basis: 250px; }
+}
+@media screen and (min-width: 1024px) {
+  .cv[lang="ru"] .cv-wrap { max-width: 1240px; }
+  .cv[lang="ru"] .cv-traj-grid { column-gap: 24px; }
+  .cv[lang="ru"] .cv-traj-item .cv-h3 { font-size: 19px; line-height: 1.2; }
+  .cv[lang="ru"] .cv-traj-item .text-\[15\.5px\] { font-size: 17px; }
+  .cv[lang="ru"] .cv-facts > :first-child { grid-row: span 2; }
+  .cv[lang="ru"] .cv-facts .cv-facts-spacer { display: none; }
+  .cv[lang="ru"] .cv-status-pill { letter-spacing: 1px; }
+}
