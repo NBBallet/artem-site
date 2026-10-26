@@ -637,8 +637,10 @@
 /* RU — рівновага верстки (22.10.2026): заголовки без «вдів», траєкторія без
    наїзду назв, профіль без діри, шапка телефона в два рядки. Лише екран. */
 @media screen {
+  .cv[lang="ru"] { text-wrap-style: pretty; }  /* абзаци без висячого слова, 26.10.2026 */
   .cv[lang="ru"] .cv-h2, .cv[lang="ru"] .cv-h3 { text-wrap: balance; }
   .cv[lang="ru"] .cv-traj-item .cv-h3 { hyphens: auto; overflow-wrap: break-word; }
+  .cv[lang="ru"] .cv-rep-format, .cv[lang="ru"] .cv-rep-music { text-wrap: balance; }
 }
 @media screen and (max-width: 767px) {
   .cv[lang="ru"] .cv-masthead > div:first-child > * { font-size: 12px; letter-spacing: 1.4px; white-space: nowrap; }
