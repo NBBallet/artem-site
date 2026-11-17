@@ -42,7 +42,7 @@ export default async function HomePage({
   // ── Social links — canonical handles (artem_hordieiev) ──
   const instagramUrl = "https://www.instagram.com/artem_hordieiev";
   const threadsUrl   = "https://www.threads.com/@artem_hordieiev";
-  const facebookUrl  = "https://www.facebook.com/ArtemGordeevNB/";
+  const facebookUrl  = "https://www.facebook.com/hordieiev.art";
 
   return (
     <>
