@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, locales, type Locale } from "@/lib/i18n";
 import CvView from "./CvView";
+import { buildMetadata, personJsonLd } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 
 /* The CV is repo-local structured content (src/lib/cv-data.ts, generated from
    design/cv/copy.json) — no Notion fetch, so nothing here can blank out on a
@@ -36,12 +38,18 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return META[hasLocale(lang) ? lang : "en"];
+  const l: Locale = hasLocale(lang) ? lang : "en";
+  return buildMetadata({ lang: l, path: "/cv", ...META[l], type: "profile" });
 }
 
 
 export default async function CvPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
-  return <CvView locale={lang as Locale} />;
+  return (
+    <>
+      <JsonLd data={personJsonLd(lang as Locale)} />
+      <CvView locale={lang as Locale} />
+    </>
+  );
 }

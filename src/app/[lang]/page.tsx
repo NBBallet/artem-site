@@ -7,9 +7,29 @@ import { cvData } from "@/lib/cv-data";
 import { CV_DOWNLOAD } from "@/lib/cv-files";
 import Tryzub from "@/components/Tryzub";
 import ContactSection from "@/components/ContactSection";
+import JsonLd from "@/components/JsonLd";
+import { hasLocale } from "@/lib/i18n";
+import { buildMetadata, personJsonLd } from "@/lib/seo";
+import type { Metadata } from "next";
 
 // Always render fresh from Notion — no stale-while-revalidate confusion
 export const dynamic = "force-dynamic";
+
+/* Тексти — ті самі, що в кореневому layout (до 18.11.2026 їх бачила кожна
+   сторінка); тут додаються canonical, hreflang і мовна OG-картка. */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return buildMetadata({
+    lang: hasLocale(lang) ? lang : "en",
+    path: "",
+    title: "Artem Hordieiev — Choreographer",
+    description: "Ukrainian choreographer. Dance about who we truly are.",
+  });
+}
 
 export default async function HomePage({
   params,
@@ -46,6 +66,7 @@ export default async function HomePage({
 
   return (
     <>
+      <JsonLd data={personJsonLd(locale)} />
       {/* ===== HERO ===== */}
       <section className="relative h-screen flex flex-col items-center justify-center text-center border-b border-[#222] overflow-hidden">
         <Tryzub className="absolute bottom-12 right-8 opacity-[0.06] scale-[0.5] origin-bottom-right hidden md:block" />
