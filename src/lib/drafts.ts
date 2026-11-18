@@ -16,3 +16,25 @@
  */
 export const DRAFT_PROGRAMMER =
   process.env.NEXT_PUBLIC_DRAFT_PROGRAMMER === "1";
+
+/**
+ * Нова сторінка ЖАР-ПТИЦЯ (`/[lang]/works/firebird`) за канвою
+ * `design/firebird/` (https://claude.ai/artifact/5e7RpHVRyFnnC5zbW4tYeU,
+ * версія ≈70, 18.11.2026). Замінює стару сторінку з кнопкою на surge.
+ *
+ * Поки ця константа є, у продакшені на `works/firebird` лишається СТАРА
+ * сторінка (FirebirdPage у works/[slug]/page.tsx) без змін, а сам шлях
+ * не потрапляє ні в sitemap.xml, ні в llms.txt (draftPaths() у seo.ts).
+ * Нова відкривається:
+ *   - локально:  NEXT_PUBLIC_DRAFT_FIREBIRD=1 npm run dev
+ *   - на preview-збірках Vercel (VERCEL_ENV=preview, next.config.ts), щоб
+ *     Артем переглянув її за посиланням preview. На production-збірці
+ *     VERCEL_ENV=production, тож там прапорець вимкнений.
+ *
+ * Реліз — лише окремим словом Артема після перегляду preview: прибрати цю
+ * константу й стару FirebirdPage, у WorkPage віддавати FirebirdLanding
+ * безумовно. Після релізу — редірект firebird-hordieiev.surge.sh на сайт.
+ */
+export const DRAFT_FIREBIRD =
+  process.env.NEXT_PUBLIC_DRAFT_FIREBIRD === "1" ||
+  process.env.NEXT_PUBLIC_SITE_ENV === "preview";

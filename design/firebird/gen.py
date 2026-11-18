@@ -950,6 +950,49 @@ def write_all():
     idx_f.write_text(json.dumps(idx, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
+SITE_ART = HERE.parent.parent / "src" / "components" / "firebird" / "art.ts"
+
+
+def export_site():
+    """Ті самі мотиви, що на канві, — для коду сторінки на сайті.
+
+    Пише src/components/firebird/art.ts: для кожного мотиву viewBox і вміст <svg>
+    (без зовнішнього тега — розмір і позицію задає React-компонент). Сіди й розміри
+    ті самі, що в page() / mobile_page(), тож аркуші, гранати, арки, силует і тканини
+    збігаються з канвою. Тексту в SVG немає.
+    """
+    def split(svg):
+        m = re.match(r'<svg viewBox="([^"]+)"[^>]*>(.*)</svg>$', svg, re.S)
+        return {"viewBox": m.group(1), "inner": m.group(2)}
+
+    arch_cols = [(CREAM, LIME_D, GOLD_D), (GRANAT, GOLD, None), (AMBER, CREAM, None), (BROCADE, LIME_L, None)]
+    art = {
+        # аркуші партитури: (x, y, w, h, rot, seed) як у page() / mobile_page()
+        "sheetHero1": split(score_sheet(0, 0, 190, 250, -6, 1)),
+        "sheetHero2": split(score_sheet(0, 0, 160, 214, 5, 2)),
+        "sheetHero3": split(score_sheet(0, 0, 200, 150, -3, 3)),
+        "sheetMobile": split(score_sheet(0, 0, 58, 78, 6, 2)),
+        "sheetWork1": split(score_sheet(0, 0, 220, 300, 4, 7)),
+        "sheetWork2": split(score_sheet(0, 0, 160, 214, -5, 8)),
+        "pomegranate": split(pomegranate(0, 0, 26, 0)),
+        "arches": [split(arch(292, 380, f, inner, halo)) for f, inner, halo in arch_cols],
+        "birdShadow": split(bird_shadow(800, 460)),
+        "swatches": [split(swatch(i, 240, 170)) for i in range(5)],
+    }
+    SITE_ART.parent.mkdir(parents=True, exist_ok=True)
+    SITE_ART.write_text(
+        "/* ЗГЕНЕРОВАНО design/firebird/gen.py --site — не правити руками.\n"
+        "   Мотиви нової сторінки ЖАР-ПТИЦЯ, ті самі, що на канві. */\n"
+        "export type Art = { viewBox: string; inner: string };\n\n"
+        + "".join(f"export const {k}: {'Art[]' if isinstance(v, list) else 'Art'} = "
+                  f"{json.dumps(v, ensure_ascii=False)};\n\n" for k, v in art.items()),
+        encoding="utf-8")
+    print("сайт:", SITE_ART)
+
+
 if __name__ == "__main__":
+    if "--site" in sys.argv:
+        export_site()
+        sys.exit(0)
     write_all()
     print("артборди:", ", ".join(BOARDS), "→", OUT)

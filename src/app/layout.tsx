@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import { SITE_URL } from "@/lib/seo";
 
@@ -19,13 +20,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Мова з адреси (src/proxy.ts): /uk/… → "uk", /fr/… → "fr"; решта — "en".
+  const lang = (await headers()).get("x-site-lang") ?? "en";
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang={lang} className="h-full antialiased">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"

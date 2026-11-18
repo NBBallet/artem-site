@@ -18,9 +18,11 @@
 import type { Metadata } from "next";
 import { locales, defaultLocale, type Locale } from "@/lib/i18n";
 import { works, type Work } from "@/lib/works";
-import { DRAFT_PROGRAMMER } from "@/lib/drafts";
+import { DRAFT_PROGRAMMER, DRAFT_FIREBIRD } from "@/lib/drafts";
 
-export const SITE_URL = "https://hordieiev.art";
+/* www — бо hordieiev.art віддає 307 на https://www.hordieiev.art (Vercel):
+   canonical, hreflang і sitemap мусять вести на адресу, що відповідає 200. */
+export const SITE_URL = "https://www.hordieiev.art";
 export const SITE_NAME = "Artem Hordieiev";
 export const DEFAULT_OG_IMAGE = "/images/website-og-1200x630.png";
 
@@ -59,6 +61,9 @@ export function localeAlternates(lang: Locale, path: string = "") {
 export function draftPaths(): string[] {
   const hidden: string[] = [];
   if (!DRAFT_PROGRAMMER) hidden.push("/programmer");
+  // Нова Жар-Птиця за прапорцем: поки не випущена, шляху немає в sitemap/llms.txt
+  // (рішення Артема 18.11.2026), хоч на проді й стоїть стара сторінка.
+  if (!DRAFT_FIREBIRD) hidden.push("/works/firebird");
   return hidden;
 }
 

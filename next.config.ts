@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Середовище Vercel для прапорців чернеток (src/lib/drafts.ts): на preview-
+  // збірці чернетка видна за посиланням preview, на production — ні.
+  env: {
+    NEXT_PUBLIC_SITE_ENV: process.env.VERCEL_ENV ?? "",
+  },
   images: {
     unoptimized: true,
     remotePatterns: [{ protocol: "https", hostname: "**" }],

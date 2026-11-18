@@ -7,8 +7,11 @@ import JsonLd from "@/components/JsonLd";
 
 /* The CV is repo-local structured content (src/lib/cv-data.ts, generated from
    design/cv/copy.json) — no Notion fetch, so nothing here can blank out on a
-   rate-limited request the way Notion-backed fields can. See AGENTS.md. */
-export const dynamic = "force-static";
+   rate-limited request the way Notion-backed fields can. See AGENTS.md.
+   Not force-static since 18.11.2026: the root layout reads the page language
+   from the request (src/proxy.ts → <html lang>), and a force-static page
+   would be prerendered without it, i.e. as lang="en" in all three languages.
+   The content is the same; it is just rendered per request. */
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));

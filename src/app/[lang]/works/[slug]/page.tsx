@@ -13,9 +13,29 @@ import DownloadButton from "@/components/DownloadButton";
 import IcareImage from "@/components/IcareImage";
 import { getSiteSettings } from "@/lib/settings";
 import { firebirdData } from "@/lib/firebird-data";
+import type { Metadata } from "next";
+import FirebirdLanding from "@/components/firebird/FirebirdLanding";
+import { firebirdMetadata, firebirdJsonLd } from "@/components/firebird/seo";
+import JsonLd from "@/components/JsonLd";
+import { DRAFT_FIREBIRD } from "@/lib/drafts";
 
 // Always render fresh from Notion — no stale-while-revalidate confusion
 export const dynamic = "force-dynamic";
+
+/* Метадані сторінок творів. Поки що окремі — лише в нової Жар-Птиці
+   (за прапорцем, @/lib/drafts); решта бере title/description з кореневого
+   layout, як і до 18.11.2026. Без прапорця (продакшен) нічого не змінюється. */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string; slug: string }>;
+}): Promise<Metadata> {
+  const { lang, slug } = await params;
+  if (slug === "firebird" && DRAFT_FIREBIRD && locales.includes(lang as Locale)) {
+    return firebirdMetadata(lang as Locale);
+  }
+  return {};
+}
 
 export function generateStaticParams() {
   return locales.flatMap((lang) =>
@@ -1757,6 +1777,16 @@ export default async function WorkPage({
   }
 
   if (slug === "firebird") {
+    /* Нова сторінка Жар-Птиці — чернетка до релізу (@/lib/drafts): у
+       продакшені (без прапорця) лишається стара FirebirdPage з кнопкою на surge. */
+    if (DRAFT_FIREBIRD) {
+      return (
+        <>
+          <JsonLd data={firebirdJsonLd(locale)} />
+          <FirebirdLanding locale={locale} />
+        </>
+      );
+    }
     return <FirebirdPage work={work} locale={locale} t={t} />;
   }
 
