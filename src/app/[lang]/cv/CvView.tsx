@@ -291,7 +291,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
                         className="w-full h-full border-0"
                       />
                     </div>
-                    <figcaption className="r-col mt-5 px-5">
+                    <figcaption className="mt-5 px-5 md:px-8 w-full">
                       <div className="cv-mono text-[12px] tracking-[1.8px] uppercase cv-gold mb-2">{d.s01.video.label}</div>
                       <p className="text-[15.5px] leading-[1.6] cv-body-c">{d.s01.video.caption}</p>
                     </figcaption>
