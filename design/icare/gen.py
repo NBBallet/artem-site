@@ -305,7 +305,8 @@ def page(loc, name):
     eras = [
         ("1929–30", "tl-1929.webp", "opacity: .26; filter: grayscale(1) contrast(1.1);", c["era_1929"], "card"),
         ("1932", "tl-1932.webp", "opacity: .42; filter: invert(1) grayscale(1) contrast(1.15);", c["era_1932"], "card"),
-        ("1933", "tl-1933.webp", "opacity: .28; filter: grayscale(1) contrast(1.1);", c["era_1933"], "card"),
+        # 1933: власне фото (Mozart 25, стрибок) замість Roger Pic — рішення Артема 18.11
+        ("1933", "tl-1933-mozart25.webp", "opacity: .34; filter: grayscale(1) contrast(1.1);", c["era_1933"], "card"),
         ("2026", None, "", c["era_2026"], "blue"),
         (c["era_2029_year"], None, "", c["era_2029"], "anchor"),
     ]
@@ -480,13 +481,12 @@ def questions():
         f'<main style="width: 1000px; box-sizing: border-box; padding: 64px; background: {BG}; color: {FG}; font-family: {SANS};">'
         + label("Перед кодом · чернетка за прапорцем drafts.ts", mb=18)
         + f'<h1 style="margin: 0 0 20px; font-family: {DISPLAY}; font-weight: 400; font-size: 44px; line-height: 1.05; color: {FG};">Що вирішити на цій канві</h1>'
-        + p("Ваші правки на UA від 18.11 внесено; FR і EN перекладено під них. Три питання з шести закрито самими правками — "
-            "вони внизу, з вашою відповіддю. Відкриті — одразу нижче: відповідайте просто в тексті, у дужках.",
+        + p(C["questions"]["intro"],
             mb=32, width="72ch")
-        + label(f"Відкриті · {len(Q['open'])}", mb=14)
-        + "".join(item(n, t, b) for n, t, b in Q["open"])
-        + f'<div style="height: 40px;"></div>'
-        + label(f"Закрито вашими правками · {len(Q['closed'])}", color=META, mb=14)
+        + ((label(f"Відкриті · {len(Q['open'])}", mb=14)
+            + "".join(item(n, t, b) for n, t, b in Q["open"])
+            + f'<div style="height: 40px;"></div>') if Q["open"] else "")
+        + label(f"Закрито · {len(Q['closed'])} з 6 · ваші відповіді", color=META, mb=14)
         + "".join(item(n, t, b, answer=True) for n, t, b in Q["closed"])
         + '</main>'
     )
