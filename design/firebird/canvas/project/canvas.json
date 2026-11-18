@@ -1,5 +1,6 @@
 {
  "v": 3,
+ "attachments": {},
  "createdOnFiles": {
   "v": 1,
   "at": "2026-11-18T17:40:00Z"
@@ -37,13 +38,37 @@
    "w": 1440,
    "h": 7523,
    "title": "EN · /en/works/firebird"
+  },
+  "Mobile.dc.html": {
+   "x": 1120,
+   "y": 7707,
+   "title": "UA · телефон 390 · правити тут",
+   "w": 390,
+   "h": 9377
+  },
+  "MobileFR.dc.html": {
+   "x": 1590,
+   "y": 7707,
+   "title": "FR · телефон 390",
+   "w": 390,
+   "h": 9584
+  },
+  "MobileEN.dc.html": {
+   "x": 2060,
+   "y": 7707,
+   "title": "EN · телефон 390",
+   "w": 390,
+   "h": 9242
   }
  },
  "order": [
   "Main.dc.html",
   "Questions.dc.html",
   "French.dc.html",
-  "English.dc.html"
+  "English.dc.html",
+  "Mobile.dc.html",
+  "MobileFR.dc.html",
+  "MobileEN.dc.html"
  ],
  "notes": {
   "brief": {

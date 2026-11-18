@@ -50,6 +50,9 @@ MONO = "'JetBrains Mono', ui-monospace, Menlo, monospace"
 SANS = "Inter, -apple-system, system-ui, sans-serif"
 W = 1440
 PAD = 80
+MW = 390      # телефон: ширина артборда
+MP = 16       # поля телефона: кадри й картки на всю ширину мінус 16 px
+MC = MW - 2 * MP
 
 
 def e(s):
@@ -85,9 +88,13 @@ def head(lang, title):
 """
 
 
+def board_w(name):
+    return 1000 if name == "Questions" else MW if name.startswith("Mobile") else W
+
+
 def foot(name):
     h = HEIGHTS.get(name, 3000)
-    props = json.dumps({"$preview": {"width": W if name != "Questions" else 1000, "height": h}})
+    props = json.dumps({"$preview": {"width": board_w(name), "height": h}})
     return f"""</x-dc>
 <script type="text/x-dc" data-dc-script data-props='{props}'>
 class Component extends DCLogic {{
@@ -237,7 +244,7 @@ def arch(w, h, fill, inner, halo=None):
             + halo_svg + '</svg>')
 
 
-def bird_shadow(w, h):
+def bird_shadow(w, h, pos="right: 40px; top: 30px;"):
     """Тіньовий театр: чорний силует Жар-Птиці з довгим хвостом на бурштині."""
     tail = []
     for k, (dy, sw) in enumerate(((0, 9), (26, 7), (-22, 6), (48, 4.5), (-44, 4), (70, 3))):
@@ -245,7 +252,7 @@ def bird_shadow(w, h):
                     f'S 690 {210 + dy * 2.4} 760 {250 + dy * 2.6}" stroke-width="{sw}"></path>')
         tail.append(f'<circle cx="{760}" cy="{250 + dy * 2.6:.0f}" r="{sw * 1.6:.1f}" fill="#000" stroke="none"></circle>')
     return (f'<svg viewBox="0 0 800 460" width="{w}" height="{h}" aria-hidden="true" '
-            f'style="position: absolute; right: 40px; top: 30px; pointer-events: none;">'
+            f'style="position: absolute; {pos} pointer-events: none;">'
             f'<g fill="none" stroke="#000" stroke-linecap="round">{"".join(tail)}</g>'
             # тіло, шия, голова з чубом, дзьоб
             f'<path d="M150 250 C 170 200 240 190 310 228 C 280 262 220 286 170 280 Z" fill="#000"></path>'
@@ -507,6 +514,214 @@ def page(loc, name):
     return head(lang, f"Firebird — {loc.upper()}"), body, foot(name)
 
 
+# ── телефон 390 px: ті самі секції в один стовпчик ─────────────────────────
+def mbutton(text, href, w=MC):
+    """«Отримати досьє» на телефоні: червона, на всю ширину, 60 px заввишки."""
+    return (f'<a href="{e(href)}" style="display: flex; align-items: center; justify-content: center; gap: 12px; '
+            f'width: {w}px; min-height: 60px; box-sizing: border-box; padding: 0 16px; font-family: {MONO}; font-size: 15px; '
+            f'font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-align: center; border-radius: 2px; '
+            f'background: {RED}; color: #FFFFFF; border: 2px solid {RED}; box-shadow: 0 5px 0 rgba(0, 0, 0, .28);">'
+            f'{e(text)} <span aria-hidden="true">→</span></a>')
+
+
+def mlabel(t, color, rule):
+    """Мітка секції по центру, під нею коротка риска (як золота риска десктопа)."""
+    return (mono(e(t), color=color, size=12, ls=2.2, mb=14)
+            + f'<span style="display: block; width: 64px; height: 1px; background: {rule}; margin: 0 auto;"></span>')
+
+
+def at(x, y, inner, side="top"):
+    """Обгортка для мотиву, прив'язаного до низу секції (side='bottom')."""
+    return f'<div style="position: absolute; left: {x}px; {side}: {y}px; width: 0; height: 0;">{inner}</div>'
+
+
+def mobile_page(loc, name):
+    c = C[loc]
+    lang = loc
+    L = loc
+    CT = "text-align: center;"
+    ctr = lambda inner: f'<div style="{CT}">{inner}</div>'
+
+    nav = (
+        f'<header style="padding: 18px {MP}px 16px; background: {FRAME}; border-bottom: 1px solid #1f1e1c; {CT}">'
+        f'<div style="font-family: {DISPLAY}; font-size: 20px; color: {CREAM}; letter-spacing: .02em; margin-bottom: 14px;">ARTEM HORDIEIEV</div>'
+        f'<nav style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px 16px; font-family: {MONO}; '
+        f'font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: #9a9a9a;">'
+        + "".join(f'<span>{e(t)}</span>' for t in c["nav"][:2])
+        + f'<span style="background: {RED}; color: #fff; padding: 6px 10px; border-radius: 2px;">{e(c["nav"][2])}</span>'
+        f'<span>{e(c["nav"][3])}</span>'
+        f'<span style="color: #8a8a8a;">' + " · ".join(
+            f'<b style="color: {CREAM}; font-weight: 500;">{l}</b>' if l.lower() == ("ua" if loc == "uk" else loc) else l
+            for l in ("UA", "FR", "EN")) + '</span></nav></header>'
+    )
+
+    hero = (
+        f'<section style="position: relative; overflow: hidden; padding: 30px {MP}px 92px; {wall_bg()}">'
+        + grain(MW, 1600, f"mhero{loc}", opacity=.28)
+        + score_sheet(318, 8, 58, 78, 6, 2)
+        + at(6, 40, pomegranate(0, 0, 15, -12), "bottom") + at(50, 28, pomegranate(0, 0, 11, 20), "bottom")
+        + at(318, 34, pomegranate(0, 0, 13, 8), "bottom")
+        + f'<div style="position: relative; {CT}">'
+        + f'<a href="https://www.hordieiev.art/{L}/works" style="display: inline-block; font-family: {MONO}; font-size: 12px; '
+          f'letter-spacing: 1.6px; text-transform: uppercase; color: {RED}; margin-bottom: 40px;">{e(c["back"])}</a>'
+        + mono(e(c["hero_meta"]), color=GRANAT_D, size=12, ls=2, mb=16)
+        + display(c["title"], 54, GRANAT, mb=16, tag="h1", lh=1)
+        + mono(e(c["subtitle"]) + qtag(loc, "③"), color=GRANAT_D, size=12, ls=1.8, mb=28)
+        + frame43(MC, "roerich-mother.webp", c["hero_caption"], grain_uid=f"mhf{loc}")
+        + f'<div style="margin: 12px 0 30px;">{mono(e(c["hero_caption"]) + qtag(loc, "①"), color=GRANAT_D, size=10, ls=1.2)}</div>'
+        + p(c["hero_lead"], color="#000", size=18, lh=1.55, mb=30, width="none")
+        + mbutton(c["cta"], mailto("Firebird — " + c["cta"]))
+        + f'<div style="margin-top: 14px;">{mono(e(c["cta_note"]), color=GRANAT_D, size=11, ls=1.4)}</div>'
+        + '</div></section>'
+    )
+
+    concept = (
+        f'<section style="position: relative; padding: 72px {MP + 8}px 68px; background: {FRAME}; {CT}">'
+        + f'<div style="margin-bottom: 26px;">{mlabel(c["concept_label"], GOLD, GOLD)}</div>'
+        + display(c["concept_title"], 34, CREAM, mb=18, lh=1.05)
+        + p(c["concept_tagline"], color=AMBER, size=20, lh=1.4, mb=36, width="none", italic=True)
+        + f'<div style="text-align: left;">'
+        + "".join(p(t, color=CREAM_T, size=16, lh=1.65, mb=20, width="none") for t in c["concept_p"])
+        + '</div></section>'
+    )
+
+    arch_cols = [(CREAM, LIME_D, GRANAT_D, GOLD_D), (GRANAT, GOLD, CREAM, None),
+                 (AMBER, CREAM, "#000", None), (BROCADE, LIME_L, CREAM, None)]
+    aw, ah = (MC - 14) // 2, 228
+    figures = "".join(
+        f'<div style="width: {aw}px;">'
+        + f'<div style="position: relative; width: {aw}px; height: {ah}px;">'
+        + arch(aw, ah, f, inner, halo)
+        + f'<div style="position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; font-family: {DISPLAY}; '
+          f'font-size: 17px; line-height: 1.1; text-transform: uppercase; color: {nc}; padding: 0 16px;">{e(nm)}</div>'
+        + '</div>'
+        + f'<div style="margin-top: 14px; {CT}">{p(tx, color=INK, size=14, lh=1.55, width="none")}</div>'
+        + '</div>'
+        for (nm, tx), (f, inner, nc, halo) in zip(c["chars"], arch_cols))
+    chars = (
+        f'<section style="position: relative; overflow: hidden; padding: 64px {MP}px 60px; {wall_bg()}">'
+        + grain(MW, 1400, f"mch{loc}", opacity=.26)
+        + ctr(mono(e(c["chars_label"]), color=GRANAT, size=12, ls=2.2, mb=34))
+        + f'<div style="display: grid; grid-template-columns: repeat(2, {aw}px); gap: 34px 14px;">{figures}</div>'
+        + '</section>'
+    )
+
+    bw = MC
+    bh = round(bw * 460 / 800)
+    quote = (
+        f'<section style="position: relative; overflow: hidden; padding: {bh + 28}px {MP + 8}px 56px; '
+        f'background: radial-gradient(ellipse 90% 70% at 50% 30%, {AMBER} 0%, {AMBER_D} 100%); {CT}">'
+        + grain(MW, 900, f"mq{loc}", opacity=.3)
+        + bird_shadow(bw, bh, pos=f"left: {MP}px; top: 24px;")
+        + f'<figure style="position: relative; margin: 0;">'
+        + f'<blockquote style="margin: 0; font-family: {SANS}; font-size: 20px; line-height: 1.5; font-style: italic; '
+          f'color: #000; text-wrap: pretty;">{e(c["quote"])}</blockquote>'
+        + f'<figcaption style="margin-top: 18px;">{mono(e(c["quote_cite"]), color="#000", size=11, ls=2)}</figcaption>'
+        + '</figure></section>'
+    )
+
+    imgs = ["roerich-mother.webp", "lissitzky-wedge.webp", "roerich-himalayas.webp"]
+    scenes = "".join(
+        f'<div style="margin-top: {0 if i == 0 else 52}px; {CT}">'
+        + frame43(MC, img, cap, grain_uid=f"ms{i}{loc}")
+        + f'<div style="margin-top: 10px;">{mono(e(cap), color=GRANAT_D, size=10, ls=1, upper=False)}</div>'
+        + f'<div style="font-family: {DISPLAY}; font-size: 38px; line-height: 1; color: {GRANAT}; margin: 24px 0 8px;">{rn}</div>'
+        + display(tt, 24, GRANAT_D, mb=12, tag="h3", lh=1.1)
+        + p(tx, color=INK, size=15, lh=1.6, width="none")
+        + '</div>'
+        for i, ((rn, tt, tx, cap), img) in enumerate(zip(c["scenes"], imgs)))
+    visual = (
+        f'<section style="position: relative; overflow: hidden; padding: 64px {MP}px 64px; {wall_bg()}">'
+        + grain(MW, 3200, f"mvu{loc}", opacity=.26)
+        + ctr(mono(e(c["visual_label"]) + qtag(loc, "①"), color=GRANAT, size=12, ls=2.2, mb=16))
+        + ctr(display(c["visual_sub"], 30, GRANAT_D, mb=40, lh=1.05))
+        + scenes
+        + '</section>'
+    )
+
+    sw_w, sw_h = (MC - 14) // 2, 120
+    cos = "".join(
+        f'<div style="width: {sw_w}px; {CT}">' + swatch(i, sw_w, sw_h)
+        + f'<div style="margin-top: 14px;">{display(nm, 18, CREAM, mb=8, tag="h3", lh=1.1)}</div>'
+        + p(tx, color=CREAM_T, size=14, lh=1.55, width="none") + '</div>'
+        for i, (nm, tx) in enumerate(c["costumes"]))
+    costumes = (
+        f'<section style="position: relative; padding: 64px {MP}px 64px; background: {FRAME};">'
+        + f'<div style="margin-bottom: 34px; {CT}">{mlabel(c["costumes_label"], GOLD, GOLD)}</div>'
+        + f'<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 34px 14px;">{cos}</div>'
+        + '</section>'
+    )
+
+    fw, fh = MC, round(MC * 3 / 4)
+    work = (
+        f'<section style="position: relative; overflow: hidden; padding: 64px {MP}px 72px; {wall_bg()}">'
+        + grain(MW, 1400, f"mwk{loc}", opacity=.26)
+        + ctr(mono(e(c["work_label"]), color=GRANAT, size=12, ls=2.2, mb=24))
+        + f'<a href="{e(SH["yt_work"])}" style="position: relative; display: block; width: {fw}px; height: {fh}px; background: {FRAME}; overflow: hidden;">'
+        + f'<img src="{BLOB["work-sample.webp"]}" alt="" style="position: absolute; left: 0; top: 0; width: {fw}px; height: {fh}px; object-fit: contain; display: block;">'
+        + grain(fw, fh, f"mwf{loc}", opacity=.14, blend="screen", freq=1.1)
+        + f'<span style="position: absolute; left: 16px; top: {fh - 72}px;">{play(56)}</span></a>'
+        + f'<div style="margin-top: 12px; margin-bottom: 40px; {CT}">{mono(e(c["work_cite"]), color=GRANAT_D, size=11, ls=1.2, upper=False)}</div>'
+        # референс NYCB — та сама крем-картка, що на десктопі, у стовпчик: ▶ над назвою
+        + f'<a href="{e(SH["yt_ref"])}" style="display: block; width: {MC - 6}px; box-sizing: border-box; padding: 30px 22px 32px; '
+          f'background: {CREAM}; border: 3px solid {FRAME}; box-shadow: 6px 6px 0 {GRANAT}; {CT}">'
+        + f'<span style="display: flex; justify-content: center; margin-bottom: 22px;">{play(84)}</span>'
+        + f'<span style="display: block; margin-bottom: 12px;">{mono(e(c["ref_label"]), color=GRANAT, size=12, ls=2)}</span>'
+        + f'<span style="display: block; font-family: {DISPLAY}; font-size: 28px; line-height: 1.1; color: #000;">{e(c["ref_title"])}</span>'
+        + '</a>'
+        + '</section>'
+    )
+
+    team = (
+        f'<section style="position: relative; padding: 64px {MP + 8}px 64px; background: {FRAME};">'
+        + f'<div style="margin-bottom: 36px; {CT}">{mlabel(c["team_label"], GOLD, GOLD)}</div>'
+        + f'<div style="{CT}">' + display(c["artem_name"], 32, CREAM, mb=10, tag="h3", lh=1.05)
+        + mono(e(c["artem_role"]), color=GOLD, size=11, ls=1.8, mb=22) + '</div>'
+        + p(c["artem_p"][0], color=CREAM_T, size=16, lh=1.65, mb=16, width="none")
+        + p(c["artem_p"][1], color=CREAM_T, size=16, lh=1.65, mb=20, width="none")
+        + f'<div style="{CT} margin-bottom: 52px;"><a href="https://www.hordieiev.art/{L}/cv" style="font-family: {MONO}; font-size: 12px; letter-spacing: 1.8px; '
+          f'text-transform: uppercase; color: {PINK};">{e(c["cv_link"])}</a></div>'
+        + f'<div style="{CT}">' + display(c["tetiana_name"], 32, CREAM, mb=10, tag="h3", lh=1.05)
+        + mono(e(c["tetiana_role"]) + qtag(loc, "④", color=GOLD), color=GOLD, size=11, ls=1.8, mb=22) + '</div>'
+        + p(c["tetiana_p"], color=CREAM_T, size=16, lh=1.65, width="none")
+        + '</section>'
+    )
+
+    staging = (
+        f'<section style="position: relative; padding: 24px {MP}px 64px; background: {FRAME};">'
+        + f'<div style="position: relative; background: {GRANAT}; padding: 40px 22px 0; {CT}">'
+        + mono(e(c["staging_label"]), color=GOLD, size=12, ls=2.2, mb=18)
+        + display(c["staging_title"], 32, CREAM, mb=20, lh=1.05)
+        + p(c["staging_p"], color=CREAM, size=16, lh=1.6, mb=32, width="none")
+        + f'<div style="background: {CREAM}; margin: 0 -22px; padding: 24px 16px 26px;">'
+        + mbutton(c["cta"], mailto("Firebird — " + c["cta"]), w=MC - 32)
+        + f'<div style="margin-top: 14px;">{mono(e(c["staging_note"]), color=GRANAT_D, size=11, ls=1.4)}</div>'
+        + '</div></div>'
+        + f'<div style="padding-top: 56px; {CT}">'
+        + mono(e(c["contact_label"]), color=GOLD, size=12, ls=2.2, mb=18)
+        + f'<div style="font-family: {SANS}; font-size: 17px; color: {CREAM}; margin-bottom: 20px;">{e(c["contact_name"])}</div>'
+        + f'<a href="mailto:{SH["email"]}" style="display: block; font-family: {DISPLAY}; font-size: 28px; color: {CREAM}; margin-bottom: 14px;">{SH["email"]}</a>'
+        + f'<a href="tel:{SH["phone"].replace(" ", "")}" style="display: block; font-family: {SANS}; font-size: 18px; color: {CREAM}; margin-bottom: 14px;">{SH["phone"]}</a>'
+        + f'<a href="{SH["whatsapp"]}" style="display: block; font-family: {MONO}; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: {PINK};">WhatsApp ↗</a>'
+        + '</div></section>'
+    )
+
+    footer = (
+        f'<footer style="position: relative; padding: 32px {MP + 8}px 40px; background: {FRAME}; border-top: 1px solid #1f1e1c; {CT}">'
+        + mono(works(c["join"]), color=CREAM_T, size=11, ls=1.2, mb=22, upper=True)
+        + mono(e(c["copyright"]), color="#8a8a8a", size=10, ls=1.2, mb=10)
+        + f'<a href="https://www.hordieiev.art/{L}" style="display: block; font-family: {MONO}; font-size: 11px; letter-spacing: 1.6px; color: {PINK}; margin-bottom: 18px;">hordieiev.art</a>'
+        + f'<div style="font-family: {MONO}; font-size: 10px; letter-spacing: .4px; line-height: 1.6; color: #6f6a64;">'
+          f'{e(c["credits_label"])}: {e(SH["credits"])}</div>'
+        + '</footer>'
+    )
+
+    body = (f'<main style="width: {MW}px; overflow: hidden; background: {FRAME}; color: {CREAM}; font-family: {SANS}; '
+            f'-webkit-font-smoothing: antialiased;">' + nav + hero + concept + chars + quote + visual
+            + costumes + work + team + staging + footer + '</main>')
+    return head(lang, f"Firebird — {loc.upper()} · mobile"), body, foot(name)
+
+
 # ── артборд «Що вирішити» ─────────────────────────────────────────────────
 def questions():
     Q = C["questions"]
@@ -543,9 +758,13 @@ BOARDS = {
     "Main": lambda: page("uk", "Main"),
     "French": lambda: page("fr", "French"),
     "English": lambda: page("en", "English"),
+    "Mobile": lambda: mobile_page("uk", "Mobile"),
+    "MobileFR": lambda: mobile_page("fr", "MobileFR"),
+    "MobileEN": lambda: mobile_page("en", "MobileEN"),
 }
 TITLES = {"Questions": "Що вирішити", "Main": "UA · /uk/works/firebird · правити тут",
-          "French": "FR · /fr/works/firebird", "English": "EN · /en/works/firebird"}
+          "French": "FR · /fr/works/firebird", "English": "EN · /en/works/firebird",
+          "Mobile": "UA · телефон 390 · правити тут", "MobileFR": "FR · телефон 390", "MobileEN": "EN · телефон 390"}
 
 # ── вільні координати: у Chrome кожен блок → position: absolute ────────────
 FREEZE_JS = r"""
@@ -631,7 +850,7 @@ def render(n, parts, free=True):
     tmp = pathlib.Path(tempfile.mkdtemp())
     f = tmp / f"{n}.html"
     f.write_text(doc, encoding="utf-8")
-    w = 1000 if n == "Questions" else W
+    w = board_w(n)
     dom = subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--allow-file-access-from-files",
                           "--virtual-time-budget=15000", f"--window-size={w},2000", "--dump-dom", f.as_uri()],
                          capture_output=True, text=True, check=True).stdout
@@ -652,21 +871,33 @@ def write_all():
         hd, _, _ = parts
         (OUT / f"{n}.dc.html").write_text(hd + main + "\n" + foot(n), encoding="utf-8")
     HEIGHTS_F.write_text(json.dumps(HEIGHTS, indent=1) + "\n")
-    x, boards = 0, {}
-    for n in ("Questions", "Main", "French", "English"):
-        w = 1000 if n == "Questions" else W
-        boards[f"{n}.dc.html"] = {"x": x, "y": 0, "w": w, "h": HEIGHTS.get(n, 3000), "title": TITLES[n]}
-        x += w + 120
     idx_f = OUT / "canvas.json"
     idx = json.loads(idx_f.read_text()) if idx_f.exists() else {
         "v": 3, "createdOnFiles": {"v": 1, "at": "2026-11-18T17:40:00Z"}}
+    # позиції рамок, які вже стоять на канві (Артем міг їх пересунути), не чіпаємо — лише w/h
+    boards = idx.get("boards", {})
+    x = 0
+    for n in ("Questions", "Main", "French", "English"):
+        k, w = f"{n}.dc.html", board_w(n)
+        boards.setdefault(k, {"x": x, "y": 0, "title": TITLES[n]}).update({"w": w, "h": HEIGHTS.get(n, 3000)})
+        x += w + 120
+    # телефони — другим рядом під десктопними: 120 px між рядами, 80 між рамками, від лівого краю UA
+    desk = [boards[f"{n}.dc.html"] for n in ("Main", "French", "English")]
+    y2 = max(b["y"] + b["h"] for b in desk) + 120
+    x = boards["Main.dc.html"]["x"]
+    for n in ("Mobile", "MobileFR", "MobileEN"):
+        k = f"{n}.dc.html"
+        boards.setdefault(k, {"x": x, "y": y2, "title": TITLES[n]}).update({"w": MW, "h": HEIGHTS.get(n, 9000)})
+        x += MW + 80
+    order = idx.get("order") or ["Main.dc.html", "Questions.dc.html", "French.dc.html", "English.dc.html"]
+    order += [f"{n}.dc.html" for n in BOARDS if f"{n}.dc.html" not in order]
     idx.update({
-        "title": "ЖАР-ПТИЦЯ — сторінка сайту",
-        "launch": {"view": "canvas"},
-        "pages": [],
+        "title": idx.get("title", "ЖАР-ПТИЦЯ — сторінка сайту"),
+        "launch": idx.get("launch", {"view": "canvas"}),
+        "pages": idx.get("pages", []),
         "boards": boards,
-        "order": ["Main.dc.html", "Questions.dc.html", "French.dc.html", "English.dc.html"],
-        "notes": {
+        "order": order,
+        "notes": idx.get("notes") or {
             "brief": {"x": 0, "y": -300, "w": 900, "fill": "orange",
                       "text": "Чернетка нової сторінки ЖАР-ПТИЦЯ (/works/firebird) замість зовнішньої surge — для художніх і програмних директорів балетних труп і оперних домів. "
                               "Стиль — ролик NYCB «Firebird» (Параджанов). UA — головна: правте її, інструкції в дужках; зайве прибирайте прямо тут. "
