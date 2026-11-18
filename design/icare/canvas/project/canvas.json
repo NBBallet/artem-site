@@ -1,0 +1,58 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-18T12:00:00Z"
+ },
+ "title": "ІКАР — сторінка сайту",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Questions.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1000,
+   "h": 2065,
+   "title": "Що вирішити"
+  },
+  "Main.dc.html": {
+   "x": 1120,
+   "y": 0,
+   "w": 1440,
+   "h": 6057,
+   "title": "UA · /uk/works/icare · правити тут"
+  },
+  "French.dc.html": {
+   "x": 2680,
+   "y": 0,
+   "w": 1440,
+   "h": 6007,
+   "title": "FR · /fr/works/icare"
+  },
+  "English.dc.html": {
+   "x": 4240,
+   "y": 0,
+   "w": 1440,
+   "h": 5966,
+   "title": "EN · /en/works/icare"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Questions.dc.html",
+  "French.dc.html",
+  "English.dc.html"
+ ],
+ "notes": {
+  "brief": {
+   "x": 0,
+   "y": -300,
+   "w": 900,
+   "fill": "orange",
+   "text": "Чернетка нової сторінки ІКАР (/works/icare) — для оперно-балетних домів, меценатів і фондів по всій Франції. UA — головна: правте її, у дужках. FR і EN перезбираються з української. До 30.11 сторінка не публікується — потім окремим рішенням."
+  }
+ },
+ "designSystems": []
+}
