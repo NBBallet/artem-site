@@ -294,22 +294,12 @@ def page(loc, name):
         + f'<div style="display: flex; gap: 14px; flex-wrap: wrap;">'
         + button(c["cta_house"], "#houses") + button(c["cta_patron"], "#patrons", solid=False)
         + '</div></div>'
-        + f'<div style="background: {ULTRA}; box-sizing: border-box; padding: 40px 40px 28px; display: flex; flex-direction: column; gap: 18px;">'
-        + f'<div style="position: relative; flex: 1 1 auto; min-height: 560px;">'
-        # ореол: розмита копія плити розчиняє синій у фоні колонки, без різкого краю
-        + f'<img src="{BLOB["matisse-plate.webp"]}" alt="" aria-hidden="true" '
-          f'style="position: absolute; left: -40px; top: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; '
-          f'object-position: 50% 40%; display: block; filter: blur(34px) saturate(.8); opacity: .5; '
-          f'-webkit-mask-image: radial-gradient(ellipse 62% 62% at 50% 50%, #000 30%, transparent 100%); '
-          f'mask-image: radial-gradient(ellipse 62% 62% at 50% 50%, #000 30%, transparent 100%);">'
-        # сама картина: країв немає — вони тануть у тло колонки
+        # права колонка — сама плита Matisse від краю до краю, без полів і ефектів (раунд 4)
+        + f'<div style="position: relative; overflow: hidden;">'
         + f'<img src="{BLOB["matisse-plate.webp"]}" alt="Henri Matisse, Icare, Jazz, 1947" '
-          f'style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; '
-          f'-webkit-mask-image: linear-gradient(to right, transparent 0, #000 34%, #000 66%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 28%, #000 72%, transparent 100%); '
-          f'-webkit-mask-composite: source-in; '
-          f'mask-image: linear-gradient(to right, transparent 0, #000 34%, #000 66%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 28%, #000 72%, transparent 100%); '
-          f'mask-composite: intersect;"></div>'
-        + mono(e(c["matisse_caption"]), color="#b9c4e6", size=11, ls=1.6) + '</div>'
+          f'style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 53% 50%; display: block;">'
+        + f'<div style="position: absolute; left: 24px; bottom: 18px;">'
+        + mono(e(c["matisse_caption"]), color="#fff", size=11, ls=1.6) + '</div></div>'
         + '</section>'
     )
 
