@@ -16,3 +16,18 @@
  */
 export const DRAFT_PROGRAMMER =
   process.env.NEXT_PUBLIC_DRAFT_PROGRAMMER === "1";
+
+/**
+ * Нова сторінка ІКАР (`/[lang]/works/icare`) — `L'Envol d'Icare` для всієї
+ * Франції, за канвою `design/icare/` (затверджена 18.11.2026, версія 74).
+ * Реліз — після 30.11.2026 окремим рішенням Артема.
+ *
+ * Поки ця константа є, у продакшені на `works/icare` лишається СТАРА
+ * сторінка (IcarePage у works/[slug]/page.tsx), меню й картка на головній —
+ * «ІКАР / ICARE» без змін. Нова відкривається лише локально:
+ *     NEXT_PUBLIC_DRAFT_ICARE=1 npm run dev
+ *
+ * Реліз = прибрати цю константу й стару IcarePage, а в WorkPage віддавати
+ * IcareLanding безумовно.
+ */
+export const DRAFT_ICARE = process.env.NEXT_PUBLIC_DRAFT_ICARE === "1";

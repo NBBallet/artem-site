@@ -11,6 +11,8 @@ import MarqueeCTA from "@/components/MarqueeCTA";
 import ZoomableImage from "@/components/ZoomableImage";
 import DownloadButton from "@/components/DownloadButton";
 import IcareImage from "@/components/IcareImage";
+import IcareLanding from "@/components/icare/IcareLanding";
+import { DRAFT_ICARE } from "@/lib/drafts";
 import { getSiteSettings } from "@/lib/settings";
 import { firebirdData } from "@/lib/firebird-data";
 
@@ -1761,6 +1763,9 @@ export default async function WorkPage({
   }
 
   if (slug === "icare") {
+    /* Нова сторінка L'Envol d'Icare — чернетка до релізу (@/lib/drafts):
+       без NEXT_PUBLIC_DRAFT_ICARE=1 (тобто в продакшені) лишається стара. */
+    if (DRAFT_ICARE) return <IcareLanding locale={locale} />;
     return <IcarePage work={work} locale={locale} t={t} />;
   }
 
