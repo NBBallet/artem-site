@@ -658,3 +658,8 @@
   .cv[lang="ru"] .cv-facts .cv-facts-spacer { display: none; }
   .cv[lang="ru"] .cv-status-pill { letter-spacing: 1px; }
 }
+
+/* full-bleed block (RU: THE ANTS video under the position line, 18.11.2026) */
+.cv-bleed { width: 100vw; margin-left: calc(50% - 50vw); }
+@supports (width: 100dvw) { .cv-bleed { width: 100dvw; margin-left: calc(50% - 50dvw); } }
+@media print { .cv-no-print { display: none !important; } }

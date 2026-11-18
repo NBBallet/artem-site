@@ -277,6 +277,26 @@ export default function CvView({ locale }: { locale: CvLocale }) {
                     <p className="r-accent cv-fg">{tail}</p>
                   </>
                 ) : null}
+                {/* RU only (18.11.2026, Artem): the ensemble dance of THE ANTS,
+                    edge to edge right under the summary line. Screen only. */}
+                {"video" in d.s01 && d.s01.video ? (
+                  <figure className="cv-bleed cv-no-print mt-12">
+                    <div className="aspect-video bg-black">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${d.s01.video.id}`}
+                        title={d.s01.video.caption}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        loading="lazy"
+                        className="w-full h-full border-0"
+                      />
+                    </div>
+                    <figcaption className="r-col mt-5 px-5">
+                      <div className="cv-mono text-[12px] tracking-[1.8px] uppercase cv-gold mb-2">{d.s01.video.label}</div>
+                      <p className="text-[15.5px] leading-[1.6] cv-body-c">{d.s01.video.caption}</p>
+                    </figcaption>
+                  </figure>
+                ) : null}
               </>
             );
           })()}
