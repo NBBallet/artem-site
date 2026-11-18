@@ -119,10 +119,30 @@ def p(t, color=INK, size=18, lh=1.66, mb=0, width="60ch", italic=False):
             f'margin: 0 0 {mb}px 0; max-width: {width}; text-wrap: pretty;">{works(t)}</p>')
 
 
-def display(t, size, color, mb=0, width="none", tag="h2", lh=1.02, upper=True):
+def shift(html_, dx=0, dy=0):
+    """Ручний зсув Артема з канви (18.11.2026): relative-зсув не чіпає потік, вільні координати беруть його як є."""
+    tag = re.match(r"<\w+[^>]*? style=\"", html_)
+    return html_.replace(tag.group(0), f'{tag.group(0)}position: relative; left: {dx}px; top: {dy}px; ', 1)
+
+
+def nobreak(t):
+    """Слова з дефісом («Жар-Птиця», «Нью-Йоркський») не рвуться на переносі, а «—» не починає рядок."""
+    ws = str(t).split(" ")
+    out = []
+    for w in ws:
+        if w == "—" and out:
+            out[-1] = out[-1] + " —"
+        else:
+            out.append(w)
+    return " ".join(f'<span style="white-space: nowrap;">{e(w)}</span>' if ("-" in w or " " in w) else e(w) for w in out)
+
+
+def display(t, size, color, mb=0, width="none", tag="h2", lh=1.02, upper=True, keep=False):
+    """keep — не рвати слова з дефісом (nobreak), рядки врівноважити."""
     tt = "uppercase" if upper else "none"
     return (f'<{tag} style="margin: 0 0 {mb}px 0; font-family: {DISPLAY}; font-weight: 400; font-size: {size}px; '
-            f'line-height: {lh}; letter-spacing: .012em; text-transform: {tt}; color: {color}; max-width: {width};">{e(t)}</{tag}>')
+            f'line-height: {lh}; letter-spacing: .012em; text-transform: {tt}; color: {color}; max-width: {width};'
+            + (' text-wrap: balance;' if keep else '') + f'">{nobreak(t) if keep else e(t)}</{tag}>')
 
 
 def qtag(loc, n, color=GRANAT):
@@ -300,6 +320,9 @@ def swatch(kind, w, h):
     return f'<svg viewBox="0 0 {w} {h}" width="{w}" height="{h}" aria-hidden="true" style="display: block;">{body}</svg>'
 
 
+CONCEPT_DY = (41, -64, -84)   # ручні зсуви абзаців концепції (Артем, канва 18.11.2026)
+
+
 # ── сторінка однією мовою ─────────────────────────────────────────────────
 def page(loc, name):
     c = C[loc]
@@ -333,11 +356,11 @@ def page(loc, name):
         + f'<a href="https://www.hordieiev.art/{L}/works" style="display: inline-block; font-family: {MONO}; font-size: 13px; '
           f'letter-spacing: 1.8px; text-transform: uppercase; color: {RED}; margin-bottom: 54px;">{e(c["back"])}</a>'
         + mono(e(c["hero_meta"]), color=GRANAT_D, size=14, ls=2.6, mb=22)
-        + display(c["title"], 100, GRANAT, mb=22, tag="h1", lh=.98)
+        + shift(display(c["title"], 100, GRANAT, mb=22, tag="h1", lh=.98), dx=-20)   # зсув Артема 18.11
         + mono(e(c["subtitle"]) + qtag(loc, "③"), color=GRANAT_D, size=15, ls=2.4, mb=40)
         + p(c["hero_lead"], color="#000", size=22, lh=1.55, mb=44, width="30em")
         + f'<div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap;">'
-        + button(c["cta"], mailto("Firebird — " + c["cta"]), big=True)
+        + shift(button(c["cta"], mailto("Firebird — " + c["cta"]), big=True), dx=-20)   # зсув Артема 18.11
         + mono(e(c["cta_note"]), color=GRANAT_D, size=12, ls=1.8)
         + '</div></div>'
         + f'<div style="position: absolute; left: 760px; top: 220px;">'
@@ -356,8 +379,9 @@ def page(loc, name):
         + p(c["concept_tagline"], color=AMBER, size=26, lh=1.4, mb=64, width="none", italic=True)
         + f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 96px;">'
         # 18.11.2026 Артем прибрав 3-й абзац; фінал лишився в правій колонці, де стояв на канві
-        + "".join((f'<div style="grid-column: 2;">' + p(t, color=CREAM_T, size=18, width="none") + '</div>')
-                  if i == 2 and len(c["concept_p"]) == 3 else p(t, color=CREAM_T, size=18, width="none")
+        # зсуви Артема на канві 18.11.2026: лівий абзац нижче на 41 px, права колонка вище на 64 px, фінал щільно під нею
+        + "".join((f'<div style="grid-column: 2;">' + shift(p(t, color=CREAM_T, size=18, width="none"), dy=CONCEPT_DY[i]) + '</div>')
+                  if i == 2 and len(c["concept_p"]) == 3 else shift(p(t, color=CREAM_T, size=18, width="none"), dy=CONCEPT_DY[i])
                   for i, t in enumerate(c["concept_p"]))
         + '</div></section>'
     )
@@ -413,7 +437,7 @@ def page(loc, name):
         f'<section style="position: relative; overflow: hidden; padding: 112px {PAD}px 112px; {wall_bg()}">'
         + grain(W, 1200, f"vu{loc}", opacity=.26)
         + mono(e(c["visual_label"]) + qtag(loc, "①"), color=GRANAT, size=13, mb=20)
-        + display(c["visual_sub"], 50, GRANAT_D, mb=60, width="18em")
+        + display(c["visual_sub"], 50, GRANAT_D, mb=60, width="22em", keep=True)   # «ПРОСТОРОВО-КОНЦЕПТУАЛЬНІ» не рветься
         + f'<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px;">{scenes}</div>'
         + '</section>'
     )
@@ -434,24 +458,41 @@ def page(loc, name):
         + '</section>'
     )
 
-    # ── приклад роботи: кадр 4:3, ▶ збоку від артистів; референс NYCB — велика картка під ним ──
+    # ── приклад роботи (перезібрано 18.11.2026 за правкою Артема «покращити й підрівняти»):
+    # кадр у чорній рамці 868×572 (розмір Артема з канви) заповнений відео без порожніх смуг,
+    # ▶ у лівому нижньому куті на підлозі сцени, поруч із кадром — колаж приколотих аркушів партитури
+    # і гранат; підпис щільно під кадром; картка NYCB на всю ширину з тією ж лівою межею ──
+    fw, fh, fb = 868, 572, 10
+    ref = c["ref_title"].split(" — ", 1)
+    ref_lines = [ref[0] + " —", ref[1]] if len(ref) == 2 else [c["ref_title"]]
     work = (
         f'<section style="position: relative; overflow: hidden; padding: 112px {PAD}px 112px; {wall_bg()}">'
         + grain(W, 1400, f"wk{loc}", opacity=.26)
-        + score_sheet(1170, 560, 170, 220, 4, 7)
         + mono(e(c["work_label"]), color=GRANAT, size=13, mb=32)
-        + f'<a href="{e(SH["yt_work"])}" style="position: relative; display: block; width: 760px; height: 570px; background: {FRAME}; overflow: hidden;">'
-        + f'<img src="{BLOB["work-sample.webp"]}" alt="" style="position: absolute; left: 0; top: 0; width: 760px; height: 570px; object-fit: contain; display: block;">'
-        + grain(760, 570, f"wf{loc}", opacity=.14, blend="screen", freq=1.1)
-        + f'<span style="position: absolute; left: 36px; top: 470px;">{play(68)}</span></a>'
-        + f'<div style="margin-top: 14px; margin-bottom: 56px;">{mono(e(c["work_cite"]), color=GRANAT_D, size=12, ls=1.6, upper=False)}</div>'
-        # референс NYCB — велика картка на всю ширину: крем, чорна рамка, великий ▶ (кадру немає — чужі права)
-        + f'<a href="{e(SH["yt_ref"])}" style="display: flex; align-items: center; gap: 40px; width: {W - 2 * PAD}px; box-sizing: border-box; '
-          f'padding: 44px 52px; background: {CREAM}; border: 3px solid {FRAME}; box-shadow: 10px 10px 0 {GRANAT};">'
+        + f'<div style="position: relative; height: {fh}px;">'
+        + f'<a href="{e(SH["yt_work"])}" style="position: relative; display: block; width: {fw}px; height: {fh}px; box-sizing: border-box; '
+          f'border: {fb}px solid {FRAME}; background: {FRAME}; overflow: hidden; box-shadow: 0 18px 40px rgba(0, 0, 0, .22);">'
+        + f'<img src="{BLOB["work-sample.webp"]}" alt="" style="position: absolute; left: 0; top: 0; width: {fw - 2 * fb}px; height: {fh - 2 * fb}px; '
+          f'object-fit: cover; object-position: 55% 50%; display: block;">'
+        + grain(fw - 2 * fb, fh - 2 * fb, f"wf{loc}", opacity=.14, blend="screen", freq=1.1)
+        + f'<span style="position: absolute; left: 28px; top: {fh - 2 * fb - 28 - 80}px;">{play(80)}</span></a>'
+        + score_sheet(fw - 40, 132, 220, 300, 4, 7)
+        + score_sheet(fw + 212, 30, 160, 214, -5, 8)
+        # гранати стоять на одній лінії з нижнім краєм кадру — як на підлозі
+        + pomegranate(fw + 236, fh - 64, 26, -10) + pomegranate(fw + 306, fh - 42, 17, 18)
+        + '</div>'
+        + f'<div style="display: flex; align-items: center; gap: 14px; margin: 18px 0 72px;">'
+        + f'<span style="display: block; width: 40px; height: 1px; background: {GRANAT_D};"></span>'
+        + mono(e(c["work_cite"]), color=GRANAT_D, size=13, ls=1.6, upper=False) + '</div>'
+        # референс NYCB — картка на всю ширину (рішення раунду 1): крем, чорна рамка, ▶; назва двома рядками по «—»,
+        # «Жар-Птиця» не рветься; кадру немає — чужі права
+        + f'<a href="{e(SH["yt_ref"])}" style="display: flex; align-items: center; gap: 44px; width: {W - 2 * PAD}px; box-sizing: border-box; '
+          f'padding: 40px 48px; background: {CREAM}; border: 3px solid {FRAME}; box-shadow: 8px 8px 0 {GRANAT};">'
         + play(104)
         + f'<span style="display: block;">'
-        + f'<span style="display: block; margin-bottom: 16px;">{mono(e(c["ref_label"]), color=GRANAT, size=15, ls=2.6)}</span>'
-        + f'<span style="display: block; font-family: {DISPLAY}; font-size: 46px; line-height: 1.08; color: #000; max-width: 24em;">{e(c["ref_title"])}</span>'
+        + f'<span style="display: block; margin-bottom: 14px;">{mono(e(c["ref_label"]), color=GRANAT, size=14, ls=2.6)}</span>'
+        + "".join(f'<span style="display: block; font-family: {DISPLAY}; font-size: 46px; line-height: 1.1; color: #000; white-space: nowrap;">{e(t)}</span>'
+                  for t in ref_lines)
         + '</span></a>'
         + '</section>'
     )
@@ -477,7 +518,8 @@ def page(loc, name):
 
     # ── постановка + контакт: гранатова панель на чорному ──
     staging = (
-        f'<section style="position: relative; padding: 112px {PAD}px 88px; background: {FRAME};">'
+        # команда й «Постановка» — обидві на чорному: відступ між ними один (112 команди), не подвійний
+        f'<section style="position: relative; padding: 0 {PAD}px 88px; background: {FRAME};">'
         + f'<div style="display: grid; grid-template-columns: 780px minmax(0, 1fr); gap: 72px; align-items: start;">'
         + f'<div style="position: relative; background: {GRANAT}; padding: 56px 56px 60px;">'
         + mono(e(c["staging_label"]), color=GOLD, size=13, mb=22)
@@ -658,16 +700,16 @@ def mobile_page(loc, name):
         + grain(MW, 1400, f"mwk{loc}", opacity=.26)
         + ctr(mono(e(c["work_label"]), color=GRANAT, size=12, ls=2.2, mb=24))
         + f'<a href="{e(SH["yt_work"])}" style="position: relative; display: block; width: {fw}px; height: {fh}px; background: {FRAME}; overflow: hidden;">'
-        + f'<img src="{BLOB["work-sample.webp"]}" alt="" style="position: absolute; left: 0; top: 0; width: {fw}px; height: {fh}px; object-fit: contain; display: block;">'
+        + f'<img src="{BLOB["work-sample.webp"]}" alt="" style="position: absolute; left: 0; top: 0; width: {fw}px; height: {fh}px; object-fit: cover; object-position: 55% 50%; display: block;">'
         + grain(fw, fh, f"mwf{loc}", opacity=.14, blend="screen", freq=1.1)
         + f'<span style="position: absolute; left: 16px; top: {fh - 72}px;">{play(56)}</span></a>'
-        + f'<div style="margin-top: 12px; margin-bottom: 40px; {CT}">{mono(e(c["work_cite"]), color=GRANAT_D, size=11, ls=1.2, upper=False)}</div>'
+        + f'<div style="margin-top: 14px; margin-bottom: 44px; text-wrap: balance; {CT}">{mono(e(c["work_cite"]), color=GRANAT_D, size=12, ls=1.2, upper=False)}</div>'
         # референс NYCB — та сама крем-картка, що на десктопі, у стовпчик: ▶ над назвою
         + f'<a href="{e(SH["yt_ref"])}" style="display: block; width: {MC - 6}px; box-sizing: border-box; padding: 30px 22px 32px; '
           f'background: {CREAM}; border: 3px solid {FRAME}; box-shadow: 6px 6px 0 {GRANAT}; {CT}">'
         + f'<span style="display: flex; justify-content: center; margin-bottom: 22px;">{play(84)}</span>'
         + f'<span style="display: block; margin-bottom: 12px;">{mono(e(c["ref_label"]), color=GRANAT, size=12, ls=2)}</span>'
-        + f'<span style="display: block; font-family: {DISPLAY}; font-size: 28px; line-height: 1.1; color: #000;">{e(c["ref_title"])}</span>'
+        + f'<span style="display: block; font-family: {DISPLAY}; font-size: 28px; line-height: 1.12; color: #000; text-wrap: balance;">{nobreak(c["ref_title"])}</span>'
         + '</a>'
         + '</section>'
     )
