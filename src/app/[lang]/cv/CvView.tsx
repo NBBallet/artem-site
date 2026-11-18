@@ -20,6 +20,41 @@ const TONE: Record<Tone, string> = {
   meta: "var(--cv-meta)",
 };
 
+/* Short centred rule. RU (18.11.2026, Artem's choice): «гул» — a suzani
+   rosette in place of every dash, gold or red; its 12 dots echo the house star.
+   Coordinates are rounded so server and every browser render the same markup. */
+const GUL_DOTS = Array.from({ length: 12 }, (_, i) => {
+  const a = (i * Math.PI) / 6;
+  const r2 = (n: number) => Math.round(n * 100) / 100;
+  return { cx: r2(60 + 6.5 * Math.cos(a)), cy: r2(8 + 6.5 * Math.sin(a)) };
+});
+
+function Rule({ ru, color, className = "", thin = false }: { ru: boolean; color: string; className?: string; thin?: boolean }) {
+  if (!ru) return <div className={`r-rule ${className}`} style={thin ? { background: color } : { height: "2px", background: color }} />;
+  return (
+    <svg
+      className={`cv-gul ${className}`}
+      width="120"
+      height="16"
+      viewBox="0 0 120 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.3}
+      strokeLinecap="round"
+      aria-hidden="true"
+      style={{ color, display: "block", marginLeft: "auto", marginRight: "auto" }}
+    >
+      <path d="M10 8 H48 M72 8 H110" />
+      <circle cx="60" cy="8" r="2.2" fill="currentColor" stroke="none" />
+      <g fill="currentColor" stroke="none">
+        {GUL_DOTS.map((p, i) => (
+          <circle key={i} cx={p.cx} cy={p.cy} r={0.95} />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
 function Label({
   children,
   tone = "red",
@@ -216,7 +251,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
           </div>
           {d.base ? <div className="text-[15.5px] cv-meta mb-10 md:mb-11">{d.base}</div> : null}
 
-          <div className="r-rule mb-6" style={{ height: "2px", background: "var(--cv-gold)" }} />
+          <Rule ru={locale === "ru"} color="var(--cv-gold)" className="mb-6" />
           <div className="cv-claim mb-12 md:mb-16 max-w-[680px]" style={{ textWrap: "balance" }}>
             {claimLines.map((line, i) => (
               <div key={i} className="cv-quote" style={{ color: i === 0 ? "var(--cv-fg)" : "var(--cv-gold)" }}>
@@ -273,7 +308,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
                 </div>
                 {tail ? (
                   <>
-                    <div className="r-rule mt-12 mb-6" style={{ background: "var(--cv-red)" }} />
+                    <Rule ru={locale === "ru"} color="var(--cv-red)" className="mt-12 mb-6" thin />
                     <p className="r-accent cv-fg">{tail}</p>
                   </>
                 ) : null}
@@ -417,7 +452,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
         {!omit.has("s04") && (
         <Section panel>
           <Head className="mb-10 md:mb-12">
-            <div className="r-rule mb-6" style={{ height: "2px", background: "var(--cv-gold)" }} />
+            <Rule ru={locale === "ru"} color="var(--cv-gold)" className="mb-6" />
             <Label tone="gold" className="mb-4">{d.s04.label}</Label>
             <h2 className="cv-h2" style={{ fontSize: "clamp(28px,3.6vw,38px)" }}>{d.s04.title}</h2>
           </Head>
