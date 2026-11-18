@@ -1,0 +1,58 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-18T17:40:00Z"
+ },
+ "title": "ЖАР-ПТИЦЯ — сторінка сайту",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Questions.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1000,
+   "h": 1353,
+   "title": "Що вирішити"
+  },
+  "Main.dc.html": {
+   "x": 1120,
+   "y": 0,
+   "w": 1440,
+   "h": 8121,
+   "title": "UA · /uk/works/firebird · правити тут"
+  },
+  "French.dc.html": {
+   "x": 2680,
+   "y": 0,
+   "w": 1440,
+   "h": 8180,
+   "title": "FR · /fr/works/firebird"
+  },
+  "English.dc.html": {
+   "x": 4240,
+   "y": 0,
+   "w": 1440,
+   "h": 8202,
+   "title": "EN · /en/works/firebird"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Questions.dc.html",
+  "French.dc.html",
+  "English.dc.html"
+ ],
+ "notes": {
+  "brief": {
+   "x": 0,
+   "y": -300,
+   "w": 900,
+   "fill": "orange",
+   "text": "Чернетка нової сторінки ЖАР-ПТИЦЯ (/works/firebird) замість зовнішньої surge — для художніх і програмних директорів балетних труп і оперних домів. Стиль — ролик NYCB «Firebird» (Параджанов). UA — головна: правте її, інструкції в дужках; зайве прибирайте прямо тут. FR і EN перезбираються з української. У main — лише після вашого «так»."
+  }
+ },
+ "designSystems": []
+}
