@@ -128,7 +128,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
   const pointCopy = d.s02.points as Record<string, { title: string; meta: string }>;
   const workCopy = d.s06.works as Record<
     string,
-    { title?: string; music?: string; format: string; status: string }
+    { title?: string; year?: string; music?: string; format: string; status: string }
   >;
   const collabCopy = d.s07.collabs as Record<string, string>;
   const awardCopy = d.s07.awards as Record<string, string>;
@@ -479,7 +479,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
                 ) : null}
                 <span className="cv-rep-veil" aria-hidden />
                 <div className="cv-h3 cv-rep-title text-[19px] tracking-[0.5px]">{wd.title ?? w.title}</div>
-                <div className="cv-mono cv-rep-year text-[13.5px] cv-meta">{w.year}</div>
+                <div className="cv-mono cv-rep-year text-[13.5px] cv-meta">{wd.year ?? w.year}</div>
                 <div className="cv-rep-format text-[14.5px] leading-[1.5] cv-body-c">{wd.format}</div>
                 <div className="cv-rep-music text-[14.5px] leading-[1.5] cv-meta">{wd.music ?? w.music}</div>
                 <div className="cv-status-pill cv-mono text-[12px] tracking-[1.4px] uppercase">

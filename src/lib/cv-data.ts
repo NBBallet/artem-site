@@ -1097,6 +1097,7 @@ export const cvData = {
         },
         "icare": {
           "title": "ICARE",
+          "year": "2028",
           "music": "Игорь Маркевич — «L'Envol d'Icare» (1932)",
           "format": "Одноактный балет · мировая премьера",
           "status": "Доступен для мировой премьеры"
