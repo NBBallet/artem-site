@@ -503,7 +503,10 @@ export default function CvView({ locale }: { locale: CvLocale }) {
           </Head>
           <div className="cv-split grid grid-cols-1 lg:grid-cols-[minmax(0,1.9fr)_minmax(0,1fr)] gap-12 lg:gap-14">
             <div>
-              <Label tone="meta" small className="mb-4">{d.s07.collabsTitle}</Label>
+              {/* RU folds the subtitle into the section label (canvas, 18.11.2026) */}
+              {d.s07.collabsTitle && (
+                <Label tone="meta" small className="mb-4">{d.s07.collabsTitle}</Label>
+              )}
               {cvShared.collabs.map((x) => (
                 <div
                   key={x.key}
@@ -511,7 +514,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
                   style={{ borderTop: "1px solid var(--cv-line)" }}
                 >
                   <div className="cv-h3 text-[17px] md:flex-[0_0_200px]">{x.name}</div>
-                  <div className="flex-1 text-[15.5px] leading-[1.6] cv-body-c">{collabCopy[x.key]}</div>
+                  <div className="flex-1 text-[15.5px] leading-[1.6] cv-body-c whitespace-pre-line">{collabCopy[x.key]}</div>
                 </div>
               ))}
             </div>
@@ -562,7 +565,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
               [d.s08.productions, f.productions],
               ["", ""],
               [d.s08.countries, d.s08.countriesValue],
-              [d.s08.producer, f.producer],
+              [d.s08.producer, "producerName" in d.s08 ? d.s08.producerName : f.producer],
             ].map(([k, v], i) =>
               k === "" ? (
                 <div key={`spacer-${i}`} className="cv-facts-spacer hidden lg:block" aria-hidden />
@@ -582,7 +585,9 @@ export default function CvView({ locale }: { locale: CvLocale }) {
            together are taller than a sheet. On screen the seam is invisible:
            the pair keeps the spacing it had as one section. */}
         <Section className="cv-profile-b">
-          {/* Where the body comes from — the first thing a company director looks for. */}
+          {/* Where the body comes from — the first thing a company director looks for.
+              An empty list hides the block (RU, 18.11.2026 — Artem's call). */}
+          {d.s08.school.length > 0 && (
           <div className="cv-school-block mb-11">
             <Head className="mb-6">
               <Label tone="meta">{d.s08.schoolLabel}</Label>
@@ -600,6 +605,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
               ))}
             </div>
           </div>
+          )}
 
           {/* «Напрями» знято; «Мови» стоять на його місці, горизонтально */}
           <div className="cv-langs-block">
