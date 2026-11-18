@@ -1,0 +1,383 @@
+{
+ "_note": "uk — майстер (дослівно з канви 01.10.2026, MgEQBi41…, 08 Збережене/Firebird — розвідка 18.11.2026/Канва 01.10 — UA-текст.md); fr/en — похідні. EN — з data-en surge і src/lib/firebird-data.ts, де є; решту й FR перекладено з UA 18.11.2026. Контакти — стандарт сайту (shared), не старі з surge.",
+ "shared": {
+  "email": "art_om@me.com",
+  "phone": "+33 7 43 79 18 41",
+  "whatsapp": "https://wa.me/33743791841",
+  "yt_work": "https://www.youtube.com/watch?v=nEAiHrquJ74&t=3s",
+  "yt_ref": "https://www.youtube.com/watch?v=MXM3HtkdHMQ",
+  "credits": "Nicholas Roerich, Mother of the World, 1924 · Himalayas, Sikkim, late 1920s · El Lissitzky, Beat the Whites with the Red Wedge, 1920 · Wikimedia Commons · video still: hordieiev.art"
+ },
+ "uk": {
+  "nav": [
+   "Роботи",
+   "Про нас",
+   "Резюме",
+   "Контакт"
+  ],
+  "back": "← До робіт",
+  "hero_caption": "М. Реріх, Мати Світу, 1924",
+  "hero_meta": "2026 · Ігор Стравінський",
+  "title": "Жар-Птиця",
+  "subtitle": "Авторська постановочна концепція",
+  "hero_lead": "Жар-Птиця є священним вогнем, що вливає світло в душу людини і створює момент пробудження. Космогонія, що виростає з філософської спадщини родини Реріхів.",
+  "cta": "Отримати досьє",
+  "cta_note": "Для балетних труп і оперних театрів",
+  "concept_label": "Концепція",
+  "concept_title": "Від першовогню до воскресіння",
+  "concept_tagline": "Космогонія про вогонь, що живе в людині.",
+  "concept_p": [
+   "Ця постановка починається з першопричини виникнення таємничого вогню. З того вогню, який передував виникненню людства. А точніше — самосвідомості людства.",
+   "Стравінський написав партитуру про перемогу над темрявою. Ми запитуємо: що є темрява сьогодні? Скільки ми знаємо про своє існування сьогодні? Наскільки глибоко ми змогли зануритись у кролячу нору?",
+   "Балет, де глядач впізнає власну історію і йде з відчуттям, що щось таємниче прокидається всередині."
+  ],
+  "chars_label": "Ключові дійові особи",
+  "chars": [
+   [
+    "Мати",
+    "Вічна першопричина. Вона існує до початку світу і після її кінця. Вогонь, що завжди створює та єднає в любові."
+   ],
+   [
+    "Жар-Птиця",
+    "Народжена великою матір'ю жива сила. Вона вливає у звичайну глину світло і народжується людина. Вона влітає у темряву, аби створити, пробудити те, що спить."
+   ],
+   [
+    "Царевич",
+    "Чоловік, який народився із натхнення містичного Птаха. Але він є людиною і, звісно, обирає плід із дерева… Трактування царевича — це архетип, знайомий кожному в світі."
+   ],
+   [
+    "Королівство Кощія",
+    "Жива система ілюзій, де правила встановлює тінь. Місто, що забуло себе."
+   ]
+  ],
+  "quote": "«Культура є шанування Світла. Культура є любов до людини. Там, де рука і мозок виснажуються, серце непереможне — і серце є Силою Світла, є осердям Культури.»",
+  "quote_cite": "Микола Реріх",
+  "visual_label": "Візуальний всесвіт",
+  "visual_sub": "Три ключові просторово-концептуальні сцени",
+  "scenes": [
+   [
+    "I",
+    "Простір Матері",
+    "Безмежне темно-синє. Весь горизонт є глибиною. Фігура виникає зі світла, десь наверху гірського полотна.",
+    "М. Реріх, Матір Світу, 1924"
+   ],
+   [
+    "II",
+    "Королівство Кощія",
+    "Геометричний лабіринт. Матриця. Конструктивістські ферми і балки у просторі. Замість середньовіччя просторово-часова утопія. Люди рухаються як у звичайному житті, але в них є дещо від машин.",
+    "Ел Лисицький, Клином червоним бий білих, 1920"
+   ],
+   [
+    "III",
+    "Воскресіння",
+    "Геометрія королівства Кощія розпадається. Вогонь стає живим і втіленим. Люди, жінки і чоловіки, стають органічно живими, скидають свої прив'язки до машин. Просторовий Реріх: золото, ультрамарин, вогняний горизонт.",
+    "М. Реріх, Гімалаї, Сіккім, к. 1920-х"
+   ]
+  ],
+  "costumes_label": "Костюми",
+  "costumes": [
+   [
+    "Мати",
+    "Білий. Силует ікони у Реріха. Тканина, що дихає. Жодних прикрас, тільки форма і світло."
+   ],
+   [
+    "Жар-Птиця",
+    "Структурований, геометричний. Кристали вогню замість пір'я. Між людським і надлюдським."
+   ],
+   [
+    "Царевич",
+    "Земний, натуральні тони. Він є контрастом і точкою впізнання для глядача."
+   ],
+   [
+    "Агенти Кощія",
+    "Графічний чорно-сірий. Конструктивістські вставки. Усі однакові — це їхня ключова особливість."
+   ],
+   [
+    "Спляче місто",
+    "Полотняне, органічне. Вони наче фон, що поступово оживає і знаходить свій колір."
+   ]
+  ],
+  "work_label": "Приклад роботи",
+  "work_cite": "© Артем Гордєєв — хореограф, режисер",
+  "ref_label": "Актуальність · Референс",
+  "ref_title": "Нью-Йоркський міський балет — Жар-Птиця (Стравінський)",
+  "team_label": "Постановочна команда",
+  "artem_name": "Артем Гордєєв",
+  "artem_role": "Хореограф · Режисер",
+  "artem_p": [
+   "Понад 18 років у професії. Ставив масштабні постановки для театрів і телевізійних виробництв, працював як виконавець і як творець власних балетних проєктів в Україні та Центральній Азії.",
+   "Зараз — автор оригінальних лібрето і режисерських концепцій, де класична традиція та техніка зустрічаються з сучасною сценічною формою та переосмисленням традиційних балетних сюжетів."
+  ],
+  "cv_link": "Резюме ↗",
+  "tetiana_name": "Тетяна Гордєєва",
+  "tetiana_role": "Продюсування",
+  "tetiana_p": "Стратегічне планування, розробка творчих пропозицій і переговори з театральними інституціями. Відповідає за те, щоб мистецьке бачення Артема та його команди стало реальним втілювальним проєктом з бюджетом, командою і датою прем'єри.",
+  "staging_label": "Постановка",
+  "staging_title": "Доступна для постановки з вашою трупою",
+  "staging_p": "Жар-Птицю пропонуємо балетним трупам і оперним театрам як авторську постановку: лібрето, концепція і хореографія Артема Гордєєва, створені для вашої компанії. Деталі концепції — у досьє, яке надсилаємо на запит.",
+  "staging_note": "Для художніх і програмних директорів",
+  "contact_label": "Зв'язатись",
+  "contact_name": "Тетяна Гордєєва, продюсер",
+  "join": "ПРИЄДНУЙТЕСЬ · Станьте частиною артистичної родини Артема Гордєєва · Замовте виставу · Співпрацюйте з нами · Icare →",
+  "copyright": "© 2026 АРТЕМ ГОРДЄЄВ",
+  "credits_label": "Зображення",
+  "q": "питання"
+ },
+ "en": {
+  "nav": [
+   "Works",
+   "About",
+   "CV",
+   "Contact"
+  ],
+  "back": "← Back to works",
+  "hero_caption": "N. Roerich, Mother of the World, 1924",
+  "hero_meta": "2026 · Igor Stravinsky",
+  "title": "Firebird",
+  "subtitle": "Original Staging Concept",
+  "hero_lead": "The Firebird is the sacred fire that pours light into the human soul and creates a moment of awakening. A cosmogony that grows out of the philosophical legacy of the Roerich family.",
+  "cta": "Request the dossier",
+  "cta_note": "For ballet companies and opera houses",
+  "concept_label": "Concept",
+  "concept_title": "From the first fire to resurrection",
+  "concept_tagline": "A cosmogony of the fire that lives within the human being.",
+  "concept_p": [
+   "This production begins with the first cause of a mysterious fire. With the fire that came before the birth of humankind — or, more precisely, before the birth of human self-awareness.",
+   "Stravinsky wrote a score about victory over darkness. We ask: what is darkness today? How much do we truly know about our own existence today? How deep have we dared to dive into the rabbit hole?",
+   "A ballet in which the audience recognizes their own story and leaves with the feeling that something mysterious is awakening within."
+  ],
+  "chars_label": "Key Characters",
+  "chars": [
+   [
+    "The Mother",
+    "The eternal first cause. She exists before the beginning of the world and after its end. The fire that is always creating and uniting in love."
+   ],
+   [
+    "The Firebird",
+    "A living force born of the Great Mother. She pours light into common clay, and a human is born. She flies into the darkness to create and to awaken that which sleeps."
+   ],
+   [
+    "The Prince",
+    "A man born from the inspiration of the mystical Bird. Yet he is human and, of course, chooses the fruit from the tree… Our reading of the Prince is an archetype familiar to everyone."
+   ],
+   [
+    "Koschei's Kingdom",
+    "A living system of illusions where the rules are set by the shadow. A city that has forgotten itself."
+   ]
+  ],
+  "quote": "“Culture is the veneration of Light. Culture is love for the human being. Where the hand and brain grow weary, the heart is invincible — and the heart is the Power of Light, the heart is the core of Culture.”",
+  "quote_cite": "Nicholas Roerich",
+  "visual_label": "Visual Universe",
+  "visual_sub": "Three key spatial and conceptual scenes",
+  "scenes": [
+   [
+    "I",
+    "The Mother's Space",
+    "Boundless dark blue. The entire horizon is depth. A figure emerges from light, somewhere high upon a mountainous canvas.",
+    "N. Roerich, Mother of the World, 1924"
+   ],
+   [
+    "II",
+    "Koschei's Kingdom",
+    "A geometric labyrinth. A matrix. Constructivist trusses and beams in space. Instead of the Middle Ages — a space-time utopia. People move as in ordinary life, but there is something of the machine in them.",
+    "El Lissitzky, Beat the Whites with the Red Wedge, 1920"
+   ],
+   [
+    "III",
+    "Resurrection",
+    "The geometry of Koschei's kingdom falls apart. The fire becomes living and embodied. People — women and men — become organically alive, casting off their attachments to the machine. Roerich's space: gold, ultramarine, a fiery horizon.",
+    "N. Roerich, Himalayas, Sikkim, late 1920s"
+   ]
+  ],
+  "costumes_label": "Costumes",
+  "costumes": [
+   [
+    "Mother",
+    "White. The silhouette of an icon in Roerich's style. A fabric that breathes. No adornments — only form and light."
+   ],
+   [
+    "Firebird",
+    "Structured, geometric. Fire crystals instead of feathers. Between human and superhuman."
+   ],
+   [
+    "Prince",
+    "Earthly, natural tones. He is the contrast and the point of recognition for the viewer."
+   ],
+   [
+    "Koschei's Agents",
+    "Graphic black and grey. Constructivist accents. All identical — this is their key feature."
+   ],
+   [
+    "The Sleeping City",
+    "Linen-like, organic. They are like a backdrop that gradually comes to life and discovers its own colour."
+   ]
+  ],
+  "work_label": "Sample work",
+  "work_cite": "© Artem Hordieiev — choreographer, director",
+  "ref_label": "Relevance · Reference",
+  "ref_title": "New York City Ballet — Firebird (Stravinsky)",
+  "team_label": "Creative team",
+  "artem_name": "Artem Hordieiev",
+  "artem_role": "Choreographer · Director",
+  "artem_p": [
+   "Over 18 years in the profession. Has created large-scale productions for theatre and television productions, and has worked both as a performer and as the author of his own ballet projects in Ukraine and Central Asia.",
+   "Today, he is the author of original librettos and directing concepts in which classical tradition and technique meet contemporary stage form and a rethinking of traditional ballet narratives."
+  ],
+  "cv_link": "CV ↗",
+  "tetiana_name": "Tetiana Hordieieva",
+  "tetiana_role": "Production",
+  "tetiana_p": "Strategic planning, development of artistic proposals, and negotiations with theatre institutions. Responsible for turning Artem's and his team's artistic vision into a real, implementable project with a budget, a team, and a premiere date.",
+  "staging_label": "Staging",
+  "staging_title": "Available for staging with your company",
+  "staging_p": "We offer Firebird to ballet companies and opera houses as an original production: libretto, concept and choreography by Artem Hordieiev, created for your company. The details of the concept are in the dossier we send on request.",
+  "staging_note": "For artistic and programme directors",
+  "contact_label": "Contact",
+  "contact_name": "Tetiana Hordieieva, producer",
+  "join": "JOIN US · Become part of Artem Hordieiev's artistic family · Commission a performance · Work with us · Icare →",
+  "copyright": "© 2026 ARTEM HORDIEIEV",
+  "credits_label": "Images",
+  "q": "question"
+ },
+ "fr": {
+  "nav": [
+   "Œuvres",
+   "À propos",
+   "CV",
+   "Contact"
+  ],
+  "back": "← Retour aux œuvres",
+  "hero_caption": "N. Roerich, La Mère du Monde, 1924",
+  "hero_meta": "2026 · Igor Stravinsky",
+  "title": "L'Oiseau de feu",
+  "subtitle": "Concept scénique d'auteur",
+  "hero_lead": "L'Oiseau de feu est le feu sacré qui verse la lumière dans l'âme humaine et fait naître l'instant de l'éveil. Une cosmogonie issue de l'héritage philosophique de la famille Roerich.",
+  "cta": "Demander le dossier",
+  "cta_note": "Pour les compagnies de ballet et les maisons d'opéra",
+  "concept_label": "Concept",
+  "concept_title": "Du feu originel à la résurrection",
+  "concept_tagline": "Une cosmogonie du feu qui vit en l'être humain.",
+  "concept_p": [
+   "Le spectacle commence par la cause première d'un feu mystérieux. Ce feu qui a précédé l'apparition de l'humanité — plus exactement, celle de sa conscience d'elle-même.",
+   "Stravinsky a écrit une partition sur la victoire de la lumière sur les ténèbres. Nous demandons : que sont les ténèbres aujourd'hui ? Que savons-nous aujourd'hui de notre propre existence ? Jusqu'où avons-nous su descendre dans le terrier du lapin ?",
+   "Un ballet où le spectateur reconnaît sa propre histoire et repart avec le sentiment que quelque chose de mystérieux s'éveille en lui."
+  ],
+  "chars_label": "Personnages principaux",
+  "chars": [
+   [
+    "La Mère",
+    "La cause première éternelle. Elle existe avant le commencement du monde et après sa fin. Le feu qui toujours crée et unit dans l'amour."
+   ],
+   [
+    "L'Oiseau de feu",
+    "Une force vivante née de la Grande Mère. Elle verse la lumière dans l'argile ordinaire, et l'être humain naît. Elle s'élance dans les ténèbres pour créer, pour éveiller ce qui dort."
+   ],
+   [
+    "Le Tsarévitch",
+    "Un homme né de l'inspiration de l'Oiseau mystique. Mais il est humain et, bien sûr, il choisit le fruit de l'arbre… Notre lecture du Tsarévitch est un archétype que chacun reconnaît, partout dans le monde."
+   ],
+   [
+    "Le royaume de Kastchéï",
+    "Un système vivant d'illusions où l'ombre fixe les règles. Une ville qui s'est oubliée."
+   ]
+  ],
+  "quote": "« La culture est la vénération de la Lumière. La culture est l'amour de l'être humain. Là où la main et le cerveau s'épuisent, le cœur est invincible — et le cœur est la Force de la Lumière, il est le foyer de la Culture. »",
+  "quote_cite": "Nicolas Roerich",
+  "visual_label": "Univers visuel",
+  "visual_sub": "Trois scènes clés, entre espace et concept",
+  "scenes": [
+   [
+    "I",
+    "L'espace de la Mère",
+    "Un bleu sombre sans limites. Tout l'horizon est profondeur. Une figure surgit de la lumière, quelque part en haut d'une toile de montagnes.",
+    "N. Roerich, La Mère du Monde, 1924"
+   ],
+   [
+    "II",
+    "Le royaume de Kastchéï",
+    "Un labyrinthe géométrique. Une matrice. Des fermes et des poutres constructivistes dans l'espace. Au lieu du Moyen Âge, une utopie de l'espace-temps. Les gens bougent comme dans la vie ordinaire, mais ils ont quelque chose de la machine.",
+    "El Lissitzky, Battez les Blancs avec le coin rouge, 1920"
+   ],
+   [
+    "III",
+    "La Résurrection",
+    "La géométrie du royaume de Kastchéï se désagrège. Le feu devient vivant, incarné. Les gens, femmes et hommes, redeviennent organiquement vivants et se défont de leurs attaches à la machine. L'espace de Roerich : or, outremer, horizon de feu.",
+    "N. Roerich, Himalaya, Sikkim, fin des années 1920"
+   ]
+  ],
+  "costumes_label": "Costumes",
+  "costumes": [
+   [
+    "La Mère",
+    "Blanc. La silhouette d'une icône chez Roerich. Un tissu qui respire. Aucun ornement, seulement la forme et la lumière."
+   ],
+   [
+    "L'Oiseau de feu",
+    "Structuré, géométrique. Des cristaux de feu au lieu de plumes. Entre l'humain et le surhumain."
+   ],
+   [
+    "Le Tsarévitch",
+    "Terrestre, tons naturels. Il est le contraste et le point de reconnaissance pour le spectateur."
+   ],
+   [
+    "Les agents de Kastchéï",
+    "Noir et gris graphiques. Des empiècements constructivistes. Tous identiques : c'est leur trait essentiel."
+   ],
+   [
+    "La ville endormie",
+    "Toile, matière organique. Comme un fond qui s'anime peu à peu et trouve sa couleur."
+   ]
+  ],
+  "work_label": "Aperçu du travail",
+  "work_cite": "© Artem Hordieiev — chorégraphe, metteur en scène",
+  "ref_label": "Actualité de l'œuvre · Référence",
+  "ref_title": "New York City Ballet — L'Oiseau de feu (Stravinsky)",
+  "team_label": "Équipe artistique",
+  "artem_name": "Artem Hordieiev",
+  "artem_role": "Chorégraphe · Metteur en scène",
+  "artem_p": [
+   "Plus de 18 ans de métier. Il a signé de grandes productions pour la scène et la télévision, a été interprète et auteur de ses propres projets de ballet en Ukraine et en Asie centrale.",
+   "Aujourd'hui, il est l'auteur de livrets et de concepts de mise en scène originaux, où la tradition et la technique classiques rencontrent la forme scénique contemporaine et une relecture des grands sujets du ballet."
+  ],
+  "cv_link": "CV ↗",
+  "tetiana_name": "Tetiana Hordieieva",
+  "tetiana_role": "Production et diffusion",
+  "tetiana_p": "Planification stratégique, élaboration des propositions artistiques et négociations avec les institutions théâtrales. Elle veille à ce que la vision artistique d'Artem et de son équipe devienne un projet réalisable, avec un budget, une équipe et une date de première.",
+  "staging_label": "Pour votre compagnie",
+  "staging_title": "À monter avec votre compagnie",
+  "staging_p": "Nous proposons L'Oiseau de feu aux compagnies de ballet et aux maisons d'opéra comme un projet de création d'auteur : livret, concept et chorégraphie d'Artem Hordieiev, conçus pour votre compagnie. Le détail du concept figure dans le dossier, envoyé sur demande.",
+  "staging_note": "Pour les directions artistiques et les programmateurs",
+  "contact_label": "Contact",
+  "contact_name": "Tetiana Hordieieva, production et diffusion",
+  "join": "REJOIGNEZ-NOUS · Faites partie de la famille artistique d'Artem Hordieiev · Commandez un spectacle · Travaillons ensemble · Icare →",
+  "copyright": "© 2026 ARTEM HORDIEIEV",
+  "credits_label": "Images",
+  "q": "question"
+ },
+ "questions": {
+  "intro": "18.11.2026 ви прибрали зайве на UA: блок «Для театрів і партнерів», абзац «Концепція виростає…», «Натхнення: …» у трьох сценах; переписали ліду і фінал концепції. FR і EN перезібрано з нової UA. Картку NYCB зроблено крупнішою, «Отримати досьє» — червоною на кремовій підкладці. Відповідайте просто тут, у дужках.",
+  "open": [
+   [
+    "①",
+    "Реріх і Лисицький лишаються?",
+    "Герой і «Візуальний всесвіт» стоять на картинах Реріха («Матір Світу», «Гімалаї») і Лисицького. Стиль сторінки тепер параджановський — тепле вапно, гранат, золото. Лишаємо полотна чи шукаємо інші зображення (свої фото, ескізи)?"
+   ],
+   [
+    "③",
+    "Назва в меню й на картці",
+    "Зараз: «Жар-Птиця» (UA) · «Firebird» (EN) · «L'Oiseau de feu» (FR). Лишаємо так?"
+   ],
+   [
+    "④",
+    "Тетяна в «Команді»: «Продюсування»?",
+    "На канві 01.10 — «Продюсування», на surge було «Продюсер», у контакті — «Тетяна Гордєєва, продюсер». FR — «production» (не «productrice»: у Франції productrice фінансує і несе ризик). Лишаємо «Продюсування»?"
+   ]
+  ],
+  "closed": [
+   [
+    "②",
+    "Відео NYCB — лишається на сторінці?",
+    "Лишається як референс: 18.11.2026 ви попросили зробити картку «Актуальність · Референс» крупнішою й помітнішою. Зроблено: картка на всю ширину під вашим відео, більший ▶ і шрифт, чорна рамка на кремі. Кадру NYCB немає (чужі права)."
+   ]
+  ]
+ }
+}
