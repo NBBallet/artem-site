@@ -45,7 +45,7 @@ def e(s):
 def works(s):
     """Назви творів курсивом — без перекладу."""
     s = e(s)
-    for t in ("L&#x27;Envol d&#x27;Icare", "Icare 1943", "Être et avoir été", "Jazz"):
+    for t in ("L&#x27;Envol d&#x27;Icare", "L’Envol d’Icare", "Icare 1943", "Être et avoir été", "Jazz"):
         s = s.replace(t, f"<i>{t}</i>")
     s = re.sub(r"(власний|own|propre) Icare", r"\1 <i>Icare</i>", s)
     return s
