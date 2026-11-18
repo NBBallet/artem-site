@@ -307,7 +307,7 @@ def page(loc, name):
         ("1932", "tl-1932.webp", "opacity: .42; filter: invert(1) grayscale(1) contrast(1.15);", c["era_1932"], "card"),
         ("1933", "tl-1933.webp", "opacity: .28; filter: grayscale(1) contrast(1.1);", c["era_1933"], "card"),
         ("2026", None, "", c["era_2026"], "blue"),
-        ("2029–30", None, "", c["era_2029"], "anchor"),
+        (c["era_2029_year"], None, "", c["era_2029"], "anchor"),
     ]
     qmark = ('<svg viewBox="0 0 540 720" width="170" height="227" aria-hidden="true" '
              'style="position: absolute; right: -18px; bottom: -30px; display: block;">'
@@ -333,9 +333,8 @@ def page(loc, name):
         + f'<div style="display: flex; align-items: center; gap: 16px; margin-bottom: 30px;">'
         + label(c["mission_label"], mb=0) + nerve_h(1100, seed=3) + '</div>'
         + f'<h2 style="margin: 0; font-family: {DISPLAY}; font-weight: 400; font-size: 58px; line-height: 1.04; '
-          f'letter-spacing: .012em; text-transform: uppercase; color: {FG}; max-width: 16em;">{e(c["mission_title_a"])} '
+          f'letter-spacing: .012em; text-transform: uppercase; color: {FG}; max-width: 16em; margin-bottom: 48px;">{e(c["mission_title_a"])} '
           f'<span style="color: {PINK};">{e(c["mission_title_b"])}</span></h2>'
-        + f'<div style="text-align: right; margin: 18px 0 44px;">{mono(e(c["mission_line"]), color="#ede9e3", size=18, ls=4.2)}</div>'
         + f'<div style="position: relative;">'
         + f'<div style="position: absolute; left: 0; right: 0; top: 75px; z-index: 2; pointer-events: none;">{nerve_h(1312, seed=4)}</div>'
         + f'<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px;">{"".join(cards)}</div></div>'
@@ -345,21 +344,11 @@ def page(loc, name):
         + f'<blockquote lang="fr" style="margin: 0; font-family: {SANS}; font-size: 24px; line-height: 1.5; '
           f'font-style: italic; color: {FG}; text-wrap: pretty;">{e(SH["lifar_quote"])}</blockquote>'
         + f'<figcaption style="margin-top: 16px;">{mono(works(c["quote_cite"]), color=META, size=12, ls=1.4)}</figcaption></figure>'
-        # Якір / Нові доми
-        + f'<div style="display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 14px; margin-top: 64px;">'
-        + f'<div style="position: relative; background: #141310; padding: 26px 30px 30px; min-height: 200px; box-sizing: border-box;">{nerve_v(200, seed=6)}'
-        + mono(e(c["anchor_title"]), color=GOLD, size=13, ls=2, mb=14)
-        + f'<p style="margin: 0; font-family: {SANS}; font-size: 17px; line-height: 1.65; color: #d8d3cc;">{e(c["anchor_text"])} '
-          f'<b style="font-weight: 600; color: {PINK};">{e(c["anchor_accent"])}</b>.</p></div>'
-        + f'<div style="position: relative; background: #141310; padding: 26px 30px 30px; min-height: 200px; box-sizing: border-box;">{nerve_v(200, seed=8)}'
-        + mono(e(c["homes_title"]), color=PINK, size=13, ls=2, mb=14)
-        + f'<p style="margin: 0; font-family: {SANS}; font-size: 17px; line-height: 1.65; color: #d8d3cc;">{e(c["homes_text"])} '
-          f'<b style="font-weight: 600; color: #ede9e3;">{e(c["homes_accent"])}</b> {e(c["homes_tail"])}</p></div>'
-        + '</div></section>'
+        + '</section>'
     )
 
     # ── балет: чорне поле + синя колонка ──
-    col_w, col_h = 560, 1240
+    col_w, col_h = 560, 1080
     bh = SH["bh_quote"]
     bh_html = e(bh).replace("dance premiere", f'<span style="color: {PINK};">dance premiere</span>')
     ballet = (
@@ -380,7 +369,7 @@ def page(loc, name):
         + '</div></div>'
         # синя колонка
         + f'<div style="position: relative; background: {ULTRA}; min-height: {col_h}px; overflow: hidden;">'
-        + blue_column_art(col_w, col_h, dx=110, dy=680, s=1.0)
+        + blue_column_art(col_w, col_h, dx=110, dy=575, s=1.0)
         + f'<div style="position: relative; padding: 96px 44px 0;">'
         + mono(e(c["score_label"]), color="#ede9e3", size=12, ls=2.2, mb=18)
         + f'<a href="{e(SH["yt_chamber"])}" style="position: relative; display: block; height: 266px; overflow: hidden; '
@@ -388,12 +377,10 @@ def page(loc, name):
         + f'<span style="position: absolute; left: 14px; top: 14px; background: {PLAY}; color: #fff; font-family: {MONO}; '
           f'font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; padding: 5px 9px;">{e(c["score_video"])}</span>'
         + f'<span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">{play(64)}</span></a>'
-        + f'<div style="display: grid; grid-template-columns: 130px 1fr; row-gap: 10px; margin: 26px 0 22px; font-family: {SANS}; font-size: 16px; color: #fff;">'
+        + f'<div style="display: grid; grid-template-columns: 130px 1fr; row-gap: 10px; margin: 26px 0 0; font-family: {SANS}; font-size: 16px; color: #fff;">'
         + "".join(f'<span style="font-family: {MONO}; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: #9fb0e0; padding-top: 3px;">{e(c[k+"_k"])}</span>'
                   f'<span>{works(c[k+"_v"])}</span>' for k in ("score_composer", "score_versions", "score_duration"))
         + '</div>'
-        + f'<p style="margin: 0; font-family: {SANS}; font-size: 15px; line-height: 1.62; color: #c9d3f0; text-wrap: pretty;">'
-          f'{works(c["score_chamber"])}{tag("②")}</p>'
         + '</div>'
         + f'<div style="position: absolute; left: 44px; right: 44px; bottom: 44px;">'
         + f'<div style="margin-bottom: 18px;">{nerve_h(472, seed=9, fade="right")}</div>'
@@ -405,19 +392,19 @@ def page(loc, name):
 
     # ── команда ──
     stats = "".join(
-        f'<div style="padding: 22px 0; border-top: 1px solid {LINE};">'
+        f'<div style="padding: 26px 0 0; border-top: 1px solid {LINE};">'
         f'<div style="font-family: {DISPLAY}; font-size: 54px; line-height: 1; color: {FG};">{e(c[f"stat{i}_n"])}</div>'
-        f'<div style="font-family: {SANS}; font-size: 15px; line-height: 1.5; color: {BODY}; margin-top: 8px; max-width: 24em;">{e(c[f"stat{i}_t"])}</div></div>'
+        f'<div style="font-family: {SANS}; font-size: 15px; line-height: 1.5; color: {BODY}; margin-top: 10px; max-width: 24em;">{e(c[f"stat{i}_t"])}</div></div>'
         for i in (1, 2, 3))
     team = (
         f'<section style="padding: 112px 64px 96px; border-top: 1px solid {LINE};">'
         + label(c["team_label"], mb=24)
         + f'<h2 style="margin: 0 0 48px; font-family: {DISPLAY}; font-weight: 400; font-size: 58px; line-height: 1.04; '
           f'text-transform: uppercase; color: {FG};">{e(c["team_title"])}</h2>'
-        + f'<div style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 72px;">'
-        + '<div>' + p(c["team_p1"], mb=20)
-        + f'<p style="font-family: {SANS}; font-size: 17px; line-height: 1.72; color: {BODY}; margin: 0 0 20px; max-width: 62ch;">{e(c["team_p2"])}{tag("①")}</p>'
-        + p(c["team_p3"], mb=40)
+        # два короткі абзаци поруч, під ними — три цифри в ряд, потім посилання
+        + f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 72px; margin-bottom: 56px;">'
+        + p(c["team_p1"], width="none") + p(c["team_p2"], width="none") + '</div>'
+        + f'<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 48px; margin-bottom: 56px;">{stats}</div>'
         + f'<div style="display: flex; gap: 14px; flex-wrap: wrap;">'
         + f'<a href="https://www.hordieiev.art/{"uk" if loc == "uk" else loc}/works/mozart25" style="display: flex; align-items: center; gap: 16px; '
           f'min-height: 72px; box-sizing: border-box; padding: 12px 22px 12px 14px; border: 1px solid {LINE}; background: #111010;">{play(44)}'
@@ -426,8 +413,7 @@ def page(loc, name):
         + f'<a href="https://www.hordieiev.art/{"uk" if loc == "uk" else loc}" style="display: flex; align-items: center; min-height: 72px; '
           f'box-sizing: border-box; padding: 0 24px; background: {PLAY}; color: #fff; font-family: {MONO}; font-size: 13px; '
           f'letter-spacing: 1.8px; text-transform: uppercase;">{e(c["link_all"])} ↗</a>'
-        + '</div></div>'
-        + f'<div>{stats}</div></div></section>'
+        + '</div></section>'
     )
 
     # ── два адресати ──
@@ -451,7 +437,6 @@ def page(loc, name):
 
     offers = (
         f'<section style="padding: 112px 64px 96px; border-top: 1px solid {LINE};">'
-        + label(c["for_label"], mb=36)
         + f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">'
         + offer("house", "houses", True, 12) + offer("patron", "patrons", False, 13)
         + '</div></section>'
@@ -466,8 +451,7 @@ def page(loc, name):
         + f'<a href="tel:{SH["phone"].replace(" ", "")}" style="font-family: {SANS}; font-size: 20px; color: {FG};">{SH["phone"]}</a>'
         + f'<a href="{SH["whatsapp"]}" style="font-family: {MONO}; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: {PINK};">WhatsApp ↗</a>'
         + '</div>'
-        + p(c["contact_names"], color=BODY, size=15, mb=6, width="none")
-        + mono(e(c["contact_city"]), color=META, size=12, mb=56)
+        + p(c["contact_names"], color=BODY, size=15, mb=56, width="none")
         + f'<div style="border-top: 1px solid {LINE}; padding-top: 18px; font-family: {MONO}; font-size: 11px; '
           f'letter-spacing: .6px; line-height: 1.6; color: #6f6a64;">{e(c["credits_label"])}: {works(SH["credits"])}</div>'
         + '</footer>'
@@ -480,23 +464,31 @@ def page(loc, name):
 
 # ── артборд «Що вирішити» ─────────────────────────────────────────────────
 def questions():
-    items = "".join(
-        f'<div style="padding: 24px 0; border-top: 1px solid {LINE};">'
-        + mono(f"{'①②③④⑤⑥'[i]}", color=GOLD, size=16, ls=0, mb=10)
-        + f'<h3 style="margin: 0 0 10px; font-family: {DISPLAY}; font-weight: 400; font-size: 26px; line-height: 1.2; color: {FG};">{e(t)}</h3>'
-        + f'<p style="margin: 0; font-family: {SANS}; font-size: 16px; line-height: 1.62; color: {BODY}; max-width: 72ch;">{e(b)}</p>'
-        + f'<p style="margin: 12px 0 0; font-family: {SANS}; font-size: 16px; line-height: 1.62; color: {PINK};">Ваша відповідь: ( )</p>'
-        + '</div>'
-        for i, (t, b) in enumerate(C["questions"]))
+    Q = C["questions"]
+
+    def item(n, t, b, answer=None):
+        tail = (f'<p style="margin: 12px 0 0; font-family: {SANS}; font-size: 16px; line-height: 1.62; color: {PINK};">Ваша відповідь: ( )</p>'
+                if answer is None else "")
+        return (f'<div style="padding: 24px 0; border-top: 1px solid {LINE};">'
+                + mono(n, color=GOLD if answer is None else META, size=16, ls=0, mb=10)
+                + f'<h3 style="margin: 0 0 10px; font-family: {DISPLAY}; font-weight: 400; font-size: 26px; line-height: 1.2; '
+                  f'color: {FG if answer is None else "#bdb8b0"};">{e(t)}</h3>'
+                + f'<p style="margin: 0; font-family: {SANS}; font-size: 16px; line-height: 1.62; color: {BODY}; max-width: 72ch;">{e(b)}</p>'
+                + tail + '</div>')
+
     body = (
         f'<main style="width: 1000px; box-sizing: border-box; padding: 64px; background: {BG}; color: {FG}; font-family: {SANS};">'
         + label("Перед кодом · чернетка за прапорцем drafts.ts", mb=18)
         + f'<h1 style="margin: 0 0 20px; font-family: {DISPLAY}; font-weight: 400; font-size: 44px; line-height: 1.05; color: {FG};">Що вирішити на цій канві</h1>'
-        + p("Нова сторінка ІКАР замість старої works/icare — для всієї сцени Франції, без Капітолію і без Lorenzo. "
-            "Правте українську (артборд UA) — французька й англійська перезберуться з неї. Правки й відповіді пишіть "
-            "просто в тексті, у дужках. Позначки «питання ①/②» на сторінці зникнуть, щойно ви відповісте.",
+        + p("Ваші правки на UA від 18.11 внесено; FR і EN перекладено під них. Три питання з шести закрито самими правками — "
+            "вони внизу, з вашою відповіддю. Відкриті — одразу нижче: відповідайте просто в тексті, у дужках.",
             mb=32, width="72ch")
-        + items + '</main>'
+        + label(f"Відкриті · {len(Q['open'])}", mb=14)
+        + "".join(item(n, t, b) for n, t, b in Q["open"])
+        + f'<div style="height: 40px;"></div>'
+        + label(f"Закрито вашими правками · {len(Q['closed'])}", color=META, mb=14)
+        + "".join(item(n, t, b, answer=True) for n, t, b in Q["closed"])
+        + '</main>'
     )
     return head("uk", "Що вирішити") + body + foot("Questions")
 
@@ -564,7 +556,7 @@ def measure():
                               "--virtual-time-budget=10000", f"--window-size={w},2000", "--dump-dom", f.as_uri()],
                              capture_output=True, text=True, check=True).stdout
         h = float(re.search(r'<pre id="h">([\d.]+)</pre>', dom).group(1))
-        HEIGHTS[n] = int(math.ceil(h * 1.02))
+        HEIGHTS[n] = int(math.ceil(h)) + 8
         print(n, round(h), "→", HEIGHTS[n])
     HEIGHTS_F.write_text(json.dumps(HEIGHTS, indent=1) + "\n")
 
