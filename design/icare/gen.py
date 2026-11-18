@@ -563,7 +563,49 @@ def measure():
     HEIGHTS_F.write_text(json.dumps(HEIGHTS, indent=1) + "\n")
 
 
+SITE_ART = HERE.parent.parent / "src" / "components" / "icare" / "art.ts"
+
+
+def export_site():
+    """Ті самі нерви й «ніч», що на канві, — для коду сторінки на сайті.
+
+    Пише src/components/icare/art.ts: для кожної картинки viewBox і вміст <svg>
+    (без зовнішнього тега — розмір і позицію задає React-компонент). Танцівник
+    іде всередину синьої колонки як <image>, щоб уся сцена масштабувалась разом
+    на телефоні. Сіди ті самі, що в page(), тож криві збігаються з канвою.
+    """
+    def split(svg):
+        m = re.match(r'<svg viewBox="([^"]+)"[^>]*>(.*)</svg>$', svg, re.S)
+        return {"viewBox": m.group(1), "inner": m.group(2)}
+
+    col_w, col_h, dx, dy = 560, 1080, 110, 575
+    blue = blue_column_art(col_w, col_h, dx=dx, dy=dy, s=1.0).split("<img ", 1)[0]
+    blue = blue.replace("</svg>", f'<image href="/images/works/icare/dancer.png" x="{dx}" y="{dy}" '
+                                  f'width="340" height="380"></image></svg>')
+    art = {
+        "missionNerve": split(nerve_h(1100, seed=3)),
+        "timelineNerve": split(nerve_h(1312, seed=4)),
+        "quoteNerve": split(nerve_v(150, color=PINK, seed=5)),
+        "blackField": split(black_field_nerves(W - col_w, col_h)),
+        "blueColumn": split(blue),
+        "orchNerve": split(nerve_h(472, seed=9, fade="right")),
+        "houseNerve": split(nerve_h(560, color=PINK, seed=12)),
+        "patronNerve": split(nerve_h(560, color=NERVE_BLUE, seed=13)),
+    }
+    SITE_ART.parent.mkdir(parents=True, exist_ok=True)
+    SITE_ART.write_text(
+        "/* ЗГЕНЕРОВАНО design/icare/gen.py --site — не правити руками.\n"
+        "   Нерви й «ніч» нової сторінки ІКАР, ті самі криві, що на канві. */\n"
+        "export type Art = { viewBox: string; inner: string };\n\n"
+        + "".join(f"export const {k}: Art = {json.dumps(v, ensure_ascii=False)};\n\n" for k, v in art.items()),
+        encoding="utf-8")
+    print("сайт:", SITE_ART)
+
+
 if __name__ == "__main__":
+    if "--site" in sys.argv:
+        export_site()
+        sys.exit(0)
     write_all()
     if "--measure" in sys.argv:
         measure()

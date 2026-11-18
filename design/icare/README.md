@@ -12,7 +12,15 @@
 - Рішення Артема 18.11.2026: готувати зараз, **випускати після 30.11.2026
   окремим рішенням**. До того сторінка живе за прапорцем у `src/lib/drafts.ts`
   (див. `AGENTS.md`, розділ про канвас). У `main` — нічого.
-- Код сторінки пише окремий чат **після** затвердження канви.
+- **18.11.2026 — код написано** (крок Б): `src/components/icare/IcareLanding.tsx`, підключено у
+  `WorkPage` (`works/[slug]/page.tsx`) за прапорцем `DRAFT_ICARE` у `src/lib/drafts.ts`.
+  Локально: `NEXT_PUBLIC_DRAFT_ICARE=1 npm run dev` → `/uk|fr|en/works/icare`. Без змінної
+  (тобто на Vercel) — стара `IcarePage`. Текст береться прямо з `copy.json` (без Notion).
+  Нерви й «ніч» — `src/components/icare/art.ts`, пише `python3 design/icare/gen.py --site`
+  (ті самі сіди, криві збігаються з канвою); картинки — `public/images/works/icare/`.
+  Знімки звірки — `screens/`. Після правок у `copy.json` код підхоплює їх сам;
+  після змін нервів у `gen.py` — перезапустити `--site`.
+  Реліз: прибрати `DRAFT_ICARE` і стару `IcarePage`, віддавати `IcareLanding` безумовно.
 - Приховану `/markevitch-t3lu2ig` не чіпати: на неї ведуть QR на роздрукованих аркушах.
 
 ## Раунди правок
