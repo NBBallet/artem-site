@@ -31,6 +31,7 @@ HEIGHTS = json.loads(HEIGHTS_F.read_text()) if HEIGHTS_F.exists() else {}
 BG, FG, BODY, META = "#0a0a0a", "#f5f5f5", "#9a9a9a", "#8a8a8a"
 RED, PINK, NERVE_BLUE = "#c8102e", "#E8455E", "#3563D8"
 ULTRA, PLAY, GOLD, LINE = "#12275e", "#2150B8", "#C9AE7A", "#1f1e1c"
+BTN_LINE = "#8fa6e6"   # контурна синя кнопка: ≈8:1 на чорному
 DISPLAY = "'NAMU-1400', Georgia, serif"
 MONO = "'JetBrains Mono', ui-monospace, Menlo, monospace"
 SANS = "Inter, -apple-system, system-ui, sans-serif"
@@ -247,8 +248,8 @@ def mailto(subject):
 
 
 def button(text, href, solid=True):
-    st = (f"background: {RED}; color: #fff; border: 1px solid {RED};" if solid
-          else f"background: transparent; color: {PINK}; border: 1px solid {PINK};")
+    st = (f"background: {PLAY}; color: #fff; border: 1px solid {PLAY};" if solid
+          else f"background: transparent; color: {BTN_LINE}; border: 1px solid {BTN_LINE};")
     return (f'<a href="{e(href)}" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; '
             f'box-sizing: border-box; padding: 0 22px; font-family: {MONO}; font-size: 13px; letter-spacing: 2px; '
             f'text-transform: uppercase; border-radius: 2px; {st}">{e(text)} <span aria-hidden="true">→</span></a>')
@@ -294,9 +295,20 @@ def page(loc, name):
         + button(c["cta_house"], "#houses") + button(c["cta_patron"], "#patrons", solid=False)
         + '</div></div>'
         + f'<div style="background: {ULTRA}; box-sizing: border-box; padding: 40px 40px 28px; display: flex; flex-direction: column; gap: 18px;">'
-        + f'<div style="position: relative; flex: 1 1 auto; min-height: 560px; overflow: hidden;">'
+        + f'<div style="position: relative; flex: 1 1 auto; min-height: 560px;">'
+        # ореол: розмита копія плити розчиняє синій у фоні колонки, без різкого краю
+        + f'<img src="{BLOB["matisse-plate.webp"]}" alt="" aria-hidden="true" '
+          f'style="position: absolute; left: -40px; top: -40px; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; '
+          f'object-position: 50% 40%; display: block; filter: blur(34px) saturate(.8); opacity: .5; '
+          f'-webkit-mask-image: radial-gradient(ellipse 62% 62% at 50% 50%, #000 30%, transparent 100%); '
+          f'mask-image: radial-gradient(ellipse 62% 62% at 50% 50%, #000 30%, transparent 100%);">'
+        # сама картина: країв немає — вони тануть у тло колонки
         + f'<img src="{BLOB["matisse-plate.webp"]}" alt="Henri Matisse, Icare, Jazz, 1947" '
-          f'style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block;"></div>'
+          f'style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; '
+          f'-webkit-mask-image: linear-gradient(to right, transparent 0, #000 34%, #000 66%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 28%, #000 72%, transparent 100%); '
+          f'-webkit-mask-composite: source-in; '
+          f'mask-image: linear-gradient(to right, transparent 0, #000 34%, #000 66%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 28%, #000 72%, transparent 100%); '
+          f'mask-composite: intersect;"></div>'
         + mono(e(c["matisse_caption"]), color="#b9c4e6", size=11, ls=1.6) + '</div>'
         + '</section>'
     )
