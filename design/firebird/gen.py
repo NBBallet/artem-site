@@ -135,11 +135,13 @@ def play(size=56):
             f'height: {size}px; border-radius: 50%; background: {PLAY}; flex: none;">{tri(size=size // 3)}</span>')
 
 
-def button(text, href, edge=RED):
-    return (f'<a href="{e(href)}" style="display: inline-flex; align-items: center; gap: 12px; min-height: 54px; '
-            f'box-sizing: border-box; padding: 0 28px; font-family: {MONO}; font-size: 14px; letter-spacing: 2.2px; '
-            f'text-transform: uppercase; border-radius: 2px; background: {RED}; color: {CREAM}; '
-            f'border: 1px solid {edge};">{e(text)} <span aria-hidden="true">→</span></a>')
+def button(text, href, edge=RED, big=False):
+    """Червона кнопка сайту (клікабельне). big — головна дія сторінки «Отримати досьє»."""
+    mh, fs, px = (72, 17, 40) if big else (54, 14, 28)
+    return (f'<a href="{e(href)}" style="display: inline-flex; align-items: center; gap: 14px; min-height: {mh}px; '
+            f'box-sizing: border-box; padding: 0 {px}px; font-family: {MONO}; font-size: {fs}px; font-weight: 700; letter-spacing: 2.4px; '
+            f'text-transform: uppercase; border-radius: 2px; background: {RED}; color: #FFFFFF; '
+            f'border: 2px solid {edge}; box-shadow: 0 6px 0 rgba(0, 0, 0, .28);">{e(text)} <span aria-hidden="true">→</span></a>')
 
 
 def mailto(subject):
@@ -328,7 +330,7 @@ def page(loc, name):
         + mono(e(c["subtitle"]) + qtag(loc, "③"), color=GRANAT_D, size=15, ls=2.4, mb=40)
         + p(c["hero_lead"], color="#000", size=22, lh=1.55, mb=44, width="30em")
         + f'<div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap;">'
-        + button(c["cta"], mailto("Firebird — " + c["cta"]))
+        + button(c["cta"], mailto("Firebird — " + c["cta"]), big=True)
         + mono(e(c["cta_note"]), color=GRANAT_D, size=12, ls=1.8)
         + '</div></div>'
         + f'<div style="position: absolute; left: 760px; top: 220px;">'
@@ -346,7 +348,10 @@ def page(loc, name):
         + display(c["concept_title"], 64, CREAM, mb=22, width="15em")
         + p(c["concept_tagline"], color=AMBER, size=26, lh=1.4, mb=64, width="none", italic=True)
         + f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 96px;">'
-        + "".join(p(t, color=CREAM_T, size=18, width="none") for t in c["concept_p"])
+        # 18.11.2026 Артем прибрав 3-й абзац; фінал лишився в правій колонці, де стояв на канві
+        + "".join((f'<div style="grid-column: 2;">' + p(t, color=CREAM_T, size=18, width="none") + '</div>')
+                  if i == 2 and len(c["concept_p"]) == 3 else p(t, color=CREAM_T, size=18, width="none")
+                  for i, t in enumerate(c["concept_p"]))
         + '</div></section>'
     )
 
@@ -422,26 +427,26 @@ def page(loc, name):
         + '</section>'
     )
 
-    # ── приклад роботи: кадр 4:3, ▶ збоку від артистів; референс NYCB — текстом ──
+    # ── приклад роботи: кадр 4:3, ▶ збоку від артистів; референс NYCB — велика картка під ним ──
     work = (
         f'<section style="position: relative; overflow: hidden; padding: 112px {PAD}px 112px; {wall_bg()}">'
-        + grain(W, 1000, f"wk{loc}", opacity=.26)
+        + grain(W, 1400, f"wk{loc}", opacity=.26)
         + score_sheet(1170, 560, 170, 220, 4, 7)
         + mono(e(c["work_label"]), color=GRANAT, size=13, mb=32)
-        + f'<div style="display: grid; grid-template-columns: 760px minmax(0, 1fr); gap: 64px; align-items: start;">'
-        + f'<div>'
         + f'<a href="{e(SH["yt_work"])}" style="position: relative; display: block; width: 760px; height: 570px; background: {FRAME}; overflow: hidden;">'
         + f'<img src="{BLOB["work-sample.webp"]}" alt="" style="position: absolute; left: 0; top: 0; width: 760px; height: 570px; object-fit: contain; display: block;">'
         + grain(760, 570, f"wf{loc}", opacity=.14, blend="screen", freq=1.1)
         + f'<span style="position: absolute; left: 36px; top: 470px;">{play(68)}</span></a>'
-        + f'<div style="margin-top: 14px;">{mono(e(c["work_cite"]), color=GRANAT_D, size=12, ls=1.6, upper=False)}</div>'
-        + '</div>'
-        + f'<a href="{e(SH["yt_ref"])}" style="display: block; margin-top: 8px; padding: 32px 30px; border: 1px solid {GRANAT_D}; '
-          f'background: rgba(247, 234, 223, .35); width: 360px; box-sizing: border-box;">'
-        + f'<span style="display: block; margin-bottom: 18px;">{mono(e(c["ref_label"]) + qtag(loc, "②"), color=GRANAT, size=11, ls=1.8)}</span>'
-        + f'<span style="display: flex; align-items: center; gap: 18px;">{play(48)}'
-        + f'<span style="font-family: {SANS}; font-size: 18px; line-height: 1.45; color: #000;">{e(c["ref_title"])}</span></span></a>'
-        + '</div></section>'
+        + f'<div style="margin-top: 14px; margin-bottom: 56px;">{mono(e(c["work_cite"]), color=GRANAT_D, size=12, ls=1.6, upper=False)}</div>'
+        # референс NYCB — велика картка на всю ширину: крем, чорна рамка, великий ▶ (кадру немає — чужі права)
+        + f'<a href="{e(SH["yt_ref"])}" style="display: flex; align-items: center; gap: 40px; width: {W - 2 * PAD}px; box-sizing: border-box; '
+          f'padding: 44px 52px; background: {CREAM}; border: 3px solid {FRAME}; box-shadow: 10px 10px 0 {GRANAT};">'
+        + play(104)
+        + f'<span style="display: block;">'
+        + f'<span style="display: block; margin-bottom: 16px;">{mono(e(c["ref_label"]), color=GRANAT, size=15, ls=2.6)}</span>'
+        + f'<span style="display: block; font-family: {DISPLAY}; font-size: 46px; line-height: 1.08; color: #000; max-width: 24em;">{e(c["ref_title"])}</span>'
+        + '</span></a>'
+        + '</section>'
     )
 
     # ── постановочна команда: чорна рамка ──
@@ -463,22 +468,6 @@ def page(loc, name):
         + '</div></section>'
     )
 
-    # ── для театрів і партнерів: стіна ──
-    items = "".join(
-        f'<div style="padding-top: 22px; border-top: 1px solid {GRANAT_D};">'
-        f'<div style="font-family: {DISPLAY}; font-size: 48px; line-height: 1; color: {GRANAT}; margin-bottom: 14px;">{i + 1:02d}</div>'
-        + p(t, color=INK, size=17, lh=1.6, width="none") + '</div>'
-        for i, t in enumerate(c["items"]))
-    theatres = (
-        f'<section style="position: relative; overflow: hidden; padding: 112px {PAD}px 112px; {wall_bg()}">'
-        + grain(W, 1000, f"th{loc}", opacity=.26)
-        + mono(e(c["theatres_label"]), color=GRANAT, size=13, mb=24)
-        + display(c["theatres_title"], 54, GRANAT_D, mb=32, width="20em")
-        + p(c["theatres_p"], color=INK, size=19, lh=1.62, mb=64, width="52em")
-        + f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 72px;">{items}</div>'
-        + '</section>'
-    )
-
     # ── постановка + контакт: гранатова панель на чорному ──
     staging = (
         f'<section style="position: relative; padding: 112px {PAD}px 88px; background: {FRAME};">'
@@ -487,9 +476,10 @@ def page(loc, name):
         + mono(e(c["staging_label"]), color=GOLD, size=13, mb=22)
         + display(c["staging_title"], 50, CREAM, mb=26, width="13em", lh=1.05)
         + p(c["staging_p"], color=CREAM, size=18, lh=1.62, mb=40, width="none")
-        + f'<div style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap;">'
-        + button(c["cta"], mailto("Firebird — " + c["cta"]), edge=CREAM)
-        + mono(e(c["staging_note"]), color=CREAM, size=12, ls=1.8)
+        + f'<div style="display: flex; align-items: center; gap: 26px; flex-wrap: wrap; background: {CREAM}; '
+          f'margin: 0 -56px -60px; padding: 36px 56px;">'
+        + button(c["cta"], mailto("Firebird — " + c["cta"]), big=True)
+        + mono(e(c["staging_note"]), color=GRANAT_D, size=12, ls=1.8)
         + '</div></div>'
         + f'<div style="padding-top: 56px;">'
         + mono(e(c["contact_label"]), color=GOLD, size=13, mb=22)
@@ -513,7 +503,7 @@ def page(loc, name):
 
     body = (f'<main style="width: {W}px; background: {FRAME}; color: {CREAM}; font-family: {SANS}; '
             f'-webkit-font-smoothing: antialiased;">' + nav + hero + concept + chars + quote + visual
-            + costumes + work + team + theatres + staging + footer + '</main>')
+            + costumes + work + team + staging + footer + '</main>')
     return head(lang, f"Firebird — {loc.upper()}"), body, foot(name)
 
 
