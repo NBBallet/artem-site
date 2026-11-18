@@ -431,7 +431,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
             style={{ background: "var(--cv-red-soft)", borderTop: "2px solid var(--cv-red)" }}
           >
             <Head className="mb-6 md:mb-8">
-              <Label tone="red" small className="mb-4">{d.s03.meetLabel}</Label>
+              {d.s03.meetLabel ? <Label tone="red" small className="mb-4">{d.s03.meetLabel}</Label> : null}
               <div className="cv-h3 text-[26px] md:text-[34px]">{d.s03.meetTitle}</div>
             </Head>
             <Paras text={d.s03.meetBody} className="r-col" pClassName="cv-p cv-read" />
@@ -441,7 +441,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
             style={{ borderTop: "1px solid var(--cv-line2)" }}
           >
             <Head className="mb-6">
-              <Label tone="meta" small className="mb-4">{d.s03.europeLabel}</Label>
+              {d.s03.europeLabel ? <Label tone="meta" small className="mb-4">{d.s03.europeLabel}</Label> : null}
               <div className="cv-h3 text-[20px] md:text-[24px] leading-[1.3]">{d.s03.europeTitle}</div>
             </Head>
             <Paras text={d.s03.europeBody} className="r-col" pClassName="cv-p cv-read-sm" />
