@@ -191,12 +191,14 @@ html[data-brand="nb2"] .nb-btn-sm[aria-current="page"] {
 }
 
 /* ── Навігація: світла, без рамок; мови — текстом ── */
-html[data-brand="nb2"] nav { background: color-mix(in srgb, var(--nb-bg) 92%, transparent); }
+html[data-brand="nb2"] nav { background: rgba(254, 248, 245, 0.96); }
+/* пункти меню графітом: сланець під напівпрозорим тлом над темною сторінкою твору не тримає 4,5 : 1 */
+html[data-brand="nb2"] nav a.text-brand-grey { color: var(--nb-graphite); }
 html[data-brand="nb2"] nav a,
 html[data-brand="nb2"] nav span { font-size: 14px; }
 html[data-brand="nb2"] nav > a:first-child { color: var(--nb-black); letter-spacing: 1px; }
 html[data-brand="nb2"] .nb-langs { gap: 0; }
-html[data-brand="nb2"] .nb-langs > * { background: none !important; padding: 4px 8px; color: var(--nb-slate) !important; }
+html[data-brand="nb2"] .nb-langs > * { background: none !important; padding: 4px 8px; color: var(--nb-graphite) !important; }
 html[data-brand="nb2"] .nb-langs > span { color: var(--nb-black) !important; font-weight: 500; }
 
 /* ── Картки: пудрова заливка; мета всередині — графітом (контраст) ── */
@@ -283,3 +285,14 @@ html[data-brand="nb2"] .cv .cv-rep-row { background-color: transparent; }
 /* CV: мітка над заголовком розділу — прибрано; риска лишає свій відступ */
 html[data-brand="nb2"] .cv .r-head > .cv-label:has(+ .cv-h2) { display: none; }
 html[data-brand="nb2"] .cv .r-rule { display: block; visibility: hidden; }
+
+/* темна тональність успадковує світлий колір тексту */
+html[data-brand="nb2"] .nb-dark { color: var(--white); }
+/* CV: усе на пудровому — графітом (сланець на пудровому 3,7 : 1) */
+html[data-brand="nb2"] .cv :is(.cv-panel, .cv-award-link, .cv-award-link *, .cv-panel *) {
+  --cv-meta: var(--nb-graphite);
+  --cv-red: var(--nb-graphite);
+  --cv-gold: var(--nb-graphite);
+}
+/* CV: «Дивитися …» — посилання в тексті: колір + вага 500, 15 px */
+html[data-brand="nb2"] .cv .cv-award-cta { color: var(--nb-black); font-weight: 500; font-size: 15px; font-family: var(--font-text); }
