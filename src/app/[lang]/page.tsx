@@ -11,6 +11,7 @@ import JsonLd from "@/components/JsonLd";
 import { hasLocale } from "@/lib/i18n";
 import { buildMetadata, personJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
+import { FONT, GLYPH } from "@/lib/brand";
 
 // Always render fresh from Notion — no stale-while-revalidate confusion
 export const dynamic = "force-dynamic";
@@ -68,11 +69,11 @@ export default async function HomePage({
     <>
       <JsonLd data={personJsonLd(locale)} />
       {/* ===== HERO ===== */}
-      <section className="relative h-screen flex flex-col items-center justify-center text-center border-b border-[#222] overflow-hidden">
+      <section className="relative h-screen flex flex-col items-center justify-center text-center border-b border-line-2 overflow-hidden">
         <Tryzub className="absolute bottom-12 right-8 opacity-[0.06] scale-[0.5] origin-bottom-right hidden md:block" />
         <h1
           className="text-[clamp(48px,8vw,96px)] leading-[1.05] mb-6"
-          style={{ fontFamily: "NAMU-1400, serif" }}
+          style={{ fontFamily: FONT.display }}
         >
           <span className="text-brand-white">ARTEM</span>
           <br />
@@ -92,7 +93,7 @@ export default async function HomePage({
       </section>
 
       {/* ===== WORKS ===== */}
-      <section id="works" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+      <section id="works" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
         <h2 className="t-h2 mb-4">
           {t["works.title"]}
         </h2>
@@ -123,9 +124,9 @@ export default async function HomePage({
             <Link
               key={work.slug}
               href={`/${lang}/works/${work.slug}`}
-              className="group block bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-brand-red/40 transition-colors"
+              className="group block bg-surface border border-line-2 rounded-lg overflow-hidden hover:border-brand-red/40 transition-colors"
             >
-              <div className="aspect-[16/10] relative overflow-hidden bg-[#1a1a1a]">
+              <div className="aspect-[16/10] relative overflow-hidden bg-line">
                 {work.image ? (
                   <>
                     <Image
@@ -137,13 +138,13 @@ export default async function HomePage({
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
                       <span className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase font-semibold text-brand-white bg-brand-red/90 backdrop-blur-sm px-3 py-1.5 rounded-sm">
-                        {t["works.viewProject"]} →
+                        {`${t["works.viewProject"]} ${GLYPH.next}`}
                       </span>
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 px-5 pb-4 text-center">
                       <h3
                         className="text-[clamp(18px,2.5vw,26px)] leading-tight text-brand-white tracking-[2px] uppercase drop-shadow-lg"
-                        style={{ fontFamily: "NAMU-1400, serif" }}
+                        style={{ fontFamily: FONT.display }}
                       >
                         {work.title[locale]}
                       </h3>
@@ -159,7 +160,7 @@ export default async function HomePage({
                     <div className="w-8 h-[1px]" style={{ backgroundColor: cardAccent + "88" }} />
                     <span
                       className="text-[clamp(20px,3vw,30px)] text-white/70 group-hover:text-white/90 transition-colors drop-shadow-lg leading-tight tracking-[2px]"
-                      style={{ fontFamily: "NAMU-1400, serif" }}
+                      style={{ fontFamily: FONT.display }}
                     >
                       {work.title[locale]}
                     </span>
@@ -187,7 +188,7 @@ export default async function HomePage({
 
       {/* ===== ABOUT =====
            All texts editable in Notion Site Settings → keys: about_* */}
-      <section id="about" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+      <section id="about" className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
         <h2 className="t-h2 mb-4">
           {locale === "fr"
             ? (settings.aboutNameFr || t["about.title"])
@@ -211,7 +212,7 @@ export default async function HomePage({
         {/* ===== COLLABORATION UKRAINE — USA =====
              Rhoden / Richardson, Complexions, The Great Gatsby.
              All texts editable in Notion Site Settings → keys: about_collab_* */}
-        <div className="mt-16 md:mt-[72px] pt-11 border-t border-[#1a1a1a]">
+        <div className="mt-16 md:mt-[72px] pt-11 border-t border-line">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div>
               <p className="t-label mb-[22px]">
@@ -265,7 +266,7 @@ export default async function HomePage({
 
       {/* ===== CV / RÉSUMÉ CTA =====
            Editable in Notion Site Settings → keys: cv_cta_*, cv_url */}
-      <section className="border-b border-[#1a1a1a] bg-[#080808]">
+      <section className="border-b border-line bg-[#080808]">
         <div className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex flex-col items-center gap-10">
             {/* Text */}
@@ -315,7 +316,7 @@ export default async function HomePage({
               <a
                 href={locale === "fr" ? `/${lang}/cv?print=1` : CV_DOWNLOAD[locale]}
                 download={locale !== "fr"}
-                className="group inline-flex items-center justify-center gap-4 px-10 py-6 border border-[#2b2b2b] hover:border-brand-red text-[#999] hover:text-brand-white transition-all duration-300 rounded-sm"
+                className="group inline-flex items-center justify-center gap-4 px-10 py-6 border border-[#2b2b2b] hover:border-brand-red text-fg-4 hover:text-brand-white transition-all duration-300 rounded-sm"
               >
                 <span className="t-mono text-[13px] tracking-[2.8px] uppercase whitespace-nowrap">
                   {cvData[locale].downloadBtn}

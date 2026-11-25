@@ -18,6 +18,8 @@ import copy from "../../../design/firebird/copy.json";
 import * as art from "./art";
 import type { Art } from "./art";
 import "./firebird.css";
+import { FONT, HEX } from "@/lib/brand";
+import { Arrow } from "@/components/brand/Arrow";
 
 type Copy = (typeof copy)["uk"];
 const SH = copy.shared;
@@ -31,11 +33,11 @@ const GOLD = "#D7A950";
 const FRAME = "#000000";
 const INK = "rgba(0, 0, 0, .82)";
 const CREAM_T = "rgba(247, 234, 223, .76)";
-const RED = "#C8102E";
+const RED = HEX.red; /* червоний сайту */
 const PINK = "#E8455E";
 const PLAY = "#2150B8";
-const DISPLAY = "NAMU-1400, Georgia, serif";
-const MONO = "var(--mono-font)";
+const DISPLAY = FONT.display;
+const MONO = FONT.label;
 const IMG = "/images/works/firebird";
 
 /** Лист «Отримати досьє»: тема з міткою [firebird] (рахувати запити з цієї сторінки) і заготовка тіла. */
@@ -175,7 +177,7 @@ function DossierButton({ c, className = "" }: { c: Copy; className?: string }) {
         boxShadow: "0 6px 0 rgba(0, 0, 0, .28)",
       }}
     >
-      {c.cta} <span aria-hidden="true">→</span>
+      {c.cta} <Arrow dir="next" />
     </a>
   );
 }
@@ -544,7 +546,7 @@ export default function FirebirdLanding({ locale }: { locale: Locale }) {
                 {SH.phone}
               </a>
               <a href={SH.whatsapp} {...ext} className="fb-link block text-[12px] lg:text-[13px] tracking-[2px] uppercase" style={{ fontFamily: MONO, color: PINK }}>
-                WhatsApp ↗
+                WhatsApp <Arrow dir="out" />
               </a>
             </div>
           </div>

@@ -18,6 +18,9 @@ import FirebirdLanding from "@/components/firebird/FirebirdLanding";
 import { firebirdMetadata, firebirdJsonLd } from "@/components/firebird/seo";
 import JsonLd from "@/components/JsonLd";
 import { DRAFT_FIREBIRD } from "@/lib/drafts";
+import { FONT } from "@/lib/brand";
+import { Arrow } from "@/components/brand/Arrow";
+import { Sep } from "@/components/brand/Sep";
 
 // Always render fresh from Notion — no stale-while-revalidate confusion
 export const dynamic = "force-dynamic";
@@ -62,18 +65,18 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       />
 
       {/* ===== 1. HERO ===== */}
-      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
+      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-line" style={{ zIndex: 1 }}>
 
         <Link
           href={`/${lang}#works`}
           className="inline-block mb-8 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
         >
-          ← {t["work.back"]}
+          <Arrow dir="back" /> {t["work.back"]}
         </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Poster — URL editable in Notion Portfolio DB → "Cover image" field */}
-          <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
+          <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface">
             <ZoomableImage
               src={work.image || "/images/works/anima/poster-v3.jpg"}
               alt={locale === "fr" ? "Affiche ANIMA" : locale === "uk" ? "Афіша ANIMA" : "ANIMA poster"}
@@ -92,18 +95,18 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
                 : locale === "uk"
                 ? (settings.animaCreditPremiereDateUk || d.premiere.dateUk)
                 : (settings.animaCreditPremiereDateEn || d.premiere.date)
-              } · {settings.animaCreditCompany || d.credits.company}
+              }<Sep />{settings.animaCreditCompany || d.credits.company}
             </div>
 
             <h1
               className="text-[clamp(48px,8vw,80px)] leading-[1.05] text-brand-white mb-2"
-              style={{ fontFamily: "NAMU-1400, serif" }}
+              style={{ fontFamily: FONT.display }}
             >
               ANIMA
             </h1>
             <p
               className="text-xl text-brand-grey mb-8"
-              style={{ fontFamily: "NAMU-Pro, sans-serif" }}
+              style={{ fontFamily: FONT.displayAlt }}
             >
               {work.subtitle[locale]}
             </p>
@@ -177,11 +180,11 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       </section>
 
       {/* ===== 2. SYNOPSIS ===== */}
-      <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+      <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-line">
+        <div className="mb-2 t-kicker text-brand-red">
           {locale === "fr" ? "Synopsis" : locale === "uk" ? "Синопсис" : "Synopsis"}
         </div>
-        <p className="text-[17px] text-[#bbb] leading-[1.8] mb-8">
+        <p className="text-[17px] text-fg-2 leading-[1.8] mb-8">
           {work.description[locale]}
         </p>
         {/* Blockquote — editable in Notion Site Settings DB → key "anima_blockquote" */}
@@ -193,11 +196,11 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       </section>
 
       {/* ===== 4. SCENES — Gallery of 7 Arcana ===== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
         {/* Header: label, then h2 + button on same row, then description */}
         {/* All texts editable in Notion Site Settings → keys: anima_scenes_* */}
         <div className="mb-16">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+          <div className="mb-2 t-kicker text-brand-red">
             {locale === "fr"
               ? (settings.animaScenesLabelFr || "LIVRET · ARCANES")
               : locale === "uk"
@@ -206,7 +209,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           </div>
           <h2
             className="text-3xl text-brand-white mb-4"
-            style={{ fontFamily: "NAMU-1400, serif" }}
+            style={{ fontFamily: FONT.display }}
           >
             {locale === "fr"
               ? (settings.animaScenesTitleFr || "7 Arcanes")
@@ -227,7 +230,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               href={settings.animaLibrettoPdf}
               filename="ANIMA-libretto.pdf"
               className="inline-flex items-center gap-4 px-10 py-5 border-2 border-brand-red text-brand-red hover:text-white hover:bg-brand-red transition-all duration-300 text-[12px] tracking-[4px] uppercase cursor-pointer"
-              style={{ fontFamily: "NAMU-1400, serif" }}
+              style={{ fontFamily: FONT.display }}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/>
@@ -246,7 +249,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               }`}
             >
               {/* Image */}
-              <div className={`relative aspect-[16/10] rounded-lg overflow-hidden bg-[#111] ${
+              <div className={`relative aspect-[16/10] rounded-lg overflow-hidden bg-surface ${
                 (idx + 1) % 2 === 0 ? "md:order-2" : ""
               }`}>
                 <ZoomableImage
@@ -261,13 +264,13 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
               {/* Text */}
               <div className={(idx + 1) % 2 === 0 ? "md:order-1" : ""}>
                 <div className="flex items-baseline gap-4 mb-4">
-                  <span className="text-[40px] text-brand-red/20 font-light leading-none" style={{ fontFamily: "NAMU-1400, serif" }}>
+                  <span className="text-[40px] text-brand-red/20 font-light leading-none" style={{ fontFamily: FONT.display }}>
                     #{idx + 1}
                   </span>
                   <div>
                     <h3
                       className="text-2xl text-brand-white"
-                      style={{ fontFamily: "NAMU-1400, serif" }}
+                      style={{ fontFamily: FONT.display }}
                     >
                       {scene.arcana}
                     </h3>
@@ -288,17 +291,17 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
       </section>
 
       {/* ===== 5. VIDEO ===== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
+      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
         <h2
           className="text-3xl text-brand-white mb-12"
-          style={{ fontFamily: "NAMU-1400, serif" }}
+          style={{ fontFamily: FONT.display }}
         >
           {locale === "fr" ? "Vidéo" : locale === "uk" ? "Відео" : "Video"}
         </h2>
 
         {/* Main showreel */}
         <div className="mb-12">
-          <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+          <div className="aspect-video rounded-lg overflow-hidden bg-surface">
             <iframe
               src={`https://www.youtube.com/embed/${d.videos.showreel.id}`}
               title={d.videos.showreel.title[locale]}
@@ -319,7 +322,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
         {/* Secondary videos */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+            <div className="aspect-video rounded-lg overflow-hidden bg-surface">
               <iframe
                 src={`https://www.youtube.com/embed/${d.videos.premiere.id}`}
                 title={d.videos.premiere.title[locale]}
@@ -337,7 +340,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             </p>
           </div>
           <div>
-            <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+            <div className="aspect-video rounded-lg overflow-hidden bg-surface">
               <iframe
                 src={`https://www.youtube.com/embed/${d.videos.rehearsal.id}`}
                 title={d.videos.rehearsal.title[locale]}
@@ -359,13 +362,13 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       {/* ===== 6. FESTIVAL ===== */}
       {/* All texts editable in Notion Site Settings → keys: anima_festival_* */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
+        <div className="mb-2 t-kicker text-brand-red">
           {locale === "fr" ? "Festival" : locale === "uk" ? "Фестиваль" : "Festival"}
         </div>
         <h2
           className="text-3xl text-brand-white mb-4"
-          style={{ fontFamily: "NAMU-1400, serif" }}
+          style={{ fontFamily: FONT.display }}
         >
           {settings.animaFestivalName || d.festival.name}
         </h2>
@@ -382,7 +385,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             : locale === "uk"
             ? (settings.animaFestivalDatesUk || d.festival.dates.uk)
             : (settings.animaFestivalDatesEn || d.festival.dates.en)}
-          {" · "}
+          <Sep />
           {locale === "fr"
             ? (settings.animaFestivalVenueFr || d.festival.venue.fr)
             : locale === "uk"
@@ -392,14 +395,14 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
         <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-10 mb-12 items-start">
           <div className="pt-1">
-            <p className="text-[15px] text-[#999] leading-[1.7] mb-6">
+            <p className="text-[15px] text-fg-4 leading-[1.7] mb-6">
               {locale === "fr"
                 ? (settings.animaFestivalDescriptionFr || d.festival.description.fr)
                 : locale === "uk"
                 ? (settings.animaFestivalDescriptionUk || d.festival.description.uk)
                 : (settings.animaFestivalDescriptionEn || d.festival.description.en)}
             </p>
-            <p className="text-[15px] text-[#999] leading-[1.7]">
+            <p className="text-[15px] text-fg-4 leading-[1.7]">
               {locale === "fr"
                 ? (settings.animaFestivalOrganizersFr || d.festival.organizers.fr)
                 : locale === "uk"
@@ -409,7 +412,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           </div>
 
           {/* Festival program image — slightly larger, right-aligned with text top */}
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[#111]">
+          <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-surface">
             <ZoomableImage
               src={d.festival.programImage}
               alt={locale === "fr" ? "Programme du KMATOB-FEST 2014" : locale === "uk" ? "Програма КМАТОБ-ФЕСТ 2014" : "KMATOB-FEST 2014 program"}
@@ -424,13 +427,13 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       {/* ===== 7. ABOUT LITSO → NEWSPAPER BIRDS (історія, лишається) ===== */}
       {/* Тексти локальні: Notion anima_litso_* ще несе назву компанії (прибрано 29.09.2026) */}
-      <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-[#1a1a1a]">
-        <div className="mb-2 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+      <section className="py-24 px-6 md:px-16 max-w-[800px] mx-auto border-b border-line">
+        <div className="mb-2 t-kicker text-brand-red">
           LITSO → NEWSPAPER BIRDS
         </div>
         <h2
           className="text-3xl text-brand-white mb-8"
-          style={{ fontFamily: "NAMU-1400, serif" }}
+          style={{ fontFamily: FONT.display }}
         >
           {locale === "fr"
             ? "De LITSO à Newspaper Birds"
@@ -438,7 +441,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             ? "Від LITSO до Newspaper Birds"
             : "From LITSO to Newspaper Birds"}
         </h2>
-        <p className="text-[15px] text-[#999] leading-[1.8]">
+        <p className="text-[15px] text-fg-4 leading-[1.8]">
           {locale === "fr"
             ? d.litsoCompany.fr
             : locale === "uk"
@@ -457,13 +460,13 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           settings.animaPoster4,
         ].filter(Boolean) as string[];
         return (
-          <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-            <div className="mb-8 text-[11px] tracking-[5px] uppercase text-brand-red font-semibold">
+          <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
+            <div className="mb-8 t-kicker text-brand-red">
               {locale === "fr" ? "Affiches" : locale === "uk" ? "Афіші" : "Posters"}
             </div>
             <div className={`grid gap-4 grid-cols-2 ${posters.length >= 3 ? "md:grid-cols-4" : "md:grid-cols-2"}`}>
               {posters.map((src, i) => (
-                <div key={i} className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#111]">
+                <div key={i} className="relative aspect-[3/4] rounded-lg overflow-hidden bg-surface">
                   <ZoomableImage
                     src={src}
                     alt="ANIMA"
@@ -482,11 +485,11 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
 
       {/* ===== 9. BOOKING CTA — programmers, producers, festival directors ===== */}
       <section
-        className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
+        className="py-28 px-6 md:px-16 border-b border-line"
         style={{ background: `linear-gradient(135deg, ${ANIMA_BG} 0%, ${ANIMA_ACCENT}14 100%)` }}
       >
         <div className="max-w-[800px] mx-auto text-center">
-          <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ANIMA_ACCENT }}>
+          <div className="mb-6 t-kicker" style={{ color: ANIMA_ACCENT }}>
             {locale === "fr"
               ? (settings.animaCtaLabelFr || "Programmation · Production")
               : locale === "uk"
@@ -495,7 +498,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
           </div>
           <h2
             className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
-            style={{ fontFamily: "NAMU-1400, serif" }}
+            style={{ fontFamily: FONT.display }}
           >
             {locale === "fr"
               ? (settings.animaCtaTitleFr || "Disponible pour les scènes internationales")
@@ -515,7 +518,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
-            style={{ backgroundColor: ANIMA_ACCENT, fontFamily: "NAMU-1400, serif" }}
+            style={{ backgroundColor: ANIMA_ACCENT, fontFamily: FONT.display }}
           >
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
               {locale === "fr"
@@ -564,13 +567,13 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
       />
 
       {/* ===== HERO ===== */}
-      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
+      <section className="relative px-6 md:px-16 py-24 max-w-[1200px] mx-auto border-b border-line" style={{ zIndex: 1 }}>
 
         <Link
           href={`/${lang}#works`}
           className="inline-block mb-8 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
         >
-          ← {t["work.back"]}
+          <Arrow dir="back" /> {t["work.back"]}
         </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -595,23 +598,23 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
           {/* Info */}
           <div>
             <div className="mb-2 text-[11px] tracking-[3px] uppercase font-semibold" style={{ color: FB_BLUE }}>
-              {firebirdYear} · {firebirdMusicLabel}
+              {firebirdYear}<Sep />{firebirdMusicLabel}
             </div>
 
             <h1
               className="text-[clamp(48px,8vw,80px)] leading-[1.05] text-brand-white mb-2"
-              style={{ fontFamily: "NAMU-1400, serif" }}
+              style={{ fontFamily: FONT.display }}
             >
               {firebirdTitle}
             </h1>
             <p
               className="text-xl text-brand-grey mb-8"
-              style={{ fontFamily: "NAMU-Pro, sans-serif" }}
+              style={{ fontFamily: FONT.displayAlt }}
             >
               {firebirdSubtitle}
             </p>
 
-            <p className="text-[16px] text-[#aaa] leading-[1.8] mb-10">
+            <p className="text-[16px] text-fg-3 leading-[1.8] mb-10">
               {firebirdDesc}
             </p>
 
@@ -625,7 +628,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
             >
               <span
                 className="text-[13px] tracking-[4px] uppercase font-semibold"
-                style={{ fontFamily: "NAMU-1400, serif" }}
+                style={{ fontFamily: FONT.display }}
               >
                 {locale === "fr" ? settings.firebirdBtnFr : locale === "uk" ? settings.firebirdBtnUk : settings.firebirdBtnEn}
               </span>
@@ -647,11 +650,11 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
 
       {/* ===== REFERENCE VIDEO — NYCB (editable via Notion → firebird_ref_video / firebird_ref_label / firebird_ref_title) ===== */}
       {settings.firebirdRefVideoId && (
-        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-          <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: FB_BLUE }}>
+        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
+          <div className="mb-8 t-kicker" style={{ color: FB_BLUE }}>
             {locale === "fr" ? settings.firebirdRefLabelFr : locale === "uk" ? settings.firebirdRefLabelUk : settings.firebirdRefLabelEn}
           </div>
-          <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+          <div className="aspect-video rounded-lg overflow-hidden bg-surface">
             <iframe
               src={`https://www.youtube.com/embed/${settings.firebirdRefVideoId}`}
               title={locale === "fr" ? settings.firebirdRefTitleFr : locale === "uk" ? settings.firebirdRefTitleUk : settings.firebirdRefTitleEn}
@@ -754,13 +757,13 @@ async function IcarePage({
       />
 
       {/* ===== 1. HERO ===== */}
-      <section className="relative min-h-[85vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
+      <section className="relative min-h-[85vh] flex items-center px-6 md:px-16 py-20 border-b border-line" style={{ zIndex: 1 }}>
         <div className="relative z-10 w-full max-w-[1200px] mx-auto">
           <Link
             href={`/${lang}#works`}
             className="inline-block mb-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
           >
-            ← {t["work.back"]}
+            <Arrow dir="back" /> {t["work.back"]}
           </Link>
 
           <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-start">
@@ -795,12 +798,12 @@ async function IcarePage({
               {/* Title */}
               <h1
                 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-8"
-                style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}
+                style={{ fontFamily: FONT.display, letterSpacing: "-3px" }}
               >
                 ICARE
               </h1>
 
-              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
+              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: FONT.displayAlt }}>
                 {fr ? settings.icareHeroSubtitleFr : uk ? settings.icareHeroSubtitleUk : settings.icareHeroSubtitleEn}
               </p>
               <p className="text-[15px] text-white/65 mb-10 leading-[1.7] max-w-[460px]">
@@ -818,7 +821,7 @@ async function IcarePage({
                   <span
                     key={chip.en}
                     className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
-                    style={{ border: `1px solid ${ULTRA}55`, color: "#777" }}
+                    style={{ border: `1px solid ${ULTRA}55`, color: "var(--fg-5)" }}
                   >
                     {fr ? chip.fr : uk ? chip.uk : chip.en}
                   </span>
@@ -831,7 +834,7 @@ async function IcarePage({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
-                style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
+                style={{ backgroundColor: ULTRA, fontFamily: FONT.display }}
               >
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
                   {fr ? settings.icareCtaBtnFr : uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
@@ -850,14 +853,14 @@ async function IcarePage({
       </section>
 
       {/* ===== 2. THE UNFINISHED MISSION ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+      <section className="py-24 px-6 md:px-16 border-b border-line">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+          <div className="mb-2 t-kicker" style={{ color: ULTRA }}>
             {fr ? "La mission inaccomplie" : uk ? "Нездійснена місія" : "The Unfinished Mission"}
           </div>
           <h2
             className="text-[clamp(28px,4vw,52px)] text-white mb-12 max-w-[720px]"
-            style={{ fontFamily: "NAMU-1400, serif" }}
+            style={{ fontFamily: FONT.display }}
           >
             {fr ? settings.icareMissionTitleFr : uk ? settings.icareMissionTitleUk : settings.icareMissionTitleEn}
           </h2>
@@ -871,12 +874,12 @@ async function IcarePage({
             ] as { year: string; accent: string; en: string; uk: string; fr: string }[]).map((card) => (
               <div
                 key={card.year}
-                className="pl-8 py-8 pr-6 border-l-2 border-b md:border-b-0 border-[#1a1a1a]"
+                className="pl-8 py-8 pr-6 border-l-2 border-b md:border-b-0 border-line"
                 style={{ borderLeftColor: card.accent }}
               >
                 <div
                   className="text-[52px] font-light text-white/10 mb-4 leading-none"
-                  style={{ fontFamily: "NAMU-1400, serif" }}
+                  style={{ fontFamily: FONT.display }}
                 >
                   {card.year}
                 </div>
@@ -888,10 +891,10 @@ async function IcarePage({
           </div>
 
           {/* Central quote — large, centered */}
-          <div className="text-center py-12 border-t border-[#1a1a1a] mt-8">
+          <div className="text-center py-12 border-t border-line mt-8">
             <p
               className="text-[clamp(24px,3.5vw,52px)] text-white/85 italic leading-[1.3] mb-6 max-w-[900px] mx-auto"
-              style={{ fontFamily: "NAMU-Pro, sans-serif" }}
+              style={{ fontFamily: FONT.displayAlt }}
             >
               &ldquo;{fr ? settings.icareQuoteFr : uk ? settings.icareQuoteUk : settings.icareQuoteEn}&rdquo;
             </p>
@@ -903,14 +906,14 @@ async function IcarePage({
       </section>
 
       {/* ===== 3. CONCEPT — 3 PILLARS ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+      <section className="py-24 px-6 md:px-16 border-b border-line">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+          <div className="mb-2 t-kicker" style={{ color: ULTRA }}>
             {fr ? "Concept" : uk ? "Концепція" : "Concept"}
           </div>
           <h2
             className="text-[clamp(28px,4vw,52px)] text-white mb-3"
-            style={{ fontFamily: "NAMU-1400, serif" }}
+            style={{ fontFamily: FONT.display }}
           >
             {fr ? settings.icareConceptTitleFr : uk ? settings.icareConceptTitleUk : settings.icareConceptTitleEn}
           </h2>
@@ -931,13 +934,13 @@ async function IcarePage({
               >
                 <div
                   className="text-[40px] font-light mb-5 leading-none"
-                  style={{ color: OCHRE, fontFamily: "NAMU-1400, serif" }}
+                  style={{ color: OCHRE, fontFamily: FONT.display }}
                 >
                   {pillar.num}
                 </div>
                 <h3
                   className="text-[17px] text-white mb-4"
-                  style={{ fontFamily: "NAMU-1400, serif" }}
+                  style={{ fontFamily: FONT.display }}
                 >
                   {fr ? pillar.fr : uk ? pillar.uk : pillar.en}
                 </h3>
@@ -951,14 +954,14 @@ async function IcarePage({
       </section>
 
       {/* ===== 4. THE SCORE + VIDEO ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+      <section className="py-24 px-6 md:px-16 border-b border-line">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+          <div className="mb-2 t-kicker" style={{ color: ULTRA }}>
             {fr ? "La partition" : uk ? "Партитура" : "The Score"}
           </div>
           <h2
             className="text-[clamp(28px,4vw,52px)] text-white mb-4"
-            style={{ fontFamily: "NAMU-1400, serif" }}
+            style={{ fontFamily: FONT.display }}
           >
             L&apos;Envol d&apos;Icare
           </h2>
@@ -971,7 +974,7 @@ async function IcarePage({
 
           {scoreVideoId ? (
             <>
-              <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
+              <div className="aspect-video rounded-sm overflow-hidden bg-surface">
                 <iframe
                   src={`https://www.youtube.com/embed/${scoreVideoId}`}
                   title={
@@ -1001,7 +1004,7 @@ async function IcarePage({
                 </p>
                 <p
                   className="text-[28px] text-white/10"
-                  style={{ fontFamily: "NAMU-1400, serif" }}
+                  style={{ fontFamily: FONT.display }}
                 >
                   Ensemble of Five
                 </p>
@@ -1013,16 +1016,16 @@ async function IcarePage({
 
       {/* ===== 5. BOOKING CTA ===== */}
       <section
-        className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
+        className="py-28 px-6 md:px-16 border-b border-line"
         style={{ background: `linear-gradient(135deg, #0A0A0A 0%, ${ULTRA}16 100%)` }}
       >
         <div className="max-w-[800px] mx-auto text-center">
-          <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ULTRA }}>
+          <div className="mb-6 t-kicker" style={{ color: ULTRA }}>
             {fr ? "Diffusion" : uk ? "Бронювання" : "Booking"}
           </div>
           <h2
             className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
-            style={{ fontFamily: "NAMU-1400, serif" }}
+            style={{ fontFamily: FONT.display }}
           >
             {fr ? settings.icareCtaTitleFr : uk ? settings.icareCtaTitleUk : settings.icareCtaTitleEn}
           </h2>
@@ -1034,7 +1037,7 @@ async function IcarePage({
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
-            style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
+            style={{ backgroundColor: ULTRA, fontFamily: FONT.display }}
           >
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
               {fr ? settings.icareCtaBtnFr : uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
@@ -1094,11 +1097,11 @@ async function MercyPage({
       />
 
       {/* ===== 1. HERO ===== */}
-      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
+      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-line" style={{ zIndex: 1 }}>
         <div className="relative z-10 w-full max-w-[1200px] mx-auto">
           <Link href={`/${lang}#works`}
             className="inline-block mb-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors">
-            ← {t["work.back"]}
+            <Arrow dir="back" /> {t["work.back"]}
           </Link>
 
           <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-start">
@@ -1129,11 +1132,11 @@ async function MercyPage({
               </div>
 
               <h1 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-8"
-                style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}>
+                style={{ fontFamily: FONT.display, letterSpacing: "-3px" }}>
                 Mercy
               </h1>
 
-              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
+              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: FONT.displayAlt }}>
                 {fr ? settings.mercyHeroSubtitleFr : uk ? settings.mercyHeroSubtitleUk : settings.mercyHeroSubtitleEn}
               </p>
               <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
@@ -1149,7 +1152,7 @@ async function MercyPage({
                   { en: settings.mercyChip4En, uk: settings.mercyChip4Uk, fr: settings.mercyChip4Fr },
                 ] as { en: string; uk: string; fr: string }[]).filter(c => c.en || c.uk).map((chip, i) => (
                   <span key={i} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
-                    style={{ border: `1px solid ${ROSE}55`, color: "#777" }}>
+                    style={{ border: `1px solid ${ROSE}55`, color: "var(--fg-5)" }}>
                     {fr ? chip.fr : uk ? chip.uk : chip.en}
                   </span>
                 ))}
@@ -1157,7 +1160,7 @@ async function MercyPage({
 
               <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
-                style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
+                style={{ backgroundColor: ROSE, fontFamily: FONT.display }}>
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
                   {fr ? settings.mercyCtaBtnFr : uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
                 </span>
@@ -1173,12 +1176,12 @@ async function MercyPage({
 
       {/* ===== 2. VIDEO — right after hero, only shown if mercy_video_1 set in Notion ===== */}
       {settings.mercyVideo1Id && (
-        <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <section className="py-24 px-6 md:px-16 border-b border-line">
           <div className="max-w-[1200px] mx-auto">
-            <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+            <div className="mb-8 t-kicker" style={{ color: ROSE }}>
               {fr ? "Vidéo" : uk ? "Відео" : "Video"}
             </div>
-            <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
+            <div className="aspect-video rounded-sm overflow-hidden bg-surface">
               <iframe
                 src={buildVideoSrc(settings.mercyVideo1Id)}
                 title={fr ? settings.mercyVideo1Fr : uk ? settings.mercyVideo1Uk : settings.mercyVideo1En}
@@ -1196,13 +1199,13 @@ async function MercyPage({
       )}
 
       {/* ===== 3. THE STORY ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+      <section className="py-24 px-6 md:px-16 border-b border-line">
         <div className="max-w-[800px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+          <div className="mb-2 t-kicker" style={{ color: ROSE }}>
             {fr ? "L'histoire" : uk ? "Передісторія" : "The Story"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1] break-words"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
+            style={{ fontFamily: FONT.display }}>
             {fr ? settings.mercyIntroTitleFr : uk ? settings.mercyIntroTitleUk : settings.mercyIntroTitleEn}
           </h2>
           <p className="text-[16px] text-white/55 leading-[1.9] break-words overflow-wrap-anywhere">
@@ -1212,14 +1215,14 @@ async function MercyPage({
       </section>
 
       {/* ===== 4. CONTEXT — MAX RICHTER CHAIN ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]"
+      <section className="py-24 px-6 md:px-16 border-b border-line"
         style={{ background: `${ROSE}06` }}>
         <div className="max-w-[800px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+          <div className="mb-2 t-kicker" style={{ color: ROSE }}>
             {fr ? "Contexte" : uk ? "Контекст" : "Context"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1] break-words"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
+            style={{ fontFamily: FONT.display }}>
             {fr ? settings.mercyContextTitleFr : uk ? settings.mercyContextTitleUk : settings.mercyContextTitleEn}
           </h2>
           <p className="text-[16px] text-white/55 leading-[1.9] break-words">
@@ -1229,14 +1232,14 @@ async function MercyPage({
       </section>
 
       {/* ===== 5. BOOKING CTA ===== */}
-      <section className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
+      <section className="py-28 px-6 md:px-16 border-b border-line"
         style={{ background: `linear-gradient(135deg, #0A0608 0%, ${ROSE}12 100%)` }}>
         <div className="max-w-[800px] mx-auto text-center">
-          <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: ROSE }}>
+          <div className="mb-6 t-kicker" style={{ color: ROSE }}>
             {fr ? "Contact" : uk ? "Запит" : "Enquiries"}
           </div>
           <h2 className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
+            style={{ fontFamily: FONT.display }}>
             {fr ? settings.mercyCtaTitleFr : uk ? settings.mercyCtaTitleUk : settings.mercyCtaTitleEn}
           </h2>
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
@@ -1244,7 +1247,7 @@ async function MercyPage({
           </p>
           <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
-            style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
+            style={{ backgroundColor: ROSE, fontFamily: FONT.display }}>
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
               {fr ? settings.mercyCtaBtnFr : uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
             </span>
@@ -1289,11 +1292,11 @@ async function HumansPage({
       />
 
       {/* ===== 1. HERO ===== */}
-      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
+      <section className="relative min-h-[82vh] flex items-center px-6 md:px-16 py-20 border-b border-line" style={{ zIndex: 1 }}>
         <div className="relative z-10 w-full max-w-[1200px] mx-auto">
           <Link href={`/${lang}#works`}
             className="inline-block mb-10 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors">
-            ← {t["work.back"]}
+            <Arrow dir="back" /> {t["work.back"]}
           </Link>
 
           <div className="grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-12 items-start">
@@ -1326,11 +1329,11 @@ async function HumansPage({
               </div>
 
               <h1 className="text-[clamp(72px,11vw,140px)] leading-[0.88] text-white mb-8"
-                style={{ fontFamily: "NAMU-1400, serif", letterSpacing: "-3px" }}>
+                style={{ fontFamily: FONT.display, letterSpacing: "-3px" }}>
                 Humans
               </h1>
 
-              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
+              <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: FONT.displayAlt }}>
                 {fr ? settings.humansHeroSubtitleFr : uk ? settings.humansHeroSubtitleUk : settings.humansHeroSubtitleEn}
               </p>
               <p className="text-[15px] text-white/35 mb-10 leading-[1.7] max-w-[460px]">
@@ -1346,7 +1349,7 @@ async function HumansPage({
                   { en: settings.humansChip4En, uk: settings.humansChip4Uk, fr: settings.humansChip4Fr },
                 ] as { en: string; uk: string; fr: string }[]).filter(c => c.en || c.uk).map((chip, i) => (
                   <span key={i} className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
-                    style={{ border: `1px solid ${VIOLET}55`, color: "#777" }}>
+                    style={{ border: `1px solid ${VIOLET}55`, color: "var(--fg-5)" }}>
                     {fr ? chip.fr : uk ? chip.uk : chip.en}
                   </span>
                 ))}
@@ -1354,7 +1357,7 @@ async function HumansPage({
 
               <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
                 className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
-                style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
+                style={{ backgroundColor: VIOLET, fontFamily: FONT.display }}>
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
                   {fr ? settings.humansCtaBtnFr : uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
                 </span>
@@ -1370,12 +1373,12 @@ async function HumansPage({
 
       {/* ===== 2. VIDEO — only shown if humans_video_1 set in Notion ===== */}
       {settings.humansVideo1Id && (
-        <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+        <section className="py-24 px-6 md:px-16 border-b border-line">
           <div className="max-w-[1200px] mx-auto">
-            <div className="mb-8 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+            <div className="mb-8 t-kicker" style={{ color: GOLD }}>
               {fr ? "Vidéo" : uk ? "Відео" : "Video"}
             </div>
-            <div className="aspect-video rounded-sm overflow-hidden bg-[#111]">
+            <div className="aspect-video rounded-sm overflow-hidden bg-surface">
               <iframe
                 src={`https://www.youtube.com/embed/${settings.humansVideo1Id}`}
                 title={fr ? settings.humansVideo1Fr : uk ? settings.humansVideo1Uk : settings.humansVideo1En}
@@ -1393,13 +1396,13 @@ async function HumansPage({
       )}
 
       {/* ===== 3. CONCEPT ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]">
+      <section className="py-24 px-6 md:px-16 border-b border-line">
         <div className="max-w-[800px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+          <div className="mb-2 t-kicker" style={{ color: GOLD }}>
             {fr ? "Concept" : uk ? "Концепція" : "Concept"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
+            style={{ fontFamily: FONT.display }}>
             {fr ? settings.humansIntroTitleFr : uk ? settings.humansIntroTitleUk : settings.humansIntroTitleEn}
           </h2>
           <p className="text-[16px] text-white/50 leading-[1.9]">
@@ -1409,14 +1412,14 @@ async function HumansPage({
       </section>
 
       {/* ===== 4. THE MYTH ===== */}
-      <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]"
+      <section className="py-24 px-6 md:px-16 border-b border-line"
         style={{ background: `${INDIGO}08` }}>
         <div className="max-w-[800px] mx-auto">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+          <div className="mb-2 t-kicker" style={{ color: GOLD }}>
             {fr ? "Le mythe" : uk ? "Міф" : "The Myth"}
           </div>
           <h2 className="text-[clamp(28px,4vw,52px)] text-white mb-8 leading-[1.1]"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
+            style={{ fontFamily: FONT.display }}>
             {fr ? settings.humansMythTitleFr : uk ? settings.humansMythTitleUk : settings.humansMythTitleEn}
           </h2>
           <p className="text-[16px] text-white/50 leading-[1.9]">
@@ -1426,14 +1429,14 @@ async function HumansPage({
       </section>
 
       {/* ===== 5. BOOKING CTA ===== */}
-      <section className="py-28 px-6 md:px-16 border-b border-[#1a1a1a]"
+      <section className="py-28 px-6 md:px-16 border-b border-line"
         style={{ background: `linear-gradient(135deg, #080612 0%, ${INDIGO}22 100%)` }}>
         <div className="max-w-[800px] mx-auto text-center">
-          <div className="mb-6 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: GOLD }}>
+          <div className="mb-6 t-kicker" style={{ color: GOLD }}>
             {fr ? "Contact" : uk ? "Запит" : "Enquiries"}
           </div>
           <h2 className="text-[clamp(36px,5vw,68px)] text-white mb-6 leading-[1.0]"
-            style={{ fontFamily: "NAMU-1400, serif" }}>
+            style={{ fontFamily: FONT.display }}>
             {fr ? settings.humansCtaTitleFr : uk ? settings.humansCtaTitleUk : settings.humansCtaTitleEn}
           </h2>
           <p className="text-[15px] text-white/40 mb-10 leading-[1.85] max-w-[520px] mx-auto">
@@ -1441,7 +1444,7 @@ async function HumansPage({
           </p>
           <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
             className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
-            style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
+            style={{ backgroundColor: VIOLET, fontFamily: FONT.display }}>
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
               {fr ? settings.humansCtaBtnFr : uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
             </span>
@@ -1528,23 +1531,23 @@ async function GenericWorkPage({
       />
 
       {/* ── HEADER: title + description side by side ── */}
-      <section className="relative px-6 md:px-16 py-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]" style={{ zIndex: 1 }}>
+      <section className="relative px-6 md:px-16 py-16 max-w-[1200px] mx-auto border-b border-line" style={{ zIndex: 1 }}>
         <Link
           href={`/${locale}#works`}
           className="inline-block mb-8 text-[11px] tracking-[2px] uppercase text-brand-grey hover:text-brand-red transition-colors"
         >
-          ← {t["work.back"]}
+          <Arrow dir="back" /> {t["work.back"]}
         </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-start">
           {/* Left: title */}
           <div>
             <div className="mb-2 text-[11px] tracking-[3px] uppercase font-semibold" style={{ color: theme.accent }}>
-              {displayYear} · {displayMusic}
+              {displayYear}<Sep />{displayMusic}
             </div>
             <h1
               className="text-[clamp(40px,6vw,80px)] leading-[1.05] text-brand-white mb-3"
-              style={{ fontFamily: "NAMU-1400, serif" }}
+              style={{ fontFamily: FONT.display }}
             >
               {displayTitle}
             </h1>
@@ -1555,7 +1558,7 @@ async function GenericWorkPage({
 
           {/* Right: description */}
           <div className="md:pt-8">
-            <p className="text-[16px] text-[#aaa] leading-[1.8]">
+            <p className="text-[16px] text-fg-3 leading-[1.8]">
               {displayDescription}
             </p>
           </div>
@@ -1576,8 +1579,8 @@ async function GenericWorkPage({
 
       {/* ── VIDEO ── */}
       {work.videos && work.videos.length > 0 ? (
-        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-          <div className="mb-2 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: theme.accent }}>
+        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
+          <div className="mb-2 t-kicker" style={{ color: theme.accent }}>
             {fr ? "Vidéo" : locale === "uk" ? "Відео" : "Video"}
           </div>
 
@@ -1586,7 +1589,7 @@ async function GenericWorkPage({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 items-start">
               {/* Left: video */}
               <div>
-                <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+                <div className="aspect-video rounded-lg overflow-hidden bg-surface">
                   <iframe
                     src={`https://www.youtube.com/embed/${work.videos[0].id}`}
                     title={getVideoCaption(0)}
@@ -1600,7 +1603,7 @@ async function GenericWorkPage({
               {/* Right: photos stacked, same lightbox/zoom/swipe as rest of site */}
               <div className="flex flex-col gap-4">
                 {work.gallery.map((src, i) => (
-                  <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[#111]">
+                  <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden bg-surface">
                     <ZoomableImage
                       src={src}
                       alt={`Photo ${i + 1}`}
@@ -1619,7 +1622,7 @@ async function GenericWorkPage({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
               {work.videos.map((video, idx) => (
                 <div key={video.id}>
-                  <div className="aspect-video rounded-lg overflow-hidden bg-[#111]">
+                  <div className="aspect-video rounded-lg overflow-hidden bg-surface">
                     <iframe
                       src={`https://www.youtube.com/embed/${video.id}`}
                       title={getVideoCaption(idx)}
@@ -1635,13 +1638,13 @@ async function GenericWorkPage({
           )}
         </section>
       ) : (
-        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-[#1a1a1a]">
-          <div className="aspect-[21/9] bg-[#0d0d0d] border border-[#1a1a1a] rounded-lg flex items-center justify-center">
+        <section className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto border-b border-line">
+          <div className="aspect-[21/9] bg-[#0d0d0d] border border-line rounded-lg flex items-center justify-center">
             <div className="text-center px-6">
               <p className="text-[11px] tracking-[4px] uppercase text-brand-red/50 mb-3">
                 {fr ? "Projet en développement" : locale === "uk" ? "Проєкт у розробці" : "Project in development"}
               </p>
-              <span className="text-3xl text-brand-grey/20" style={{ fontFamily: "NAMU-1400, serif" }}>
+              <span className="text-3xl text-brand-grey/20" style={{ fontFamily: FONT.display }}>
                 {work.title[locale]}
               </span>
               <p className="text-[13px] text-brand-dark-grey/60 mt-4 leading-[1.6]">
@@ -1666,18 +1669,18 @@ async function GenericWorkPage({
         };
         const p = map[s];
         return (
-          <section className="py-24 px-6 md:px-16 border-b border-[#1a1a1a]" style={{ background: `${theme.bg}` }}>
+          <section className="py-24 px-6 md:px-16 border-b border-line" style={{ background: `${theme.bg}` }}>
             <div className="max-w-[800px] mx-auto text-center">
-              <div className="mb-4 text-[11px] tracking-[5px] uppercase font-semibold" style={{ color: theme.accent }}>
+              <div className="mb-4 t-kicker" style={{ color: theme.accent }}>
                 {fr ? "Diffusion" : uk ? "Бронювання" : "Booking"}
               </div>
               <h2
                 className="text-[clamp(32px,5vw,60px)] text-brand-white mb-6 leading-[1.05]"
-                style={{ fontFamily: "NAMU-1400, serif" }}
+                style={{ fontFamily: FONT.display }}
               >
                 {fr ? p.titleFr : uk ? p.titleUk : p.titleEn}
               </h2>
-              <p className="text-[15px] text-[#999] mb-10 leading-[1.8] max-w-[520px] mx-auto">
+              <p className="text-[15px] text-fg-4 mb-10 leading-[1.8] max-w-[520px] mx-auto">
                 {fr ? p.textFr : uk ? p.textUk : p.textEn}
               </p>
               <a
@@ -1685,7 +1688,7 @@ async function GenericWorkPage({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 rounded-sm"
-                style={{ backgroundColor: theme.accent, fontFamily: "NAMU-1400, serif" }}
+                style={{ backgroundColor: theme.accent, fontFamily: FONT.display }}
               >
                 <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
                   {fr ? p.btnFr : uk ? p.btnUk : p.btnEn}

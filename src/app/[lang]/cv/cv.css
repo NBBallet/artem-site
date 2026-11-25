@@ -18,9 +18,9 @@
   --cv-fg: #f5f5f5;
   --cv-body: #a6a6a6;
   --cv-meta: #7d7d7d;
-  --cv-red: #c8102e;
+  --cv-red: var(--red);
   --cv-red-soft: rgba(200, 16, 46, 0.1);
-  --cv-gold: #d4af37;
+  --cv-gold: var(--gold);
   --cv-gold-soft: rgba(212, 175, 55, 0.09);
   /* firebird's own identity (FB_BLUE on its work page) — matched exactly,
      not reinvented, per 10.09.2026 */
@@ -28,9 +28,10 @@
   --cv-navy-soft: rgba(15, 39, 96, 0.28);
   --cv-seam: #f5f5f5;
 
-  --cv-display: "NAMU-1400", Georgia, serif;
-  --cv-quote: "NAMU-Pro", "NAMU-1400", Georgia, serif;
-  --cv-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* шрифти — з токенів бренду (globals.css); кольори резюме свої, свідомо */
+  --cv-display: var(--font-display);
+  --cv-quote: var(--font-display-alt);
+  --cv-mono: var(--font-label);
 
   background: var(--cv-bg);
   color: var(--cv-body);
@@ -119,7 +120,7 @@
 .cv .r-col  { width: 100%; max-width: 680px; margin-left: auto; margin-right: auto; text-align: left; }
 .cv .r-flow > * + * { margin-top: 1.15em; }
 .cv .r-accent {
-  font-family: "NAMU-Pro", "NAMU-1400", Georgia, serif;
+  font-family: var(--font-display-alt);
   font-size: clamp(19px, 2.2vw, 24px);
   line-height: 1.45;
   text-align: center;

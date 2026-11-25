@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, locales, type Locale } from "@/lib/i18n";
 import { offers, proCopy, type Offer } from "@/lib/offers-data";
 import { DRAFT_PROGRAMMER } from "@/lib/drafts";
+import { FONT } from "@/lib/brand";
 
 /* Repo-local structured content, like the CV — no Notion fetch, so nothing on
    this page can blank out on a rate-limited request (see AGENTS.md). */
@@ -68,11 +69,11 @@ export default async function ProgrammerPage({
   return (
     <div className="pt-28 pb-24 px-6 md:px-16 max-w-[1100px] mx-auto">
       {/* ── Заголовок ─────────────────────────────────────────────────── */}
-      <header className="border-b border-[#1a1a1a] pb-12">
+      <header className="border-b border-line pb-12">
         <p className="t-label t-mono text-brand-red">{c.label}</p>
         <h1
           className="t-h2 mt-5 text-[34px] md:text-[46px] leading-[1.05]"
-          style={{ fontFamily: "NAMU-1400, serif" }}
+          style={{ fontFamily: FONT.display }}
         >
           {c.title}
         </h1>
@@ -86,7 +87,7 @@ export default async function ProgrammerPage({
           <section
             key={o.code}
             id={o.code.toLowerCase()}
-            className="border-b border-[#1a1a1a] py-12 grid md:grid-cols-[1fr_300px] gap-8 md:gap-12"
+            className="border-b border-line py-12 grid md:grid-cols-[1fr_300px] gap-8 md:gap-12"
           >
             <div>
               <div className="flex items-baseline gap-4 flex-wrap">
@@ -100,7 +101,7 @@ export default async function ProgrammerPage({
 
               <h2
                 className="t-h3 mt-3 text-[24px] md:text-[30px] leading-[1.15]"
-                style={{ fontFamily: "NAMU-1400, serif" }}
+                style={{ fontFamily: FONT.display }}
               >
                 {o.title[locale]}
               </h2>
@@ -117,7 +118,7 @@ export default async function ProgrammerPage({
             </div>
 
             {/* Права колонка — те, що продюсер має знати за десять секунд. */}
-            <aside className="md:border-l md:border-[#1a1a1a] md:pl-8">
+            <aside className="md:border-l md:border-line md:pl-8">
               <dl className="space-y-4">
                 <div>
                   <dt className="t-mono t-meta-c text-[11px] tracking-[1.6px] uppercase">
@@ -165,7 +166,7 @@ export default async function ProgrammerPage({
       </div>
 
       {/* ── Умови ─────────────────────────────────────────────────────── */}
-      <section className="py-12 border-b border-[#1a1a1a]">
+      <section className="py-12 border-b border-line">
         <p className="t-label t-mono text-brand-red">{c.condTitle}</p>
         <ul className="mt-6 grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-[80ch]">
           {[c.cond1, c.cond2, c.cond3, c.cond4].map((line) => (
@@ -184,13 +185,13 @@ export default async function ProgrammerPage({
           <div className="flex gap-6 mt-6">
             <Link
               href={`/${locale}/cv`}
-              className="t-mono text-[11px] tracking-[2px] uppercase t-body-c hover:text-brand-red transition-colors border-b border-[#333] pb-0.5"
+              className="t-mono text-[11px] tracking-[2px] uppercase t-body-c hover:text-brand-red transition-colors border-b border-line-4 pb-0.5"
             >
               {c.cvLink}
             </Link>
             <Link
               href={`/${locale}#works`}
-              className="t-mono text-[11px] tracking-[2px] uppercase t-body-c hover:text-brand-red transition-colors border-b border-[#333] pb-0.5"
+              className="t-mono text-[11px] tracking-[2px] uppercase t-body-c hover:text-brand-red transition-colors border-b border-line-4 pb-0.5"
             >
               {c.worksLink}
             </Link>

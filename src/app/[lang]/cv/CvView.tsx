@@ -8,6 +8,8 @@ import { toParas } from "@/lib/paras";
 
 import { CV_DOWNLOAD, CV_PRINT, CV_PRINT_NOTE } from "@/lib/cv-files";
 import "./cv.css";
+import { Arrow } from "@/components/brand/Arrow";
+import { Sep } from "@/components/brand/Sep";
 
 /* The CV itself, shared by /[lang]/cv and the private Russian page
    (src/app/cv-mj9szja/page.tsx) — split out of page.tsx 22.10.2026. */
@@ -347,7 +349,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
             ) : null}
           </Head>
           {d.s02.axis ? (
-            <div className="cv-mono text-[12px] tracking-[1.8px] uppercase cv-meta mb-4">↑ {d.s02.axis}</div>
+            <div className="cv-mono text-[12px] tracking-[1.8px] uppercase cv-meta mb-4"><Arrow dir="up" /> {d.s02.axis}</div>
           ) : null}
           <div className="cv-graph-scroll overflow-x-auto">
             <div className="min-w-[640px]">
@@ -739,7 +741,7 @@ export default function CvView({ locale }: { locale: CvLocale }) {
           style={{ borderTop: "1px solid var(--cv-line)" }}
         >
           <span className="cv-mono text-[12px] tracking-[2px] uppercase cv-meta">
-            Artem Hordieiev · {d.docLabel}
+            Artem Hordieiev<Sep />{d.docLabel}
           </span>
           <span className="cv-mono text-[12px] tracking-[2px] cv-meta">
             {d.printedFrom}{" "}

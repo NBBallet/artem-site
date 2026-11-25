@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useSyncExternalStore } from "react";
+import { GLYPH } from "@/lib/brand";
 
 const isIos = () => {
   const ua = navigator.userAgent;
@@ -107,7 +108,7 @@ export default function CvActions({
         </svg>
       </a>
       <Link href={backHref} className="cv-btn cv-btn-ghost">
-        ← {backLabel}
+        {`${GLYPH.back} ${backLabel}`}
       </Link>
     </div>
     {/* Wherever there is a print button (fr, ru): the printed CV is recto verso,

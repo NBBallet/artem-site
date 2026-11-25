@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
+import { FONT, HEX } from "@/lib/brand";
 
 const DEFAULT_EN =
   "JOIN THE COMMUNITY · Become part of our artistic family · Book a performance · Collaborate with us ·";
@@ -30,7 +31,7 @@ export default function MarqueeCTA({
   textUk,
   textFr,
   href = "#works",
-  accentColor = "#c8102e",
+  accentColor = HEX.red,
 }: MarqueeCTAProps) {
   const rawText =
     locale === "fr" ? (textFr ?? DEFAULT_FR)
@@ -41,7 +42,7 @@ export default function MarqueeCTA({
   return (
     <Link
       href={href}
-      className="block overflow-hidden bg-[#0a0a0a] border-t border-[#161616] group no-underline"
+      className="block overflow-hidden bg-brand-black border-t border-surface-2 group no-underline"
       style={{ height: "clamp(90px, 14vw, 160px)" }}
     >
       {/* ── Flex row: text area grows, right column sizes to title ── */}
@@ -64,7 +65,7 @@ export default function MarqueeCTA({
           >
             <span
               className="text-[clamp(9px,1.1vw,13px)] text-white/[0.15] tracking-[0.45em] uppercase group-hover:text-white/25 transition-colors duration-500"
-              style={{ fontFamily: "NAMU-1400, serif" }}
+              style={{ fontFamily: FONT.display }}
             >
               {stream}
             </span>
@@ -78,7 +79,7 @@ export default function MarqueeCTA({
           <div className="flex items-center gap-[6px]">
             <span
               className="text-[clamp(9px,1vw,12px)] tracking-[4px] uppercase group-hover:opacity-70 transition-opacity"
-              style={{ fontFamily: "NAMU-1400, serif", color: accentColor }}
+              style={{ fontFamily: FONT.display, color: accentColor }}
             >
               {locale === "fr" ? "Suivant" : locale === "uk" ? "Наступна" : "Next"}
             </span>
@@ -94,7 +95,7 @@ export default function MarqueeCTA({
           <span
             className="leading-none uppercase select-none tracking-[0.05em]"
             style={{
-              fontFamily: "NAMU-1400, serif",
+              fontFamily: FONT.display,
               fontSize: "clamp(26px, 4.5vw, 58px)",
               ...(workImage
                 ? {

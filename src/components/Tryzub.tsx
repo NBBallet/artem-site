@@ -1,4 +1,6 @@
-export default function Tryzub({ className = "", color = "#C8102E" }: { className?: string; color?: string }) {
+import { HEX } from "@/lib/brand";
+
+export default function Tryzub({ className = "", color = HEX.red }: { className?: string; color?: string }) {
   return (
     <svg
       width="200"

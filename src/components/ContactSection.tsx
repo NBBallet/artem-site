@@ -42,7 +42,7 @@ export default function ContactSection({
             if (!document.hidden) window.open(`https://wa.me/${whatsappPhone}`, "_blank");
           }, 600);
         }}
-        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-[#222] rounded-lg hover:border-brand-red/40 bg-[#111] hover:bg-[#161616] transition-all duration-200 cursor-pointer w-full"
+        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-line-2 rounded-lg hover:border-brand-red/40 bg-surface hover:bg-surface-2 transition-all duration-200 cursor-pointer w-full"
       >
         <div className="w-16 h-16 flex items-center justify-center bg-brand-red/10 rounded-full group-hover:bg-brand-red/20 transition-colors">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" className="text-brand-red">
@@ -63,7 +63,7 @@ export default function ContactSection({
       <a
         href={instagram}
         onClick={(e) => { e.preventDefault(); openApp(`instagram://user?username=${igHandle}`, instagram); }}
-        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-[#222] rounded-lg hover:border-brand-red/40 bg-[#111] hover:bg-[#161616] transition-all duration-200 cursor-pointer"
+        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-line-2 rounded-lg hover:border-brand-red/40 bg-surface hover:bg-surface-2 transition-all duration-200 cursor-pointer"
       >
         <div className="w-16 h-16 flex items-center justify-center bg-brand-red/10 rounded-full group-hover:bg-brand-red/20 transition-colors">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand-red">
@@ -85,7 +85,7 @@ export default function ContactSection({
         href={facebook}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-[#222] rounded-lg hover:border-brand-red/40 bg-[#111] hover:bg-[#161616] transition-all duration-200"
+        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-line-2 rounded-lg hover:border-brand-red/40 bg-surface hover:bg-surface-2 transition-all duration-200"
       >
         <div className="w-16 h-16 flex items-center justify-center bg-brand-red/10 rounded-full group-hover:bg-brand-red/20 transition-colors">
           <svg width="26" height="26" viewBox="0 0 320 512" fill="currentColor" className="text-brand-red">
@@ -105,7 +105,7 @@ export default function ContactSection({
         href={threads}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-[#222] rounded-lg hover:border-brand-red/40 bg-[#111] hover:bg-[#161616] transition-all duration-200"
+        className="group flex flex-col items-center gap-5 p-6 md:p-8 border border-line-2 rounded-lg hover:border-brand-red/40 bg-surface hover:bg-surface-2 transition-all duration-200"
       >
         <div className="w-16 h-16 flex items-center justify-center bg-brand-red/10 rounded-full group-hover:bg-brand-red/20 transition-colors">
           <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" className="text-brand-red" xmlns="http://www.w3.org/2000/svg">

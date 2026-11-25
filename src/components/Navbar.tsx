@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type Locale } from "@/lib/i18n";
 import { DRAFT_PROGRAMMER } from "@/lib/drafts";
+import { FONT } from "@/lib/brand";
 
 interface NavbarProps {
   lang: Locale;
@@ -20,11 +21,11 @@ export default function Navbar({ lang, t }: NavbarProps) {
   const onPro = pathname.startsWith(`/${lang}/programmer`);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/92 backdrop-blur-[12px] border-b border-[#222] px-4 sm:px-6 md:px-10 py-3 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-black/92 backdrop-blur-[12px] border-b border-line-2 px-4 sm:px-6 md:px-10 py-3 flex items-center justify-between">
       <Link
         href={`/${lang}`}
-        className="font-[NAMU-1400] text-sm tracking-[2px] sm:tracking-[4px] text-brand-grey hover:text-brand-red transition-colors"
-        style={{ fontFamily: "NAMU-1400, serif" }}
+        className="text-sm tracking-[2px] sm:tracking-[4px] text-brand-grey hover:text-brand-red transition-colors"
+        style={{ fontFamily: FONT.display }}
       >
         ARTEM HORDIEIEV
       </Link>

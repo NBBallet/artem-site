@@ -132,7 +132,7 @@ export default function PhotoSlider({
   return (
     <>
       {/* ── Horizontal strip ── */}
-      <div className="w-full overflow-hidden bg-[#0a0a0a]">
+      <div className="w-full overflow-hidden bg-brand-black">
         <div className="flex overflow-x-auto gap-1" style={{ scrollbarWidth: "none" }}>
           {photos.map((src, i) => (
             <button
