@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   // збірці чернетка видна за посиланням preview, на production — ні.
   env: {
     NEXT_PUBLIC_SITE_ENV: process.env.VERCEL_ENV ?? "",
+    // Гілка збірки — для прапорця DRAFT_BRAND_NB2 (лише preview design/brand-namu).
+    NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF: process.env.VERCEL_GIT_COMMIT_REF ?? "",
   },
   images: {
     unoptimized: true,
