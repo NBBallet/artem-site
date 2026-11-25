@@ -47,3 +47,24 @@ export type ArrowDir = "back" | "next" | "out" | "up";
 export const HEX = {
   red: "#c8102e",
 } as const;
+
+/**
+ * Кольори категорій B (NB · 2) — вибір Артема 25.11.2026: «Мені подобається B,
+ * давай подивимось як буде виглядати все. Категорію "лекції" поки не беремо.»
+ * Поправка того ж дня: «Поки ні для S4 і S5».
+ *
+ *   creation — Création для трупи (S2 ICARE)          #B3CAEA блакитний
+ *   grande   — Велика форма (S3 Дард, S3.1 Lorenzo)   #284731 пляшковий (сторінок поки немає)
+ *   evenement — Подія замовника (лише S1 Вечір МОЦАРТ25) #F5A57C абрикос
+ *
+ * Решта творів — без категорії (пудровий). Класи `nb-cat nb-cat-<ключ>`
+ * мають правила лише під html[data-brand="nb2"] (src/app/brand-nb2.css),
+ * тож без прапорця DRAFT_BRAND_NB2 вони інертні.
+ */
+export type NbCategory = "creation" | "grande" | "evenement";
+export const NB_CATEGORY: Record<string, NbCategory> = {
+  icare: "creation",
+  mozart25: "evenement",
+};
+export const nbCatClass = (slug: string): string =>
+  NB_CATEGORY[slug] ? ` nb-cat nb-cat-${NB_CATEGORY[slug]}` : "";

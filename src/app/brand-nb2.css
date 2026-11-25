@@ -301,3 +301,63 @@ html[data-brand="nb2"] .nb-dark :is(.text-white\/20, .text-white\/25, .text-whit
 html[data-brand="nb2"] .cv [style*="--cv-panel"] { --cv-meta: var(--nb-graphite); --cv-red: var(--nb-graphite); --cv-gold: var(--nb-graphite); }
 /* тризуб-декор у герої — без червоного */
 html[data-brand="nb2"] .opacity-\[0\.06\] { filter: grayscale(1); }
+
+/* ══ КОЛЬОРИ КАТЕГОРІЙ B ═════════════════════════════════════════════════════
+   Вибір Артема 25.11.2026: «Мені подобається B, давай подивимось як буде
+   виглядати все. Категорію "лекції" поки не беремо.» Поправка: «Поки ні для
+   S4 і S5». Твір → категорія: NB_CATEGORY у src/lib/brand.ts.
+
+   --nb-cat      заливка категорії
+   --nb-cat-fg   NAMU на заливці · --nb-cat-body рядки на заливці
+   --nb-cat-ink  колір категорії текстом на #FEF8F5
+
+   Контраст (WCAG, виміряно в браузері 25.11.2026): #1D1D1B на #B3CAEA 10,1 : 1,
+   #3C3C3B на #B3CAEA 6,6 : 1 · #1D1D1B на #F5A57C 8,5 : 1, #3C3C3B на #F5A57C
+   5,6 : 1 · #FBD9C9 на #284731 7,8 : 1, #FEF8F5 на #284731 9,8 : 1 · на #FEF8F5:
+   #3F5F94 6,1 : 1, #A4532E 5,2 : 1, #284731 9,8 : 1. Шавлієвий #A3BC98 не вживається. */
+html[data-brand="nb2"] {
+  --nb-blue: #b3caea;
+  --nb-bottle: #284731;
+}
+html[data-brand="nb2"] .nb-cat-creation {
+  --nb-cat: var(--nb-blue);
+  --nb-cat-fg: var(--nb-black);
+  --nb-cat-body: var(--nb-graphite);
+  --nb-cat-ink: #3f5f94;
+}
+html[data-brand="nb2"] .nb-cat-grande {
+  --nb-cat: var(--nb-bottle);
+  --nb-cat-fg: var(--nb-powder);
+  --nb-cat-body: var(--nb-bg);
+  --nb-cat-ink: var(--nb-bottle);
+}
+html[data-brand="nb2"] .nb-cat-evenement {
+  --nb-cat: var(--nb-apricot);
+  --nb-cat-fg: var(--nb-black);
+  --nb-cat-body: var(--nb-graphite);
+  --nb-cat-ink: #a4532e;
+}
+
+/* Картка твору на головній: заливка категорії замість пудрової */
+html[data-brand="nb2"] a.nb-cat.bg-surface {
+  background-color: var(--nb-cat);
+  --body-fg: var(--nb-cat-body);
+  --meta-fg: var(--nb-cat-body);
+}
+html[data-brand="nb2"] a.nb-cat.bg-surface > .p-5 { color: var(--nb-cat-fg); }
+
+/* Сторінка твору (темна тональність): акцент — колір категорії замість
+   абрикоса: мета, мітки, кнопка. Атмосфера вистави лишається.
+   #B3CAEA на #060810 12,0 : 1; #1D1D1B на #B3CAEA 10,1 : 1. */
+html[data-brand="nb2"] .nb-dark.nb-cat-creation,
+html[data-brand="nb2"] .nb-dark.nb-cat-evenement {
+  --red: var(--nb-cat);
+  --gold: var(--nb-cat);
+  --meta-fg: var(--nb-cat);
+  --label-color: var(--nb-cat);
+}
+html[data-brand="nb2"] .nb-dark.nb-cat-creation .nb-btn,
+html[data-brand="nb2"] .nb-dark.nb-cat-evenement .nb-btn {
+  background: var(--nb-cat) !important;
+  color: var(--nb-cat-fg) !important;
+}

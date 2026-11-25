@@ -11,7 +11,7 @@ import JsonLd from "@/components/JsonLd";
 import { hasLocale } from "@/lib/i18n";
 import { buildMetadata, personJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
-import { FONT, GLYPH } from "@/lib/brand";
+import { FONT, GLYPH, NB_CATEGORY } from "@/lib/brand";
 
 // Always render fresh from Notion — no stale-while-revalidate confusion
 export const dynamic = "force-dynamic";
@@ -120,11 +120,13 @@ export default async function HomePage({
           {works.map((work) => {
             const cardBg = workCardBg[work.slug];
             const cardAccent = workCardAccent[work.slug] || "#C8102E";
+            /* Кольори категорій B (NB · 2, вибір Артема 25.11.2026): клас інертний без data-brand="nb2" */
+            const nbCat = NB_CATEGORY[work.slug];
             return (
             <Link
               key={work.slug}
               href={`/${lang}/works/${work.slug}`}
-              className="group block bg-surface border border-line-2 rounded-lg overflow-hidden hover:border-brand-red/40 transition-colors"
+              className={`group block bg-surface border border-line-2 rounded-lg overflow-hidden hover:border-brand-red/40 transition-colors${nbCat ? ` nb-cat nb-cat-${nbCat}` : ""}`}
             >
               <div className="aspect-[16/10] relative overflow-hidden bg-line">
                 {work.image ? (

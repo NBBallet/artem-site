@@ -18,7 +18,7 @@ import FirebirdLanding from "@/components/firebird/FirebirdLanding";
 import { firebirdMetadata, firebirdJsonLd } from "@/components/firebird/seo";
 import JsonLd from "@/components/JsonLd";
 import { DRAFT_FIREBIRD } from "@/lib/drafts";
-import { FONT } from "@/lib/brand";
+import { FONT, nbCatClass } from "@/lib/brand";
 import { Arrow } from "@/components/brand/Arrow";
 import { Sep } from "@/components/brand/Sep";
 
@@ -749,7 +749,7 @@ async function IcarePage({
   ];
 
   return (
-    <article className="nb-dark pt-24 relative" style={{ background: "#060810" }}>
+    <article className={`nb-dark pt-24 relative${nbCatClass("icare")}`} style={{ background: "#060810" }}>
       {/* Cerulean atmospheric glow — article level, never clipped */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
@@ -1523,7 +1523,7 @@ async function GenericWorkPage({
   const theme = workThemes[s] ?? { bg: "#0A0A0A", glow: "#C8102E", accent: "#C8102E" };
 
   return (
-    <article className="nb-dark pt-24 relative" style={{ background: theme.bg }}>
+    <article className={`nb-dark pt-24 relative${nbCatClass(s)}`} style={{ background: theme.bg }}>
       {/* Atmospheric glow — full viewport width, fades from top-left */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
