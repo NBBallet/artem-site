@@ -514,10 +514,10 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             href="https://wa.me/33743791841"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            className="group inline-flex items-center gap-5 px-6 sm:px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: ANIMA_ACCENT, fontFamily: "NAMU-1400, serif" }}
           >
-            <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+            <span className="text-[13px] tracking-[4px] uppercase font-semibold sm:whitespace-nowrap">
               {locale === "fr"
                 ? (settings.animaCtaBtnFr || "Contacter le chorégraphe")
                 : locale === "uk"
@@ -803,7 +803,11 @@ async function IcarePage({
               <p className="text-[16px] text-white/50 mb-3" style={{ fontFamily: "NAMU-Pro, sans-serif" }}>
                 {fr ? settings.icareHeroSubtitleFr : uk ? settings.icareHeroSubtitleUk : settings.icareHeroSubtitleEn}
               </p>
-              <p className="text-[15px] text-white/65 mb-10 leading-[1.7] max-w-[460px]">
+              {/* Суцільний колір замість text-white/65 (25.11.2026): той самий
+                  відтінок на тлі #060810, але без альфи — аудит контрасту читав
+                  oklab(… / 0.65) як 1,05 : 1. Тепер 8,4 : 1 для будь-якого
+                  інструмента перевірки. */}
+              <p className="text-[15px] text-[#a8a8ab] mb-10 leading-[1.7] max-w-[460px]">
                 {fr ? settings.icareHeroTaglineFr : uk ? settings.icareHeroTaglineUk : settings.icareHeroTaglineEn}
               </p>
 
@@ -1033,10 +1037,10 @@ async function IcarePage({
             href="https://wa.me/33743791841"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            className="group inline-flex items-center gap-5 px-6 sm:px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: ULTRA, fontFamily: "NAMU-1400, serif" }}
           >
-            <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+            <span className="text-[13px] tracking-[4px] uppercase font-semibold sm:whitespace-nowrap">
               {fr ? settings.icareCtaBtnFr : uk ? settings.icareCtaBtnUk : settings.icareCtaBtnEn}
             </span>
             <svg
@@ -1243,9 +1247,9 @@ async function MercyPage({
             {fr ? settings.mercyCtaTextFr : uk ? settings.mercyCtaTextUk : settings.mercyCtaTextEn}
           </p>
           <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
-            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            className="group inline-flex items-center gap-5 px-6 sm:px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: ROSE, fontFamily: "NAMU-1400, serif" }}>
-            <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+            <span className="text-[13px] tracking-[4px] uppercase font-semibold sm:whitespace-nowrap">
               {fr ? settings.mercyCtaBtnFr : uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
             </span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
@@ -1440,9 +1444,9 @@ async function HumansPage({
             {fr ? settings.humansCtaTextFr : uk ? settings.humansCtaTextUk : settings.humansCtaTextEn}
           </p>
           <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
-            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            className="group inline-flex items-center gap-5 px-6 sm:px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: VIOLET, fontFamily: "NAMU-1400, serif" }}>
-            <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+            <span className="text-[13px] tracking-[4px] uppercase font-semibold sm:whitespace-nowrap">
               {fr ? settings.humansCtaBtnFr : uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
             </span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
@@ -1684,10 +1688,10 @@ async function GenericWorkPage({
                 href="https://wa.me/33743791841"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 rounded-sm"
+                className="group inline-flex items-center gap-5 px-6 sm:px-12 py-6 text-white transition-all duration-300 hover:brightness-110 rounded-sm"
                 style={{ backgroundColor: theme.accent, fontFamily: "NAMU-1400, serif" }}
               >
-                <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
+                <span className="text-[13px] tracking-[4px] uppercase font-semibold sm:whitespace-nowrap">
                   {fr ? p.btnFr : uk ? p.btnUk : p.btnEn}
                 </span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"

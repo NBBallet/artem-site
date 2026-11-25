@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
+  // Мітка мови на сайті — «UA», а адреса — /uk (25.11.2026): людина, що
+  // набрала /ua руками, потрапляє на українську версію, а не на 404.
+  async redirects() {
+    return [
+      { source: "/ua", destination: "/uk", permanent: true },
+      { source: "/ua/:path*", destination: "/uk/:path*", permanent: true },
+    ];
+  },
   // The pitch sheets under /imprimer are unlisted: keep the PDFs themselves
   // out of search results too (the pages carry their own noindex).
   async headers() {
