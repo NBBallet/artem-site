@@ -19,8 +19,7 @@ import { firebirdMetadata, firebirdJsonLd } from "@/components/firebird/seo";
 import JsonLd from "@/components/JsonLd";
 import { DRAFT_FIREBIRD } from "@/lib/drafts";
 
-// Always render fresh from Notion — no stale-while-revalidate confusion
-export const dynamic = "force-dynamic";
+// Тексти — у src/content (з 25.11.2026), Notion відключено.
 
 /* Метадані сторінок творів. Поки що окремі — лише в нової Жар-Птиці
    (за прапорцем, @/lib/drafts); решта бере title/description з кореневого

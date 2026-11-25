@@ -1,0 +1,65 @@
+[
+  {
+    "arcana": "Justice",
+    "arcanaUk": "Справедливість",
+    "arcanaFr": "La Justice",
+    "descriptionEn": "The Man comes to understand the law of cause and effect: the binary nature of life is an illusion, there is no difference between “good” and “bad”, only the Supreme Law of the Universe. He asks the Spirit to show him his path.",
+    "descriptionUk": "Людина усвідомлює закон причини та наслідку, розуміючи, що бінарність життя — це ілюзія, бо немає різниці між «добрим» і «поганим», а є лише Вищий закон Всесвіту. Людина просить Дух показати їй свій шлях.",
+    "descriptionFr": "L'Homme prend conscience de la loi de cause à effet : la nature binaire de la vie est une illusion, il n'y a pas de différence entre le « bien » et le « mal », seulement la Loi suprême de l'Univers. Il demande à l'Esprit de lui montrer sa voie.",
+    "image": "/images/works/anima/justice.jpg"
+  },
+  {
+    "arcana": "The Hermit",
+    "arcanaUk": "Відлюдник",
+    "arcanaFr": "L'Ermite",
+    "descriptionEn": "Step by step, the Man learns to trust himself, lighting his own path as he goes, while his Soul struggles with its trials.",
+    "descriptionUk": "Крок за кроком Людина вчиться довіряти собі, освітлюючи свій власний шлях, поки її Душа бореться з випробуваннями.",
+    "descriptionFr": "Pas à pas, l'Homme apprend à se faire confiance et éclaire lui-même son chemin, tandis que son Âme se débat dans les épreuves.",
+    "image": "/images/works/anima/the-hermit.jpg"
+  },
+  {
+    "arcana": "The Wheel",
+    "arcanaUk": "Колесо",
+    "arcanaFr": "La Roue",
+    "descriptionEn": "The Man passes through the stages of ignorance, self-abasement, passion and silence, and finds himself at the centre of the wheel, watching what happens around him.",
+    "descriptionUk": "Людина проходить етапи невігластва, самоприниження, пристрастей і тиші, опиняючись у центрі колеса та спостерігаючи за тим, що відбувається навколо.",
+    "descriptionFr": "L'Homme traverse l'ignorance, l'abaissement de soi, la passion et le silence, et se retrouve au centre de la roue, à observer ce qui se passe autour de lui.",
+    "image": "/images/works/anima/the-wheel.jpg"
+  },
+  {
+    "arcana": "Strength",
+    "arcanaUk": "Сила",
+    "arcanaFr": "La Force",
+    "descriptionEn": "The Man can do anything once he grasps the boundlessness of his inner strength, tames it and becomes its Master.",
+    "descriptionUk": "Людина може все, якщо усвідомить безмежність своєї внутрішньої сили, приборкає її і стане Майстром. ",
+    "descriptionFr": "L'Homme peut tout, s'il prend conscience de l'infini de sa force intérieure, l'apprivoise et en devient le Maître.",
+    "image": "/images/works/anima/strength.jpg"
+  },
+  {
+    "arcana": "The Hanged Man",
+    "arcanaUk": "Повішений",
+    "arcanaFr": "Le Pendu",
+    "descriptionEn": "The Man begins to see the world from a new angle and recognises his Genius. He enters a new stage of trials: escape from reality, ignorance, passion and ego.",
+    "descriptionUk": "Людина починає бачити світ під новим кутом та усвідомлює свій Геній. Він входить у новий етап випробувань через втечу від реальності, невігластво, пристрасть та его.",
+    "descriptionFr": "L'Homme commence à voir le monde sous un angle nouveau et prend conscience de son Génie. Il entre dans une nouvelle étape d'épreuves : la fuite hors de la réalité, l'ignorance, la passion et l'ego.",
+    "image": "/images/works/anima/the-hanged-man.jpg"
+  },
+  {
+    "arcana": "Death",
+    "arcanaUk": "Смерть",
+    "arcanaFr": "La Mort",
+    "descriptionEn": "Death lives among us every day, and we ignore the very moment of life. A symbol of total transformation.",
+    "descriptionUk": "Вона живе кожень день серед людей, і ми ігноруємо сам момент життя. Символ повної трансформації.",
+    "descriptionFr": "Elle vit chaque jour parmi nous, et nous ignorons l'instant même de la vie. Symbole d'une transformation totale.",
+    "image": "/images/works/anima/death.jpg"
+  },
+  {
+    "arcana": "Temperance",
+    "arcanaUk": "Поміркованість",
+    "arcanaFr": "Tempérance",
+    "descriptionEn": "All the previous transformations lead to temperance and balance.",
+    "descriptionUk": "Усі попередні трансформації ведуть до поміркованості та рівноваги.",
+    "descriptionFr": "Toutes les transformations précédentes mènent à la tempérance et à l'équilibre.",
+    "image": "/images/works/anima/temperance.jpg"
+  }
+]

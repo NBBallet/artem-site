@@ -319,47 +319,21 @@ export function getWorkBySlug(slug: string): Work | undefined {
   return works.find((w) => w.slug === slug);
 }
 
-// ─── Dynamic: fetch from Notion with static fallback ───
-import { getWorksFromNotion } from "./notion";
+// ─── Сторінки: src/content/works.json (з 25.11.2026) ───
+// Знімок того, що віддавав getWorks() на живому сайті: статичний масив вище як
+// кістяк порядку + тексти й обкладинки з Notion Portfolio DB. Notion від сайту
+// відключено. Масив `works` вище лишається для SEO / JSON-LD (lib/seo.ts,
+// firebird/seo.ts) — як і раніше, без змін.
+import worksData from "@/content/works.json";
 
-let _cachedWorks: Work[] | null = null;
+const pageWorks: Work[] = worksData as Work[];
 
 export async function getWorks(): Promise<Work[]> {
-  // Try Notion first
-  const notionWorks = await getWorksFromNotion();
-  if (notionWorks.length > 0) {
-    // Use static array as order backbone; overlay Notion data where available.
-    // Static-only works (no Notion entry) are included as-is.
-    const merged = works.map((sw) => {
-      const nw = notionWorks.find((n) => n.slug === sw.slug);
-      if (!nw) return sw;
-      // Only use Notion's image if:
-      // 1. The static version already has an image (intentionally imageless = stay imageless)
-      // 2. The URL is from a reliable non-expiring host (not Google Photos / Notion S3)
-      const imageOk = !!sw.image && nw.image &&
-        !nw.image.includes("photos.google.com") &&
-        !nw.image.includes("drive.google.com") &&
-        !nw.image.includes("photo/AF1") &&
-        !nw.image.includes("prod-files-secure") &&
-        !nw.image.includes("amazonaws.com") &&
-        !nw.image.includes("artic.edu");
-      return {
-        ...nw,
-        image: imageOk ? nw.image : (sw.image || ""),
-        videos: sw.videos ?? nw.videos,
-        gallery: sw.gallery ?? nw.gallery,
-      };
-    });
-    _cachedWorks = merged;
-    return merged;
-  }
-  // Fallback to static
-  return works;
+  return pageWorks;
 }
 
 export async function getWorkBySlugAsync(
   slug: string
 ): Promise<Work | undefined> {
-  const allWorks = await getWorks();
-  return allWorks.find((w) => w.slug === slug);
+  return pageWorks.find((w) => w.slug === slug);
 }

@@ -12,8 +12,7 @@ import { hasLocale } from "@/lib/i18n";
 import { buildMetadata, personJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 
-// Always render fresh from Notion — no stale-while-revalidate confusion
-export const dynamic = "force-dynamic";
+// Тексти — у src/content (з 25.11.2026), Notion відключено.
 
 /* Тексти — ті самі, що в кореневому layout (до 18.11.2026 їх бачила кожна
    сторінка); тут додаються canonical, hreflang і мовна OG-картка. */
