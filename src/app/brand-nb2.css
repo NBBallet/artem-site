@@ -296,3 +296,5 @@ html[data-brand="nb2"] .cv :is(.cv-panel, .cv-award-link, .cv-award-link *, .cv-
 }
 /* CV: «Дивитися …» — посилання в тексті: колір + вага 500, 15 px */
 html[data-brand="nb2"] .cv .cv-award-cta { color: var(--nb-black); font-weight: 500; font-size: 15px; font-family: var(--font-text); }
+/* творі: приглушений текст (white/20…/40) дотягнуто до 4,5 : 1; привиди-цифри (/10) лишаються декором */
+html[data-brand="nb2"] .nb-dark :is(.text-white\/20, .text-white\/25, .text-white\/30, .text-white\/40) { color: rgba(254, 248, 245, 0.72); }
