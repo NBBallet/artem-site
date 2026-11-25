@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./brand-nb2.css";
 
 @font-face {
   font-family: "NAMU-1400";

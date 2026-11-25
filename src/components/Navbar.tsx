@@ -66,7 +66,7 @@ export default function Navbar({ lang, t }: NavbarProps) {
         <Link
           href={`/${lang}/cv`}
           aria-current={onCv ? "page" : undefined}
-          className={`text-[11px] tracking-[2px] uppercase px-2.5 sm:px-3.5 py-1.5 rounded-sm transition-colors ${
+          className={`nb-btn nb-btn-sm text-[11px] tracking-[2px] uppercase px-2.5 sm:px-3.5 py-1.5 rounded-sm transition-colors ${
             onCv
               ? "border border-brand-red text-brand-red"
               : "bg-brand-red text-brand-white hover:bg-brand-white hover:text-brand-red"
@@ -80,7 +80,7 @@ export default function Navbar({ lang, t }: NavbarProps) {
         >
           {t["nav.contact"]}
         </a>
-        <div className="flex items-center gap-1 border border-brand-red/30 rounded overflow-hidden">
+        <div className="nb-langs flex items-center gap-1 border border-brand-red/30 rounded overflow-hidden">
           {LANG_ORDER.map((locale) => {
             const isActive = locale === lang;
             const path = pathname.replace(`/${lang}`, `/${locale}`);

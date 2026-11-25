@@ -7,6 +7,8 @@
  * Опис системи — DESIGN.md.
  */
 
+import { DRAFT_BRAND_NB2 } from "@/lib/drafts";
+
 export const FONT = {
   /** NAMU-1400 — заголовки, імена творів, великі цифри */
   display: "var(--font-display)",
@@ -24,11 +26,14 @@ export const FONT = {
  * Гліфи всередині текстів (Notion, src/content, *-data.ts) — це текст,
  * їх ця система не чіпає.
  */
+// NB · 2 (чернетка, src/lib/drafts.ts): стрілок немає — гліфи порожні.
+const NO_ARROWS = DRAFT_BRAND_NB2;
+
 export const GLYPH = {
-  back: "←",
-  next: "→",
-  out: "↗",
-  up: "↑",
+  back: NO_ARROWS ? "" : "←",
+  next: NO_ARROWS ? "" : "→",
+  out: NO_ARROWS ? "" : "↗",
+  up: NO_ARROWS ? "" : "↑",
   sep: "·",
 } as const;
 

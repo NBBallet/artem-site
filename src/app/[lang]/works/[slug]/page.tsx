@@ -57,7 +57,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
   const ANIMA_ACCENT = "#8B0A1A";   // deep claret
 
   return (
-    <article className="pt-24 relative" style={{ background: ANIMA_BG }}>
+    <article className="nb-dark pt-24 relative" style={{ background: ANIMA_BG }}>
       {/* Burgundy atmospheric glow — full viewport width, fades from top-right */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
@@ -517,7 +517,7 @@ async function AnimaPage({ work, locale, t }: { work: NonNullable<ReturnType<typ
             href="https://wa.me/33743791841"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            className="nb-btn group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: ANIMA_ACCENT, fontFamily: FONT.display }}
           >
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
@@ -559,7 +559,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
   const FB_BLUE = "#0F2760";   // midnight ultramarine — Stravinsky / Roerich night sky
 
   return (
-    <article className="pt-24 relative" style={{ background: FB_BG }}>
+    <article className="nb-dark pt-24 relative" style={{ background: FB_BG }}>
       {/* Ultramarine atmospheric glow — full viewport width */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
@@ -623,7 +623,7 @@ async function FirebirdPage({ work, locale, t }: { work: NonNullable<ReturnType<
               href={FIREBIRD_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-4 w-full md:w-auto text-white transition-all duration-300 hover:brightness-110 px-8 py-5 rounded-sm"
+              className="nb-btn group inline-flex items-center gap-4 w-full md:w-auto text-white transition-all duration-300 hover:brightness-110 px-8 py-5 rounded-sm"
               style={{ backgroundColor: FB_BLUE }}
             >
               <span
@@ -749,7 +749,7 @@ async function IcarePage({
   ];
 
   return (
-    <article className="pt-24 relative" style={{ background: "#060810" }}>
+    <article className="nb-dark pt-24 relative" style={{ background: "#060810" }}>
       {/* Cerulean atmospheric glow — article level, never clipped */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
@@ -786,9 +786,9 @@ async function IcarePage({
             </div>
 
             {/* Right: title block */}
-            <div>
+            <div className="nb-stack">
               {/* World premiere badge */}
-              <div className="flex items-center gap-3 mb-6">
+              <div className="nb-meta flex items-center gap-3 mb-6">
                 <span className="inline-block w-2 h-2 rounded-full flex-none" style={{ backgroundColor: RED }} />
                 <span className="text-[11px] tracking-[5px] uppercase" style={{ color: OCHRE }}>
                   {fr ? settings.icareHeroLabelFr : uk ? settings.icareHeroLabelUk : settings.icareHeroLabelEn}
@@ -820,7 +820,7 @@ async function IcarePage({
                 ] as { en: string; uk: string; fr: string }[]).map((chip) => (
                   <span
                     key={chip.en}
-                    className="text-[10px] tracking-[2px] uppercase px-3 py-1.5"
+                    className="nb-chip text-[10px] tracking-[2px] uppercase px-3 py-1.5"
                     style={{ border: `1px solid ${ULTRA}55`, color: "var(--fg-5)" }}
                   >
                     {fr ? chip.fr : uk ? chip.uk : chip.en}
@@ -833,7 +833,7 @@ async function IcarePage({
                 href="https://wa.me/33743791841"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
+                className="nb-btn group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
                 style={{ backgroundColor: ULTRA, fontFamily: FONT.display }}
               >
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
@@ -1036,7 +1036,7 @@ async function IcarePage({
             href="https://wa.me/33743791841"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            className="nb-btn group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: ULTRA, fontFamily: FONT.display }}
           >
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
@@ -1089,7 +1089,7 @@ async function MercyPage({
   }
 
   return (
-    <article className="pt-24 relative" style={{ background: "#0A0608" }}>
+    <article className="nb-dark pt-24 relative" style={{ background: "#0A0608" }}>
       {/* Rose atmospheric glow — full viewport width */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
@@ -1159,7 +1159,7 @@ async function MercyPage({
               </div>
 
               <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
-                className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
+                className="nb-btn group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
                 style={{ backgroundColor: ROSE, fontFamily: FONT.display }}>
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
                   {fr ? settings.mercyCtaBtnFr : uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
@@ -1246,7 +1246,7 @@ async function MercyPage({
             {fr ? settings.mercyCtaTextFr : uk ? settings.mercyCtaTextUk : settings.mercyCtaTextEn}
           </p>
           <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
-            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            className="nb-btn group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: ROSE, fontFamily: FONT.display }}>
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
               {fr ? settings.mercyCtaBtnFr : uk ? settings.mercyCtaBtnUk : settings.mercyCtaBtnEn}
@@ -1284,7 +1284,7 @@ async function HumansPage({
   const GOLD   = "#C89A14";   // sacred gold — muted, like old icon gilding
 
   return (
-    <article className="pt-24 relative" style={{ background: "#070511" }}>
+    <article className="nb-dark pt-24 relative" style={{ background: "#070511" }}>
       {/* Violet atmospheric glow — article level so it's never clipped */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
@@ -1356,7 +1356,7 @@ async function HumansPage({
               </div>
 
               <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
-                className="group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
+                className="nb-btn group inline-flex items-center gap-4 px-8 py-4 text-white transition-all duration-300 hover:brightness-110"
                 style={{ backgroundColor: VIOLET, fontFamily: FONT.display }}>
                 <span className="text-[12px] tracking-[4px] uppercase font-semibold">
                   {fr ? settings.humansCtaBtnFr : uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
@@ -1443,7 +1443,7 @@ async function HumansPage({
             {fr ? settings.humansCtaTextFr : uk ? settings.humansCtaTextUk : settings.humansCtaTextEn}
           </p>
           <a href="https://wa.me/33743791841" target="_blank" rel="noopener noreferrer"
-            className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
+            className="nb-btn group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 mb-6"
             style={{ backgroundColor: VIOLET, fontFamily: FONT.display }}>
             <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">
               {fr ? settings.humansCtaBtnFr : uk ? settings.humansCtaBtnUk : settings.humansCtaBtnEn}
@@ -1523,7 +1523,7 @@ async function GenericWorkPage({
   const theme = workThemes[s] ?? { bg: "#0A0A0A", glow: "#C8102E", accent: "#C8102E" };
 
   return (
-    <article className="pt-24 relative" style={{ background: theme.bg }}>
+    <article className="nb-dark pt-24 relative" style={{ background: theme.bg }}>
       {/* Atmospheric glow — full viewport width, fades from top-left */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none"
@@ -1541,8 +1541,8 @@ async function GenericWorkPage({
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-start">
           {/* Left: title */}
-          <div>
-            <div className="mb-2 text-[11px] tracking-[3px] uppercase font-semibold" style={{ color: theme.accent }}>
+          <div className="nb-stack">
+            <div className="nb-meta mb-2 text-[11px] tracking-[3px] uppercase font-semibold" style={{ color: theme.accent }}>
               {displayYear}<Sep />{displayMusic}
             </div>
             <h1
@@ -1687,7 +1687,7 @@ async function GenericWorkPage({
                 href="https://wa.me/33743791841"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 rounded-sm"
+                className="nb-btn group inline-flex items-center gap-5 px-12 py-6 text-white transition-all duration-300 hover:brightness-110 rounded-sm"
                 style={{ backgroundColor: theme.accent, fontFamily: FONT.display }}
               >
                 <span className="text-[13px] tracking-[4px] uppercase font-semibold whitespace-nowrap">

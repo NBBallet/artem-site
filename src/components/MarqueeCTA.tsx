@@ -84,6 +84,7 @@ export default function MarqueeCTA({
               {locale === "fr" ? "Suivant" : locale === "uk" ? "Наступна" : "Next"}
             </span>
             <svg
+              className="nb-arrow"
               width="13" height="13" viewBox="0 0 24 24"
               fill="none" stroke={accentColor} strokeWidth="2"
             >

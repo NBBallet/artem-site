@@ -138,10 +138,10 @@ export default async function HomePage({
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
                       <span className="inline-flex items-center gap-2 text-[10px] tracking-[3px] uppercase font-semibold text-brand-white bg-brand-red/90 backdrop-blur-sm px-3 py-1.5 rounded-sm">
-                        {`${t["works.viewProject"]} ${GLYPH.next}`}
+                        {`${t["works.viewProject"]} ${GLYPH.next}`.trim()}
                       </span>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 px-5 pb-4 text-center">
+                    <div className="nb-dark absolute bottom-0 left-0 right-0 px-5 pb-4 text-center">
                       <h3
                         className="text-[clamp(18px,2.5vw,26px)] leading-tight text-brand-white tracking-[2px] uppercase drop-shadow-lg"
                         style={{ fontFamily: FONT.display }}
@@ -157,7 +157,7 @@ export default async function HomePage({
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-4 text-center"
                     style={{ background: cardBg || undefined }}>
                     {/* Thin accent line above title */}
-                    <div className="w-8 h-[1px]" style={{ backgroundColor: cardAccent + "88" }} />
+                    <div className="nb-rule w-8 h-[1px]" style={{ backgroundColor: cardAccent + "88" }} />
                     <span
                       className="text-[clamp(20px,3vw,30px)] text-white/70 group-hover:text-white/90 transition-colors drop-shadow-lg leading-tight tracking-[2px]"
                       style={{ fontFamily: FONT.display }}
@@ -266,7 +266,7 @@ export default async function HomePage({
 
       {/* ===== CV / RÉSUMÉ CTA =====
            Editable in Notion Site Settings → keys: cv_cta_*, cv_url */}
-      <section className="border-b border-line bg-[#080808]">
+      <section className="nb-band border-b border-line bg-[#080808]">
         <div className="py-20 px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex flex-col items-center gap-10">
             {/* Text */}
@@ -293,7 +293,7 @@ export default async function HomePage({
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <Link
                 href={`/${lang}/cv`}
-                className="group inline-flex items-center justify-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm"
+                className="nb-btn group inline-flex items-center justify-center gap-5 px-12 py-6 bg-brand-red hover:bg-white text-white hover:text-brand-red transition-all duration-300 rounded-sm"
               >
                 <span className="t-mono text-[14px] tracking-[2.8px] uppercase whitespace-nowrap">
                   {locale === "fr"
@@ -316,7 +316,7 @@ export default async function HomePage({
               <a
                 href={locale === "fr" ? `/${lang}/cv?print=1` : CV_DOWNLOAD[locale]}
                 download={locale !== "fr"}
-                className="group inline-flex items-center justify-center gap-4 px-10 py-6 border border-[#2b2b2b] hover:border-brand-red text-fg-4 hover:text-brand-white transition-all duration-300 rounded-sm"
+                className="nb-btn nb-btn-soft group inline-flex items-center justify-center gap-4 px-10 py-6 border border-[#2b2b2b] hover:border-brand-red text-fg-4 hover:text-brand-white transition-all duration-300 rounded-sm"
               >
                 <span className="t-mono text-[13px] tracking-[2.8px] uppercase whitespace-nowrap">
                   {cvData[locale].downloadBtn}

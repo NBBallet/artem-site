@@ -1,0 +1,285 @@
+/* ══ БРЕНДПАКЕТ NB · 2 — ЧЕРНЕТКА ════════════════════════════════════════════
+   Вибір Артема 25.11.2026: «Так, NB · 2». NAMU-1400 на назвах, IBM Plex Sans
+   на тексті й мітках, палітра брендбуку Newspaper Birds (Andre Magpie Studio).
+
+   Усі правила стоять під html[data-brand="nb2"]. Атрибут ставить
+   src/app/layout.tsx лише коли DRAFT_BRAND_NB2 (src/lib/drafts.ts) — тобто
+   на preview гілки design/brand-namu. У продакшені цей файл спить.
+
+   Дві тональності:
+   · світла (за замовчуванням) — тло #FEF8F5, NAMU чорним, текст графітом,
+     мета сланцем, картки пудровою заливкою, кнопка — сланцева пігулка;
+   · темна (.nb-dark, сторінки творів) — тло й атмосфера вистави лишаються
+     (DESIGN.md: палітри творів — не бренд), NAMU пудровим, мета і кнопка
+     абрикосом.
+
+   Контраст (WCAG, перевірено 25.11.2026): графіт на тлі 10,9 : 1 · сланець
+   на тлі 4,6 : 1 · білий на сланці 4,9 : 1 · графіт на пудровому 8,3 : 1 ·
+   абрикос на #1D1D1B 8,5 : 1. Сланець на пудровому — 3,7 : 1, тому всередині
+   пудрових карток мета-колір графітовий.
+
+   Без: Inter, JetBrains Mono, червоного #C8102E, золота, рисок, ліній між
+   рядками, мітки над заголовком, моно-капсу, стрілок, підкреслень.
+   HOK Sans Pro не вживається (ліцензії немає). */
+
+html[data-brand="nb2"] {
+  --nb-bg: #fef8f5;
+  --nb-black: #1d1d1b;
+  --nb-graphite: #3c3c3b;
+  --nb-slate: #607577;
+  --nb-powder: #fbd9c9;
+  --nb-apricot: #f5a57c;
+
+  --font-text: var(--font-plex), "IBM Plex Sans", system-ui, sans-serif;
+  --font-label: var(--font-text);
+  --font-kicker: var(--font-text);
+
+  /* світла тональність: токени сайту → палітра брендбуку */
+  --black: var(--nb-bg);          /* тло сторінки */
+  --white: var(--nb-black);       /* основний колір тексту, NAMU */
+  --red: var(--nb-slate);         /* акцент: активне, кнопка */
+  --gold: var(--nb-slate);
+  --grey: var(--nb-slate);
+  --dark-grey: var(--nb-graphite);
+
+  --surface: var(--nb-powder);
+  --surface-2: var(--nb-powder);
+  --line: var(--nb-powder);
+  --line-2: var(--nb-powder);
+  --line-3: var(--nb-powder);
+  --line-4: var(--nb-powder);
+
+  --body-fg: var(--nb-graphite);
+  --meta-fg: var(--nb-slate);
+  --fg-2: var(--nb-graphite);
+  --fg-3: var(--nb-graphite);
+  --fg-4: var(--nb-graphite);
+  --fg-5: var(--nb-slate);
+  --fg-6: var(--nb-slate);
+
+  --label-color: var(--nb-graphite);
+  --label-size: 15px;
+  --label-tracking: 0;
+  --label-size-sm: 14px;
+  --label-tracking-sm: 0;
+  --kicker-tracking: 0;
+  --kicker-weight: 500;
+  --rule-color: transparent;
+}
+
+/* темна тональність — сторінки творів (атмосфера вистави лишається) */
+html[data-brand="nb2"] .nb-dark {
+  --black: var(--nb-black);
+  --white: var(--nb-powder);
+  --red: var(--nb-apricot);
+  --gold: var(--nb-apricot);
+  --grey: #cfc7c3;
+  --dark-grey: #cfc7c3;
+  --surface: rgba(251, 217, 201, 0.07);
+  --surface-2: rgba(251, 217, 201, 0.1);
+  --line: rgba(251, 217, 201, 0.07);
+  --line-2: rgba(251, 217, 201, 0.07);
+  --body-fg: #e4dcd8;
+  --meta-fg: var(--nb-apricot);
+  --fg-2: #e4dcd8;
+  --fg-3: #e4dcd8;
+  --fg-4: #d6cecb;
+  --fg-5: #cfc7c3;
+  --fg-6: #a8a19e;
+  --label-color: var(--nb-apricot);
+}
+
+/* ── Текст: Plex 300, рядки 400, кнопки й мітки 500 ── */
+html[data-brand="nb2"] body {
+  font-weight: 300;
+  background: var(--black);
+  color: var(--white);
+}
+html[data-brand="nb2"] ::selection { background: var(--nb-powder); color: var(--nb-black); }
+
+/* Капс і розрядка — лише в NAMU; решта стає звичайним реченням. */
+html[data-brand="nb2"] .uppercase:not([style*="font-display"]),
+html[data-brand="nb2"] .t-label,
+html[data-brand="nb2"] .t-kicker,
+html[data-brand="nb2"] .cv-label {
+  text-transform: none;
+  letter-spacing: 0;
+}
+html[data-brand="nb2"] [class*="tracking-["]:not([style*="font-display"]) {
+  letter-spacing: 0;
+}
+html[data-brand="nb2"] .t-label,
+html[data-brand="nb2"] .cv-label { font-weight: 500; }
+html[data-brand="nb2"] .font-semibold:not([style*="font-display"]) { font-weight: 500; }
+
+/* Мітка над заголовком («eyebrow») — прибрано. */
+html[data-brand="nb2"] .t-kicker { display: none; }
+
+/* Мета-рядок — під назвою, звичайним реченням. */
+html[data-brand="nb2"] .nb-stack { display: flex; flex-direction: column; align-items: flex-start; }
+html[data-brand="nb2"] .nb-stack > * { order: 2; }
+html[data-brand="nb2"] .nb-stack > h1 { order: 0; margin-bottom: 0.75rem; }
+html[data-brand="nb2"] .nb-stack > .nb-meta {
+  order: 1;
+  margin-bottom: 1.25rem;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--meta-fg) !important;
+}
+html[data-brand="nb2"] .nb-meta > span.rounded-full { display: none; }
+html[data-brand="nb2"] .nb-meta > span { color: inherit !important; font-size: inherit; }
+
+/* NAMU у темній тональності — пудровим */
+html[data-brand="nb2"] .nb-dark .text-white[style*="font-display"],
+html[data-brand="nb2"] .nb-dark h1.text-white,
+html[data-brand="nb2"] .nb-dark h2.text-white {
+  color: var(--nb-powder);
+}
+
+/* ── Жодних ліній, рисок, рамок ── */
+html[data-brand="nb2"] :where(.border, .border-t, .border-b, .border-l, .border-r, .border-l-2, .border-y, .border-x) {
+  border-color: transparent !important;
+}
+html[data-brand="nb2"] .nb-rule,
+html[data-brand="nb2"] .nb-arrow { display: none; }
+html[data-brand="nb2"] blockquote { border-left-color: transparent !important; padding-left: 0; }
+
+/* ── Посилання в тексті: колір + вага 500, без підкреслення ── */
+html[data-brand="nb2"] .underline,
+html[data-brand="nb2"] p a,
+html[data-brand="nb2"] .cv-p a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--white);
+}
+
+/* ── Кнопка: заливка-пігулка, без стрілки й підкреслення ── */
+html[data-brand="nb2"] .nb-btn {
+  border-radius: 999px !important;
+  border: 0 !important;
+  background: var(--nb-slate) !important;
+  color: #fff !important;
+  font-family: var(--font-text) !important;
+  font-weight: 500;
+  padding: 14px 30px;
+  gap: 0;
+}
+html[data-brand="nb2"] .nb-btn > span {
+  font-family: var(--font-text) !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+html[data-brand="nb2"] .nb-btn > svg { display: none; }
+html[data-brand="nb2"] .nb-btn:hover { filter: brightness(1.08); }
+html[data-brand="nb2"] .nb-btn-soft {
+  background: var(--nb-powder) !important;
+  color: var(--nb-black) !important;
+}
+html[data-brand="nb2"] .nb-dark .nb-btn {
+  background: var(--nb-apricot) !important;
+  color: var(--nb-black) !important;
+}
+html[data-brand="nb2"] .nb-btn-sm {
+  padding: 6px 16px;
+  font-size: 14px;
+}
+html[data-brand="nb2"] .nb-btn-sm[aria-current="page"] {
+  background: var(--nb-powder) !important;
+  color: var(--nb-black) !important;
+}
+
+/* ── Навігація: світла, без рамок; мови — текстом ── */
+html[data-brand="nb2"] nav { background: color-mix(in srgb, var(--nb-bg) 92%, transparent); }
+html[data-brand="nb2"] nav a,
+html[data-brand="nb2"] nav span { font-size: 14px; }
+html[data-brand="nb2"] nav > a:first-child { color: var(--nb-black); letter-spacing: 1px; }
+html[data-brand="nb2"] .nb-langs { gap: 0; }
+html[data-brand="nb2"] .nb-langs > * { background: none !important; padding: 4px 8px; color: var(--nb-slate) !important; }
+html[data-brand="nb2"] .nb-langs > span { color: var(--nb-black) !important; font-weight: 500; }
+
+/* ── Картки: пудрова заливка; мета всередині — графітом (контраст) ── */
+html[data-brand="nb2"] .bg-surface { --meta-fg: var(--nb-graphite); }
+html[data-brand="nb2"] .nb-band { background: var(--nb-bg); }
+html[data-brand="nb2"] .nb-chip {
+  border: 0 !important;
+  border-radius: 999px;
+  background: rgba(251, 217, 201, 0.1);
+  color: #e4dcd8 !important;
+  font-size: 14px;
+}
+
+/* ── Цифрове CV: світлий аркуш у палітрі брендбуку ── */
+html[data-brand="nb2"] .cv {
+  --cv-bg: var(--nb-bg);
+  --cv-panel: var(--nb-powder);
+  --cv-line: transparent;
+  --cv-line2: transparent;
+  --cv-fg: var(--nb-black);
+  --cv-body: var(--nb-graphite);
+  --cv-meta: var(--nb-slate);
+  --cv-red: var(--nb-graphite);
+  --cv-red-soft: rgba(251, 217, 201, 0.6);
+  --cv-gold: var(--nb-slate);
+  --cv-gold-soft: rgba(251, 217, 201, 0.6);
+  --cv-navy: var(--nb-slate);
+  --cv-navy-soft: rgba(251, 217, 201, 0.6);
+  --cv-seam: var(--nb-black);
+  font-weight: 300;
+}
+html[data-brand="nb2"] .cv-panel { --cv-meta: var(--nb-graphite); }
+html[data-brand="nb2"] .cv a:hover { color: var(--nb-slate); }
+
+/* Ім'я в героях — NAMU чорним (двоколірність ім'я/прізвище була червоною) */
+html[data-brand="nb2"] h1 .text-brand-red { color: var(--white); }
+
+/* CV: без капсу і розрядки поза NAMU */
+html[data-brand="nb2"] .cv :is(.cv-label, .cv-btn, .cv-award-cta, .cv-status-pill, .cv-mono, .uppercase) {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+/* CV: жодних рисок і ліній (інлайн-бордери, r-rule, шов колонок) */
+html[data-brand="nb2"] .cv [style*="border"],
+html[data-brand="nb2"] .cv .cv-seam,
+html[data-brand="nb2"] .cv .cv-stats,
+html[data-brand="nb2"] .cv .cv-stat,
+html[data-brand="nb2"] .cv .cv-award-link,
+html[data-brand="nb2"] .cv .cv-bd,
+html[data-brand="nb2"] .cv .cv-bd2 {
+  border-color: transparent !important;
+}
+/* CV: кнопки — пігулки */
+html[data-brand="nb2"] .cv .cv-btn {
+  font-family: var(--font-text);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 30px;
+  border-radius: 999px;
+  border: 0;
+  gap: 0;
+}
+html[data-brand="nb2"] .cv .cv-btn svg,
+html[data-brand="nb2"] .cv .cv-award-cta svg,
+html[data-brand="nb2"] .cv .cv-status-pill svg { display: none; }
+html[data-brand="nb2"] .cv .cv-btn-primary,
+html[data-brand="nb2"] .cv a.cv-btn-primary { background: var(--nb-slate); color: #fff; }
+html[data-brand="nb2"] .cv .cv-btn-primary:hover { background: var(--nb-slate); color: #fff; filter: brightness(1.08); }
+html[data-brand="nb2"] .cv .cv-btn-ghost,
+html[data-brand="nb2"] .cv .cv-btn-ghost:hover { background: var(--nb-powder); color: var(--nb-black); }
+/* CV: репертуар — текст на кадрі пудровим */
+html[data-brand="nb2"] .cv .cv-rep-title { color: var(--nb-powder) !important; }
+html[data-brand="nb2"] .cv .cv-rep-row { background-color: transparent; }
+@media screen and (max-width: 767px) {
+  html[data-brand="nb2"] .cv .cv-rep-row { background: var(--nb-black); }
+  html[data-brand="nb2"] .cv .cv-rep-row .cv-status-pill { color: var(--nb-apricot) !important; }
+  html[data-brand="nb2"] .cv .cv-traj-item { --wave: var(--nb-powder); }
+  html[data-brand="nb2"] .cv .cv-traj-item.is-peak { --wave: var(--nb-slate); }
+}
+@media screen and (min-width: 1024px) {
+  html[data-brand="nb2"] .cv .cv-rep-year { color: var(--nb-powder) !important; }
+}
+
+/* CV: мітка над заголовком розділу — прибрано; риска лишає свій відступ */
+html[data-brand="nb2"] .cv .r-head > .cv-label:has(+ .cv-h2) { display: none; }
+html[data-brand="nb2"] .cv .r-rule { display: block; visibility: hidden; }

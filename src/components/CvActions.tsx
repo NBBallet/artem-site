@@ -108,7 +108,7 @@ export default function CvActions({
         </svg>
       </a>
       <Link href={backHref} className="cv-btn cv-btn-ghost">
-        {`${GLYPH.back} ${backLabel}`}
+        {`${GLYPH.back} ${backLabel}`.trim()}
       </Link>
     </div>
     {/* Wherever there is a print button (fr, ru): the printed CV is recto verso,

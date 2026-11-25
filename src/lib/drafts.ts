@@ -38,3 +38,19 @@ export const DRAFT_PROGRAMMER =
 export const DRAFT_FIREBIRD =
   process.env.NEXT_PUBLIC_DRAFT_FIREBIRD === "1" ||
   process.env.NEXT_PUBLIC_SITE_ENV === "preview";
+
+/**
+ * Брендпакет NB · 2 (вибір Артема 25.11.2026: «Так, NB · 2») — NAMU-1400 на
+ * назвах, IBM Plex Sans на тексті, палітра брендбуку Newspaper Birds.
+ * ЧЕРНЕТКА: увімкнено лише на preview гілки design/brand-namu (і локально
+ * прапорцем). У продакшені <html> не отримує data-brand="nb2", тож усі
+ * правила з src/app/brand-nb2.css сплять, і сайт лишається як є.
+ *
+ *     NEXT_PUBLIC_DRAFT_BRAND_NB2=1 npm run dev
+ *
+ * Реліз = прибрати прапорець (поставити атрибут безумовно) — лише після «так»
+ * Артема на preview.
+ */
+export const DRAFT_BRAND_NB2 =
+  process.env.NEXT_PUBLIC_DRAFT_BRAND_NB2 === "1" ||
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF === "design/brand-namu";
