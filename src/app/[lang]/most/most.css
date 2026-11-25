@@ -1,0 +1,266 @@
+/* Живий прототип «Стрибок → Міст → Предела» (DRAFT_MOST). NB · 2:
+   NAMU на назвах, IBM Plex Sans 300/400/500, палітра Newspaper Birds.
+   Без рисок, ліній, стрілок, підкреслень, моно і міток над заголовком. */
+
+.most {
+  --m-bg: #fef8f5;
+  --m-black: #1d1d1b;
+  --m-graphite: #3c3c3b;
+  --m-slate: #607577;
+  --m-powder: #fbd9c9;
+  --m-apricot: #f5a57c;
+  --m-soft: #cfc7c3; /* текст на темному, 10,5 : 1 */
+  font-family: var(--font-plex), "IBM Plex Sans", system-ui, sans-serif;
+  font-weight: 300;
+  color: var(--m-graphite);
+}
+.most a { text-decoration: none; color: inherit; }
+.most :focus-visible { outline: 2px solid var(--m-apricot); outline-offset: 4px; border-radius: 4px; }
+.most .tone-light :focus-visible { outline-color: var(--m-slate); }
+.most .namu { font-family: "NAMU-1400", Georgia, serif; font-weight: 400; letter-spacing: 0.01em; }
+.most .tone-dark { background: var(--m-black); color: var(--m-soft); }
+.most .tone-light { background: var(--m-bg); color: var(--m-graphite); }
+.most .tone-dark .namu { color: var(--m-powder); }
+.most .tone-light .namu { color: var(--m-black); }
+
+/* Заглушки — сірі площини, текст лише позначає, чий він */
+.most .ph {
+  display: inline-block;
+  padding: 0.35em 0.8em;
+  border-radius: 999px;
+  font-weight: 400;
+  font-size: 15px;
+}
+.most .tone-dark .ph { background: rgba(251, 217, 201, 0.1); color: var(--m-soft); }
+.most .tone-light .ph { background: #efe6e1; color: #4e5f61; }
+
+.most .pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 16px;
+}
+.most .tone-dark .pill { background: var(--m-apricot); color: var(--m-black); }
+.most .tone-light .pill { background: var(--m-black); color: var(--m-bg); }
+.most .pill.quiet { background: transparent; padding: 0; min-height: 44px; }
+.most .tone-dark .pill.quiet { color: var(--m-powder); }
+.most .tone-light .pill.quiet { color: var(--m-graphite); }
+
+/* ───────────── ГОЛОВНА: стрибок через склейку ───────────── */
+.jump { position: relative; }
+.jump-figure {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  margin-bottom: -100vh;
+  pointer-events: none;
+  z-index: 2;
+  /* стекова група змішується з розділом під нею як ціле */
+  mix-blend-mode: lighten;
+}
+.jump-figure[data-tone="light"] { mix-blend-mode: darken; }
+.jump-figure .frame {
+  position: absolute;
+  right: 6vw;
+  top: 14vh;
+  width: min(46vw, 640px);
+  aspect-ratio: 3 / 2;
+}
+.jump-figure img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 420ms ease;
+  /* темна тональність: чорне тло кадру зникає в #1D1D1B, фігура світла */
+  filter: grayscale(1) brightness(1.15) contrast(1.1);
+}
+.jump-figure img.on { opacity: 1; }
+/* світла тональність: кадр у негатив — фігура темна, тло зникає в #FEF8F5 */
+.jump-figure[data-tone="light"] img {
+  filter: grayscale(1) invert(1) contrast(1.15);
+}
+.jump-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 96px 6vw 64px;
+}
+.jump-section .col { width: min(42vw, 560px); }
+.jump-inline { display: none; }
+.jump-chrono { display: none; }
+
+.jump h1.namu { font-size: clamp(44px, 6vw, 88px); line-height: 1; margin: 0; }
+.jump h2.namu { font-size: clamp(34px, 4vw, 56px); line-height: 1.05; margin: 0 0 28px; }
+.jump .lead { font-size: 19px; line-height: 1.55; margin: 18px 0 0; font-weight: 400; }
+.jump .slogan { margin-top: 28px; }
+.jump .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.jump .list a {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 0;
+  min-height: 44px;
+}
+.jump .list .code { font-weight: 400; font-size: 15px; color: var(--m-slate); }
+.jump .list .t { font-family: "NAMU-1400", Georgia, serif; font-size: 30px; color: var(--m-black); line-height: 1.1; }
+.jump .list .m { grid-column: 2; font-size: 15px; font-weight: 400; color: var(--m-graphite); }
+.jump .list a:hover .t { color: var(--m-slate); }
+.jump .row { display: flex; flex-wrap: wrap; gap: 16px 28px; margin-top: 32px; }
+
+@media (max-width: 899px) {
+  .jump-figure { display: none; }
+  .jump-inline { display: block; width: 100%; aspect-ratio: 3 / 2; position: relative; margin: 0 0 28px; }
+  .jump-inline img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) brightness(1.15) contrast(1.1); mix-blend-mode: lighten; }
+  .tone-light .jump-inline img { filter: grayscale(1) invert(1) contrast(1.15); mix-blend-mode: darken; }
+  .jump-section { min-height: 0; padding: 88px 24px 56px; display: block; }
+  .jump-section .col { width: 100%; }
+  .jump .list .t { font-size: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jump-figure { display: none; }
+  .jump-inline { display: none; }
+  .jump-section .col { width: 100%; max-width: 760px; }
+  .jump-chrono {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .jump-chrono img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; filter: grayscale(1) brightness(1.15) contrast(1.1); mix-blend-mode: lighten; }
+}
+
+/* ───────────── ТВІР: міст (хасіґакарі) ───────────── */
+.bridge { position: relative; height: 150vh; }
+.bridge-stick {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  padding: 96px 6vw 48px;
+}
+.bridge .title { font-size: clamp(40px, 5.2vw, 84px); line-height: 1; margin: 0; max-width: 50vw; }
+.bridge .meta { margin: 14px 0 0; font-weight: 400; font-size: 17px; color: var(--m-soft); }
+.bridge .stops { list-style: none; margin: 0; padding: 0; }
+.bridge .stop {
+  position: absolute;
+  font-weight: 400;
+  font-size: clamp(18px, 1.7vw, 24px);
+  color: var(--m-apricot);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+.bridge .stop { max-width: 30vw; }
+.bridge .stop:nth-child(1) { left: 8vw; top: 46vh; }
+.bridge .stop:nth-child(2) { left: 15vw; top: 59vh; }
+.bridge .stop:nth-child(3) { left: 22vw; top: 72vh; }
+.bridge .stage {
+  position: absolute;
+  right: 6vw;
+  bottom: 8vh;
+  width: min(36vw, 500px);
+  aspect-ratio: 1;
+  background: var(--m-graphite);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bridge .stage img { width: 100%; height: 100%; object-fit: cover; transition: opacity 600ms ease, filter 600ms ease; }
+.bridge .stage .ph-wrap { position: absolute; inset: 0; display: grid; place-items: center; }
+.bridge .skip { position: absolute; left: 6vw; bottom: 6vh; }
+
+/* стан до зупинки: лише після запуску скрипта (без JS усе видно) */
+.bridge[data-armed] .stop { opacity: 0; transform: translateY(10px); }
+.bridge[data-armed] .stop.seen { opacity: 1; transform: none; }
+.bridge[data-armed] .stage img { opacity: 0.28; filter: grayscale(0.6); }
+.bridge[data-armed][data-open] .stage img { opacity: 1; filter: none; }
+
+@media (max-width: 899px) {
+  .bridge-stick { padding: 80px 24px 24px; display: flex; flex-direction: column; }
+  .bridge .title { max-width: none; font-size: 44px; }
+  .bridge .stops { margin-top: 20px; display: grid; gap: 10px; }
+  .bridge .stop { position: static; font-size: 18px; max-width: none; }
+  .bridge .stop:nth-child(2) { padding-left: 16px; }
+  .bridge .stop:nth-child(3) { padding-left: 32px; }
+  .bridge .stage { position: relative; right: auto; bottom: auto; width: 100%; max-height: 42vh; margin-top: 20px; aspect-ratio: auto; flex: 1; }
+  .bridge .skip { position: static; margin-top: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bridge { height: auto; }
+  .bridge-stick { position: relative; height: auto; min-height: 100vh; }
+  .bridge .stop, .bridge .stage img { transition: none; }
+  .bridge[data-armed] .stop { opacity: 1; transform: none; }
+  .bridge[data-armed] .stage img { opacity: 1; filter: none; }
+}
+
+/* ───────────── ТВІР: предела ───────────── */
+.altar { padding: 80px 6vw 96px; scroll-margin-top: 0; }
+.altar .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; margin-bottom: 16px; }
+.altar .head .namu { font-size: clamp(30px, 3vw, 44px); margin: 0; }
+.altar .head .meta { font-weight: 400; font-size: 16px; color: var(--m-slate); }
+.altar .pala {
+  position: relative;
+  width: 100%;
+  /* образ і предела вміщаються на один екран — підпис напряму */
+  height: clamp(240px, calc(100vh - 410px), 640px);
+  background: #efe6e1;
+  overflow: hidden;
+}
+.altar .pala img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.altar .pala .ph-wrap { position: absolute; inset: 0; display: grid; place-items: center; }
+.altar .pala-cap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin: 10px 0 0; min-height: 44px; }
+.altar .pala-cap .alt { font-weight: 400; font-size: 15px; color: var(--m-graphite); }
+.predella {
+  margin-top: 20px;
+  background: var(--m-powder);
+  padding: 18px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 14px;
+  list-style: none;
+}
+.predella button {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.predella .thumb { display: block; position: relative; aspect-ratio: 4 / 3; background: #efe6e1; overflow: hidden; }
+.predella .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 200ms ease; }
+.predella button[aria-pressed="false"] .thumb img { opacity: 0.78; }
+.predella button:hover .thumb img { opacity: 1; }
+.predella .thumb .ph-wrap { position: absolute; inset: 0; display: grid; place-items: center; padding: 6px; text-align: center; }
+.predella .thumb .ph { font-size: 13px; padding: 0.3em 0.6em; }
+.predella .cap { display: block; margin-top: 8px; font-size: 14px; font-weight: 400; color: var(--m-black); min-height: 22px; }
+.predella .cap .ph { font-size: 13px; padding: 0.2em 0.6em; background: rgba(255, 255, 255, 0.55); color: #4e5f61; }
+.predella .num { font-weight: 500; margin-right: 6px; }
+.predella button[aria-pressed="true"] .thumb { box-shadow: 0 0 0 3px var(--m-black); }
+
+.altar .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px 40px; margin: 48px 0 0; }
+.altar .facts dt { font-weight: 500; font-size: 15px; color: var(--m-black); }
+.altar .facts dd { margin: 4px 0 0; font-size: 17px; line-height: 1.5; }
+.altar .next { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; }
+.altar .next .namu { font-size: 30px; }
+
+@media (max-width: 899px) {
+  .altar { padding: 56px 0 72px; }
+  .altar .head, .altar .pala-cap, .altar .facts, .altar .next { padding: 0 24px; }
+  .altar .pala { height: auto; aspect-ratio: 4 / 3; }
+  .predella {
+    grid-auto-columns: 38%; /* видно 2,5 панелі: ясно, що далі є ще */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 14px 24px;
+    scroll-padding: 0 24px;
+  }
+  .predella li { scroll-snap-align: start; }
+}

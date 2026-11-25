@@ -53,4 +53,23 @@ export const DRAFT_FIREBIRD =
  */
 export const DRAFT_BRAND_NB2 =
   process.env.NEXT_PUBLIC_DRAFT_BRAND_NB2 === "1" ||
-  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF === "design/brand-namu";
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF === "design/brand-namu" ||
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF === "design/most-predela";
+
+/**
+ * Живий прототип поєднання напрямів сайту (рішення Артема 25.11.2026):
+ * головна — «Стрибок через склейку» (Майя Дерен, 1945); сторінки творів —
+ * «Хасіґакарі» (міст театру Но, три зупинки з фактами) веде до «Пределі»
+ * (вівтар Фра Анджеліко: великий кадр і ряд епізодів).
+ * Канва: https://claude.ai/artifact/4XcVdrZwWvAKpWQQyrLuhM ; опис —
+ * CHORÉGRAPHE/_довідка/Напрями сайту — 2026-11-25.md.
+ *
+ * Окремі маршрути /[lang]/most і /[lang]/most/[slug]; опубліковані сторінки
+ * не змінюються. Увімкнено лише на preview гілки design/most-predela і
+ * локально:
+ *     NEXT_PUBLIC_DRAFT_MOST=1 NEXT_PUBLIC_DRAFT_BRAND_NB2=1 npm run dev
+ * У продакшені маршрути віддають 404. Реліз — лише словом Артема.
+ */
+export const DRAFT_MOST =
+  process.env.NEXT_PUBLIC_DRAFT_MOST === "1" ||
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF === "design/most-predela";
